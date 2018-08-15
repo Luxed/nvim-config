@@ -2,11 +2,13 @@
 
 ## Bindings
 
+The bindings present here are given in the same order as the files
+
 ### Vanilla
 
 | Bindings            | Mode     | Use                                 |
 |---------------------|----------|-------------------------------------|
-| ,                   | Any      | Leader key                          |
+| ,                   | Any      | \<leader\> key                      |
 | \<leader\>n         | Terminal | Exit Terminal                       |
 | \<leader\>n         | Normal   | Remove current highlight            |
 | \<leader\>T         | Normal   | New empty buffer                    |
