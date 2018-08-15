@@ -2,4 +2,4 @@
 command! Pr !python %
 
 " Bindings
-map <F5> :Pr<CR>
+noremap <F5> :Pr<CR>

@@ -5,7 +5,8 @@ source ~/.config/nvim/00_vanilla.vim
 source ~/.config/nvim/01_plugins.vim
 
 " === Load plugins configurations  ===
-" TODO: Make different ftplugins files into a configurable plugin
+" TODO: Make different ftplugins files into a configurable plugin to have easy
+" 'run', 'build' and 'test'
 source ~/.config/nvim/02_pluginsConf.vim
 
 " ===          Post init           ===
@@ -16,5 +17,5 @@ set background=dark
 colorscheme deus
 
 " Remove issues on ShellInABox and Butterfly terminal
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=

@@ -7,6 +7,6 @@ command! Ct !cargo test
 command! Cbr :tabedit term://cargo run --release
 
 " Bindings
-map <F4> :Cb<CR>
-map <F5> :Cr<CR>
-map <F6> :Ct<CR>
+noremap <F4> :Cb<CR>
+noremap <F5> :Cr<CR>
+noremap <F6> :Ct<CR>

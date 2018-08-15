@@ -7,7 +7,7 @@ let g:pandoc#modules#disabled = ['spell']
 let g:python_highlight_all = 1
 
 " * Neovim Typescript
-autocmd FileType typescript nmap K :TSDoc<CR>
+autocmd FileType typescript nnoremap K :TSDoc<CR>
 
 " === Syntax/Error checkers ===
 
@@ -26,10 +26,10 @@ let g:ale_open_list = 1
 "let g:ale_set_quickfix = 1
 "let g:ale_lint_delay=50
 " ALE bindings
-nmap <leader>an :ALENextWrap<CR>
-nmap <leader>ap :ALEPreviousWrap<CR>
-nmap <leader>ah :ALEHover<CR>
-nmap <leader>ag :ALEGoToDefinition<CR>
+nnoremap <leader>an :ALENextWrap<CR>
+nnoremap <leader>ap :ALEPreviousWrap<CR>
+nnoremap <leader>ah :ALEHover<CR>
+nnoremap <leader>ag :ALEGoToDefinition<CR>
 
 " ===      Completion       ===
 
@@ -51,7 +51,7 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
 " * NerdTree
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-N> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 
 " * CtrlP
@@ -63,14 +63,14 @@ let g:ctrlp_custom_ignore = {
 " Use the nearest .git directory as the cwd
 let g:ctrlp_working_path_mode = 'r'
 " CtrlP bindings
-nmap <leader>pp :CtrlP<CR>
-nmap <leader>pb :CtrlPBuffer<CR>
-nmap <leader>pm :CtrlPMixed<CR>
-nmap <leader>ps :CtrlPMRU<CR>
+nnoremap <leader>pp :CtrlP<CR>
+nnoremap <leader>pb :CtrlPBuffer<CR>
+nnoremap <leader>pm :CtrlPMixed<CR>
+nnoremap <leader>ps :CtrlPMRU<CR>
 
 " * Tagbar
 " Opens tagbar to the right and moves into it
-nmap <C-T> :TagbarToggle<CR><C-W><C-L>
+nnoremap <C-T> :TagbarToggle<CR><C-W><C-L>
 
 " * Vim Markdown Preview
 let vim_markdown_preview_hotkey='<C-m>'

@@ -55,15 +55,15 @@ let mapleader = ","
 " exit terminal
 tnoremap <leader>n <C-\><C-N>
 " remove highlight
-nmap <leader>n :nohl<CR>
+nnoremap <leader>n :nohl<CR>
 
 " Buffers keybinds
 set hidden
-nmap <leader>T :enew<CR>
-nmap <leader>l :bnext<CR>
-nmap <leader>h :bprevious<CR>
-nmap <leader>bq :bp <BAR> bd #<CR>
-nmap <leader>bl :ls<CR>
+nnoremap <leader>T :enew<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <leader>bl :ls<CR>
 
 " Syntax name of element under cursor
 nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
@@ -72,8 +72,8 @@ nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:v
 set autowrite
 
 " Folds keybinds
-nmap <Space> za
-nmap <leader><Space> zc
+nnoremap <Space> za
+nnoremap <leader><Space> zc
 " Navigation between folds
 nnoremap <silent> <leader>zj :call NextClosedFold('j')<CR>
 nnoremap <silent> <leader>zk :call NextClosedFold('k')<CR>
