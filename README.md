@@ -7,7 +7,7 @@
 | Bindings        | Mode     | Use                                 |
 |-----------------|----------|-------------------------------------|
 | ,               | Any      | Leader key                          |
-| <leader>n       | Terminal | Exit Terminal                       |
+| \<leader\>n     | Terminal | Exit Terminal                       |
 | <leader>n       | Normal   | Remove current highlight            |
 | <leader>T       | Normal   | New empty buffer                    |
 | <leader>l       | Normal   | Next buffer                         |
