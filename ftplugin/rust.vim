@@ -1,0 +1,12 @@
+" Custom commands
+command! Cb !cargo build
+command! Cbadc !RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build
+command! Cr !cargo run
+command! Cradc !RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run
+command! Ct !cargo test
+command! Cbr :tabedit term://cargo run --release
+
+" Bindings
+map <F4> :Cb<CR>
+map <F5> :Cr<CR>
+map <F6> :Ct<CR>
