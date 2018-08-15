@@ -50,3 +50,14 @@ The bindings present here are given in the same order as the files
 | FileType: Help |
 | \<CR\>         | Normal | \<C-]\> (go to the definition under cursor) |
 | \<BS\>         | Normal | \<C-T\> (go back to where you were before)  |
+
+## How it works
+
+The first file executed is the `init.vim` file.
+1) This file executes the `~/.config/nvim/00_vanilla.vim` file.
+    - This file contains every setting and keymap that doesn't require a plugin to work.
+2) Then it executes the `~/.config/nvim/01_plugins.vim` file.
+    - This file contains every plugin to load with `vim-plug`.
+3) Then it executes the `~/.config/nvim/02_pluginsConf.vim` file.
+    - This file contains every configuration and keymap for every plugin (the order and categories are the same as `01_plugins.vim`).
+4) Then it puts the correct colorscheme and defines some theme/interface options.
