@@ -59,5 +59,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'iCyMind/NeoSolarized'
 Plug 'reedes/vim-colors-pencil'
 Plug 'ajmwagar/vim-deus' " Gruvbox based
+Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep'}
 
 call plug#end()
