@@ -71,7 +71,7 @@ nnoremap <leader>ps :CtrlPMRU<CR>
 
 " * Tagbar
 " Opens tagbar to the right and moves into it
-nnoremap <C-T> :TagbarToggle<CR><C-W><C-L>
+"noremap <C-T> :TagbarToggle<CR><C-W><C-L>
 
 " * Vim Markdown Preview
 let vim_markdown_preview_hotkey='<C-m>'

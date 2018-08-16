@@ -46,7 +46,7 @@ The bindings present here are given in the same order as the files
 | \<leader\>pm     | Normal | Launch CtrlP in mixed mode                |
 | \<leader\>ps     | Normal | Launch CtrlP in MRU mode                  |
 | Plugin: Tagbar   |
-| \<C-T\>          | Normal | Tagbar toggle                             |
+| ~\<C-T\>~          | ~Normal~ | ~Tagbar toggle~                             |
 
 #### FileType
 
