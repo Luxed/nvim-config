@@ -17,6 +17,9 @@ The bindings present here are given in the same order as the files
 | \<leader\>bq        | Normal   | Quit current buffer                 |
 | \<leader\>bl        | Normal   | List Buffers                        |
 | \<leader\>wq        | Normal   | Quit current buffer and window      |
+| \<leader\>ww        | Normal   | Save current buffer                 |
+| \<leader\>ei        | Normal   | Edit init.vim file                  |
+| \<leader\>si        | Normal   | Source init.vim file                |
 | zS                  | Normal   | Echo syntax of element under cursor |
 | \<Space\>           | Normal   | za (toggle fold)                    |
 | \<leader\>\<Space\> | Normal   | zc (close fold)                     |

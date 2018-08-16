@@ -3,7 +3,7 @@ call plug#begin()
 
 " -- Languages
 Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown' " used mainly for the TableFormat command
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-markdownfootnotes'
@@ -19,7 +19,7 @@ Plug 'junegunn/vader.vim'
 Plug 'vim-python/python-syntax'
 "Plug 'leafgarland/typescript-vim'
 Plug 'herringtondarkholme/yats.vim' " Typescript syntax
-Plug 'mhartington/nvim-typescript'
+"Plug 'mhartington/nvim-typescript'
 
 " -- Syntax/Error checker
 " NOTE: Consider testing 'autozimu/LanguageClient-neovim' as an LSP

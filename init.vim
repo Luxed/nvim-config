@@ -1,4 +1,4 @@
-" === Load vanilla (neo)vim config ===
+" === Load vanilla neovim config ===
 source ~/.config/nvim/00_vanilla.vim
 
 " === Load plugins (with vim-plug) ===

@@ -10,7 +10,7 @@ set shiftwidth=4
 set smarttab
 
 " Show line numbers
-set number
+set number norelativenumber
 " Highlight current line
 set cursorline
 " Load filetype-specific indent files
@@ -72,12 +72,18 @@ nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>bq :bp <BAR> bd #<CR>
 nnoremap <leader>bl :ls<CR>
 nnoremap <leader>wq :bp <BAR> bd #<CR>:q<CR>
+nnoremap <leader>ww :w<CR>
+
+" Open init.vim file
+nnoremap <leader>ei :e $MYVIMRC<CR>
+" Source init.vim file
+nnoremap <leader>si :source $MYVIMRC<CR>
 
 " Syntax name of element under cursor
 nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
 
 " Ensures that the help is opened above
-command! -nargs=1 H above h <args><CR>
+command! -nargs=1 H :above h <args><CR>
 
 " Folds keybinds
 nnoremap <Space> za
