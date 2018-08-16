@@ -34,6 +34,7 @@ The bindings present here are given in the same order as the files
 | \<leader\>ap     | Normal | Ale previous wrap                         |
 | \<leader\>ah     | Normal | Ale hover                                 |
 | \<leader\>ag     | Normal | Ale go to definition                      |
+| \<leader\>ar     | Normal | Ale find references                       |
 | Plugin: NERDTree |
 | \<C-N\>          | Any    | NERDTree toggle                           |
 | Plugin: CtrlP    |
