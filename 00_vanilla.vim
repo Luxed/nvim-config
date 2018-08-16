@@ -49,6 +49,13 @@ set inccommand=nosplit
 " Always show the sign column (gutter)
 set signcolumn=yes
 
+" More natural splits
+set splitbelow
+set splitright
+
+" Enable autowrite
+set autowrite
+
 " Key bindings
 let mapleader = ","
 
@@ -64,12 +71,13 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>bq :bp <BAR> bd #<CR>
 nnoremap <leader>bl :ls<CR>
+nnoremap <leader>wq :bp <BAR> bd #<CR>:q<CR>
 
 " Syntax name of element under cursor
 nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
 
-" Enable autowrite
-set autowrite
+" Ensures that the help is opened above
+command! -nargs=1 H above h <args><CR>
 
 " Folds keybinds
 nnoremap <Space> za

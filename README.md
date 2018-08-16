@@ -16,6 +16,7 @@ The bindings present here are given in the same order as the files
 | \<leader\>h         | Normal   | Previous buffer                     |
 | \<leader\>bq        | Normal   | Quit current buffer                 |
 | \<leader\>bl        | Normal   | List Buffers                        |
+| \<leader\>wq        | Normal   | Quit current buffer and window      |
 | zS                  | Normal   | Echo syntax of element under cursor |
 | \<Space\>           | Normal   | za (toggle fold)                    |
 | \<leader\>\<Space\> | Normal   | zc (close fold)                     |
@@ -50,6 +51,14 @@ The bindings present here are given in the same order as the files
 | FileType: Help |
 | \<CR\>         | Normal | \<C-]\> (go to the definition under cursor) |
 | \<BS\>         | Normal | \<C-T\> (go back to where you were before)  |
+
+## Commands
+
+A list of the custom commands I made.
+
+| Command | Use                                                                      |
+|---------|--------------------------------------------------------------------------|
+| H       | Opens the help in a split above (because default behavior is splitbelow) |
 
 ## How it works
 

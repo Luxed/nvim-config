@@ -30,6 +30,7 @@ nnoremap <leader>an :ALENextWrap<CR>
 nnoremap <leader>ap :ALEPreviousWrap<CR>
 nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>ag :ALEGoToDefinition<CR>
+nnoremap <leader>ar :ALEFindReferences<CR>
 
 " ===      Completion       ===
 
