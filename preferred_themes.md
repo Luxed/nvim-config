@@ -14,3 +14,5 @@
 * wasabi256
 * pyte (Nice white colorscheme)
 * challenger_deep
+* janah
+* OceanicNext
