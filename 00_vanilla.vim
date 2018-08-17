@@ -57,7 +57,7 @@ set splitright
 set autowrite
 
 " Key bindings
-let mapleader = ","
+let mapleader = ','
 
 " exit terminal
 tnoremap <leader>n <C-\><C-N>

@@ -1,5 +1,5 @@
 " Custom commands
-command! Run :below 10sp term://python %
+command! -buffer Run :below 10sp term://python %
 
 " Bindings
-noremap <F5> :Run<CR>
+noremap <buffer> <F5> :Run<CR>
