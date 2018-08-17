@@ -8,6 +8,6 @@ command! -buffer Cradc !RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run
 command! -buffer Cbr :tabedit term://cargo run --release
 
 " Bindings
-noremap -buffer <F4> :Build<CR>
-noremap -buffer <F5> :Run<CR>
-noremap -buffer <F6> :Test<CR>
+noremap <buffer> <F4> :Build<CR>
+noremap <buffer> <F5> :Run<CR>
+noremap <buffer> <F6> :Test<CR>
