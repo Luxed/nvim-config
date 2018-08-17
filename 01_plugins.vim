@@ -47,12 +47,25 @@ Plug 'tpope/vim-surround' " Surround (visually select and surround with what you
 Plug 'Luxed/vim-markdown-preview', { 'branch': 'firefox-quantum' } " Realtime live preview of a rendered pandoc markdown file
 Plug 'tmhedberg/simpylfold' " Python code folding
 Plug 'AndrewRadev/bufferize.vim' " Execute commands in a buffer
+"Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
+Plug 'mhinz/vim-startify'
+Plug 'matze/vim-move'
+Plug 'sickill/vim-pasta'
 
 " Interface
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify' " Version control gutter signs (git, svn, mercurial, etc.)
 Plug 'godlygeek/tabular' " Auto spaces on what you choose (on '=' for example while declaring variables)
+"Plug 'yuttie/comfortable-motion.vim' " Causes visual glitches with the
+"butterfly terminal
+"Plug 'ryanoasis/vim-devicons' " Needs a patched font
+" Distraction free writing (works well in markdown)
+Plug 'junegunn/limelight.vim' " :Limelight allows you to focus on blocks in markdown
+Plug 'junegunn/goyo.vim'
+"Plug 'valloric/matchtagalways' " Match HTML, and XML like tags
+"Plug 'andymass/vim-matchup' " Seems interesting, don't know how to use it
+Plug 'henrik/vim-indexed-search'
 
 " Themes
 Plug 'flazz/vim-colorschemes'

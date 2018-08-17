@@ -63,6 +63,7 @@ A list of the custom commands I made.
 | Command | Use                                                                      |
 |---------|--------------------------------------------------------------------------|
 | H       | Opens the help in a split above (because default behavior is splitbelow) |
+| Rmhl    | Clears the search register                                               |
 
 ## How it works
 

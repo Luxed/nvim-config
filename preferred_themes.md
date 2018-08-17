@@ -16,3 +16,7 @@
 * challenger_deep
 * janah
 * OceanicNext
+* hybrid
+* dracula
+* seoul256
+* badwolf

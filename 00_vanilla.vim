@@ -85,6 +85,9 @@ nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:v
 " Ensures that the help is opened above
 command! -nargs=1 H :above h <args><CR>
 
+" Removes last highlight
+command! Rmhl :let @/=""
+
 " Folds keybinds
 nnoremap <Space> za
 nnoremap <leader><Space> zc

@@ -22,9 +22,10 @@ let g:ale_linters = {
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_completion_enabled = 0
 let g:ale_open_list = 1
+let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
-"let g:ale_lint_delay=50
+let g:ale_lint_delay=50
 " ALE bindings
 nnoremap <leader>an :ALENextWrap<CR>
 nnoremap <leader>ap :ALEPreviousWrap<CR>
