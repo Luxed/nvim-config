@@ -94,4 +94,5 @@ let g:airline#extensions#tabline#enabled = 1
 " only show the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" ===        Themes         ===
+" * indentLine
+let g:indentLine_char = '|'

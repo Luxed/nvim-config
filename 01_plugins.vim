@@ -66,6 +66,7 @@ Plug 'junegunn/goyo.vim'
 "Plug 'valloric/matchtagalways' " Match HTML, and XML like tags
 "Plug 'andymass/vim-matchup' " Seems interesting, don't know how to use it
 Plug 'henrik/vim-indexed-search'
+"Plug 'Yggdroot/indentLine'
 
 " Themes
 Plug 'flazz/vim-colorschemes'
