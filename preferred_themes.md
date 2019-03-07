@@ -11,7 +11,6 @@
 * deus (or gruvbox)
 * pencil
 * NeoSolarized (dark)
-* wasabi256
 * pyte (Nice white colorscheme)
 * challenger_deep
 * janah

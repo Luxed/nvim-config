@@ -48,7 +48,7 @@ Plug 'Luxed/vim-markdown-preview', { 'branch': 'firefox-quantum' } " Realtime li
 Plug 'tmhedberg/simpylfold' " Python code folding
 Plug 'AndrewRadev/bufferize.vim' " Execute commands in a buffer
 "Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
-Plug 'mhinz/vim-startify'
+"Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'
 
@@ -59,7 +59,9 @@ Plug 'mhinz/vim-signify' " Version control gutter signs (git, svn, mercurial, et
 Plug 'godlygeek/tabular' " Auto spaces on what you choose (on '=' for example while declaring variables)
 "Plug 'yuttie/comfortable-motion.vim' " Causes visual glitches with the
 "butterfly terminal
-Plug 'ryanoasis/vim-devicons' " Needs a patched font
+if has('unix')
+    Plug 'ryanoasis/vim-devicons' " Needs a patched font
+endif
 " Distraction free writing (works well in markdown)
 Plug 'junegunn/limelight.vim' " :Limelight allows you to focus on blocks in markdown
 Plug 'junegunn/goyo.vim'

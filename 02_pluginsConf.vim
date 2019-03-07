@@ -88,7 +88,7 @@ let vim_markdown_preview_use_xdg_open=1
 " ===       Interface       ===
 
 " * Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename

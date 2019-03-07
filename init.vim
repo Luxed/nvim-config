@@ -1,13 +1,12 @@
-" === Load vanilla neovim config ===
-source ~/.config/nvim/00_vanilla.vim
-
-" === Load plugins (with vim-plug) ===
-source ~/.config/nvim/01_plugins.vim
-
-" === Load plugins configurations  ===
-" TODO: Make different ftplugins files into a configurable plugin to have easy
-" 'run', 'build' and 'test'
-source ~/.config/nvim/02_pluginsConf.vim
+if has('unix')
+	source ~/.config/nvim/00_vanilla.vim
+	source ~/.config/nvim/01_plugins.vim
+	source ~/.config/nvim/02_pluginsConf.vim
+elseif has('win32')
+	source ~\AppData\Local\nvim\00_vanilla.vim
+	source ~\AppData\Local\nvim\01_plugins.vim
+	source ~\AppData\Local\nvim\02_pluginsConf.vim
+endif
 
 " ===          Post init           ===
 " Themes are loaded last to avoid any issues
