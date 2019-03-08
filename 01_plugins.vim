@@ -20,6 +20,7 @@ Plug 'vim-python/python-syntax'
 "Plug 'leafgarland/typescript-vim'
 Plug 'herringtondarkholme/yats.vim' " Typescript syntax
 "Plug 'mhartington/nvim-typescript'
+Plug 'https://github.com/PProvost/vim-ps1'
 
 " -- Syntax/Error checker
 " NOTE: Consider testing 'autozimu/LanguageClient-neovim' as an LSP
