@@ -24,8 +24,8 @@ let g:ale_linters = {
             \ 'python'     : ['flake8']
             \}
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 0
-let g:ale_open_list = 1
+let g:ale_completion_enabled = 1
+let g:ale_open_list = 0
 let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
@@ -42,7 +42,7 @@ nnoremap <leader>ar :ALEFindReferences<CR>
 " * Deoplete
 " Remove preview window
 set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 " Deoplete-rust configuration
 let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
@@ -63,7 +63,7 @@ let g:NERDTreeShowHidden=1
 " * CtrlP
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules)$',
             \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
             \}
 " Use the nearest .git directory as the cwd
@@ -88,7 +88,7 @@ let vim_markdown_preview_use_xdg_open=1
 " ===       Interface       ===
 
 " * Airline
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename

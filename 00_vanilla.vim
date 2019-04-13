@@ -9,6 +9,8 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
+set nowrap
+
 " Show line numbers
 set number norelativenumber
 " Highlight current line
