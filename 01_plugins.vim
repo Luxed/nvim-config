@@ -20,7 +20,7 @@ Plug 'vim-python/python-syntax'
 "Plug 'leafgarland/typescript-vim'
 Plug 'herringtondarkholme/yats.vim' " Typescript syntax
 "Plug 'mhartington/nvim-typescript'
-Plug 'https://github.com/PProvost/vim-ps1'
+Plug 'PProvost/vim-ps1'
 
 " -- Syntax/Error checker
 " NOTE: Consider testing 'autozimu/LanguageClient-neovim' as an LSP
@@ -48,7 +48,7 @@ Plug 'tpope/vim-surround' " Surround (visually select and surround with what you
 Plug 'Luxed/vim-markdown-preview', { 'branch': 'firefox-quantum' } " Realtime live preview of a rendered pandoc markdown file
 Plug 'tmhedberg/simpylfold' " Python code folding
 Plug 'AndrewRadev/bufferize.vim' " Execute commands in a buffer
-"Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
+Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
 "Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'

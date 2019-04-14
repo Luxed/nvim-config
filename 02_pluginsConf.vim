@@ -65,7 +65,7 @@ let g:NERDTreeShowHidden=1
 " * CtrlP
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules)$',
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules|target)$',
             \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
             \}
 " Use the nearest .git directory as the cwd
