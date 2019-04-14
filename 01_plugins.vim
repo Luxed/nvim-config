@@ -32,7 +32,7 @@ Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim' " Code completion
-Plug 'sebastianmarkow/deoplete-rust'
+Plug 'sebastianmarkow/deoplete-rust' " Rust completion
 Plug 'zchee/deoplete-jedi' " Python completion
 
 " -- Utility

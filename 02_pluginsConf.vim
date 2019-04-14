@@ -21,8 +21,10 @@ let g:ale_linters = {
             \ 'glsl'       : ['glslang'],
             \ 'haskell'    : ['hie'],
             \ 'typescript' : ['tsserver', 'tslint'],
-            \ 'python'     : ['flake8']
+            \ 'python'     : ['flake8'],
+            \ 'html'       : []
             \}
+
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_completion_enabled = 1
 let g:ale_open_list = 0
