@@ -3,9 +3,9 @@ if has('unix')
 	source ~/.config/nvim/01_plugins.vim
 	source ~/.config/nvim/02_pluginsConf.vim
 elseif has('win32')
-	source ~\AppData\Local\nvim\00_vanilla.vim
-	source ~\AppData\Local\nvim\01_plugins.vim
-	source ~\AppData\Local\nvim\02_pluginsConf.vim
+	source $HOME\AppData\Local\nvim\00_vanilla.vim
+	source $HOME\AppData\Local\nvim\01_plugins.vim
+	source $HOME\AppData\Local\nvim\02_pluginsConf.vim
 endif
 
 " ===          Post init           ===

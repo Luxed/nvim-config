@@ -52,6 +52,8 @@ Plug 'AndrewRadev/bufferize.vim' " Execute commands in a buffer
 "Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'
+Plug 'wellle/targets.vim' " adds text-objects to work with (with 'ci,' for example))
+Plug 'tpope/vim-repeat'
 
 " Interface
 Plug 'bling/vim-airline'
