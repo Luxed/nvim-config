@@ -9,6 +9,8 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
+set nowrap
+
 " Show line numbers
 set number norelativenumber
 " Highlight current line
@@ -18,7 +20,7 @@ filetype plugin indent on
 " Autocomplete for command menu
 set wildmenu
 set showcmd
-"redraw when needed
+" Redraw when needed
 set lazyredraw
 
 set showmatch

@@ -20,7 +20,7 @@ Plug 'vim-python/python-syntax'
 "Plug 'leafgarland/typescript-vim'
 Plug 'herringtondarkholme/yats.vim' " Typescript syntax
 "Plug 'mhartington/nvim-typescript'
-Plug 'https://github.com/PProvost/vim-ps1'
+Plug 'PProvost/vim-ps1'
 
 " -- Syntax/Error checker
 " NOTE: Consider testing 'autozimu/LanguageClient-neovim' as an LSP
@@ -32,7 +32,7 @@ Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim' " Code completion
-Plug 'sebastianmarkow/deoplete-rust'
+Plug 'sebastianmarkow/deoplete-rust' " Rust completion
 Plug 'zchee/deoplete-jedi' " Python completion
 
 " -- Utility
@@ -48,12 +48,16 @@ Plug 'tpope/vim-surround' " Surround (visually select and surround with what you
 Plug 'Luxed/vim-markdown-preview', { 'branch': 'firefox-quantum' } " Realtime live preview of a rendered pandoc markdown file
 Plug 'tmhedberg/simpylfold' " Python code folding
 Plug 'AndrewRadev/bufferize.vim' " Execute commands in a buffer
-"Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
+Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
 "Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'
+<<<<<<< HEAD
 Plug 'wellle/targets.vim' " adds text-objects to work with (with 'ci,' for example))
 Plug 'tpope/vim-repeat'
+=======
+Plug 'Luxed/vim-switcher'
+>>>>>>> ca77ae974da4e0ac19ecfe1eb99fc7752a333b8f
 
 " Interface
 Plug 'bling/vim-airline'

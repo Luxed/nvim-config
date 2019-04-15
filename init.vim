@@ -3,9 +3,10 @@ if has('unix')
 	source ~/.config/nvim/01_plugins.vim
 	source ~/.config/nvim/02_pluginsConf.vim
 elseif has('win32')
-	source $HOME\AppData\Local\nvim\00_vanilla.vim
-	source $HOME\AppData\Local\nvim\01_plugins.vim
-	source $HOME\AppData\Local\nvim\02_pluginsConf.vim
+  let g:python3_host_prog = 'C:\Python37\python'
+  source $HOME\AppData\Local\nvim\00_vanilla.vim
+  source $HOME\AppData\Local\nvim\01_plugins.vim
+  source $HOME\AppData\Local\nvim\02_pluginsConf.vim
 endif
 
 " ===          Post init           ===

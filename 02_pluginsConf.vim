@@ -1,4 +1,4 @@
-" ===       Languages       ===
+" {{{ Languages
 
 " * Pandoc
 let g:pandoc#modules#disabled = ['spell']
@@ -12,7 +12,9 @@ augroup filetype_maps_typescript
     autocmd FileType typescript nnoremap K :TSDoc<CR>
 augroup END
 
-" === Syntax/Error checkers ===
+" }}}
+
+" {{{ Syntax/Error checkers
 
 " * Ale
 let g:airline#extensions#ale#enabled=1
@@ -21,11 +23,13 @@ let g:ale_linters = {
             \ 'glsl'       : ['glslang'],
             \ 'haskell'    : ['hie'],
             \ 'typescript' : ['tsserver', 'tslint'],
-            \ 'python'     : ['flake8']
+            \ 'python'     : ['flake8'],
+            \ 'html'       : []
             \}
+
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 0
-let g:ale_open_list = 1
+let g:ale_completion_enabled = 1
+let g:ale_open_list = 0
 let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
@@ -37,19 +41,23 @@ nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
 
-" ===      Completion       ===
+" }}}
+
+" {{{ Completion
 
 " * Deoplete
 " Remove preview window
 set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 " Deoplete-rust configuration
 let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
 let g:deoplete#sources#rust#documentation_max_height = 0
 let g:deoplete#sources#jedi#show_docstring = 1
 
-" ===        Utility        ===
+" }}}
+
+" {{{ Utility
 
 " * UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -63,7 +71,7 @@ let g:NERDTreeShowHidden=1
 " * CtrlP
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules|target)$',
             \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
             \}
 " Use the nearest .git directory as the cwd
@@ -85,7 +93,9 @@ let vim_markdown_preview_pandoc=1
 let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=3
 
-" ===       Interface       ===
+" }}}
+
+" {{{ Interface
 
 " * Airline
 let g:airline_powerline_fonts = 1
@@ -96,3 +106,5 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " * indentLine
 let g:indentLine_char = '|'
+
+" }}}
