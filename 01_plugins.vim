@@ -52,6 +52,7 @@ Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
 "Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'
+Plug 'Luxed/vim-switcher'
 
 " Interface
 Plug 'bling/vim-airline'
