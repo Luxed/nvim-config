@@ -52,12 +52,9 @@ Plug 'andrewradev/splitjoin.vim' " Looks great, needs testing
 "Plug 'mhinz/vim-startify'
 Plug 'matze/vim-move'
 Plug 'sickill/vim-pasta'
-<<<<<<< HEAD
 Plug 'wellle/targets.vim' " adds text-objects to work with (with 'ci,' for example))
 Plug 'tpope/vim-repeat'
-=======
 Plug 'Luxed/vim-switcher'
->>>>>>> ca77ae974da4e0ac19ecfe1eb99fc7752a333b8f
 
 " Interface
 Plug 'bling/vim-airline'
