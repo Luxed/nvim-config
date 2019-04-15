@@ -20,7 +20,7 @@ filetype plugin indent on
 " Autocomplete for command menu
 set wildmenu
 set showcmd
-"redraw when needed
+" Redraw when needed
 set lazyredraw
 
 set showmatch

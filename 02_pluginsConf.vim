@@ -1,4 +1,4 @@
-" ===       Languages       ===
+" {{{ Languages
 
 " * Pandoc
 let g:pandoc#modules#disabled = ['spell']
@@ -12,7 +12,9 @@ augroup filetype_maps_typescript
     autocmd FileType typescript nnoremap K :TSDoc<CR>
 augroup END
 
-" === Syntax/Error checkers ===
+" }}}
+
+" {{{ Syntax/Error checkers
 
 " * Ale
 let g:airline#extensions#ale#enabled=1
@@ -39,7 +41,9 @@ nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
 
-" ===      Completion       ===
+" }}}
+
+" {{{ Completion
 
 " * Deoplete
 " Remove preview window
@@ -51,7 +55,9 @@ let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable
 let g:deoplete#sources#rust#documentation_max_height = 0
 let g:deoplete#sources#jedi#show_docstring = 1
 
-" ===        Utility        ===
+" }}}
+
+" {{{ Utility
 
 " * UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -87,7 +93,9 @@ let vim_markdown_preview_pandoc=1
 let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=3
 
-" ===       Interface       ===
+" }}}
+
+" {{{ Interface
 
 " * Airline
 let g:airline_powerline_fonts = 1
@@ -98,3 +106,5 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " * indentLine
 let g:indentLine_char = '|'
+
+" }}}
