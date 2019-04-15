@@ -1,1 +1,1 @@
-set syntax=pandoc
+"set syntax=pandoc

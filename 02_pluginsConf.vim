@@ -6,12 +6,6 @@ let g:pandoc#modules#disabled = ['spell']
 " * Python Syntax
 let g:python_highlight_all = 1
 
-" * Neovim Typescript
-augroup filetype_maps_typescript
-    autocmd!
-    autocmd FileType typescript nnoremap K :TSDoc<CR>
-augroup END
-
 " }}}
 
 " {{{ Syntax/Error checkers
