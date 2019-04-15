@@ -63,9 +63,7 @@ Plug 'mhinz/vim-signify' " Version control gutter signs (git, svn, mercurial, et
 Plug 'godlygeek/tabular' " Auto spaces on what you choose (on '=' for example while declaring variables)
 "Plug 'yuttie/comfortable-motion.vim' " Causes visual glitches with the
 "butterfly terminal
-if has('unix')
-    Plug 'ryanoasis/vim-devicons' " Needs a patched font
-endif
+Plug 'ryanoasis/vim-devicons' " Needs a patched font
 " Distraction free writing (works well in markdown)
 Plug 'junegunn/limelight.vim' " :Limelight allows you to focus on blocks in markdown
 Plug 'junegunn/goyo.vim'
