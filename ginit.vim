@@ -8,7 +8,7 @@ else
     GuiPopupmenu 0
     " On windows it is important to install the 'ttf' font
     "GuiFont! Fira Code:h11
-    GuiFont! Source Code Pro:h11
+    GuiFont! Source Code Pro Medium:h11
     "GuiFont! FuraCode NF:h11
     "GuiFont! Hasklug NF:h11
 endif

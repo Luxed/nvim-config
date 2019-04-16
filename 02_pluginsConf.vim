@@ -34,6 +34,7 @@ nnoremap <leader>ap :ALEPreviousWrap<CR>
 nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
+nnoremap <leader>ak :ALEDocumentation<CR>
 
 " }}}
 
@@ -65,7 +66,7 @@ let g:NERDTreeShowHidden=1
 " * CtrlP
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules|target)$',
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules|target|packages|plugged)$',
             \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
             \}
 " Use the nearest .git directory as the cwd
