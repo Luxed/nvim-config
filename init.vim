@@ -3,9 +3,11 @@ if has('unix')
     source ~/.config/nvim/01_plugins.vim
     source ~/.config/nvim/02_pluginsConf.vim
 elseif has('win32')
-    let g:python3_host_prog = 'C:\Program Files\Python37\python'
+    let g:python_host_prog = 'C:\Python27\python.exe'
+    let g:python3_host_prog = 'C:\Python37\python.exe'
     source $HOME\AppData\Local\nvim\00_vanilla.vim
-    source $HOME\AppData\Local\nvim\01_plugins.vim
+    "source $HOME\AppData\Local\nvim\01_plugins.vim
+    source $HOME\AppData\Local\nvim\01_plugins_dein.vim
     source $HOME\AppData\Local\nvim\02_pluginsConf.vim
 endif
 
