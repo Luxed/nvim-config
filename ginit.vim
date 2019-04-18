@@ -1,7 +1,7 @@
 " If neovim-gtk is used
 if exists('g:GtkGuiLoaded')
     " Ligatures only work on Linux
-    call rpcnotify(1, 'Gui', 'Font', 'FuraCode NF Regular 11')
+    call rpcnotify(1, 'Gui', 'Font', 'FuraCode NF 11')
     call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
 else
     GuiTabline 0
