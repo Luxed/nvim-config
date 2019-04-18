@@ -12,7 +12,7 @@ set smarttab
 set nowrap
 
 " Show line numbers
-set number norelativenumber
+set number relativenumber
 " Highlight current line
 set cursorline
 " Load filetype-specific indent files

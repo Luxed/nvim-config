@@ -19,3 +19,4 @@
 * dracula
 * seoul256
 * badwolf
+* kuroi
