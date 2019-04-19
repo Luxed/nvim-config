@@ -12,6 +12,8 @@ First, install the plugin manager used for my configs (dein.vim):
 
 `git clone https://github.com/Shougo/dein.vim $HOME\AppData\Local\nvim\dein\repos\github.com\Shougo\dein.vim`
 
+### Both
+
 Then you need to launch neovim and install the plugins by running `:call dein#install()`.
 
 Once this is done some plugins may need to be registered to python, for this, make sure you python are correctly detected.
