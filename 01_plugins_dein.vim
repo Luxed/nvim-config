@@ -45,9 +45,11 @@ if dein#load_state(g:dein_path)
     call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
-    call dein#add('Shougo/deoplete.nvim') " Code completion
-    call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
-    call dein#add('zchee/deoplete-jedi') " Python completion
+    "call dein#add('Shougo/deoplete.nvim') " Code completion
+    "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
+    "call dein#add('zchee/deoplete-jedi') " Python completion
+    call dein#add('prabirshrestha/asyncomplete.vim') " Code completion
+    call dein#add('andreypopp/asyncomplete-ale.vim') " Support for ALE
 
     " -- Utility
     call dein#add('tpope/vim-fugitive') " Git integration
