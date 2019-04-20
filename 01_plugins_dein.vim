@@ -17,7 +17,8 @@ if dein#load_state(g:dein_path)
 
     call dein#add('Shougo/dein.vim')
 
-    " Languages
+    " {{{ Languages
+
     call dein#add('rust-lang/rust.vim')
     call dein#add('plasticboy/vim-markdown') " used mainly for the TableFormat command
     call dein#add('vim-pandoc/vim-pandoc')
@@ -33,15 +34,19 @@ if dein#load_state(g:dein_path)
     call dein#add('hspec/Hspec.vim')
     call dein#add('junegunn/vader.vim')
     call dein#add('vim-python/python-syntax')
-    "call dein#add('leafgarland/typescript-vim')
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
-    "call dein#add('mhartington/nvim-typescript')
     call dein#add('PProvost/vim-ps1')
 
-    " -- Syntax/Error checker
+    " }}}
+
+    " {{{ Syntax/Error checker
+
     call dein#add('w0rp/ale')
 
-    " Auto Completion
+    " }}}
+
+    " {{{ Auto Completion
+
     call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
@@ -50,8 +55,12 @@ if dein#load_state(g:dein_path)
     "call dein#add('zchee/deoplete-jedi') " Python completion
     call dein#add('prabirshrestha/asyncomplete.vim') " Code completion
     call dein#add('andreypopp/asyncomplete-ale.vim') " Support for ALE
+    call dein#add('prabirshrestha/asyncomplete-ultisnips.vim') " Support for UltiSnips
 
-    " -- Utility
+    " }}}
+
+    " {{{ Utility
+
     call dein#add('tpope/vim-fugitive') " Git integration
     "call dein#add('jiangmiao/auto-pairs') " Automatic mathing of pairs (like (, ' or {)
     call dein#add('raimondi/delimitmate')
@@ -71,33 +80,40 @@ if dein#load_state(g:dein_path)
     call dein#add('matze/vim-move')
     call dein#add('sickill/vim-pasta')
     call dein#add('wellle/targets.vim') " adds text-objects to work with (with 'ci,' for example))
-    call dein#add('tpope/vim-repeat')
-    call dein#add('Luxed/vim-switcher')
+    call dein#add('tpope/vim-repeat') " .
+    call dein#add('Luxed/vim-switcher') " switch between filetypes
     call dein#add('Shougo/denite.nvim')
+    call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
+    call dein#add('mattn/emmet-vim')
 
-    " Interface
+    " }}}
+
+    " {{{ Interface
+
     call dein#add('bling/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('mhinz/vim-signify') " Version control gutter signs (git, svn, mercurial, etc.)
     call dein#add('godlygeek/tabular') " Auto spaces on what you choose (on '=' for example while declaring variables)
-    "call dein#add('yuttie/comfortable-motion.vim') " Causes visual glitches with the
-    "butterfly terminal
     call dein#add('ryanoasis/vim-devicons') " Needs a patched font
     " Distraction free writing (works well in markdown)
     call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks in markdown
     call dein#add('junegunn/goyo.vim')
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
-    "call dein#add('andymass/vim-matchup') " Seems interesting, don't know how to use it
     call dein#add('henrik/vim-indexed-search')
-    "call dein#add('Yggdroot/indentLine')
+    call dein#add('Marslo/vim-coloresque') " Show me the colors
 
-    " Themes
+    " }}}
+
+    " {{{ Themes
+
     call dein#add('flazz/vim-colorschemes')
     call dein#add('iCyMind/NeoSolarized')
     call dein#add('reedes/vim-colors-pencil')
     call dein#add('ajmwagar/vim-deus') " Gruvbox based
     call dein#add('aonemd/kuroi.vim')
     " call dein#add('challenger-deep-theme/vim', {'as': 'challenger-deep'}
+
+    " }}}
 
     call dein#end()
     call dein#save_state()
