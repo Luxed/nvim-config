@@ -47,7 +47,7 @@ if dein#load_state(g:dein_path)
 
     " {{{ Auto Completion
 
-    call dein#add('ervandew/supertab')
+    "call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
     "call dein#add('Shougo/deoplete.nvim') " Code completion
@@ -78,13 +78,14 @@ if dein#load_state(g:dein_path)
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
     "call dein#add('mhinz/vim-startify')
     call dein#add('matze/vim-move')
-    call dein#add('sickill/vim-pasta')
+    "call dein#add('sickill/vim-pasta')
     call dein#add('wellle/targets.vim') " adds text-objects to work with (with 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " switch between filetypes
     call dein#add('Shougo/denite.nvim')
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
+    call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
 
     " }}}
 
