@@ -111,4 +111,14 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " * indentLine
 let g:indentLine_char = '|'
 
+" * Denite
+call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+
+call denite#custom#source('file,file/rec,file/mru,file/old,file/point', 'converters', ['devicons_denite_converter'])
+
+nnoremap <leader>df :Denite file/rec<CR>
+
 " }}}
