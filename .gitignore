@@ -1,3 +1,5 @@
 plugged/
 autoload/plug.vim
 dein/
+.ctags.d/
+tags

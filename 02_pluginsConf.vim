@@ -78,6 +78,7 @@ nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pb :CtrlPBuffer<CR>
 nnoremap <leader>pm :CtrlPMixed<CR>
 nnoremap <leader>ps :CtrlPMRU<CR>
+nnoremap <leader>pt :CtrlPTag<CR>
 
 if executable('rg')
     set grepprg=rg\ --color=never
