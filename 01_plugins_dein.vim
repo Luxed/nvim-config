@@ -85,7 +85,7 @@ if dein#load_state(g:dein_path)
     call dein#add('Shougo/denite.nvim')
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
-    "call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
+    call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
 
     " }}}
 

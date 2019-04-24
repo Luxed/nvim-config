@@ -120,5 +120,8 @@ call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'nor
 call denite#custom#source('file,file/rec,file/mru,file/old,file/point', 'converters', ['devicons_denite_converter'])
 
 nnoremap <leader>df :Denite file/rec<CR>
+nnoremap <leader>dt :Denite tag<CR>
+nnoremap <leader>db :Denite buffer<CR>
+nnoremap <leader>do :Denite outline<CR>
 
 " }}}
