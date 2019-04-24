@@ -53,9 +53,9 @@ if dein#load_state(g:dein_path)
     "call dein#add('Shougo/deoplete.nvim') " Code completion
     "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
     "call dein#add('zchee/deoplete-jedi') " Python completion
-    call dein#add('prabirshrestha/asyncomplete.vim') " Code completion
-    call dein#add('andreypopp/asyncomplete-ale.vim') " Support for ALE
-    call dein#add('prabirshrestha/asyncomplete-ultisnips.vim') " Support for UltiSnips
+    "call dein#add('prabirshrestha/asyncomplete.vim') " Code completion
+    "call dein#add('andreypopp/asyncomplete-ale.vim') " Support for ALE
+    "call dein#add('prabirshrestha/asyncomplete-ultisnips.vim') " Support for UltiSnips
 
     " }}}
 

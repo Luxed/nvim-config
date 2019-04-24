@@ -54,19 +54,6 @@ let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable
 let g:deoplete#sources#rust#documentation_max_height = 0
 let g:deoplete#sources#jedi#show_docstring = 1
 
-" * asyncomplete
-
-au User asyncomplete_setup call asyncomplete#ale#register_source({
-            \ 'name': 'rust',
-            \ 'linter': 'rls',
-            \})
-
-call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-            \ 'name': 'ultisnips',
-            \ 'whitelist': ['*'],
-            \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-            \ }))
-
 " }}}
 
 " {{{ Utility
@@ -81,7 +68,7 @@ let g:NERDTreeShowHidden=1
 " * CtrlP
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node\_modules|target|packages|plugged|dein)$',
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|target|packages|plugged|dein)$',
             \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
             \}
 " Use the nearest .git directory as the cwd
