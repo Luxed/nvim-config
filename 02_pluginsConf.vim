@@ -78,6 +78,13 @@ nnoremap <leader>pp :CtrlP<CR>
 nnoremap <leader>pb :CtrlPBuffer<CR>
 nnoremap <leader>pm :CtrlPMixed<CR>
 nnoremap <leader>ps :CtrlPMRU<CR>
+nnoremap <leader>pt :CtrlPTag<CR>
+
+if executable('rg')
+    set grepprg=rg\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    let g:ctrlp_use_caching = 0
+endif
 
 if executable('rg')
     set grepprg=rg\ --color=never
@@ -109,5 +116,18 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " * indentLine
 let g:indentLine_char = '|'
+
+" * Denite
+call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+
+call denite#custom#source('file,file/rec,file/mru,file/old,file/point', 'converters', ['devicons_denite_converter'])
+
+nnoremap <leader>df :Denite file/rec<CR>
+nnoremap <leader>dt :Denite tag<CR>
+nnoremap <leader>db :Denite buffer<CR>
+nnoremap <leader>do :Denite outline<CR>
 
 " }}}
