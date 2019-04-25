@@ -3,7 +3,7 @@ let g:dein_path = ''
 if has('unix')
     let g:dein_path = '~/.config/nvim/dein'
 elseif has('win32')
-    let g:dein_path = '$HOME\AppData\Local\nvim\dein'
+    let g:dein_path = g:config_path . '\dein'
 endif
 
 if g:dein_path == ''

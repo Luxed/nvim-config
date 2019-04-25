@@ -20,3 +20,5 @@
 * seoul256
 * badwolf
 * kuroi
+* Tomorrow
+* Tomorrow-Night-Eighties

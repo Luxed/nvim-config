@@ -1,14 +1,12 @@
-if has('unix')
-    source ~/.config/nvim/00_vanilla.vim
-    source ~/.config/nvim/01_plugins.vim
-    source ~/.config/nvim/02_pluginsConf.vim
-elseif has('win32')
+let g:config_path = fnamemodify($MYVIMRC, ':h')
+
+execute 'source ' . g:config_path . '/00_vanilla.vim'
+execute 'source ' . g:config_path . '/01_plugins_dein.vim'
+execute 'source ' . g:config_path . '/02_pluginsConf.vim'
+
+if has('win32')
     let g:python_host_prog = 'C:\Python27\python.exe'
     let g:python3_host_prog = 'C:\Program Files\Python37\python.exe'
-    source $HOME\AppData\Local\nvim\00_vanilla.vim
-    "source $HOME\AppData\Local\nvim\01_plugins.vim
-    source $HOME\AppData\Local\nvim\01_plugins_dein.vim
-    source $HOME\AppData\Local\nvim\02_pluginsConf.vim
 endif
 
 " ===          Post init           ===
