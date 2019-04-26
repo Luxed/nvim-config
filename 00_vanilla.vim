@@ -12,7 +12,8 @@ set smarttab
 set nowrap
 
 " Show line numbers
-set number relativenumber
+" relative number is causing issues with some plugins and is generally slower
+set number norelativenumber
 " Highlight current line
 set cursorline
 " Load filetype-specific indent files
