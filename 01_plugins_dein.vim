@@ -3,7 +3,7 @@ let g:dein_path = ''
 if has('unix')
     let g:dein_path = '~/.config/nvim/dein'
 elseif has('win32')
-    let g:dein_path = '$HOME\AppData\Local\nvim\dein'
+    let g:dein_path = g:config_path . '\dein'
 endif
 
 if g:dein_path == ''
@@ -20,7 +20,7 @@ if dein#load_state(g:dein_path)
     " {{{ Languages
 
     call dein#add('rust-lang/rust.vim')
-    call dein#add('plasticboy/vim-markdown') " used mainly for the TableFormat command
+    "call dein#add('plasticboy/vim-markdown') " used mainly for the TableFormat command
     call dein#add('vim-pandoc/vim-pandoc')
     call dein#add('vim-pandoc/vim-pandoc-syntax')
     call dein#add('vim-pandoc/vim-markdownfootnotes')
