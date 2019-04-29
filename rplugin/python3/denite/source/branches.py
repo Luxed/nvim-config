@@ -16,8 +16,9 @@ class Source(Base):
         branches = []
 
         branches_string = subprocess.run(["git", "branch",
+                                          "--remote",
                                           "--sort=-committerdate",
-                                          "--format=\"%(refname:lstrip=2)\""],
+                                          "--format=\"%(refname:lstrip=3)\""],
                                          capture_output=True).stdout
 
         for branch in branches_string.splitlines():
