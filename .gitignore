@@ -3,3 +3,4 @@ autoload/plug.vim
 dein/
 .ctags.d/
 tags
+**/__pycache__/
