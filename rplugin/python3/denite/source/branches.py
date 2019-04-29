@@ -10,6 +10,7 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = 'branches'
+        self.kind = Kind(vim)
 
     def gather_candidates(self, context):
         branches = []
@@ -27,3 +28,10 @@ class Source(Base):
                     })
 
         return branches
+
+
+class Kind(Command):
+    def __init__(self, vim):
+        super().__init__(vim)
+        self.vim = vim
+        self.name = 'branches'
