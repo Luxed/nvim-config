@@ -10,7 +10,6 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = 'branches'
-        self.kind = Kind(vim)
 
     def gather_candidates(self, context):
         branches = []
@@ -28,18 +27,3 @@ class Source(Base):
                     })
 
         return branches
-
-
-class Kind(Command):
-    def __init__(self, vim):
-        super().__init__(vim)
-        self.vim = vim
-        self.name = 'branches'
-
-    def action_preview(self, context):
-        target = context['targets'][0]
-        self.vim.command(target["action_test"])
-
-    # def action_preview(self, context):
-        # target = context['targets'][0]
-        # self.vim.command(f'echom {target["word"]}')
