@@ -18,7 +18,7 @@ endfunction
 function! GetAsciidocFold()
     let currentl = getline(v:lnum)
     let nextl = getline(v:lnum + 1)
-    let fullline_header = '^\(=\|-\|~\|\^\|+\)\+$'
+    let fullline_header = '^\(=\|-\|\~\|\^\|+\)\+$'
     let sameline_header = '^=\+'
 
     if nextl =~ fullline_header
