@@ -86,12 +86,6 @@ if executable('rg')
     let g:ctrlp_use_caching = 0
 endif
 
-if executable('rg')
-    set grepprg=rg\ --color=never
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    let g:ctrlp_use_caching = 0
-endif
-
 " * Tagbar
 " Opens tagbar to the right and moves into it
 noremap <C-T> :TagbarToggle<CR>
@@ -118,7 +112,13 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:indentLine_char = '|'
 
 " * Denite
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#var('grep', 'command', ["rg"])
+    "call denite#custom#var('grep', 'default_opts', [])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    "call denite#custom#var('grep', 'pattern_opt', [])
+    "call denite#custom#var('grep', 'separator', [])
+    "call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
