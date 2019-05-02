@@ -1,4 +1,6 @@
+" Stop trying to configure plugins if dein_path doesn't exist
 if g:dein_path == ''
+    echoerr 'Couldn''t find dein path, plugins config won''t be loaded'
     finish
 endif
 
