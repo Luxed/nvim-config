@@ -20,6 +20,8 @@ if dein#load_state(g:dein_path)
     " {{{ Languages
 
     call dein#add('rust-lang/rust.vim')
+    " TODO: Copy the TableFormat command from the plugin into my config
+    " becaues it's really usefull but the plugin conflicts with vim-pandoc
     "call dein#add('plasticboy/vim-markdown') " used mainly for the TableFormat command
     call dein#add('vim-pandoc/vim-pandoc')
     call dein#add('vim-pandoc/vim-pandoc-syntax')
@@ -41,6 +43,7 @@ if dein#load_state(g:dein_path)
 
     " {{{ Syntax/Error checker
 
+    " This should be all you ever need
     call dein#add('w0rp/ale')
 
     " }}}
@@ -50,12 +53,10 @@ if dein#load_state(g:dein_path)
     "call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
+    " Waiting for ALE to get deoplete support
     "call dein#add('Shougo/deoplete.nvim') " Code completion
     "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
     "call dein#add('zchee/deoplete-jedi') " Python completion
-    "call dein#add('prabirshrestha/asyncomplete.vim') " Code completion
-    "call dein#add('andreypopp/asyncomplete-ale.vim') " Support for ALE
-    "call dein#add('prabirshrestha/asyncomplete-ultisnips.vim') " Support for UltiSnips
 
     " }}}
 
@@ -66,8 +67,6 @@ if dein#load_state(g:dein_path)
     call dein#add('raimondi/delimitmate')
     call dein#add('alvan/vim-closetag') " Auto close html tags
     call dein#add('scrooloose/nerdtree') " File explorer
-    " Need to test defx vs nerdtree
-    "call dein#add('Shougo/defx.nvim')
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
     call dein#add('majutsushi/tagbar') " Ctags visual integration
     call dein#add('ctrlpvim/ctrlp.vim') " Fuzzy file searcher
@@ -76,13 +75,17 @@ if dein#load_state(g:dein_path)
     call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
+    " TODO: Look into the customization of startify, maybe I can make it
+    " better by changing options
     "call dein#add('mhinz/vim-startify')
-    call dein#add('matze/vim-move')
+    " TODO: Test vim-workspace
+    "call dein#add('thaerkh/vim-workspace')
+    "call dein#add('matze/vim-move') " Move lines or selections up and down
     "call dein#add('sickill/vim-pasta')
-    call dein#add('wellle/targets.vim') " adds text-objects to work with (with 'ci,' for example))
+    call dein#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
-    call dein#add('Luxed/vim-switcher') " switch between filetypes
-    call dein#add('Shougo/denite.nvim')
+    call dein#add('Luxed/vim-switcher') " Switch between filetypes
+    call dein#add('Shougo/denite.nvim') " Unite all interfaces
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
