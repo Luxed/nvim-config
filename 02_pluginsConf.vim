@@ -59,7 +59,36 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 " * Ncm2
 set completeopt=noinsert,menuone,noselect
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" Asyncomplete sources {{{2
+
+" Buffer asyncomplete source
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+
+" Files asyncomplete source
+call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+" Ultisnips asyncomplete source
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+
+" ALE asyncomplete source
+" TODO: Configure for needed languages
+
+" 2}}}
 
 " }}}
 
@@ -109,7 +138,7 @@ let vim_markdown_preview_use_xdg_open=1
 " {{{ Interface
 
 " * Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename

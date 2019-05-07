@@ -17,7 +17,7 @@ if dein#load_state(g:dein_path)
 
     call dein#add('Shougo/dein.vim')
 
-    call dein#add('roxma/nvim-yarp')
+    "call dein#add('roxma/nvim-yarp')
 
     " {{{ Languages
 
@@ -55,14 +55,21 @@ if dein#load_state(g:dein_path)
     "call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
-    " Waiting for ALE to get deoplete support
+    " * Waiting for ALE to get deoplete support
     "call dein#add('Shougo/deoplete.nvim') " Code completion
     "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
     "call dein#add('zchee/deoplete-jedi') " Python completion
-    call dein#add('ncm2/ncm2')
-    call dein#add('ncm2/ncm2-bufword')
-    call dein#add('ncm2/ncm2-path')
-    call dein#add('ncm2/ncm2-ultisnips')
+    " * ncm2 setup
+    "call dein#add('ncm2/ncm2')
+    "call dein#add('ncm2/ncm2-bufword')
+    "call dein#add('ncm2/ncm2-path')
+    "call dein#add('ncm2/ncm2-ultisnips')
+    " * Asyncomplete setup
+    call dein#add('prabirshrestha/asyncomplete.vim')
+    call dein#add('prabirshrestha/asyncomplete-buffer.vim')
+    call dein#add('prabirshrestha/asyncomplete-ultisnips.vim')
+    call dein#add('prabirshrestha/asyncomplete-file.vim')
+    call dein#add('andreypopp/asyncomplete-ale.vim')
 
     " }}}
 
@@ -93,7 +100,7 @@ if dein#load_state(g:dein_path)
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
     call dein#add('Shougo/denite.nvim') " Unite all interfaces
     "call dein#add('Shougo/denite.nvim', {'rev': 'ui'})
-    call dein#add('raghur/fruzzy')
+    call dein#add('raghur/fruzzy', {'hook_post_update': 'call fruzzy#install()'})
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
@@ -102,7 +109,7 @@ if dein#load_state(g:dein_path)
 
     " {{{ Interface
 
-    call dein#add('bling/vim-airline')
+    call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('mhinz/vim-signify') " Version control gutter signs (git, svn, mercurial, etc.)
     call dein#add('godlygeek/tabular') " Auto spaces on what you choose (on '=' for example while declaring variables)
