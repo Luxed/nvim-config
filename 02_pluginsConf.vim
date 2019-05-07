@@ -90,6 +90,10 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
 
 " 2}}}
 
+" I got tired of the 'INSERT COMPL' jumping all of the time in Airline
+let g:airline_mode_map['ic'] = 'INSERT'
+let g:airline_mode_map['ix'] = 'INSERT'
+
 " }}}
 
 " {{{ Utility
