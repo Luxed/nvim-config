@@ -90,10 +90,6 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
 
 " 2}}}
 
-" I got tired of the 'INSERT COMPL' jumping all of the time in Airline
-let g:airline_mode_map['ic'] = 'INSERT'
-let g:airline_mode_map['ix'] = 'INSERT'
-
 " }}}
 
 " {{{ Utility
@@ -142,11 +138,17 @@ let vim_markdown_preview_use_xdg_open=1
 " {{{ Interface
 
 " * Airline
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" I got tired of the 'INSERT COMPL' jumping all of the time in Airline
+let g:airline_mode_map = {
+            \ 'ic': 'INSERT',
+            \ 'ix': 'INSERT'
+            \}
 
 " * indentLine
 let g:indentLine_char = '|'
