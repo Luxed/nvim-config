@@ -17,6 +17,8 @@ if dein#load_state(g:dein_path)
 
     call dein#add('Shougo/dein.vim')
 
+    call dein#add('roxma/nvim-yarp')
+
     " {{{ Languages
 
     call dein#add('rust-lang/rust.vim')
@@ -57,6 +59,10 @@ if dein#load_state(g:dein_path)
     "call dein#add('Shougo/deoplete.nvim') " Code completion
     "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
     "call dein#add('zchee/deoplete-jedi') " Python completion
+    call dein#add('ncm2/ncm2')
+    call dein#add('ncm2/ncm2-bufword')
+    call dein#add('ncm2/ncm2-path')
+    call dein#add('ncm2/ncm2-ultisnips')
 
     " }}}
 
