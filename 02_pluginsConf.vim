@@ -132,4 +132,10 @@ nnoremap <leader>db :Denite buffer<CR>
 nnoremap <leader>do :Denite outline<CR>
 nnoremap <leader>dg :Denite grep<CR>
 
+" * Fruzzy
+let g:fruzzy#usenative = 1 " Native implementation, do `call fruzzy#install()`
+let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
+
+call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
+
 " }}}
