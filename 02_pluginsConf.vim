@@ -58,35 +58,45 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 
 " * Ncm2
 set completeopt=noinsert,menuone,noselect
-
 "autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " Asyncomplete sources {{{2
 
-" Buffer asyncomplete source
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
+function! s:setup_asyncomplete_sources()
+    " Buffer asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+                \ 'name': 'buffer',
+                \ 'whitelist': ['*'],
+                \ 'completor': function('asyncomplete#sources#buffer#completor'),
+                \ }))
 
-" Files asyncomplete source
-call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
+    " Files asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+                \ 'name': 'file',
+                \ 'whitelist': ['*'],
+                \ 'priority': 10,
+                \ 'completor': function('asyncomplete#sources#file#completor')
+                \ }))
 
-" Ultisnips asyncomplete source
-call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-        \ 'name': 'ultisnips',
-        \ 'whitelist': ['*'],
-        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-        \ }))
+    " Ultisnips asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+                \ 'name': 'ultisnips',
+                \ 'whitelist': ['*'],
+                \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+                \ }))
 
-" ALE asyncomplete source
-" TODO: Configure for needed languages
+    " ALE asyncomplete source
+    " TODO: Configure for needed languages
+
+    " VIM asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+                \ 'name': 'necovim',
+                \ 'whitelist': ['vim'],
+                \ 'completor': function('asyncomplete#sources#necovim#completor'),
+                \ }))
+endfunction
+
+au User asyncomplete_setup call s:setup_asyncomplete_sources()
 
 " 2}}}
 
@@ -138,7 +148,7 @@ let vim_markdown_preview_use_xdg_open=1
 " {{{ Interface
 
 " * Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
@@ -153,7 +163,8 @@ let g:airline_mode_map = {
 " * indentLine
 let g:indentLine_char = '|'
 
-" * Denite
+" Denite {{{2
+
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 call denite#custom#var('grep', 'command', ["rg"])
@@ -177,5 +188,7 @@ let g:fruzzy#usenative = 1 " Native implementation, do `call fruzzy#install()`
 let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
 
 call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
+
+" 2}}}
 
 " }}}

@@ -40,6 +40,7 @@ if dein#load_state(g:dein_path)
     call dein#add('vim-python/python-syntax')
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
+    call dein#add('Shougo/neco-vim')
 
     " }}}
 
@@ -70,6 +71,7 @@ if dein#load_state(g:dein_path)
     call dein#add('prabirshrestha/asyncomplete-ultisnips.vim')
     call dein#add('prabirshrestha/asyncomplete-file.vim')
     call dein#add('andreypopp/asyncomplete-ale.vim')
+    call dein#add('prabirshrestha/asyncomplete-necovim.vim')
 
     " }}}
 
@@ -99,8 +101,10 @@ if dein#load_state(g:dein_path)
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
     call dein#add('Shougo/denite.nvim') " Unite all interfaces
-    "call dein#add('Shougo/denite.nvim', {'rev': 'ui'})
-    call dein#add('raghur/fruzzy', {'hook_post_update': 'call fruzzy#install()'})
+    call dein#add('raghur/fruzzy', {
+                \ 'hook_post_update' : 'call fruzzy#install()',
+                \ 'merged'           : 0
+                \})
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
