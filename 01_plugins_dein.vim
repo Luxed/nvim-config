@@ -100,7 +100,7 @@ if dein#load_state(g:dein_path)
     call dein#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
-    call dein#add('Shougo/denite.nvim') " Unite all interfaces
+    call dein#add('Shougo/denite.nvim', {'rev': 'ui'}) " Unite all interfaces
     call dein#add('raghur/fruzzy', {
                 \ 'hook_post_update' : 'call fruzzy#install()',
                 \ 'merged'           : 0
