@@ -221,7 +221,7 @@ endfunction
 
 " 2}}}
 
-" * startify
+" startify {{{2
 
 let g:startify_change_to_dir = 0
 "let g:startify_change_to_vcs_root = 1
@@ -244,5 +244,7 @@ let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
-                                    
+
+" 2}}}
+
 " }}}
