@@ -221,4 +221,28 @@ endfunction
 
 " 2}}}
 
+" * startify
+
+let g:startify_change_to_dir = 0
+"let g:startify_change_to_vcs_root = 1
+
+let g:ascii = [
+            \ '  _   _                 _           ',
+            \ ' | \ | |               (_)          ',
+            \ ' |  \| | ___  _____   ___ _ __ ___  ',
+            \ ' | . ` |/ _ \/ _ \ \ / / | ''_ ` _ \ ',
+            \ ' | |\  |  __/ (_) \ V /| | | | | | |',
+            \ ' |_| \_|\___|\___/ \_/ |_|_| |_| |_|'
+            \ ]
+
+let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+                                    
+let g:startify_lists = [
+            \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
+                                    
 " }}}

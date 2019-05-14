@@ -90,13 +90,7 @@ if dein#load_state(g:dein_path)
     call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
-    " TODO: Look into the customization of startify, maybe I can make it
-    " better by changing options
-    "call dein#add('mhinz/vim-startify')
-    " TODO: Test vim-workspace
-    "call dein#add('thaerkh/vim-workspace')
-    "call dein#add('matze/vim-move') " Move lines or selections up and down
-    "call dein#add('sickill/vim-pasta')
+    call dein#add('mhinz/vim-startify')
     call dein#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
