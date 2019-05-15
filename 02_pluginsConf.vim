@@ -166,7 +166,7 @@ let g:indentLine_char = '|'
 " Denite {{{2
 
 " Custom options
-call denite#custom#option('default', 'start_filter', v:true)
+"call denite#custom#option('default', 'start_filter', v:true)
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -215,8 +215,8 @@ function! s:denite_filter_my_settings() abort
                 \ denite#do_map('do_action')
     inoremap <silent><buffer><expr> <C-c>
                 \ denite#do_map('quit')
-    inoremap <silent><buffer> <C-j> <Esc><C-w>pj<C-w>pA
-    inoremap <silent><buffer> <C-k> <Esc><C-w>pk<C-w>pA
+    inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+    inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
 endfunction
 
 " 2}}}
@@ -232,11 +232,12 @@ let g:ascii = [
             \ ' |  \| | ___  _____   ___ _ __ ___  ',
             \ ' | . ` |/ _ \/ _ \ \ / / | ''_ ` _ \ ',
             \ ' | |\  |  __/ (_) \ V /| | | | | | |',
-            \ ' |_| \_|\___|\___/ \_/ |_|_| |_| |_|'
+            \ ' |_| \_|\___|\___/ \_/ |_|_| |_| |_|',
+            \ '                                    '
             \ ]
 
 let g:startify_custom_header = g:ascii + startify#fortune#boxed()
-                                    
+
 let g:startify_lists = [
             \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
             \ { 'type': 'files',     'header': ['   MRU']            },
