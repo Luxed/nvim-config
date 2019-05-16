@@ -1,23 +1,22 @@
 " Path to dein.vim
-let g:dein_path = ''
-if has('unix')
-    let g:dein_path = '~/.config/nvim/dein'
-elseif has('win32')
-    let g:dein_path = g:config_path . '\dein'
+let g:dein_path = g:config_path . '/dein'
+
+let g:dein_plugin_path = g:dein_path . '/repos/github.com/Shougo/dein.vim'
+
+if !isdirectory(g:dein_plugin_path)
+    call system('git clone https://github.com/Shougo/dein.vim ' . g:dein_plugin_path)
 endif
 
 if g:dein_path == ''
     finish
 else
-    execute 'set runtimepath +=' . g:dein_path . '\repos\github.com\Shougo\dein.vim'
+    execute 'set runtimepath +=' . g:dein_plugin_path
 endif
 
 if dein#load_state(g:dein_path)
     call dein#begin(g:dein_path)
 
     call dein#add('Shougo/dein.vim')
-
-    "call dein#add('roxma/nvim-yarp')
 
     " {{{ Languages
 
