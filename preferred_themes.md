@@ -16,7 +16,7 @@
 * janah
 * OceanicNext
 * hybrid
-* dracula
+* dracula (would need some changes to be even better)
 * seoul256
 * badwolf
 * kuroi

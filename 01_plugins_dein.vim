@@ -128,6 +128,7 @@ if dein#load_state(g:dein_path)
     call dein#add('ajmwagar/vim-deus') " Gruvbox based
     call dein#add('aonemd/kuroi.vim')
     " call dein#add('challenger-deep-theme/vim', {'as': 'challenger-deep'}
+    call dein#add('dracula/vim', {'name': 'dracula-git'})
 
     " }}}
 
