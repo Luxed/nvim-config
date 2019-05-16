@@ -46,15 +46,59 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 
 " {{{ Completion
 
-" * Deoplete
-" Remove preview window
-set completeopt-=preview
-let g:deoplete#enable_at_startup = 0
-" Deoplete-rust configuration
-let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
-let g:deoplete#sources#rust#documentation_max_height = 0
-let g:deoplete#sources#jedi#show_docstring = 1
+"" * Deoplete
+"" Remove preview window
+"set completeopt-=preview
+"let g:deoplete#enable_at_startup = 0
+"" Deoplete-rust configuration
+"let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
+"let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
+"let g:deoplete#sources#rust#documentation_max_height = 0
+"let g:deoplete#sources#jedi#show_docstring = 1
+
+" * Ncm2
+set completeopt=noinsert,menuone,noselect
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" Asyncomplete sources {{{2
+
+function! s:setup_asyncomplete_sources()
+    " Buffer asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+                \ 'name': 'buffer',
+                \ 'whitelist': ['*'],
+                \ 'completor': function('asyncomplete#sources#buffer#completor'),
+                \ }))
+
+    " Files asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+                \ 'name': 'file',
+                \ 'whitelist': ['*'],
+                \ 'priority': 10,
+                \ 'completor': function('asyncomplete#sources#file#completor')
+                \ }))
+
+    " Ultisnips asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+                \ 'name': 'ultisnips',
+                \ 'whitelist': ['*'],
+                \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+                \ }))
+
+    " ALE asyncomplete source
+    " TODO: Configure for needed languages
+
+    " VIM asyncomplete source
+    call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+                \ 'name': 'necovim',
+                \ 'whitelist': ['vim'],
+                \ 'completor': function('asyncomplete#sources#necovim#completor'),
+                \ }))
+endfunction
+
+au User asyncomplete_setup call s:setup_asyncomplete_sources()
+
+" 2}}}
 
 " }}}
 
@@ -104,16 +148,26 @@ let vim_markdown_preview_use_xdg_open=1
 " {{{ Interface
 
 " * Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" I got tired of the 'INSERT COMPL' jumping all of the time in Airline
+let g:airline_mode_map = {
+            \ 'ic': 'INSERT',
+            \ 'ix': 'INSERT'
+            \}
+
 " * indentLine
 let g:indentLine_char = '|'
 
-" * Denite
+" Denite {{{2
+
+" Custom options
+"call denite#custom#option('default', 'start_filter', v:true)
+
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 call denite#custom#var('grep', 'command', ["rg"])
@@ -131,5 +185,67 @@ nnoremap <leader>dt :Denite tag<CR>
 nnoremap <leader>db :Denite buffer<CR>
 nnoremap <leader>do :Denite outline<CR>
 nnoremap <leader>dg :Denite grep<CR>
+
+" * Fruzzy
+let g:fruzzy#usenative = 1 " Native implementation, do `call fruzzy#install()`
+let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
+
+call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
+
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <CR>
+                \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> d
+                \ denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> p
+                \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> q
+                \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i
+                \ denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space>
+                \ denite#do_map('toggle_select').'j'
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+    inoremap <silent><buffer><expr> <C-e>
+                \ denite#do_map('do_action')
+    inoremap <silent><buffer><expr> <C-c>
+                \ denite#do_map('quit')
+    inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+    inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+endfunction
+
+" 2}}}
+
+" startify {{{2
+
+let g:startify_change_to_dir = 0
+"let g:startify_change_to_vcs_root = 1
+
+let g:ascii = [
+            \ '  _   _                 _           ',
+            \ ' | \ | |               (_)          ',
+            \ ' |  \| | ___  _____   ___ _ __ ___  ',
+            \ ' | . ` |/ _ \/ _ \ \ / / | ''_ ` _ \ ',
+            \ ' | |\  |  __/ (_) \ V /| | | | | | |',
+            \ ' |_| \_|\___|\___/ \_/ |_|_| |_| |_|',
+            \ '                                    '
+            \ ]
+
+let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+
+let g:startify_lists = [
+            \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
+
+" 2}}}
 
 " }}}

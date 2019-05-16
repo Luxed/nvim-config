@@ -46,6 +46,9 @@ set foldmethod=syntax
 " Enable code completion
 "set omnifunc=syntaxcomplete#Complete
 
+" Remove annoying 'match x of y' type message
+set shortmess+=c
+
 " Enable live substitution preview
 set inccommand=nosplit
 
