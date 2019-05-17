@@ -153,6 +153,9 @@ let vim_markdown_preview_pandoc=1
 let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=3
 
+" * Switch
+nnoremap <leader>ss :Switch 
+
 " }}}
 
 " {{{ Interface
@@ -176,7 +179,7 @@ let g:indentLine_char = '|'
 " Denite {{{2
 
 " Custom options
-"call denite#custom#option('default', 'start_filter', v:true)
+call denite#custom#option('default', {'start_filter': 1})
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
