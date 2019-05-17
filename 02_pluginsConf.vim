@@ -28,7 +28,7 @@ let g:ale_linters = {
             \}
 
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 let g:ale_open_list = 0
 let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
@@ -86,7 +86,15 @@ function! s:setup_asyncomplete_sources()
                 \ }))
 
     " ALE asyncomplete source
-    " TODO: Configure for needed languages
+    call asyncomplete#ale#register_source({
+                \ 'name': 'typescript',
+                \ 'linter': 'tsserver'
+                \ })
+
+    call asyncomplete#ale#register_source({
+                \ 'name': 'rust',
+                \ 'linter': 'rls'
+                \ })
 
     " VIM asyncomplete source
     call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({

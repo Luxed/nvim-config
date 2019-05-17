@@ -88,11 +88,14 @@ nnoremap <leader>si :source $MYVIMRC<CR>
 " Syntax name of element under cursor
 nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
 
-" Ensures that the help is opened above
-command! -nargs=1 H :above h <args><CR>
-
 " Removes last highlight
 command! Rmhl :let @/=""
 
 " Folds keybinds
 nnoremap <Space> za
+nnoremap <S-Space> zA
+
+" Open loclist
+nnoremap <silent> <leader>ol :lopen<CR>
+" Open quickfix
+nnoremap <silent> <leader>oc :copen<CR>

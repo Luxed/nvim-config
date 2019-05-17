@@ -14,7 +14,7 @@ endif
 set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal used doesn't accept TrueColor)
 set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
 set background=dark
-colorscheme pencil
+colorscheme dracula
 
 " Remove issues on ShellInABox and Butterfly terminal
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
