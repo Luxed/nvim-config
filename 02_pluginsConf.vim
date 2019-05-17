@@ -28,7 +28,7 @@ let g:ale_linters = {
             \}
 
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:ale_open_list = 0
 let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
@@ -41,6 +41,8 @@ nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
 nnoremap <leader>ak :ALEDocumentation<CR>
+
+autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
 
 " }}}
 
