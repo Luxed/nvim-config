@@ -1,6 +1,6 @@
 " Custom commands
 command! -buffer Build :below 10sp term://cd %:p:h && cargo build
-command! -buffer Run   :below 10sp term://cd %:p:h && cargo run
+command! -buffer Run   :tabedit term://cd %:p:h && cargo run
 command! -buffer Test  :below 10sp term://cd %:p:h && cargo test
 command! -buffer Cbr   :below 10sp term://cd %:p:h && cargo run --release
 

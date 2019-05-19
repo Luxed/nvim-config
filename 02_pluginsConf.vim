@@ -42,7 +42,7 @@ nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
 nnoremap <leader>ak :ALEDocumentation<CR>
 
-autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
+"autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
 
 " }}}
 
@@ -58,9 +58,23 @@ autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
 "let g:deoplete#sources#rust#documentation_max_height = 0
 "let g:deoplete#sources#jedi#show_docstring = 1
 
-" * Ncm2
+" Ncm2 {{{2
+
 set completeopt=noinsert,menuone,noselect
-"autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+au User Ncm2Plugin call ncm2#register_source({
+            \ 'name' : 'rust',
+            \ 'priority': 9,
+            \ 'subscope_enable': 1,
+            \ 'scope': ['rust'],
+            \ 'mark': 'rust',
+            \ 'word_pattern': '[\w]+',
+            \ 'complete_pattern': '::|\.',
+            \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
+            \ })
+
+" 2}}}
 
 " Asyncomplete sources {{{2
 
