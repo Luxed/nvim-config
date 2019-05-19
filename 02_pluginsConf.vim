@@ -63,16 +63,33 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 set completeopt=noinsert,menuone,noselect
 autocmd BufEnter * call ncm2#enable_for_buffer()
 
-au User Ncm2Plugin call ncm2#register_source({
-            \ 'name' : 'rust',
-            \ 'priority': 9,
-            \ 'subscope_enable': 1,
-            \ 'scope': ['rust'],
-            \ 'mark': 'rust',
-            \ 'word_pattern': '[\w]+',
-            \ 'complete_pattern': '::|\.',
-            \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
-            \ })
+function! s:setup_ncm2_sources()
+
+    au User Ncm2Plugin call ncm2#register_source({
+                \ 'name' : 'rust',
+                \ 'priority': 9,
+                \ 'subscope_enable': 1,
+                \ 'scope': ['rust'],
+                \ 'mark': 'rust',
+                \ 'word_pattern': '[\w]+',
+                \ 'complete_pattern': '::|\.',
+                \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
+                \ })
+
+    au User Ncm2Plugin call ncm2#register_source({
+                \ 'name': 'typescript',
+                \ 'priority': 9,
+                \ 'subscope_enable': 1,
+                \ 'scope': ['typescript'],
+                \ 'mark': 'typescript',
+                \ 'word_pattern': '[\w]+',
+                \ 'complete_pattern': '\.',
+                \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
+                \ })
+
+endfunction
+
+au User Ncm2Plugin call s:setup_ncm2_sources()
 
 " 2}}}
 
