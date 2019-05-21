@@ -6,7 +6,7 @@ execute 'source ' . g:config_path . '/02_pluginsConf.vim'
 
 if has('win32')
     let g:python_host_prog = 'C:\Python27\python.exe'
-    let g:python3_host_prog = 'C:\Python37\python.exe'
+    let g:python3_host_prog = 'C:\Program Files\Python37\python.exe'
 endif
 
 " ===          Post init           ===
