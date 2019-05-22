@@ -102,3 +102,14 @@ nnoremap <S-Space> zA
 nnoremap <silent> <leader>ol :lopen<CR>
 " Open quickfix
 nnoremap <silent> <leader>oc :copen<CR>
+
+" Save the session only if it exists
+function! s:SaveSession()
+    if filereadable(getcwd() . '/Session.vim')
+        mksession!
+    endif
+endfunction
+
+autocmd VimLeave * call s:SaveSession()
+"autocmd BufEnter,VimLeavePre * call s:SaveSession() " This is useful for
+"added security
