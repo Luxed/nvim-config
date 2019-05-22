@@ -193,21 +193,38 @@ au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 " {{{ Interface
 
-" * Airline
+" Airline {{{2
+
 let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
 
 " I got tired of the 'INSERT COMPL' jumping all of the time in Airline
 let g:airline_mode_map = {
-            \ 'ic': 'INSERT',
-            \ 'ix': 'INSERT'
-            \}
+            \ '__' : '------',
+            \ 'c'  : 'COMMAND',
+            \ 'i'  : 'INSERT',
+            \ 'ic' : 'INSERT',
+            \ 'ix' : 'INSERT',
+            \ 'n'  : 'NORMAL',
+            \ 'ni' : '(INSERT)',
+            \ 'no' : 'OP PENDING',
+            \ 'R'  : 'REPLACE',
+            \ 'Rv' : 'V REPLACE',
+            \ 's'  : 'SELECT',
+            \ 'S'  : 'S-LINE',
+            \ '' : 'S-BLOCK',
+            \ 't'  : 'TERMINAL',
+            \ 'v'  : 'VISUAL',
+            \ 'V'  : 'V-LINE',
+            \ '' : 'V-BLOCK',
+            \ }
 
-" * indentLine
-let g:indentLine_char = '|'
+" 2}}}
 
 " Denite {{{2
 
