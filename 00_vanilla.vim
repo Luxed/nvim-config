@@ -65,6 +65,8 @@ set autowrite
 " Key bindings
 let mapleader = ','
 
+nnoremap ; :
+
 " exit terminal
 tnoremap <leader>n <C-\><C-N>
 " remove highlight
