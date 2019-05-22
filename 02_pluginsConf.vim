@@ -72,7 +72,7 @@ function! s:setup_ncm2_sources()
                 \ 'scope': ['rust'],
                 \ 'mark': 'rust',
                 \ 'word_pattern': '[\w]+',
-                \ 'complete_pattern': '::|\.',
+                \ 'complete_pattern': '::|\.|^use\s',
                 \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
                 \ })
 
