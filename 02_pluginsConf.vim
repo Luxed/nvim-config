@@ -194,7 +194,7 @@ au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
 " {{{ Interface
 
 " * Airline
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
