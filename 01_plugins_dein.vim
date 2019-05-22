@@ -42,6 +42,7 @@ if dein#load_state(g:dein_path)
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
     call dein#add('Shougo/neco-vim')
+    call dein#add('editorconfig/editorconfig-vim')
 
     " }}}
 
