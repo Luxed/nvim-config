@@ -44,7 +44,8 @@ set cmdheight=2
 set foldmethod=syntax
 
 " Enable code completion
-"set omnifunc=syntaxcomplete#Complete
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
 
 " Remove annoying 'match x of y' type message
 set shortmess+=c
