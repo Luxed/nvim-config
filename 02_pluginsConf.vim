@@ -187,6 +187,8 @@ let vim_markdown_preview_use_xdg_open=1
 " * Switch
 nnoremap <leader>ss :Switch 
 
+" * DelimitMate
+au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
 " }}}
 
 " {{{ Interface
