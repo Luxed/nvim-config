@@ -212,7 +212,11 @@ let g:indentLine_char = '|'
 " Denite {{{2
 
 " Custom options
-call denite#custom#option('default', {'start_filter': 1})
+call denite#custom#option('default', {
+            \ 'start_filter'      : 1,
+            \ 'filter_updatetime' : 1,
+            \ 'prompt': ''
+            \ })
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
