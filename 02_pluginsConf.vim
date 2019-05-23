@@ -208,6 +208,10 @@ nnoremap <leader>ss :Switch
 au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
+
+" * Fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+
 " }}}
 
 " {{{ Interface
