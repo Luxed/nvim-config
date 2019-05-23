@@ -34,6 +34,10 @@ let g:ale_list_window_size = 6
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
 let g:ale_lint_delay=50
+let g:ale_echo_cursor=1
+let g:ale_virtualtext_cursor=0
+let g:ale_cursor_detail=0
+
 " ALE bindings
 nnoremap <leader>an :ALENextWrap<CR>
 nnoremap <leader>ap :ALEPreviousWrap<CR>

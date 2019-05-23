@@ -9,6 +9,7 @@
 # GUI
 
 * deus (or gruvbox)
+* dracula (would need some changes to be even better)
 * pencil
 * NeoSolarized (dark)
 * pyte (Nice white colorscheme)
@@ -16,7 +17,6 @@
 * janah
 * OceanicNext
 * hybrid
-* dracula (would need some changes to be even better)
 * seoul256
 * badwolf
 * kuroi
