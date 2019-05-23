@@ -6,3 +6,5 @@
 ## Plugins to look into
 
 - nvim-gdb
+- vim-obsession
+- session.vim
