@@ -209,8 +209,17 @@ au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 
-" * Fugitive
+" Fugitive {{{2
+
 nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gf :Git fetch<CR>
+nnoremap <silent> <leader>gb :Denite branches<CR>
+function! s:fugitive_settings()
+    nnoremap <leader>gp :Gpush<CR>
+endfunction
+autocmd FileType fugitive call s:fugitive_settings()
+
+" 2}}}
 
 " }}}
 
