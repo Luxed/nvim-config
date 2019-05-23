@@ -41,7 +41,7 @@ if dein#load_state(g:dein_path)
     call dein#add('vim-python/python-syntax')
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
-    call dein#add('Shougo/neco-vim')
+    call dein#add('editorconfig/editorconfig-vim')
 
     " }}}
 
@@ -57,16 +57,15 @@ if dein#load_state(g:dein_path)
     "call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
-    " * Waiting for ALE to get deoplete support
-    "call dein#add('Shougo/deoplete.nvim') " Code completion
+    call dein#add('Shougo/deoplete.nvim') " Code completion
     "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
     "call dein#add('zchee/deoplete-jedi') " Python completion
     " * ncm2 setup
-    call dein#add('ncm2/ncm2')
-    call dein#add('ncm2/ncm2-bufword')
-    call dein#add('ncm2/ncm2-path')
-    call dein#add('ncm2/ncm2-ultisnips')
-    call dein#add('ncm2/ncm2-vim')
+    "call dein#add('ncm2/ncm2')
+    "call dein#add('ncm2/ncm2-bufword')
+    "call dein#add('ncm2/ncm2-path')
+    "call dein#add('ncm2/ncm2-ultisnips')
+    "call dein#add('ncm2/ncm2-vim')
     " * Asyncomplete setup
     "call dein#add('prabirshrestha/asyncomplete.vim')
     "call dein#add('prabirshrestha/asyncomplete-buffer.vim')
@@ -74,6 +73,9 @@ if dein#load_state(g:dein_path)
     "call dein#add('prabirshrestha/asyncomplete-file.vim')
     "call dein#add('andreypopp/asyncomplete-ale.vim')
     "call dein#add('prabirshrestha/asyncomplete-necovim.vim')
+
+    call dein#add('Shougo/neco-syntax')
+    call dein#add('Shougo/neco-vim')
 
     " }}}
 

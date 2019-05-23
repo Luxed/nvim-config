@@ -44,7 +44,8 @@ set cmdheight=2
 set foldmethod=syntax
 
 " Enable code completion
-"set omnifunc=syntaxcomplete#Complete
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
 
 " Remove annoying 'match x of y' type message
 set shortmess+=c
@@ -64,6 +65,8 @@ set autowrite
 
 " Key bindings
 let mapleader = ','
+
+nnoremap ; :
 
 " exit terminal
 tnoremap <leader>n <C-\><C-N>
@@ -99,3 +102,14 @@ nnoremap <S-Space> zA
 nnoremap <silent> <leader>ol :lopen<CR>
 " Open quickfix
 nnoremap <silent> <leader>oc :copen<CR>
+
+" Save the session only if it exists
+function! s:SaveSession()
+    if filereadable(getcwd() . '/Session.vim')
+        mksession!
+    endif
+endfunction
+
+autocmd VimLeave * call s:SaveSession()
+"autocmd BufEnter,VimLeavePre * call s:SaveSession() " This is useful for
+"added security

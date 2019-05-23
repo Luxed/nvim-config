@@ -52,43 +52,56 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 
 " {{{ Completion
 
-"" * Deoplete
-"" Remove preview window
-"set completeopt-=preview
-"let g:deoplete#enable_at_startup = 0
-"" Deoplete-rust configuration
+" Deoplete {{{2
+
+" Remove preview window
+set completeopt-=preview
+let g:deoplete#enable_at_startup = 1
+" Deoplete-rust configuration
 "let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
 "let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
 "let g:deoplete#sources#rust#documentation_max_height = 0
 "let g:deoplete#sources#jedi#show_docstring = 1
 
+" 2}}}
+
 " Ncm2 {{{2
 
-set completeopt=noinsert,menuone,noselect
-autocmd BufEnter * call ncm2#enable_for_buffer()
+"set completeopt=noinsert,menuone,noselect
+"autocmd BufEnter * call ncm2#enable_for_buffer()
 
 function! s:setup_ncm2_sources()
 
-    au User Ncm2Plugin call ncm2#register_source({
+    call ncm2#register_source({
                 \ 'name' : 'rust',
                 \ 'priority': 9,
                 \ 'subscope_enable': 1,
                 \ 'scope': ['rust'],
                 \ 'mark': 'rust',
                 \ 'word_pattern': '[\w]+',
-                \ 'complete_pattern': '::|\.',
+                \ 'complete_pattern': '\(::|\.|^use\s\)*',
                 \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
                 \ })
 
-    au User Ncm2Plugin call ncm2#register_source({
+    call ncm2#register_source({
                 \ 'name': 'typescript',
                 \ 'priority': 9,
                 \ 'subscope_enable': 1,
                 \ 'scope': ['typescript'],
                 \ 'mark': 'typescript',
                 \ 'word_pattern': '[\w]+',
-                \ 'complete_pattern': '\.',
+                \ 'complete_pattern': '\.*',
                 \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
+                \ })
+
+    call ncm2#register_source({'name' : 'css',
+                \ 'priority': 9,
+                \ 'subscope_enable': 1,
+                \ 'scope': ['css', 'scss', 'less'],
+                \ 'mark': 'css',
+                \ 'word_pattern': '[\w\-]+',
+                \ 'complete_pattern': ':\s*',
+                \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
                 \ })
 
 endfunction
@@ -191,30 +204,55 @@ let vim_markdown_preview_use_xdg_open=1
 " * Switch
 nnoremap <leader>ss :Switch 
 
+" * DelimitMate
+au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
 " }}}
 
 " {{{ Interface
 
-" * Airline
-let g:airline_powerline_fonts = 0
+" Airline {{{2
+
+let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
 
 " I got tired of the 'INSERT COMPL' jumping all of the time in Airline
 let g:airline_mode_map = {
-            \ 'ic': 'INSERT',
-            \ 'ix': 'INSERT'
-            \}
+            \ '__' : '------',
+            \ 'c'  : 'COMMAND',
+            \ 'i'  : 'INSERT',
+            \ 'ic' : 'INSERT',
+            \ 'ix' : 'INSERT',
+            \ 'n'  : 'NORMAL',
+            \ 'ni' : '(INSERT)',
+            \ 'no' : 'OP PENDING',
+            \ 'R'  : 'REPLACE',
+            \ 'Rv' : 'V REPLACE',
+            \ 's'  : 'SELECT',
+            \ 'S'  : 'S-LINE',
+            \ '' : 'S-BLOCK',
+            \ 't'  : 'TERMINAL',
+            \ 'v'  : 'VISUAL',
+            \ 'V'  : 'V-LINE',
+            \ '' : 'V-BLOCK',
+            \ }
 
-" * indentLine
-let g:indentLine_char = '|'
+" 2}}}
 
 " Denite {{{2
 
 " Custom options
-call denite#custom#option('default', {'start_filter': 1})
+call denite#custom#option('default', {
+            \ 'start_filter'      : 1,
+            \ 'filter_updatetime' : 1,
+            \ 'prompt': ''
+            \ })
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -241,35 +279,37 @@ let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
 call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
 
 " Define mappings
-autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <Esc>
+                \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> <CR>
                 \ denite#do_map('do_action')
     nnoremap <silent><buffer><expr> d
                 \ denite#do_map('do_action', 'delete')
     nnoremap <silent><buffer><expr> p
                 \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q
-                \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> i
                 \ denite#do_map('open_filter_buffer')
     nnoremap <silent><buffer><expr> <Space>
                 \ denite#do_map('toggle_select').'j'
 endfunction
+autocmd FileType denite call s:denite_my_settings()
 
-autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
-    inoremap <silent><buffer><expr> <C-e>
-                \ denite#do_map('do_action')
     inoremap <silent><buffer><expr> <C-c>
                 \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> <Esc>
+                \ denite#do_map('quit')
+    inoremap <silent><buffer><expr> <C-e>
+                \ denite#do_map('do_action')
     inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
     inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
 endfunction
+autocmd FileType denite-filter call s:denite_filter_my_settings()
 
 " 2}}}
 
-" startify {{{2
+" Startify {{{2
 
 let g:startify_change_to_dir = 0
 "let g:startify_change_to_vcs_root = 1
