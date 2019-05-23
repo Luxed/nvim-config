@@ -4,3 +4,4 @@ dein/
 .ctags.d/
 tags
 **/__pycache__/
+system_config.vim

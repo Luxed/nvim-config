@@ -4,9 +4,10 @@ execute 'source ' . g:config_path . '/00_vanilla.vim'
 execute 'source ' . g:config_path . '/01_plugins_dein.vim'
 execute 'source ' . g:config_path . '/02_pluginsConf.vim'
 
-if has('win32')
-    let g:python_host_prog = 'C:\Python27\python.exe'
-    let g:python3_host_prog = 'C:\Python37\python.exe'
+let system_config_path = g:config_path . '/system_config.vim'
+
+if filereadable(system_config_path)
+    execute 'source ' . system_config_path
 endif
 
 " ===          Post init           ===
