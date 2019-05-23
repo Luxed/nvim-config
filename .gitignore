@@ -5,3 +5,4 @@ dein/
 tags
 **/__pycache__/
 system_config.vim
+Session.vim
