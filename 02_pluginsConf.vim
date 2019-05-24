@@ -26,7 +26,7 @@ let g:ale_linters = {
             \ 'glsl'       : ['glslang'],
             \ 'haskell'    : ['hie'],
             \ 'typescript' : ['tsserver', 'tslint'],
-            \ 'python'     : ['flake8'],
+            \ 'python'     : ['pyls'],
             \ 'html'       : []
             \}
 
