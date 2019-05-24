@@ -72,18 +72,14 @@ nnoremap ; :
 
 " exit terminal
 tnoremap <leader>n <C-\><C-N>
-" remove highlight
-nnoremap <leader>n :nohl<CR>
 
 " Buffers keybinds
 set hidden
 nnoremap <leader>T :enew<CR>
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
-nnoremap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <leader>bq :b# <BAR> bd #<CR>
 nnoremap <leader>bl :ls<CR>
-nnoremap <leader>wq :bp <BAR> bd #<CR>:q<CR>
-nnoremap <leader>ww :w<CR>
 
 " Open init.vim file
 nnoremap <leader>ei :e $MYVIMRC<CR>
@@ -95,6 +91,10 @@ nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:v
 
 " Removes last highlight
 command! Rmhl :let @/=""
+
+" remove highlight
+nnoremap <leader>n :nohl<CR>
+nnoremap <leader>N :Rmhl<CR>
 
 " Folds keybinds
 nnoremap <Space> za
