@@ -7,7 +7,7 @@ if !isdirectory(g:dein_plugin_path)
     call system('git clone https://github.com/Shougo/dein.vim ' . g:dein_plugin_path)
 endif
 
-if g:dein_path == ''
+if g:dein_path ==# ''
     finish
 else
     execute 'set runtimepath +=' . g:dein_plugin_path

@@ -44,8 +44,10 @@ set cmdheight=2
 set foldmethod=syntax
 
 " Enable code completion
-au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType html set omnifunc=htmlcomplete#CompleteTags
+augroup omnicomp
+    au FileType css set omnifunc=csscomplete#CompleteCSS
+    au FileType html set omnifunc=htmlcomplete#CompleteTags
+augroup END
 
 " Remove annoying 'match x of y' type message
 set shortmess+=c
@@ -110,6 +112,6 @@ function! s:SaveSession()
     endif
 endfunction
 
-autocmd VimLeave * call s:SaveSession()
-"autocmd BufEnter,VimLeavePre * call s:SaveSession() " This is useful for
-"added security
+augroup session
+    autocmd VimLeave * call s:SaveSession()
+augroup END

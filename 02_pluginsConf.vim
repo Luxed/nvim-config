@@ -1,5 +1,7 @@
+scriptencoding utf-8
+
 " Stop trying to configure plugins if dein_path doesn't exist
-if g:dein_path == ''
+if g:dein_path ==# ''
     echoerr 'Couldn''t find dein path, plugins config won''t be loaded'
     finish
 endif
@@ -16,7 +18,8 @@ let g:python_highlight_all = 1
 
 " {{{ Syntax/Error checkers
 
-" * Ale
+" Ale {{{2
+
 let g:airline#extensions#ale#enabled=1
 let g:ale_linters = {
             \ 'rust'       : ['rls'],
@@ -47,6 +50,8 @@ nnoremap <leader>ar :ALEFindReferences<CR>
 nnoremap <leader>ak :ALEDocumentation<CR>
 
 "autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
+
+" 2}}}
 
 " }}}
 
@@ -106,7 +111,9 @@ function! s:setup_ncm2_sources()
 
 endfunction
 
-au User Ncm2Plugin call s:setup_ncm2_sources()
+augroup ncmcomp
+    au User Ncm2Plugin call s:setup_ncm2_sources()
+augroup END
 
 " 2}}}
 
@@ -154,7 +161,9 @@ function! s:setup_asyncomplete_sources()
                 \ }))
 endfunction
 
-au User asyncomplete_setup call s:setup_asyncomplete_sources()
+augroup ayncompletecomp
+    au User asyncomplete_setup call s:setup_asyncomplete_sources()
+augroup END
 
 " 2}}}
 
@@ -205,7 +214,9 @@ let vim_markdown_preview_use_xdg_open=1
 nnoremap <leader>ss :Switch 
 
 " * DelimitMate
-au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
+augroup delimitmateoptions
+    au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
+augroup END
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 
@@ -217,7 +228,9 @@ nnoremap <silent> <leader>gb :Denite branches<CR>
 function! s:fugitive_settings()
     nnoremap <leader>gp :Gpush<CR>
 endfunction
-autocmd FileType fugitive call s:fugitive_settings()
+augroup fugitiveoptions
+    autocmd FileType fugitive call s:fugitive_settings()
+augroup END
 
 " 2}}}
 
@@ -269,7 +282,7 @@ call denite#custom#option('default', {
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-call denite#custom#var('grep', 'command', ["rg"])
+call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'recursive_opts', [])
 
 " Custom mappings
@@ -306,7 +319,6 @@ function! s:denite_my_settings() abort
     nnoremap <silent><buffer><expr> <Space>
                 \ denite#do_map('toggle_select').'j'
 endfunction
-autocmd FileType denite call s:denite_my_settings()
 
 function! s:denite_filter_my_settings() abort
     inoremap <silent><buffer><expr> <C-c>
@@ -318,7 +330,11 @@ function! s:denite_filter_my_settings() abort
     inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
     inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
 endfunction
-autocmd FileType denite-filter call s:denite_filter_my_settings()
+
+augroup deniteoptions
+    autocmd FileType denite call s:denite_my_settings()
+    autocmd FileType denite-filter call s:denite_filter_my_settings()
+augroup END
 
 " 2}}}
 
