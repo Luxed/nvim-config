@@ -3,8 +3,11 @@ let g:dein_path = g:config_path . '/dein'
 
 let g:dein_plugin_path = g:dein_path . '/repos/github.com/Shougo/dein.vim'
 
+let dein_installed = v:false
+
 if !isdirectory(g:dein_plugin_path)
-    execute 'tabedit term://git clone https://github.com/Shougo/dein.vim ' . g:dein_plugin_path
+    execute '!git clone https://github.com/Shougo/dein.vim ' . g:dein_plugin_path
+    let dein_installed = v:true
 endif
 
 execute 'set runtimepath+=' . g:dein_plugin_path
@@ -79,6 +82,7 @@ if dein#load_state(g:dein_path)
     " {{{ Utility
 
     call dein#add('tpope/vim-fugitive') " Git integration
+    call dein#add('junegunn/gv.vim')
     "call dein#add('jiangmiao/auto-pairs') " Automatic mathing of pairs (like (, ' or {)
     call dein#add('raimondi/delimitmate')
     call dein#add('alvan/vim-closetag') " Auto close html tags
@@ -87,7 +91,7 @@ if dein#load_state(g:dein_path)
     call dein#add('majutsushi/tagbar') " Ctags visual integration
     call dein#add('ctrlpvim/ctrlp.vim') " Fuzzy file searcher
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
-    call dein#add('Luxed/vim-markdown-preview') ", { 'branch': 'firefox-quantum' } Realtime live preview of a rendered pandoc markdown file
+    "call dein#add('Luxed/vim-markdown-preview') ", { 'branch': 'firefox-quantum' } Realtime live preview of a rendered pandoc markdown file
     call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
@@ -116,6 +120,7 @@ if dein#load_state(g:dein_path)
     " Distraction free writing (works well in markdown)
     call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks in markdown
     call dein#add('junegunn/goyo.vim')
+    call dein#add('junegunn/vim-peekaboo') " Show the contents of registers
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
     call dein#add('henrik/vim-indexed-search')
     call dein#add('Marslo/vim-coloresque') " Show me the colors
@@ -136,6 +141,10 @@ if dein#load_state(g:dein_path)
 
     call dein#end()
     call dein#save_state()
+endif
+
+if dein_installed == v:true
+    call dein#install()
 endif
 
 " Load filetype-specific indent files
