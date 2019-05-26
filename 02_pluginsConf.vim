@@ -365,4 +365,11 @@ let g:startify_lists = [
 
 " 2}}}
 
+" Semshi {{{2
+
+let g:semshi#error_sign = v:false
+let g:semshi#always_update_all_highlights = v:false
+
+" 2}}}
+
 " }}}
