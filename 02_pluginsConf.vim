@@ -1,6 +1,5 @@
 scriptencoding utf-8
 
-" Stop trying to configure plugins if dein_path doesn't exist
 if g:dein_path ==# ''
     echoerr 'Couldn''t find dein path, plugins config won''t be loaded'
     finish
@@ -10,9 +9,6 @@ endif
 
 " * Pandoc
 let g:pandoc#modules#disabled = ['spell']
-
-" * Python Syntax
-let g:python_highlight_all = 1
 
 " }}}
 
@@ -178,37 +174,9 @@ let g:UltiSnipsExpandTrigger='<c-e>'
 noremap <C-N> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 
-" * CtrlP
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/](\.(git|hg|svn)|_site|node_modules|target|packages|plugged|dein)$',
-            \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-            \}
-" Use the nearest .git directory as the cwd
-let g:ctrlp_working_path_mode = 'r'
-" CtrlP bindings
-nnoremap <leader>pp :CtrlP<CR>
-nnoremap <leader>pb :CtrlPBuffer<CR>
-nnoremap <leader>pm :CtrlPMixed<CR>
-nnoremap <leader>ps :CtrlPMRU<CR>
-nnoremap <leader>pt :CtrlPTag<CR>
-
-if executable('rg')
-    set grepprg=rg\ --color=never
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    let g:ctrlp_use_caching = 0
-endif
-
 " * Tagbar
 " Opens tagbar to the right and moves into it
 noremap <C-T> :TagbarToggle<CR>
-
-" * Vim Markdown Preview
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Firefox Quantum'
-let vim_markdown_preview_pandoc=1
-let vim_markdown_preview_use_xdg_open=1
-"let vim_markdown_preview_toggle=3
 
 " * Switch
 nnoremap <leader>ss :Switch 

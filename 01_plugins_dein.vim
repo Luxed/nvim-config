@@ -37,7 +37,6 @@ if dein#load_state(g:dein_path)
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('hspec/Hspec.vim')
     call dein#add('junegunn/vader.vim')
-    "call dein#add('vim-python/python-syntax')
     call dein#add('numirias/semshi')
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
@@ -54,12 +53,10 @@ if dein#load_state(g:dein_path)
 
     " {{{ Auto Completion
 
-    "call dein#add('ervandew/supertab')
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
+    " * Deoplete setup
     call dein#add('Shougo/deoplete.nvim') " Code completion
-    "call dein#add('sebastianmarkow/deoplete-rust') " Rust completion
-    "call dein#add('zchee/deoplete-jedi') " Python completion
     " * ncm2 setup
     "call dein#add('ncm2/ncm2')
     "call dein#add('ncm2/ncm2-bufword')
@@ -83,15 +80,12 @@ if dein#load_state(g:dein_path)
 
     call dein#add('tpope/vim-fugitive') " Git integration
     call dein#add('junegunn/gv.vim')
-    "call dein#add('jiangmiao/auto-pairs') " Automatic mathing of pairs (like (, ' or {)
     call dein#add('raimondi/delimitmate')
     call dein#add('alvan/vim-closetag') " Auto close html tags
     call dein#add('scrooloose/nerdtree') " File explorer
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
     call dein#add('majutsushi/tagbar') " Ctags visual integration
-    call dein#add('ctrlpvim/ctrlp.vim') " Fuzzy file searcher
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
-    "call dein#add('Luxed/vim-markdown-preview') ", { 'branch': 'firefox-quantum' } Realtime live preview of a rendered pandoc markdown file
     call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
