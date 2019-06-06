@@ -231,7 +231,7 @@ let g:airline_mode_map = {
             \ 's'  : 'SELECT',
             \ 'S'  : 'S-LINE',
             \ '' : 'S-BLOCK',
-            \ 't'  : 'TERMINAL',
+            \ 't'  : '',
             \ 'v'  : 'VISUAL',
             \ 'V'  : 'V-LINE',
             \ '' : 'V-BLOCK',
@@ -244,7 +244,7 @@ let g:airline_mode_map = {
 " Custom options
 call denite#custom#option('default', {
             \ 'start_filter'      : 1,
-            \ 'filter_updatetime' : 1,
+            \ 'filter_updatetime' : 50,
             \ 'prompt': ''
             \ })
 
@@ -252,10 +252,6 @@ call denite#custom#option('default', {
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'recursive_opts', [])
-
-" Custom mappings
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 " Devicons for new file sources
 call denite#custom#source('file,file/rec,file/mru,file/old,file/point', 'converters', ['devicons_denite_converter'])

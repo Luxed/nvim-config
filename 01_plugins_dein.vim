@@ -37,7 +37,8 @@ if dein#load_state(g:dein_path)
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('hspec/Hspec.vim')
     call dein#add('junegunn/vader.vim')
-    call dein#add('numirias/semshi')
+    call dein#add('numirias/semshi') " Python semantic syntax highlighting
+    call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
     call dein#add('editorconfig/editorconfig-vim')
@@ -86,14 +87,13 @@ if dein#load_state(g:dein_path)
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
     call dein#add('majutsushi/tagbar') " Ctags visual integration
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
-    call dein#add('tmhedberg/simpylfold') " Python code folding
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
     call dein#add('mhinz/vim-startify')
     call dein#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
-    call dein#add('Shougo/denite.nvim', {'rev': 'ui'}) " Unite all interfaces
+    call dein#add('Shougo/denite.nvim') " Unite all interfaces
     call dein#add('raghur/fruzzy', {
                 \ 'hook_post_update' : 'call fruzzy#install()',
                 \ 'merged'           : 0

@@ -10,3 +10,4 @@
 - vim-obsession
 - session.vim
 - stop being a whiny bitch and use coc.nvim. ALE+Deoplete or even ncm2 will never be as good
+- vim-open-color
