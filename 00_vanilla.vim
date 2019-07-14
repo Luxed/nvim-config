@@ -1,6 +1,10 @@
 " Initial neovim configurations
+
+" {{{ Setting options
+
 " Syntax because I like colors
 syntax enable
+
 " visual size of tab
 set tabstop=4
 set softtabstop=4
@@ -65,6 +69,12 @@ set splitright
 " Enable autowrite
 set autowrite
 
+set updatetime=300
+
+" }}}
+
+" {{{ Keybindings
+
 " Key bindings
 let mapleader = ','
 
@@ -105,6 +115,10 @@ nnoremap <silent> <leader>ol :lopen<CR>
 " Open quickfix
 nnoremap <silent> <leader>oc :copen<CR>
 
+" }}}
+
+" {{{ Session management
+
 " Save the session only if it exists
 function! s:SaveSession()
     if filereadable(getcwd() . '/Session.vim')
@@ -124,3 +138,5 @@ function! s:DeleteHiddenBuffers() " Vim with the 'hidden' option
     endfor
 endfunction
 command! DeleteHiddenBuffers call s:DeleteHiddenBuffers()
+
+" }}}

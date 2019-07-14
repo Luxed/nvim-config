@@ -18,10 +18,11 @@ let g:pandoc#modules#disabled = ['spell']
 
 let g:airline#extensions#ale#enabled=1
 let g:ale_linters = {
-            \ 'rust'       : ['rls'],
+            \ 'rust'       : [],
             \ 'glsl'       : ['glslang'],
             \ 'haskell'    : ['hie'],
             \ 'typescript' : ['tsserver', 'tslint'],
+            \ 'javascript' : ['tsserver'],
             \ 'python'     : ['pyls'],
             \ 'html'       : []
             \}
@@ -57,7 +58,7 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 
 " Remove preview window
 set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 " Deoplete-rust configuration
 "let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
 "let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
@@ -160,6 +161,40 @@ endfunction
 augroup ayncompletecomp
     au User asyncomplete_setup call s:setup_asyncomplete_sources()
 augroup END
+
+" 2}}}
+
+" coc {{{2
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Expand when pressing enter
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" next and last diagnostic
+nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
+
+" GoTo bindings
+nmap <silent> <leader>qgd <Plug>(coc-definition)
+nmap <silent> <leader>qgy <Plug>(coc-type-definition)
+nmap <silent> <leader>qgi <Plug>(coc-implementation)
+nmap <silent> <leader>qgr <Plug>(coc-references)
+
+" show 'hover' (documentation)
+nmap <silent> <leader>qk :call CocAction('doHover')<CR>
+
+augroup Coc
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
+nmap <leader>qr <Plug>(coc-rename)
+
+nmap <leader>qa <Plug>(coc-codeaction)
+nmap <leader>qf <Plug>(coc-fix-current)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " 2}}}
 

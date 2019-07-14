@@ -31,6 +31,9 @@ if dein#load_state(g:dein_path)
     call dein#add('elzr/vim-json')
     call dein#add('cespare/vim-toml')
     call dein#add('pangloss/vim-javascript')
+    call dein#add('heavenshell/vim-jsdoc')
+    "call dein#add('othree/jsdoc-syntax.vim')
+    "call dein#add('othree/yajs.vim')
     call dein#add('othree/html5.vim')
     call dein#add('tikhomirov/vim-glsl')
     call dein#add('udalov/kotlin-vim')
@@ -57,7 +60,7 @@ if dein#load_state(g:dein_path)
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
     " * Deoplete setup
-    call dein#add('Shougo/deoplete.nvim') " Code completion
+    "call dein#add('Shougo/deoplete.nvim') " Code completion
     " * ncm2 setup
     "call dein#add('ncm2/ncm2')
     "call dein#add('ncm2/ncm2-bufword')
@@ -71,6 +74,21 @@ if dein#load_state(g:dein_path)
     "call dein#add('prabirshrestha/asyncomplete-file.vim')
     "call dein#add('andreypopp/asyncomplete-ale.vim')
     "call dein#add('prabirshrestha/asyncomplete-necovim.vim')
+    " CoC setup
+    call dein#add('neoclide/coc.nvim', {
+                \ 'rev'    : 'release',
+                \ 'merged' : 0
+                \})
+    call dein#add('neoclide/coc-sources')
+    call dein#add('neoclide/coc-neco')
+    call dein#add('iamcco/coc-vimlsp')
+    call dein#add('neoclide/coc-rls')
+    call dein#add('neoclide/coc-json')
+    call dein#add('neoclide/coc-tsserver')
+    call dein#add('neoclide/coc-css')
+    call dein#add('neoclide/coc-html')
+    call dein#add('neoclide/coc-emmet')
+    call dein#add('iamcco/coc-angular')
 
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/neco-vim')
