@@ -1,0 +1,13 @@
+{
+    "languageserver": {
+        "reason": {
+            "command": "D:\\Programs\\reason-language-server.exe",
+            "filetypes": ["reason"],
+            "settings": {
+                "reason_language_server": {
+                    "format_width": 120
+                }
+            }
+        }
+    }
+}

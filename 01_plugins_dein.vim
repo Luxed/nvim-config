@@ -45,12 +45,12 @@ if dein#load_state(g:dein_path)
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
     call dein#add('editorconfig/editorconfig-vim')
+    call dein#add('reasonml-editor/vim-reason-plus')
 
     " }}}
 
     " {{{ Syntax/Error checker
 
-    " This should be all you ever need
     call dein#add('w0rp/ale')
 
     " }}}
