@@ -196,6 +196,17 @@ nmap <leader>qf <Plug>(coc-fix-current)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
+function! InstallCocExtensions()
+    CocInstall coc-ultisnips
+    CocInstall coc-rls
+    CocInstall coc-json
+    CocInstall coc-tsserver
+    CocInstall coc-css
+    CocInstall coc-html
+    CocInstall coc-emmet
+    CocInstall coc-angular
+endfunction
+
 " 2}}}
 
 " }}}
@@ -279,17 +290,15 @@ let g:airline_mode_map = {
 " Custom options
 call denite#custom#option('default', {
             \ 'start_filter'      : 1,
-            \ 'filter_updatetime' : 50,
-            \ 'prompt': ''
+            \ 'filter_updatetime' : 100,
+            \ 'prompt'            : '',
+            \ 'split'             : 'floating'
             \ })
 
 " Ripgrep for file/rec and grep sources
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'recursive_opts', [])
-
-" Devicons for new file sources
-call denite#custom#source('file,file/rec,file/mru,file/old,file/point', 'converters', ['devicons_denite_converter'])
 
 nnoremap <leader>df :Denite file/rec<CR>
 nnoremap <leader>dt :Denite tag<CR>
