@@ -45,12 +45,12 @@ if dein#load_state(g:dein_path)
     call dein#add('herringtondarkholme/yats.vim') " Typescript syntax
     call dein#add('PProvost/vim-ps1')
     call dein#add('editorconfig/editorconfig-vim')
+    call dein#add('reasonml-editor/vim-reason-plus')
 
     " }}}
 
     " {{{ Syntax/Error checker
 
-    " This should be all you ever need
     call dein#add('w0rp/ale')
 
     " }}}
@@ -99,11 +99,12 @@ if dein#load_state(g:dein_path)
 
     call dein#add('tpope/vim-fugitive') " Git integration
     call dein#add('junegunn/gv.vim')
-    call dein#add('raimondi/delimitmate')
+    "call dein#add('raimondi/delimitmate') " Auto close things
+    call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
     call dein#add('alvan/vim-closetag') " Auto close html tags
     call dein#add('scrooloose/nerdtree') " File explorer
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
-    call dein#add('majutsushi/tagbar') " Ctags visual integration
+    "call dein#add('majutsushi/tagbar') " Ctags visual integration
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
