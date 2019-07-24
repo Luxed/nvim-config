@@ -32,7 +32,7 @@ set showmatch
 
 " Search
 set incsearch
-set hlsearch
+set nohlsearch
 
 set autoindent
 set ruler
@@ -103,6 +103,7 @@ nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:v
 command! Rmhl :let @/=""
 
 " remove highlight
+nnoremap <leader>th :set hlsearch!<CR>
 nnoremap <leader>n :nohl<CR>
 nnoremap <leader>N :Rmhl<CR>
 
