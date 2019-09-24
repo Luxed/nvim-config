@@ -20,8 +20,3 @@ colorscheme dracula
 " Remove issues on ShellInABox and Butterfly terminal
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=
-
-if g:colors_name ==# 'dracula'
-    hi! link Conceal Comment
-    hi! link fugitiveHash DraculaCyan
-endif
