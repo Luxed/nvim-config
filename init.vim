@@ -1,3 +1,4 @@
+let g:minimal_config = 0
 let g:config_path = fnamemodify($MYVIMRC, ':h')
 
 execute 'source ' . g:config_path . '/00_vanilla.vim'

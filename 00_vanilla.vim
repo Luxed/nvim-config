@@ -56,11 +56,13 @@ augroup END
 " Remove annoying 'match x of y' type message
 set shortmess+=c
 
-" Enable live substitution preview
-set inccommand=nosplit
+if g:minimal_config != 1
+    " Enable live substitution preview
+    set inccommand=nosplit
 
-" Always show the sign column (gutter)
-set signcolumn=yes
+    " Show the sign column (gutter)
+    set signcolumn=yes
+endif
 
 " More natural splits
 set splitbelow
