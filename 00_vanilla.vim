@@ -71,6 +71,8 @@ set autowrite
 
 set updatetime=300
 
+set diffopt+=internal,algorithm:patience
+
 " }}}
 
 " {{{ Keybindings
@@ -90,6 +92,7 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>bq :b# <BAR> bd #<CR>
 nnoremap <leader>bl :ls<CR>
+nnoremap <leader># :b#<CR>
 
 " Open init.vim file
 nnoremap <leader>ei :e $MYVIMRC<CR>
