@@ -85,6 +85,7 @@ if dein#load_state(g:dein_path)
     call dein#add('neoclide/coc-rls')
     call dein#add('neoclide/coc-json')
     call dein#add('neoclide/coc-tsserver')
+    call dein#add('neoclide/coc-prettier')
     call dein#add('neoclide/coc-css')
     call dein#add('neoclide/coc-html')
     call dein#add('neoclide/coc-emmet')
@@ -113,10 +114,11 @@ if dein#load_state(g:dein_path)
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
     call dein#add('Shougo/denite.nvim') " Unite all interfaces
+    call dein#add('Shougo/neomru.vim') " MRU for Denite
     call dein#add('raghur/fruzzy', {
                 \ 'hook_post_update' : 'call fruzzy#install()',
                 \ 'merged'           : 0
-                \})
+                \}) " Faster fuzzy search for Denite
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
@@ -133,10 +135,10 @@ if dein#load_state(g:dein_path)
     " Distraction free writing (works well in markdown)
     call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks in markdown
     call dein#add('junegunn/goyo.vim')
-    call dein#add('junegunn/vim-peekaboo') " Show the contents of registers
+    "call dein#add('junegunn/vim-peekaboo') " Show the contents of registers
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
     call dein#add('henrik/vim-indexed-search')
-    call dein#add('Marslo/vim-coloresque') " Show me the colors
+    "call dein#add('Marslo/vim-coloresque') " Show me the colors
 
     " }}}
 
