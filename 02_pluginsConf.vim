@@ -21,8 +21,8 @@ let g:ale_linters = {
             \ 'rust'       : [],
             \ 'glsl'       : ['glslang'],
             \ 'haskell'    : ['hie'],
-            \ 'typescript' : ['tsserver', 'tslint'],
-            \ 'javascript' : ['tsserver'],
+            \ 'typescript' : [],
+            \ 'javascript' : [],
             \ 'python'     : ['pyls'],
             \ 'html'       : []
             \}
@@ -201,6 +201,7 @@ function! InstallCocExtensions()
     CocInstall coc-rls
     CocInstall coc-json
     CocInstall coc-tsserver
+    CocInstall coc-prettier
     CocInstall coc-css
     CocInstall coc-html
     CocInstall coc-emmet
@@ -318,6 +319,10 @@ function! s:denite_my_settings() abort
                 \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> <CR>
                 \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> s
+                \ denite#do_map('do_action', 'split')
+    nnoremap <silent><buffer><expr> v
+                \ denite#do_map('do_action', 'vsplit')
     nnoremap <silent><buffer><expr> d
                 \ denite#do_map('do_action', 'delete')
     nnoremap <silent><buffer><expr> p

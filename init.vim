@@ -1,3 +1,4 @@
+let g:minimal_config = 0
 let g:config_path = fnamemodify($MYVIMRC, ':h')
 
 execute 'source ' . g:config_path . '/00_vanilla.vim'
@@ -20,8 +21,3 @@ colorscheme dracula
 " Remove issues on ShellInABox and Butterfly terminal
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=
-
-if g:colors_name ==# 'dracula'
-    hi! link Conceal Comment
-    hi! link fugitiveHash DraculaCyan
-endif
