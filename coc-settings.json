@@ -1,7 +1,7 @@
 {
     "languageserver": {
         "reason": {
-            "command": "D:\\Programs\\reason-language-server.exe",
+            "command": "reason-language-server.exe",
             "filetypes": ["reason"],
             "settings": {
                 "reason_language_server": {
