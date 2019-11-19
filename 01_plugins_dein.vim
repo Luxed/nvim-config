@@ -22,9 +22,6 @@ if dein#load_state(g:dein_path)
     " {{{ Languages
 
     call dein#add('rust-lang/rust.vim')
-    " TODO: Copy the TableFormat command from the plugin into my config
-    " becaues it's really usefull but the plugin conflicts with vim-pandoc
-    "call dein#add('plasticboy/vim-markdown') " used mainly for the TableFormat command
     call dein#add('vim-pandoc/vim-pandoc')
     call dein#add('vim-pandoc/vim-pandoc-syntax')
     call dein#add('vim-pandoc/vim-markdownfootnotes')
@@ -32,8 +29,6 @@ if dein#load_state(g:dein_path)
     call dein#add('cespare/vim-toml')
     call dein#add('pangloss/vim-javascript')
     call dein#add('heavenshell/vim-jsdoc')
-    "call dein#add('othree/jsdoc-syntax.vim')
-    "call dein#add('othree/yajs.vim')
     call dein#add('othree/html5.vim')
     call dein#add('tikhomirov/vim-glsl')
     call dein#add('udalov/kotlin-vim')
@@ -59,21 +54,7 @@ if dein#load_state(g:dein_path)
 
     call dein#add('sirver/ultisnips')
     call dein#add('honza/vim-snippets')
-    " * Deoplete setup
-    "call dein#add('Shougo/deoplete.nvim') " Code completion
-    " * ncm2 setup
-    "call dein#add('ncm2/ncm2')
-    "call dein#add('ncm2/ncm2-bufword')
-    "call dein#add('ncm2/ncm2-path')
-    "call dein#add('ncm2/ncm2-ultisnips')
-    "call dein#add('ncm2/ncm2-vim')
-    " * Asyncomplete setup
-    "call dein#add('prabirshrestha/asyncomplete.vim')
-    "call dein#add('prabirshrestha/asyncomplete-buffer.vim')
-    "call dein#add('prabirshrestha/asyncomplete-ultisnips.vim')
-    "call dein#add('prabirshrestha/asyncomplete-file.vim')
-    "call dein#add('andreypopp/asyncomplete-ale.vim')
-    "call dein#add('prabirshrestha/asyncomplete-necovim.vim')
+
     " CoC setup
     call dein#add('neoclide/coc.nvim', {
                 \ 'rev'    : 'release',
@@ -92,12 +73,10 @@ if dein#load_state(g:dein_path)
 
     call dein#add('tpope/vim-fugitive') " Git integration
     call dein#add('junegunn/gv.vim')
-    "call dein#add('raimondi/delimitmate') " Auto close things
     call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
     call dein#add('alvan/vim-closetag') " Auto close html tags
     call dein#add('scrooloose/nerdtree') " File explorer
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
-    "call dein#add('majutsushi/tagbar') " Ctags visual integration
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
@@ -127,10 +106,8 @@ if dein#load_state(g:dein_path)
     " Distraction free writing (works well in markdown)
     call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks in markdown
     call dein#add('junegunn/goyo.vim')
-    "call dein#add('junegunn/vim-peekaboo') " Show the contents of registers
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
     call dein#add('henrik/vim-indexed-search')
-    "call dein#add('Marslo/vim-coloresque') " Show me the colors
 
     " }}}
 
@@ -141,7 +118,6 @@ if dein#load_state(g:dein_path)
     call dein#add('reedes/vim-colors-pencil')
     call dein#add('ajmwagar/vim-deus') " Gruvbox based
     call dein#add('aonemd/kuroi.vim')
-    " call dein#add('challenger-deep-theme/vim', {'as': 'challenger-deep'}
     call dein#add('dracula/vim', {'name': 'dracula-git'})
 
     " }}}
