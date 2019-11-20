@@ -197,6 +197,7 @@ nmap <leader>qf <Plug>(coc-fix-current)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 function! InstallCocExtensions()
+    CocInstall coc-marketplace
     CocInstall coc-ultisnips
     CocInstall coc-rls
     CocInstall coc-json
@@ -206,6 +207,7 @@ function! InstallCocExtensions()
     CocInstall coc-html
     CocInstall coc-emmet
     CocInstall coc-angular
+    CocInstall coc-vimlsp
 endfunction
 
 " 2}}}
@@ -226,7 +228,7 @@ let g:NERDTreeShowHidden=1
 noremap <C-T> :TagbarToggle<CR>
 
 " * Switch
-nnoremap <leader>ss :Switch 
+nnoremap <leader>ss :Switch<CR>
 
 " * DelimitMate
 augroup delimitmateoptions
@@ -313,7 +315,8 @@ let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
 
 call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
 
-" Define mappings
+" Define mappings {{{3
+
 function! s:denite_my_settings() abort
     nnoremap <silent><buffer><expr> <Esc>
                 \ denite#do_map('quit')
@@ -344,10 +347,54 @@ function! s:denite_filter_my_settings() abort
     inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
 endfunction
 
+" 3}}}
+
 augroup deniteoptions
     autocmd FileType denite call s:denite_my_settings()
     autocmd FileType denite-filter call s:denite_filter_my_settings()
 augroup END
+
+" 2}}}
+
+" fzf {{{2
+
+function! FloatingFZF()
+    let buf = nvim_create_buf(v:false, v:true)
+    call setbufvar(buf, '&signcolumn', 'no')
+
+    let width = float2nr(&columns - (&columns * 2 / 10))
+    let height = &lines - 3
+    let y = &lines - 3
+    let x = float2nr((&columns - width) / 2)
+
+    let opts = {
+                \ 'relative': 'editor',
+                \ 'row': y,
+                \ 'col': x,
+                \ 'width': width,
+                \ 'height': height
+                \}
+
+    call nvim_open_win(buf, v:true, opts)
+endfunction
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" TODO: make a function that checks if we are in a git repo to use only 1
+" mapping
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fb :Buffers<CR>
+" 'outline': tags for current buffer only
+nnoremap <leader>fo :BTags<CR>
+
+function! RgFZF()
+    let input = input('Riprep: ')
+
+    if input !=# ''
+        execute ':Rg ' . input
+    endif
+endfunction
+nnoremap <leader>fg :call RgFZF()<CR>
 
 " 2}}}
 

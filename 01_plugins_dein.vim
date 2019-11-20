@@ -1,6 +1,5 @@
 " Path to dein.vim
 let g:dein_path = g:config_path . '/dein'
-
 let g:dein_plugin_path = g:dein_path . '/repos/github.com/Shougo/dein.vim'
 
 let dein_installed = v:false
@@ -72,7 +71,7 @@ if dein#load_state(g:dein_path)
     " {{{ Utility
 
     call dein#add('tpope/vim-fugitive') " Git integration
-    call dein#add('junegunn/gv.vim')
+    call dein#add('junegunn/gv.vim') " Git log graphical visualisation
     call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
     call dein#add('alvan/vim-closetag') " Auto close html tags
     call dein#add('scrooloose/nerdtree') " File explorer
@@ -80,7 +79,7 @@ if dein#load_state(g:dein_path)
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
     call dein#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
     call dein#add('andrewradev/splitjoin.vim') " Looks great, needs testing
-    call dein#add('mhinz/vim-startify')
+    call dein#add('mhinz/vim-startify') " Nice startup screen
     call dein#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call dein#add('tpope/vim-repeat') " .
     call dein#add('Luxed/vim-switcher') " Switch between filetypes
@@ -94,18 +93,23 @@ if dein#load_state(g:dein_path)
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
 
+    call dein#add('junegunn/fzf', {
+                \ 'merged' : 0
+                \})
+    call dein#add('junegunn/fzf.vim', { 'depends' : 'fzf' })
+
     " }}}
 
     " {{{ Interface
 
-    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline') " Status bar + tabline
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('mhinz/vim-signify') " Version control gutter signs (git, svn, mercurial, etc.)
-    call dein#add('godlygeek/tabular') " Auto spaces on what you choose (on '=' for example while declaring variables)
+    call dein#add('godlygeek/tabular') " Tabularize everything
     call dein#add('ryanoasis/vim-devicons') " Needs a patched font
     " Distraction free writing (works well in markdown)
-    call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks in markdown
-    call dein#add('junegunn/goyo.vim')
+    call dein#add('junegunn/limelight.vim') " :Limelight allows you to focus on blocks
+    call dein#add('junegunn/goyo.vim') " Distraction free writing
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
     call dein#add('henrik/vim-indexed-search')
 
