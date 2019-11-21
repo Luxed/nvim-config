@@ -241,7 +241,7 @@ let delimitMate_expand_cr = 1
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
-nnoremap <silent> <leader>gb :Denite branches<CR>
+"nnoremap <silent> <leader>gb :Denite branches<CR>
 function! s:fugitive_settings()
     nnoremap <leader>gp :Gpush<CR>
 endfunction
@@ -358,6 +358,8 @@ augroup END
 
 " fzf {{{2
 
+" fzf functions {{{3
+
 function! FloatingFZF()
     let buf = nvim_create_buf(v:false, v:true)
     call setbufvar(buf, '&signcolumn', 'no')
@@ -378,23 +380,47 @@ function! FloatingFZF()
     call nvim_open_win(buf, v:true, opts)
 endfunction
 
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-" TODO: make a function that checks if we are in a git repo to use only 1
-" mapping
-nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fb :Buffers<CR>
-" 'outline': tags for current buffer only
-nnoremap <leader>fo :BTags<CR>
-
 function! RgFZF()
     let input = input('Riprep: ')
 
     if input !=# ''
         execute ':Rg ' . input
+    else
+        echo 'Exiting: given input was empty'
     endif
 endfunction
+
+function! GitTagsFZF()
+    let l:tags = systemlist('git ls-remote -t --refs')
+    let l:first_tag = remove(l:tags, 0) " The first line is always the information about the remote
+
+    if !empty(l:tags)
+        function! TransformTag(key, val)
+            return substitute(a:val, '^.*refs\/tags\/', '', '')
+        endfunction
+        let l:tags = map(l:tags, function('TransformTag'))
+    endif
+
+    return l:tags
+endfunction
+
+function! GitBranchesFZF()
+    let l:branches = systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
+
+    return l:branches
+endfunction
+
+" }}}
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fb :Buffers<CR>
+" 'outline': tags for current buffer only
+nnoremap <leader>fo :BTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>
+nnoremap <silent> <leader>gb :call fzf#run(extend({'source': GitBranchesFZF(), 'sink': 'Git checkout'}, g:fzf_layout))<CR>
+nnoremap <silent> <leader>gt :call fzf#run(extend({'source': GitTagsFZF(), 'sink': 'Git checkout'}, g:fzf_layout))<CR>
 
 " 2}}}
 
