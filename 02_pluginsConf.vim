@@ -223,12 +223,13 @@ let g:UltiSnipsExpandTrigger='<c-e>'
 noremap <C-N> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 
-" * Tagbar
-" Opens tagbar to the right and moves into it
-noremap <C-T> :TagbarToggle<CR>
+" Switch {{{2
 
-" * Switch
-nnoremap <leader>ss :Switch<CR>
+nnoremap <leader>ss :call switcher#Switch()<CR>
+nnoremap <leader>sv :call switcher#SwitchWithOptions({'edit_command': 'vs'})<CR>
+nnoremap <leader>sh :call switcher#SwitchWithOptions({'edit_command': 'sp'})<CR>
+
+" 2}}}
 
 " * DelimitMate
 augroup delimitmateoptions
