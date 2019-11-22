@@ -364,10 +364,10 @@ function! FloatingFZF()
     let buf = nvim_create_buf(v:false, v:true)
     call setbufvar(buf, '&signcolumn', 'no')
 
-    let width = float2nr(&columns - (&columns * 2 / 10))
-    let height = &lines - 3
-    let y = &lines - 3
+    let width = float2nr(&columns - (&columns * 2 / 5))
     let x = float2nr((&columns - width) / 2)
+    let height = float2nr(&lines - (&lines * 2 / 5))
+    let y = float2nr((&lines - height) / 2)
 
     let opts = {
                 \ 'relative': 'editor',
