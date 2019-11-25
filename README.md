@@ -38,69 +38,6 @@ Either download it from their site and put it in your fonts user directory or us
 I highly recommend to use [scoop](https://scoop.sh) and the [scoop-nerd-fonts bucket](https://github.com/matthewjberger/scoop-nerd-fonts) to install the fonts properly and without any issue.
 To search for all the possible fonts simply do `scoop search "-NF"`.
 
-## Bindings
-
-### Vanilla
-
-| Bindings            | Mode     | Use                                 |
-|---------------------|----------|-------------------------------------|
-| ,                   | Any      | \<leader\> key                      |
-| \<leader\>n         | Terminal | Exit Terminal                       |
-| \<leader\>n         | Normal   | Remove current highlight            |
-| \<leader\>T         | Normal   | New empty buffer                    |
-| \<leader\>l         | Normal   | Next buffer                         |
-| \<leader\>h         | Normal   | Previous buffer                     |
-| \<leader\>bq        | Normal   | Quit current buffer                 |
-| \<leader\>bl        | Normal   | List Buffers                        |
-| \<leader\>wq        | Normal   | Quit current buffer and window      |
-| \<leader\>ww        | Normal   | Save current buffer                 |
-| \<leader\>ei        | Normal   | Edit init.vim file                  |
-| \<leader\>si        | Normal   | Source init.vim file                |
-| zS                  | Normal   | Echo syntax of element under cursor |
-| \<Space\>           | Normal   | za (toggle fold)                    |
-| \<leader\>\<Space\> | Normal   | zc (close fold)                     |
-| \<leader\>zj        | Normal   | Go to the next fold                 |
-| \<leader\>zk        | Normal   | Go to the previous fold             |
-
-### Plugins
-
-#### General
-
-| Bindings         | Mode   | Use                                       |
-|------------------|--------|-------------------------------------------|
-| Plugin: ALE      |
-| \<leader\>an     | Normal | Ale next wrap (next error, warning, etc.) |
-| \<leader\>ap     | Normal | Ale previous wrap                         |
-| \<leader\>ah     | Normal | Ale hover                                 |
-| \<leader\>ag     | Normal | Ale go to definition                      |
-| \<leader\>ar     | Normal | Ale find references                       |
-| Plugin: NERDTree |
-| \<C-N\>          | Any    | NERDTree toggle                           |
-| Plugin: CtrlP    |
-| \<leader\>pp     | Normal | Launch CtrlP                              |
-| \<leader\>pb     | Normal | Launch CtrlP in buffer mode               |
-| \<leader\>pm     | Normal | Launch CtrlP in mixed mode                |
-| \<leader\>ps     | Normal | Launch CtrlP in MRU mode                  |
-| Plugin: Tagbar   |
-| \<C-T\>          | Normal | Tagbar toggle                             |
-
-#### FileType
-
-| Bindings       | Mode   | Use                                         |
-|----------------|--------|---------------------------------------------|
-| FileType: Help |
-| \<CR\>         | Normal | \<C-]\> (go to the definition under cursor) |
-| \<BS\>         | Normal | \<C-T\> (go back to where you were before)  |
-
-## Commands
-
-A list of the custom commands I made.
-
-| Command | Use                                                                      |
-|---------|--------------------------------------------------------------------------|
-| H       | Opens the help in a split above (because default behavior is splitbelow) |
-| Rmhl    | Clears the search register                                               |
-
 ## How it works
 
 The first file executed is the `init.vim` file.
