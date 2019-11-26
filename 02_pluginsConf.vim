@@ -46,125 +46,11 @@ nnoremap <leader>ag :ALEGoToDefinition<CR>
 nnoremap <leader>ar :ALEFindReferences<CR>
 nnoremap <leader>ak :ALEDocumentation<CR>
 
-"autocmd FileType typescript,rust set omnifunc=ale#completion#OmniFunc
-
 " 2}}}
 
 " }}}
 
-" {{{ Completion
-
-" Deoplete {{{2
-
-" Remove preview window
-set completeopt-=preview
-let g:deoplete#enable_at_startup = 0
-" Deoplete-rust configuration
-"let g:deoplete#sources#rust#racer_binary = $HOME.'/.cargo/bin/racer'
-"let g:deoplete#sources#rust#rust_source_path = $HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
-"let g:deoplete#sources#rust#documentation_max_height = 0
-"let g:deoplete#sources#jedi#show_docstring = 1
-
-" 2}}}
-
-" Ncm2 {{{2
-
-"set completeopt=noinsert,menuone,noselect
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-
-function! s:setup_ncm2_sources()
-
-    call ncm2#register_source({
-                \ 'name' : 'rust',
-                \ 'priority': 9,
-                \ 'subscope_enable': 1,
-                \ 'scope': ['rust'],
-                \ 'mark': 'rust',
-                \ 'word_pattern': '[\w]+',
-                \ 'complete_pattern': '\(::|\.|^use\s\)*',
-                \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
-                \ })
-
-    call ncm2#register_source({
-                \ 'name': 'typescript',
-                \ 'priority': 9,
-                \ 'subscope_enable': 1,
-                \ 'scope': ['typescript'],
-                \ 'mark': 'typescript',
-                \ 'word_pattern': '[\w]+',
-                \ 'complete_pattern': '\.*',
-                \ 'on_complete': ['ncm2#on_complete#omni', 'ale#completion#OmniFunc'],
-                \ })
-
-    call ncm2#register_source({'name' : 'css',
-                \ 'priority': 9,
-                \ 'subscope_enable': 1,
-                \ 'scope': ['css', 'scss', 'less'],
-                \ 'mark': 'css',
-                \ 'word_pattern': '[\w\-]+',
-                \ 'complete_pattern': ':\s*',
-                \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-                \ })
-
-endfunction
-
-augroup ncmcomp
-    au User Ncm2Plugin call s:setup_ncm2_sources()
-augroup END
-
-" 2}}}
-
-" Asyncomplete sources {{{2
-
-function! s:setup_asyncomplete_sources()
-    " Buffer asyncomplete source
-    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-                \ 'name': 'buffer',
-                \ 'whitelist': ['*'],
-                \ 'completor': function('asyncomplete#sources#buffer#completor'),
-                \ }))
-
-    " Files asyncomplete source
-    call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-                \ 'name': 'file',
-                \ 'whitelist': ['*'],
-                \ 'priority': 10,
-                \ 'completor': function('asyncomplete#sources#file#completor')
-                \ }))
-
-    " Ultisnips asyncomplete source
-    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-                \ 'name': 'ultisnips',
-                \ 'whitelist': ['*'],
-                \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-                \ }))
-
-    " ALE asyncomplete source
-    call asyncomplete#ale#register_source({
-                \ 'name': 'typescript',
-                \ 'linter': 'tsserver'
-                \ })
-
-    call asyncomplete#ale#register_source({
-                \ 'name': 'rust',
-                \ 'linter': 'rls'
-                \ })
-
-    " VIM asyncomplete source
-    call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-                \ 'name': 'necovim',
-                \ 'whitelist': ['vim'],
-                \ 'completor': function('asyncomplete#sources#necovim#completor'),
-                \ }))
-endfunction
-
-augroup ayncompletecomp
-    au User asyncomplete_setup call s:setup_asyncomplete_sources()
-augroup END
-
-" 2}}}
-
-" coc {{{2
+" Coc {{{
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -210,8 +96,6 @@ function! InstallCocExtensions()
     CocInstall coc-vimlsp
 endfunction
 
-" 2}}}
-
 " }}}
 
 " {{{ Utility
@@ -231,18 +115,10 @@ nnoremap <leader>sh :call switcher#SwitchWithOptions({'edit_command': 'sp'})<CR>
 
 " 2}}}
 
-" * DelimitMate
-augroup delimitmateoptions
-    au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
-augroup END
-let delimitMate_expand_space = 1
-let delimitMate_expand_cr = 1
-
 " Fugitive {{{2
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
-"nnoremap <silent> <leader>gb :Denite branches<CR>
 function! s:fugitive_settings()
     nnoremap <leader>gp :Gpush<CR>
 endfunction
@@ -411,7 +287,7 @@ function! GitBranchesFZF()
     return l:branches
 endfunction
 
-" }}}
+" 3}}}
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
