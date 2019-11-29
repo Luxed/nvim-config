@@ -1,4 +1,34 @@
 local list_of_terms = {}
+local function create_term(name, command)
+  local term = {buffer = nil, command = command, name = name}
+  return term
+end
+local function isloaded_term(term)
+  return (term.buffer and vim.api.nvim_buf_is_loaded(term.buffer))
+end
+local function switch_term(term)
+  if isloaded_term(term) then
+    vim.api.nvim_set_current_buf(term.buffer)
+  else
+    local buf = vim.api.nvim_create_buf(false, false)
+    vim.api.nvim_set_current_buf(buf)
+    vim.api.nvim_call_function("termopen", {term.command})
+    term["buffer"] = buf
+  end
+  return nil
+end
+local function add(name, command)
+  if not list_of_terms[name] then
+    local term = create_term(name, command)
+    list_of_terms[name] = term
+  end
+  switch_term(list_of_terms[name])
+  return nil
+end
+return {Named = add}
+
+-- Older version
+--[[local list_of_terms = {}
 
 local Terminal = {}
 Terminal.__index = Terminal
@@ -42,4 +72,4 @@ end
 
 return {
     Named = Named
-}
+}]]
