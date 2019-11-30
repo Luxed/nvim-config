@@ -128,6 +128,14 @@ augroup END
 
 " 2}}}
 
+" Rainbow Brackets {{{2
+
+augroup rainbow_config
+    autocmd FileType lisp,fennel,typescript RainbowParentheses
+augroup end
+
+" 2}}}
+
 " }}}
 
 " {{{ Interface

@@ -42,6 +42,7 @@ if dein#load_state(g:dein_path)
     call dein#add('reasonml-editor/vim-reason-plus')
     call dein#add('tbastos/vim-lua')
     call dein#add('leafo/moonscript-vim')
+    call dein#add('bakpakin/fennel.vim')
 
     " }}}
 
@@ -63,7 +64,6 @@ if dein#load_state(g:dein_path)
                 \})
     call dein#add('neoclide/coc-sources')
     call dein#add('neoclide/coc-neco')
-    call dein#add('iamcco/coc-vimlsp')
 
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/neco-vim')
@@ -114,6 +114,7 @@ if dein#load_state(g:dein_path)
     call dein#add('junegunn/goyo.vim') " Distraction free writing
     "call dein#add('valloric/matchtagalways') " Match HTML, and XML like tags
     call dein#add('henrik/vim-indexed-search')
+    call dein#add('junegunn/rainbow_parentheses.vim')
 
     " }}}
 
