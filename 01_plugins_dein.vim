@@ -41,6 +41,7 @@ if dein#load_state(g:dein_path)
     call dein#add('editorconfig/editorconfig-vim')
     call dein#add('reasonml-editor/vim-reason-plus')
     call dein#add('tbastos/vim-lua')
+    call dein#add('leafo/moonscript-vim')
 
     " }}}
 
