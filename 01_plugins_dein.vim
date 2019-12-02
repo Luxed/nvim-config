@@ -74,8 +74,9 @@ if dein#load_state(g:dein_path)
 
     call dein#add('tpope/vim-fugitive') " Git integration
     call dein#add('junegunn/gv.vim') " Git log graphical visualisation
-    call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
-    call dein#add('alvan/vim-closetag') " Auto close html tags
+    "call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
+    "call dein#add('alvan/vim-closetag') " Auto close html tags
+    call dein#add('tmsvg/pear-tree')
     call dein#add('scrooloose/nerdtree') " File explorer
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
@@ -94,11 +95,11 @@ if dein#load_state(g:dein_path)
     call dein#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call dein#add('mattn/emmet-vim')
     call dein#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
-
     call dein#add('junegunn/fzf', {
                 \ 'merged' : 0
                 \})
     call dein#add('junegunn/fzf.vim', { 'depends' : 'fzf' })
+    call dein#add('olical/aniseed', { 'rev': 'v1.1.0' })
 
     " }}}
 
