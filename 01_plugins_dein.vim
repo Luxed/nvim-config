@@ -99,7 +99,7 @@ if dein#load_state(g:dein_path)
                 \ 'merged' : 0
                 \})
     call dein#add('junegunn/fzf.vim', { 'depends' : 'fzf' })
-    call dein#add('olical/aniseed', { 'rev': 'v1.1.0' })
+    call dein#add('olical/aniseed', { 'rev': 'develop' })
 
     " }}}
 
