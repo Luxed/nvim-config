@@ -6,7 +6,7 @@
 
 (fn term-shell []
     (if (nvim.fn.has "windows")
-        "powershell"
+        "cmd"
         "zsh"))
 
 (nvim.ex.command_ :Terminal (terminal.CreateCommand "shell" (term-shell)))
