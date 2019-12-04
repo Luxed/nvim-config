@@ -10,4 +10,5 @@ local function term_shell()
   end
 end
 nvim.ex.command_("Terminal", terminal.CreateCommand("shell", term_shell()))
+nvim.ex.command_("Fennel", terminal.CreateCommand("fennel", "fennel"))
 return nil

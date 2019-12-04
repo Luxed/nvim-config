@@ -10,5 +10,6 @@
         "zsh"))
 
 (nvim.ex.command_ :Terminal (terminal.CreateCommand "shell" (term-shell)))
+(nvim.ex.command_ :Fennel (terminal.CreateCommand "fennel" "fennel"))
 
 nil
