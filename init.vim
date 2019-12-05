@@ -5,6 +5,9 @@ execute 'source ' . g:config_path . '/00_vanilla.vim'
 execute 'source ' . g:config_path . '/01_plugins_dein.vim'
 execute 'source ' . g:config_path . '/02_pluginsConf.vim'
 
+" Execute lua's entry point
+lua require('bootstrap')
+
 let system_config_path = g:config_path . '/system_config.vim'
 
 if filereadable(system_config_path)
@@ -19,5 +22,4 @@ set background=dark
 colorscheme dracula
 
 " Remove issues on ShellInABox and Butterfly terminal
-"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=
