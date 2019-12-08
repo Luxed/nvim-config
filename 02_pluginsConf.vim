@@ -115,10 +115,12 @@ nnoremap <leader>sh :call switcher#SwitchWithOptions({'edit_command': 'sp'})<CR>
 
 " 2}}}
 
+
 " Fugitive {{{2
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
+"nnoremap <silent> <leader>gb :Denite branches<CR>
 function! s:fugitive_settings()
     nnoremap <leader>gp :Gpush<CR>
 endfunction
@@ -128,21 +130,13 @@ augroup END
 
 " 2}}}
 
-" Rainbow Brackets {{{2
-
-augroup rainbow_config
-    autocmd FileType lisp,fennel,typescript RainbowParentheses
-augroup end
-
-" 2}}}
-
 " }}}
 
 " {{{ Interface
 
 " Airline {{{2
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
@@ -295,7 +289,7 @@ function! GitBranchesFZF()
     return l:branches
 endfunction
 
-" 3}}}
+" }}}
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
