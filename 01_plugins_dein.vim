@@ -100,6 +100,7 @@ if dein#load_state(g:dein_path)
                 \})
     call dein#add('junegunn/fzf.vim', { 'depends' : 'fzf' })
     call dein#add('olical/aniseed', { 'rev': 'master' })
+    call dein#add('Olical/nvim-local-fennel', {'rev': 'master'})
 
     " }}}
 
