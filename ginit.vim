@@ -7,11 +7,7 @@ else
     GuiTabline 0
     GuiPopupmenu 0
     " On windows it is important to install the 'ttf' font
-    if has('windows')
-        GuiFont! Fira Code:h11
-    else
-        GuiFont! DejaVuSansMono NF:h11
-    endif
+    GuiFont! Fira Code:h11
     "GuiFont! Source Code Pro Medium:h11
     "GuiFont! FuraCode NF:h11
     "GuiFont! Hasklug NF:h11
