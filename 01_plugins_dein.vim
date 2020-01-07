@@ -74,9 +74,9 @@ if dein#load_state(g:dein_path)
 
     call dein#add('tpope/vim-fugitive') " Git integration
     call dein#add('junegunn/gv.vim') " Git log graphical visualisation
-    "call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
-    "call dein#add('alvan/vim-closetag') " Auto close html tags
-    call dein#add('tmsvg/pear-tree')
+    call dein#add('jiangmiao/auto-pairs') " Auto close things ('(', '{', '[', etc.)
+    call dein#add('alvan/vim-closetag') " Auto close html tags
+    "call dein#add('tmsvg/pear-tree')
     call dein#add('scrooloose/nerdtree') " File explorer
     call dein#add('scrooloose/nerdcommenter') " Commenting tool
     call dein#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
