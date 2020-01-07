@@ -94,6 +94,7 @@ function! InstallCocExtensions()
     CocInstall coc-emmet
     CocInstall coc-angular
     CocInstall coc-vimlsp
+    CocInstall coc-vetur
 endfunction
 
 " }}}

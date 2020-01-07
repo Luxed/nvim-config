@@ -43,6 +43,7 @@ if dein#load_state(g:dein_path)
     call dein#add('tbastos/vim-lua')
     call dein#add('leafo/moonscript-vim')
     call dein#add('bakpakin/fennel.vim')
+    call dein#add('posva/vim-vue')
 
     " }}}
 
