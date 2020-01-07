@@ -132,9 +132,9 @@ function! s:SaveSession()
     endif
 endfunction
 
-augroup session
-    autocmd VimLeave * call s:SaveSession()
-augroup END
+"augroup session
+    "autocmd VimLeave * call s:SaveSession()
+"augroup END
 
 function! s:DeleteHiddenBuffers() " Vim with the 'hidden' option
     let tpbl=[]
