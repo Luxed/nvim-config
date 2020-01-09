@@ -117,7 +117,6 @@ nnoremap <leader>sh :call switcher#SwitchWithOptions({'edit_command': 'sp'})<CR>
 
 " 2}}}
 
-
 " Fugitive {{{2
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -129,6 +128,13 @@ endfunction
 augroup fugitiveoptions
     autocmd FileType fugitive call s:fugitive_settings()
 augroup END
+
+" 2}}}
+
+" vim-closetag {{{2
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.vue"
+let g:closetag_filetypes = 'html,xhtml,phtml,vue'
 
 " 2}}}
 
