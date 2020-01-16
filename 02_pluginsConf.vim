@@ -271,7 +271,7 @@ function! RgFZF()
     let input = input('Riprep: ')
 
     if input !=# ''
-        execute ':Rg ' . input
+        execute ':FzfRg ' . input
     else
         echo 'Exiting: given input was empty'
     endif
@@ -300,14 +300,15 @@ endfunction
 " }}}
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+let g:fzf_command_prefix = 'Fzf'
 
-nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>ff :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
+nnoremap <leader>fb :FzfBuffers<CR>
 " 'outline': tags for current buffer only
-nnoremap <leader>fo :BTags<CR>
+nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>
-nnoremap <silent> <leader>gb :call fzf#run(extend({'source': GitBranchesFZF(), 'sink': 'Git checkout'}, g:fzf_layout))<CR>
-nnoremap <silent> <leader>gt :call fzf#run(extend({'source': GitTagsFZF(), 'sink': 'Git checkout'}, g:fzf_layout))<CR>
+nnoremap <silent> <leader>gb :call fzf#run(fzf#run({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <silent> <leader>gt :call fzf#run(fzf#run({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
 
 " 2}}}
 
