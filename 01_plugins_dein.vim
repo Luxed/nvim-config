@@ -130,8 +130,13 @@ if dein#load_state(g:dein_path)
     call dein#add('aonemd/kuroi.vim')
     call dein#add('dracula/vim', {'name': 'dracula-git'})
     call dein#add('jacoborus/tender.vim')
+    call dein#add('herrbischoff/cobalt2.vim')
+    call dein#add('arcticicestudio/nord-vim')
     call dein#add('ayu-theme/ayu-vim')
+    call dein#add('zeis/vim-kolor')
+    call dein#add('danilo-augusto/vim-afterglow')
     call dein#add('cseelus/vim-colors-lucid')
+    call dein#add('dikiaap/minimalist')
 
     " }}}
 

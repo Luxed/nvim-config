@@ -133,7 +133,7 @@ augroup END
 
 " vim-closetag {{{2
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.vue"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 let g:closetag_filetypes = 'html,xhtml,phtml,vue'
 
 " 2}}}
@@ -307,8 +307,8 @@ nnoremap <leader>fb :FzfBuffers<CR>
 " 'outline': tags for current buffer only
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>
-nnoremap <silent> <leader>gb :call fzf#run(fzf#run({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
-nnoremap <silent> <leader>gt :call fzf#run(fzf#run({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
 
 " 2}}}
 
@@ -345,5 +345,8 @@ let g:semshi#error_sign = v:false
 let g:semshi#always_update_all_highlights = v:false
 
 " 2}}}
+
+let g:pencil_higher_contrast_ui = 1
+let g:pencil_gutter_color = 0
 
 " }}}

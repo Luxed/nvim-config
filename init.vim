@@ -18,8 +18,9 @@ endif
 " Themes are loaded last to avoid any issues
 set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal used doesn't accept TrueColor)
 set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
-set background=dark
-colorscheme dracula
+"set background=dark
+let ayucolor = 'mirage'
+colorscheme afterglow
 
 " Remove issues on ShellInABox and Butterfly terminal
 set guicursor=
