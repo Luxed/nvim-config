@@ -123,12 +123,15 @@ if dein#load_state(g:dein_path)
 
     " {{{ Themes
 
-    call dein#add('flazz/vim-colorschemes')
+    "call dein#add('flazz/vim-colorschemes')
     call dein#add('iCyMind/NeoSolarized')
     call dein#add('reedes/vim-colors-pencil')
     call dein#add('ajmwagar/vim-deus') " Gruvbox based
     call dein#add('aonemd/kuroi.vim')
     call dein#add('dracula/vim', {'name': 'dracula-git'})
+    call dein#add('jacoborus/tender.vim')
+    call dein#add('ayu-theme/ayu-vim')
+    call dein#add('cseelus/vim-colors-lucid')
 
     " }}}
 
