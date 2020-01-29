@@ -133,8 +133,8 @@ augroup END
 
 " vim-closetag {{{2
 
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
-let g:closetag_filetypes = 'html,xhtml,phtml,vue'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.xml'
+let g:closetag_filetypes = 'html,xhtml,phtml,vue,xml'
 
 " 2}}}
 
