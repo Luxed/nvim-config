@@ -21,3 +21,9 @@ hi! typescriptParens guibg=NONE guifg=#d6d6d6
 hi! vimUserFunc guibg=NONE guifg=#d6d6d6
 
 " }}}
+
+" rust {{{
+
+hi! link rustKeyword Type
+
+" }}}
