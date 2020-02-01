@@ -9,5 +9,6 @@
                 }
             }
         }
-    }
+    },
+    "vetur.dev.vlsPath": "C:/Users/cocod/git/vetur/server"
 }
