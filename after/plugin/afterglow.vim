@@ -26,3 +26,9 @@ hi! link vimUserFunc NONE
 hi! link NERDTreeFile NONE
 
 " }}}
+
+" rust {{{
+
+hi! link rustKeyword Type
+
+" }}}
