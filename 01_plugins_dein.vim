@@ -137,6 +137,7 @@ if dein#load_state(g:dein_path)
     call dein#add('danilo-augusto/vim-afterglow')
     call dein#add('cseelus/vim-colors-lucid')
     call dein#add('dikiaap/minimalist')
+    call dein#add('bluz71/vim-nightfly-guicolors')
 
     " }}}
 
