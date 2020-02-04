@@ -10,15 +10,20 @@ hi! link Conceal Comment
 
 hi! link typescriptAliasKeyword Type
 hi! link typescriptAccessibilityModifier Type
-hi! link typescriptBraces Normal
-hi! typescriptBraces guibg=NONE guifg=#d6d6d6
-hi! typescriptParens guibg=NONE guifg=#d6d6d6
+hi! link typescriptBraces NONE
+hi! typescriptParens NONE
 
 " }}}
 
 " vim {{{
 
-hi! vimUserFunc guibg=NONE guifg=#d6d6d6
+hi! link vimUserFunc NONE
+
+" }}}
+
+" NERDTree {{{
+
+hi! link NERDTreeFile NONE
 
 " }}}
 
