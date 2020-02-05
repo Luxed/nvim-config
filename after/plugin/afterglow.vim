@@ -11,7 +11,7 @@ hi! link Conceal Comment
 hi! link typescriptAliasKeyword Type
 hi! link typescriptAccessibilityModifier Type
 hi! link typescriptBraces NONE
-hi! typescriptParens NONE
+hi! link typescriptParens NONE
 
 " }}}
 
