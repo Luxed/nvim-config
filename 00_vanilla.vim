@@ -13,7 +13,11 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
-set nowrap
+set wrap
+set linebreak
+let &showbreak = '> '
+set breakindent
+set breakindentopt=shift:2
 
 " Show line numbers
 " relative number is causing issues with some plugins and is generally slower
