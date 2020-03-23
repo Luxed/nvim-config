@@ -105,6 +105,12 @@ endfunction
 
 " * UltiSnips
 let g:UltiSnipsExpandTrigger='<c-e>'
+function FixUltiSnipsMappings()
+    inoremap <buffer> <silent> <c-j> <C-R>=UltiSnips#JumpForwards()<cr>
+    snoremap <buffer> <silent> <c-j> <Esc>:call UltiSnips#JumpForwards()<cr>
+    inoremap <buffer> <silent> <c-k> <C-R>=UltiSnips#JumpBackwards()<cr>
+    snoremap <buffer> <silent> <c-k> <Esc>:call UltiSnips#JumpBackwards()<cr>
+endfunction
 
 " * NerdTree
 noremap <C-N> :NERDTreeToggle<CR>
