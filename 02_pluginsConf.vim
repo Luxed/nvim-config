@@ -59,6 +59,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " next and last diagnostic
+nmap <silent> <leader>qd :CocList diagnostics<CR>
 nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
 
