@@ -20,7 +20,7 @@ set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal us
 set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
 "set background=dark
 let ayucolor = 'mirage'
-colorscheme nord
+colorscheme ayu
 
 " Remove issues on ShellInABox and Butterfly terminal
-set guicursor=
+"set guicursor=
