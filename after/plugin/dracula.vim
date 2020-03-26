@@ -1,4 +1,4 @@
-if dracula#should_abort()
+if get(g:, 'colors_name', '') !=# 'dracula' || dracula#should_abort()
     finish
 endif
 

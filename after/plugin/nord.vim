@@ -1,4 +1,4 @@
-if g:colors_name !=# 'nord'
+if get(g:, 'colors_name', '') !=# 'nord'
     finish
 endif
 
