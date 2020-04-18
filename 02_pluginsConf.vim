@@ -308,6 +308,7 @@ endfunction
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = ''
 
 nnoremap <silent> <leader>ff :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
