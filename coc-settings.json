@@ -10,5 +10,5 @@
             }
         }
     },
-    "vetur.dev.vlsPath": "C:/Users/cocod/git/vetur/server"
+    "vetur.dev.vlsPath": "/home/cbrunel/opt/vetur/server"
 }
