@@ -44,6 +44,7 @@ if dein#load_state(g:dein_path)
     call dein#add('leafo/moonscript-vim')
     call dein#add('bakpakin/fennel.vim')
     call dein#add('posva/vim-vue')
+    call dein#add('OmniSharp/omnisharp-vim')
 
     " }}}
 

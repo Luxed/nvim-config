@@ -121,9 +121,9 @@ nnoremap <Space> za
 nnoremap <S-Space> zA
 
 " Open loclist
-nnoremap <silent> <leader>ol :lopen<CR>
+"nnoremap <silent> <leader>ol :lopen<CR>
 " Open quickfix
-nnoremap <silent> <leader>oc :copen<CR>
+"nnoremap <silent> <leader>oc :copen<CR>
 
 " }}}
 
