@@ -158,7 +158,7 @@ let g:closetag_filetypes = 'html,xhtml,phtml,vue,xml'
 
 " Airline {{{2
 
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 " show buffers at the top of the screen
 let g:airline#extensions#tabline#enabled = 1
 " only show the filename
@@ -181,7 +181,7 @@ let g:airline_mode_map = {
             \ 's'  : 'SELECT',
             \ 'S'  : 'S-LINE',
             \ '' : 'S-BLOCK',
-            \ 't'  : '',
+            \ 't'  : '>_',
             \ 'v'  : 'VISUAL',
             \ 'V'  : 'V-LINE',
             \ '' : 'V-BLOCK',

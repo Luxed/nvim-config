@@ -1,9 +1,6 @@
 (local nvim (require :aniseed.nvim))
 (local terminal (require :terminal))
 
-;(let [mapping (require :aniseed.mapping)]
-  ;(mapping.init))
-
 (nvim.ex.command_ :-nargs=1 :GTagsContains "Git tag --contains <q-args>")
 (nvim.ex.command_ :-nargs=1 :GBranchContains "Git branch --contains <q-args>")
 
