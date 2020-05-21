@@ -17,6 +17,14 @@ let g:OmniSharp_highlight_types = 2
 
 " }}}
 
+" css,scss {{{2
+augroup CSS3SCSSSyntax
+    autocmd!
+
+    autocmd FileType css,scss setlocal iskeyword+=-
+augroup END
+" 2}}}
+
 " }}}
 
 " {{{ Syntax/Error checkers
