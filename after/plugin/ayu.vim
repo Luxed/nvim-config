@@ -4,3 +4,5 @@ endif
 
 hi! link csUserIdentifier NONE
 hi! link csModifier Structure
+
+hi! link CocHighlightText Visual
