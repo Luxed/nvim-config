@@ -1,10 +1,5 @@
 scriptencoding utf-8
 
-if g:dein_path ==# ''
-    echoerr 'Couldn''t find dein path, plugins config won''t be loaded'
-    finish
-endif
-
 " {{{ Languages
 
 " * Pandoc
@@ -197,74 +192,6 @@ let g:airline_mode_map = {
 
 " 2}}}
 
-" Denite {{{2
-
-" Custom options
-call denite#custom#option('default', {
-            \ 'start_filter'      : 1,
-            \ 'filter_updatetime' : 100,
-            \ 'prompt'            : '',
-            \ 'split'             : 'floating'
-            \ })
-
-" Ripgrep for file/rec and grep sources
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'recursive_opts', [])
-
-nnoremap <leader>df :Denite file/rec<CR>
-nnoremap <leader>dt :Denite tag<CR>
-nnoremap <leader>db :Denite buffer<CR>
-nnoremap <leader>do :Denite outline<CR>
-nnoremap <leader>dg :Denite grep<CR>
-
-" * Fruzzy
-let g:fruzzy#usenative = 1 " Native implementation, do `call fruzzy#install()`
-let g:fruzzy#sortonempty = 1 " Sort with buffer name when search is empty
-
-call denite#custom#source('_', 'matchers', ['matcher/fruzzy'])
-
-" Define mappings {{{3
-
-function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <Esc>
-                \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> <CR>
-                \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> s
-                \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> v
-                \ denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> d
-                \ denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p
-                \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> i
-                \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space>
-                \ denite#do_map('toggle_select').'j'
-endfunction
-
-function! s:denite_filter_my_settings() abort
-    inoremap <silent><buffer><expr> <C-c>
-                \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> <Esc>
-                \ denite#do_map('quit')
-    inoremap <silent><buffer><expr> <C-e>
-                \ denite#do_map('do_action')
-    inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-    inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-endfunction
-
-" 3}}}
-
-augroup deniteoptions
-    autocmd FileType denite call s:denite_my_settings()
-    autocmd FileType denite-filter call s:denite_filter_my_settings()
-augroup END
-
-" 2}}}
-
 " fzf {{{2
 
 " fzf functions {{{3
@@ -360,7 +287,7 @@ let g:ascii = [
             \ '                                    '
             \ ]
 
-let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+"let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 
 let g:startify_lists = [
             \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },

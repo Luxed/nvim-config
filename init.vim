@@ -6,7 +6,7 @@ execute 'source ' . g:config_path . '/01_plugins_dein.vim'
 execute 'source ' . g:config_path . '/02_pluginsConf.vim'
 
 " Execute lua's entry point
-lua require('bootstrap')
+"lua require('bootstrap')
 
 let system_config_path = g:config_path . '/system_config.vim'
 
