@@ -97,9 +97,21 @@ function! PackInit() abort
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
     call minpac#add('junegunn/fzf')
     call minpac#add('junegunn/fzf.vim')
-    call minpac#add('olical/aniseed', { 'rev': 'master' })
-    call minpac#add('Olical/nvim-local-fennel', {'rev': 'master'})
+    call minpac#add('olical/aniseed')
+    call minpac#add('Olical/nvim-local-fennel')
     call minpac#add('brooth/far.vim')
+
+    " }}}
+
+    " {{{ Interface
+
+    call minpac#add('vim-airline/vim-airline') " Status bar + tabline
+    call minpac#add('vim-airline/vim-airline-themes')
+    call minpac#add('mhinz/vim-signify') " Version control gutter signs (git, svn, mercurial, etc.)
+    call minpac#add('godlygeek/tabular') " Tabularize everything
+    call minpac#add('ryanoasis/vim-devicons') " Needs a patched font
+    call minpac#add('henrik/vim-indexed-search')
+    call minpac#add('junegunn/rainbow_parentheses.vim')
 
     " }}}
 
