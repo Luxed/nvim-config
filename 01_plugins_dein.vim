@@ -11,34 +11,47 @@ function! PackInit() abort
 
     " {{{ Languages
 
+    " Rust
     call minpac#add('rust-lang/rust.vim')
+    " Markdown
     call minpac#add('vim-pandoc/vim-pandoc')
     call minpac#add('vim-pandoc/vim-pandoc-syntax')
     call minpac#add('vim-pandoc/vim-markdownfootnotes')
+    " File Format
+    call minpac#add('editorconfig/editorconfig-vim')
+    call minpac#add('mboughaba/i3config.vim')
     call minpac#add('elzr/vim-json')
     call minpac#add('cespare/vim-toml')
+    " Javascript, Typescript
     call minpac#add('pangloss/vim-javascript')
     call minpac#add('heavenshell/vim-jsdoc')
+    call minpac#add('reasonml-editor/vim-reason-plus')
+    call minpac#add('herringtondarkholme/yats.vim') " Typescript syntax
+    call minpac#add('posva/vim-vue')
+    " Html
     call minpac#add('othree/html5.vim')
     call minpac#add('hail2u/vim-css3-syntax')
     call minpac#add('cakebaker/scss-syntax.vim')
+    " Glsl
     call minpac#add('tikhomirov/vim-glsl')
+    " Kotlin
     call minpac#add('udalov/kotlin-vim')
+    " Haskell
     call minpac#add('neovimhaskell/haskell-vim')
     call minpac#add('hspec/Hspec.vim')
+    " Vimscript
     call minpac#add('junegunn/vader.vim')
+    " Python
     call minpac#add('numirias/semshi') " Python semantic syntax highlighting
     call minpac#add('tmhedberg/simpylfold') " Python code folding
-    call minpac#add('herringtondarkholme/yats.vim') " Typescript syntax
+    " Scripting
     call minpac#add('PProvost/vim-ps1')
-    call minpac#add('editorconfig/editorconfig-vim')
-    call minpac#add('reasonml-editor/vim-reason-plus')
+    " Lua
     call minpac#add('tbastos/vim-lua')
     call minpac#add('leafo/moonscript-vim')
     call minpac#add('bakpakin/fennel.vim')
-    call minpac#add('posva/vim-vue')
+    " C#
     call minpac#add('OmniSharp/omnisharp-vim')
-    call minpac#add('mboughaba/i3config.vim')
 
     " }}}
 
@@ -50,10 +63,11 @@ function! PackInit() abort
 
     " {{{ Auto Completion
 
+    " Snippets
     call minpac#add('sirver/ultisnips')
     call minpac#add('honza/vim-snippets')
 
-    " CoC setup
+    " coc
     call minpac#add('neoclide/coc.nvim', { 'rev' : 'release' })
     call minpac#add('neoclide/coc-sources')
     call minpac#add('neoclide/coc-neco')
@@ -97,17 +111,19 @@ function! PackInit() abort
     call minpac#add('aonemd/kuroi.vim')
     call minpac#add('dracula/vim', {'name': 'dracula-git'})
     call minpac#add('jacoborus/tender.vim')
-    call minpac#add('herrbischoff/cobalt2.vim')
     call minpac#add('arcticicestudio/nord-vim')
     call minpac#add('ayu-theme/ayu-vim')
     call minpac#add('zeis/vim-kolor')
     call minpac#add('danilo-augusto/vim-afterglow')
     call minpac#add('cseelus/vim-colors-lucid')
-    call minpac#add('dikiaap/minimalist')
     call minpac#add('bluz71/vim-nightfly-guicolors')
 
     " }}}
 endfunction
+
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean call PackInit() | call minpac#clean()
+command! PackStatus call PackInit() | call minpac#status()
 
 if !isdirectory(g:minpac_plugin_path)
     execute '!git clone https://github.com/k-takata/minpac.git ' . g:minpac_plugin_path
