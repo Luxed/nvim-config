@@ -55,23 +55,18 @@ function! PackInit() abort
 
     " }}}
 
-    " {{{ Syntax/Error checker
+    " {{{ Syntax, LSP, Completion, Linters
 
+    " ALE
     call minpac#add('w0rp/ale')
-
-    " }}}
-
-    " {{{ Auto Completion
-
     " Snippets
     call minpac#add('sirver/ultisnips')
     call minpac#add('honza/vim-snippets')
-
     " coc
     call minpac#add('neoclide/coc.nvim', { 'rev' : 'release' })
     call minpac#add('neoclide/coc-sources')
     call minpac#add('neoclide/coc-neco')
-
+    " neco
     call minpac#add('Shougo/neco-syntax')
     call minpac#add('Shougo/neco-vim')
 

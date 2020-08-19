@@ -2,8 +2,8 @@ let g:minimal_config = 0
 let g:config_path = fnamemodify($MYVIMRC, ':h')
 
 execute 'source ' . g:config_path . '/00_vanilla.vim'
-execute 'source ' . g:config_path . '/01_plugins_dein.vim'
-execute 'source ' . g:config_path . '/02_pluginsConf.vim'
+execute 'source ' . g:config_path . '/01_plugins.vim'
+execute 'source ' . g:config_path . '/02_plugins_conf.vim'
 
 " Execute lua's entry point
 "lua require('bootstrap')
