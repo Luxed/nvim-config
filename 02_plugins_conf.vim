@@ -96,17 +96,17 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 
 function! InstallCocExtensions()
     CocInstall coc-marketplace
-    CocInstall coc-ultisnips
-    CocInstall coc-rls
-    CocInstall coc-json
-    CocInstall coc-tsserver
-    CocInstall coc-prettier
-    CocInstall coc-css
-    CocInstall coc-html
-    CocInstall coc-emmet
-    CocInstall coc-angular
-    CocInstall coc-vimlsp
-    CocInstall coc-vetur
+                \ coc-ultisnips
+                \ coc-rls
+                \ coc-json
+                \ coc-tsserver
+                \ coc-prettier
+                \ coc-css
+                \ coc-html
+                \ coc-emmet
+                \ coc-angular
+                \ coc-vimlsp
+                \ coc-vetur
 endfunction
 
 " }}}
