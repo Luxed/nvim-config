@@ -63,7 +63,7 @@ function! PackInit() abort
     call minpac#add('sirver/ultisnips')
     call minpac#add('honza/vim-snippets')
     " coc
-    call minpac#add('neoclide/coc.nvim', { 'rev' : 'release' })
+    call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
     call minpac#add('neoclide/coc-sources')
     call minpac#add('neoclide/coc-neco')
     " neco
@@ -128,15 +128,15 @@ function! PackInit() abort
     " }}}
 endfunction
 
-command! PackUpdate call PackInit() | call minpac#update()
-command! PackClean call PackInit() | call minpac#clean()
-command! PackStatus call PackInit() | call minpac#status()
-
 if !isdirectory(g:minpac_plugin_path)
     execute '!git clone https://github.com/k-takata/minpac.git ' . g:minpac_plugin_path
     call PackInit()
     call minpac#update()
 endif
+
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackStatus call PackInit() | call minpac#status()
 
 " Load filetype-specific indent files
 filetype plugin indent on
