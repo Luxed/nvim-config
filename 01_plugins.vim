@@ -4,7 +4,7 @@ let g:minpac_plugin_path = g:config_path . '/pack/minpac/opt/minpac'
 function! PackInit() abort
     packadd minpac
 
-    call minpac#init()
+    call minpac#init({'progress_open': 'none', 'jobs': 0})
     call minpac#add('k-takata/minpac', { 'type': 'opt' })
 
     call minpac#add('roxma/nvim-yarp')
