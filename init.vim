@@ -14,5 +14,5 @@ if filereadable(system_config_path)
     execute 'source ' . system_config_path
 endif
 
-let ayucolor = 'mirage'
+let g:ayucolor = 'mirage'
 colorscheme ayu
