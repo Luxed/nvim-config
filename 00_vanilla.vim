@@ -79,6 +79,9 @@ set updatetime=300
 
 set diffopt+=internal,algorithm:patience
 
+set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal used doesn't accept TrueColor)
+set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
+
 " }}}
 
 " {{{ Keybindings

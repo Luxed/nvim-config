@@ -14,7 +14,5 @@ if filereadable(system_config_path)
     execute 'source ' . system_config_path
 endif
 
-set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal used doesn't accept TrueColor)
-set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
 let ayucolor = 'mirage'
 colorscheme ayu
