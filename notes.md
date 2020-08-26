@@ -4,6 +4,7 @@
 - vim-open-color
 - vim-obsession + vim-prosession
 - vim-markdown-composer
+- vim-packager (possible replacement to minpac)
 
 # TODO
 
