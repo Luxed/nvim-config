@@ -134,7 +134,7 @@ if !isdirectory(g:minpac_plugin_path)
     call minpac#update()
 endif
 
-command! PackUpdate call PackInit() | call minpac#update()
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
