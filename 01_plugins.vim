@@ -44,8 +44,9 @@ function! PackInit() abort
     " Python
     call minpac#add('numirias/semshi') " Python semantic syntax highlighting
     call minpac#add('tmhedberg/simpylfold') " Python code folding
-    " Scripting
+    " Shell
     call minpac#add('PProvost/vim-ps1')
+    call minpac#add('blankname/vim-fish')
     " Lua
     call minpac#add('tbastos/vim-lua')
     call minpac#add('leafo/moonscript-vim')

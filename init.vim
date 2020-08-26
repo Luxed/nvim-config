@@ -1,3 +1,12 @@
+if &shell =~# 'fish$'
+    " use a POSIX compatible terminal
+    if filereadable('/bin/zsh')
+        set shell=/bin/zsh
+    elseif filereadable('/bin/bash')
+        set shell=/bin/bash
+    endif
+endif
+
 let g:minimal_config = 0
 let g:config_path = fnamemodify($MYVIMRC, ':h')
 
