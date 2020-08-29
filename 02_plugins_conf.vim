@@ -88,26 +88,14 @@ augroup END
 
 nmap <leader>qr <Plug>(coc-rename)
 
-nmap <leader>qa <Plug>(coc-codeaction)
+"nmap <leader>qa <Plug>(coc-codeaction)
+nmap <silent> <leader>qa :CocCommand actions.open<CR>
 nmap <leader>qf <Plug>(coc-fix-current)
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
-function! InstallCocExtensions()
-    CocInstall coc-marketplace
-                \ coc-ultisnips
-                \ coc-rls
-                \ coc-json
-                \ coc-tsserver
-                \ coc-prettier
-                \ coc-css
-                \ coc-html
-                \ coc-emmet
-                \ coc-angular
-                \ coc-vimlsp
-                \ coc-vetur
-endfunction
+let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-json', 'coc-tsserver', 'coc-prettier', 'coc-css', 'coc-html', 'coc-emmet', 'coc-angular', 'coc-vimlsp', 'coc-vetur']
 
 " }}}
 
