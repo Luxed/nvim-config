@@ -1,7 +1,8 @@
-packadd('nvim-colorizer.lua')
+vim.cmd [[packloadall]]
+
 require'colorizer'.setup {
     dosini = {
-        RRGGBBAA = true;
         names = false;
+        mode = 'background';
     }
 }

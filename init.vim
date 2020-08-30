@@ -21,3 +21,5 @@ endif
 
 let g:ayucolor = 'mirage'
 colorscheme ayu
+
+lua require('init')
