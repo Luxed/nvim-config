@@ -93,8 +93,6 @@ function! PackInit() abort
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
     call minpac#add('junegunn/fzf')
     call minpac#add('junegunn/fzf.vim')
-    call minpac#add('olical/aniseed')
-    call minpac#add('Olical/nvim-local-fennel')
     call minpac#add('brooth/far.vim')
 
     " }}}
