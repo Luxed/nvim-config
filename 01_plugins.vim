@@ -125,6 +125,12 @@ function! PackInit() abort
     call minpac#add('bluz71/vim-nightfly-guicolors')
 
     " }}}
+
+    " {{{ Lua plugins
+
+    call minpac#add('norcalli/nvim-colorizer.lua')
+
+    " }}}
 endfunction
 
 if !isdirectory(g:minpac_plugin_path)
