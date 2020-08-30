@@ -275,8 +275,8 @@ let g:ascii = [
             \ '                                    '
             \ ]
 
-let g:startify_custom_header = g:ascii
-" TODO: get fortune#boxed to work again
+packadd vim-startify
+let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 
 let g:startify_lists = [
             \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
