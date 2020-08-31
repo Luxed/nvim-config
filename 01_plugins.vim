@@ -44,8 +44,9 @@ function! PackInit() abort
     " Python
     call minpac#add('numirias/semshi') " Python semantic syntax highlighting
     call minpac#add('tmhedberg/simpylfold') " Python code folding
-    " Scripting
+    " Shell
     call minpac#add('PProvost/vim-ps1')
+    call minpac#add('blankname/vim-fish')
     " Lua
     call minpac#add('tbastos/vim-lua')
     call minpac#add('leafo/moonscript-vim')
@@ -82,7 +83,7 @@ function! PackInit() abort
     call minpac#add('scrooloose/nerdcommenter') " Commenting tool
     call minpac#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
     call minpac#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
-    call minpac#add('andrewradev/splitjoin.vim') " Looks great, needs testing
+    call minpac#add('andrewradev/splitjoin.vim') " Better split and join (gS, gJ)
     call minpac#add('mhinz/vim-startify') " Nice startup screen
     call minpac#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call minpac#add('tpope/vim-repeat') " .
@@ -92,9 +93,6 @@ function! PackInit() abort
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
     call minpac#add('junegunn/fzf')
     call minpac#add('junegunn/fzf.vim')
-    call minpac#add('olical/aniseed')
-    call minpac#add('Olical/nvim-local-fennel')
-    call minpac#add('brooth/far.vim')
 
     " }}}
 
@@ -107,6 +105,7 @@ function! PackInit() abort
     call minpac#add('ryanoasis/vim-devicons') " Needs a patched font
     call minpac#add('henrik/vim-indexed-search')
     call minpac#add('junegunn/rainbow_parentheses.vim')
+    call minpac#add('dyng/ctrlsf.vim')
 
     " }}}
 
@@ -126,6 +125,12 @@ function! PackInit() abort
     call minpac#add('bluz71/vim-nightfly-guicolors')
 
     " }}}
+
+    " {{{ Lua plugins
+
+    call minpac#add('norcalli/nvim-colorizer.lua')
+
+    " }}}
 endfunction
 
 if !isdirectory(g:minpac_plugin_path)
@@ -134,7 +139,7 @@ if !isdirectory(g:minpac_plugin_path)
     call minpac#update()
 endif
 
-command! PackUpdate call PackInit() | call minpac#update()
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
