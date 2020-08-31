@@ -239,12 +239,10 @@ function! GitTagsFZF()
 endfunction
 
 function! GitBranchesFZF()
-    let l:branches = systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
-
-    return l:branches
+    return systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
 endfunction
 
-" }}}
+" 3}}}
 
 let g:fzf_layout =  { 'window': 'call CreateCenteredFloatingWindow()' }
 let g:fzf_command_prefix = 'Fzf'
