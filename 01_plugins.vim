@@ -83,7 +83,7 @@ function! PackInit() abort
     call minpac#add('scrooloose/nerdcommenter') " Commenting tool
     call minpac#add('tpope/vim-surround') " Surround (visually select and surround with what you want)
     call minpac#add('AndrewRadev/bufferize.vim') " Execute commands in a buffer
-    call minpac#add('andrewradev/splitjoin.vim') " Looks great, needs testing
+    call minpac#add('andrewradev/splitjoin.vim') " Better split and join (gS, gJ)
     call minpac#add('mhinz/vim-startify') " Nice startup screen
     call minpac#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call minpac#add('tpope/vim-repeat') " .
@@ -93,7 +93,6 @@ function! PackInit() abort
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
     call minpac#add('junegunn/fzf')
     call minpac#add('junegunn/fzf.vim')
-    call minpac#add('brooth/far.vim')
 
     " }}}
 
