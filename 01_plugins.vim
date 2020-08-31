@@ -105,6 +105,7 @@ function! PackInit() abort
     call minpac#add('ryanoasis/vim-devicons') " Needs a patched font
     call minpac#add('henrik/vim-indexed-search')
     call minpac#add('junegunn/rainbow_parentheses.vim')
+    call minpac#add('dyng/ctrlsf.vim')
 
     " }}}
 
