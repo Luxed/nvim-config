@@ -25,3 +25,5 @@ colorscheme ayu
 lua require('init')
 
 xnoremap <leader>w :call wrap#func()<CR>
+" set default grep program:
+set grepprg=rg\ --no-heading\ --vimgrep
