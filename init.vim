@@ -23,3 +23,5 @@ let g:ayucolor = 'mirage'
 colorscheme ayu
 
 lua require('init')
+
+xnoremap <leader>w :call wrap#func()<CR>
