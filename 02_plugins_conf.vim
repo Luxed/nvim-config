@@ -122,6 +122,12 @@ nnoremap <leader>sh :call switcher#SwitchWithOptions({'edit_command': 'sp'})<CR>
 
 " 2}}}
 
+" Wrap {{{2
+
+xnoremap <leader>w :call wrap#func()<CR>
+
+" 2}}}
+
 " Fugitive {{{2
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
