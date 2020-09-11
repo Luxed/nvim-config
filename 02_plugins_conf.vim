@@ -101,7 +101,8 @@ let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-j
 
 " {{{ Utility
 
-" * UltiSnips
+" {{{2 UltiSnips
+
 let g:UltiSnipsExpandTrigger='<c-e>'
 function FixUltiSnipsMappings()
     inoremap <buffer> <silent> <c-j> <C-R>=UltiSnips#JumpForwards()<cr>
@@ -110,9 +111,14 @@ function FixUltiSnipsMappings()
     snoremap <buffer> <silent> <c-k> <Esc>:call UltiSnips#JumpBackwards()<cr>
 endfunction
 
-" * NerdTree
+" 2}}}
+
+" {{{2 NerdTree
+
 noremap <C-N> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
+
+" 2}}}
 
 " Switch {{{2
 
