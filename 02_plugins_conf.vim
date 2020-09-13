@@ -35,7 +35,8 @@ let g:ale_linters = {
             \ 'javascript' : [],
             \ 'python'     : ['pyls'],
             \ 'html'       : [],
-            \ 'vue'        : []
+            \ 'vue'        : [],
+            \ 'vim'        : []
             \}
 
 let g:ale_rust_rls_toolchain = 'stable'

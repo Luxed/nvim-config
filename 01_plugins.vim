@@ -68,8 +68,8 @@ function! PackInit() abort
     "call minpac#add('neoclide/coc-sources')
     "call minpac#add('neoclide/coc-neco')
     " neco
-    call minpac#add('Shougo/neco-syntax')
-    call minpac#add('Shougo/neco-vim')
+    "call minpac#add('Shougo/neco-syntax')
+    "call minpac#add('Shougo/neco-vim')
 
     " }}}
 
@@ -128,14 +128,19 @@ function! PackInit() abort
     " {{{ Lua plugins
 
     call minpac#add('norcalli/nvim-colorizer.lua')
+
+    " Telescope (fuzzy finder)
     call minpac#add('nvim-lua/popup.nvim')
     call minpac#add('nvim-lua/plenary.nvim')
     call minpac#add('nvim-lua/telescope.nvim')
-    call minpac#add('nvim-treesitter/nvim-treesitter')
-    call minpac#add('neovim/nvim-lspconfig')
 
+    call minpac#add('nvim-treesitter/nvim-treesitter')
+
+    " LSP related plugins
+    call minpac#add('neovim/nvim-lspconfig')
+    call minpac#add('nvim-lua/diagnostic-nvim')
     call minpac#add('nvim-lua/completion-nvim')
-    call minpac#add('steelsoja/completion-buffers')
+    "call minpac#add('steelsoja/completion-buffers')
 
     " }}}
 endfunction
