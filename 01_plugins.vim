@@ -128,6 +128,11 @@ function! PackInit() abort
     " {{{ Lua plugins
 
     call minpac#add('norcalli/nvim-colorizer.lua')
+    call minpac#add('nvim-lua/popup.nvim')
+    call minpac#add('nvim-lua/plenary.nvim')
+    call minpac#add('nvim-lua/telescope.nvim')
+    call minpac#add('nvim-treesitter/nvim-treesitter')
+    call minpac#add('neovim/nvim-lspconfig')
 
     " }}}
 endfunction
