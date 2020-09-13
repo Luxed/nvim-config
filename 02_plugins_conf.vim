@@ -63,39 +63,39 @@ nnoremap <leader>ak :ALEDocumentation<CR>
 
 " Coc {{{
 
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " Expand when pressing enter
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " next and last diagnostic
-nmap <silent> <leader>qd :CocList diagnostics<CR>
-nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
+"nmap <silent> <leader>qd :CocList diagnostics<CR>
+"nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
+"nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
 
 " GoTo bindings
-nmap <silent> <leader>qgd <Plug>(coc-definition)
-nmap <silent> <leader>qgy <Plug>(coc-type-definition)
-nmap <silent> <leader>qgi <Plug>(coc-implementation)
-nmap <silent> <leader>qgr <Plug>(coc-references)
+"nmap <silent> <leader>qgd <Plug>(coc-definition)
+"nmap <silent> <leader>qgy <Plug>(coc-type-definition)
+"nmap <silent> <leader>qgi <Plug>(coc-implementation)
+"nmap <silent> <leader>qgr <Plug>(coc-references)
 
 " show 'hover' (documentation)
-nmap <silent> <leader>qk :call CocAction('doHover')<CR>
+"nmap <silent> <leader>qk :call CocAction('doHover')<CR>
 
-augroup Coc
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+"augroup Coc
+    "autocmd CursorHold * silent call CocActionAsync('highlight')
+"augroup END
 
-nmap <leader>qr <Plug>(coc-rename)
+"nmap <leader>qr <Plug>(coc-rename)
 
 "nmap <leader>qa <Plug>(coc-codeaction)
-nmap <silent> <leader>qa :CocCommand actions.open<CR>
-nmap <leader>qf <Plug>(coc-fix-current)
+"nmap <silent> <leader>qa :CocCommand actions.open<CR>
+"nmap <leader>qf <Plug>(coc-fix-current)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+"command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
-let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-json', 'coc-tsserver', 'coc-prettier', 'coc-css', 'coc-html', 'coc-emmet', 'coc-angular', 'coc-vimlsp', 'coc-vetur']
+"let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-json', 'coc-tsserver', 'coc-prettier', 'coc-css', 'coc-html', 'coc-emmet', 'coc-angular', 'coc-vimlsp', 'coc-vetur']
 
 " }}}
 
@@ -230,7 +230,8 @@ function! RgFZF()
     let input = input('Riprep: ')
 
     if input !=# ''
-        execute ':FzfRg ' . input
+        "execute ':FzfRg ' . input
+        execute 'lua require''telescope.builtin''.grep_string{ search = ''' . input . ''' }'
     else
         echo 'Exiting: given input was empty'
     endif
@@ -260,8 +261,10 @@ let g:fzf_layout =  { 'window': 'call CreateCenteredFloatingWindow()' }
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ''
 
-nnoremap <silent> <leader>ff :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
-nnoremap <leader>fb :FzfBuffers<CR>
+"nnoremap <silent> <leader>ff :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
+nnoremap <leader>ff :lua require'telescope.builtin'.find_files{}<CR>
+"nnoremap <leader>fb :FzfBuffers<CR>
+nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>
 " 'outline': tags for current buffer only
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>

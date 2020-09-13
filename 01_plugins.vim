@@ -64,9 +64,9 @@ function! PackInit() abort
     call minpac#add('sirver/ultisnips')
     call minpac#add('honza/vim-snippets')
     " coc
-    call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-    call minpac#add('neoclide/coc-sources')
-    call minpac#add('neoclide/coc-neco')
+    "call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
+    "call minpac#add('neoclide/coc-sources')
+    "call minpac#add('neoclide/coc-neco')
     " neco
     call minpac#add('Shougo/neco-syntax')
     call minpac#add('Shougo/neco-vim')
@@ -133,6 +133,9 @@ function! PackInit() abort
     call minpac#add('nvim-lua/telescope.nvim')
     call minpac#add('nvim-treesitter/nvim-treesitter')
     call minpac#add('neovim/nvim-lspconfig')
+
+    call minpac#add('nvim-lua/completion-nvim')
+    call minpac#add('steelsoja/completion-buffers')
 
     " }}}
 endfunction

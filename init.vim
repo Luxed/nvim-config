@@ -22,6 +22,11 @@ endif
 let g:ayucolor = 'mirage'
 colorscheme ayu
 
+let g:completion_enable_snippet = 'UltiSnips'
 lua require('init')
+inoremap <silent><expr> <c-space> completion#trigger_completion()
+autocmd BufEnter * lua require'completion'.on_attach()
+
+set completeopt=menuone,noinsert,noselect
 
 filetype plugin indent on

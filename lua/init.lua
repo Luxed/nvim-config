@@ -10,3 +10,8 @@ require'colorizer'.setup {
         RRGGBBAA = true;
     }
 }
+
+-- vuels: `npm install -g vls`
+require'nvim_lsp'.vuels.setup{}
+
+require'nvim_lsp'.rls.setup{}
