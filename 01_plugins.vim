@@ -59,7 +59,7 @@ function! PackInit() abort
     " {{{ Syntax, LSP, Completion, Linters
 
     " ALE
-    call minpac#add('w0rp/ale')
+    "call minpac#add('w0rp/ale')
     " Snippets
     call minpac#add('sirver/ultisnips')
     call minpac#add('honza/vim-snippets')
@@ -135,7 +135,7 @@ function! PackInit() abort
     call minpac#add('nvim-lua/plenary.nvim')
     call minpac#add('nvim-lua/telescope.nvim')
 
-    call minpac#add('nvim-treesitter/nvim-treesitter')
+    "call minpac#add('nvim-treesitter/nvim-treesitter')
 
     " LSP related plugins
     call minpac#add('neovim/nvim-lspconfig')
