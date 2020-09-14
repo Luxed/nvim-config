@@ -22,3 +22,5 @@
 * kuroi
 * Tomorrow
 * Tomorrow-Night-Eighties
+- nightfly
+- srcery

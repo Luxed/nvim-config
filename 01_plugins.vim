@@ -122,6 +122,7 @@ function! PackInit() abort
     call minpac#add('danilo-augusto/vim-afterglow')
     call minpac#add('cseelus/vim-colors-lucid')
     call minpac#add('bluz71/vim-nightfly-guicolors')
+    call minpac#add('srcery-colors/srcery-vim')
 
     " }}}
 
