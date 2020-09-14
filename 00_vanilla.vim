@@ -37,8 +37,8 @@ set incsearch
 set nohlsearch
 " ignorecase option is needed for smartcase to work (for some reason, might be
 " a plugin related issue)
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 
 set autoindent
 set ruler
