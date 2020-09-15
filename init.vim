@@ -25,6 +25,14 @@ colorscheme ayu
 let g:completion_enable_snippet = 'UltiSnips'
 
 " completion
+let g:completion_matching_strategy_list = ['exact', 'fuzzy']
+let g:completion_chain_complete_list = {
+            \ 'default': [
+            \       { 'complete_items': ['lsp', 'snippet', 'path'] },
+            \       { 'mode': '<c-p>' },
+            \       { 'mode': '<c-n>' }
+            \ ]
+            \}
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 autocmd BufEnter * lua require'completion'.on_attach()
 set completeopt=menuone,noinsert,noselect
