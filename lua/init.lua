@@ -22,7 +22,17 @@ require'nvim_lsp'.tsserver.setup{
     on_attach = require'diagnostic'.on_attach
 }
 -- vimls: `npm install -g vim-language-server`
-require'nvim_lsp'.vimls.setup{}
+require'nvim_lsp'.vimls.setup{
+    on_attach = require'diagnostic'.on_attach
+}
+-- lua-language-server: LspInstall sumneko_lua
+require'nvim_lsp'.sumneko_lua.setup{
+    cmd = {
+        "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
+        "-E",
+        "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua"
+    }
+}
 
 --[[require'nvim-treesitter.configs'.setup {
     ensure_installed = { "typescript" },
