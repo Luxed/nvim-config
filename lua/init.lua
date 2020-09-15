@@ -12,7 +12,9 @@ require'colorizer'.setup {
 }
 
 -- vuels: `npm install -g vls`
-require'nvim_lsp'.vuels.setup{}
+require'nvim_lsp'.vuels.setup{
+    on_attach = require'diagnostic'.on_attach
+}
 -- rls: `rustup component add rust-src rust-analysis rls`
 require'nvim_lsp'.rls.setup{}
 -- tsserver: `npm install -g typescript-language-server`
