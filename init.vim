@@ -25,6 +25,7 @@ colorscheme ayu
 let g:completion_enable_snippet = 'UltiSnips'
 
 " completion
+let g:completion_timer_cycle = 80
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 let g:completion_chain_complete_list = {
             \ 'default': [
@@ -33,6 +34,13 @@ let g:completion_chain_complete_list = {
             \       { 'mode': '<c-n>' }
             \ ]
             \}
+" Remap CR to allow auto pairs plugin to work
+let g:completion_confirm_key = ""
+imap <expr> <CR> pumvisible() ?
+            \ complete_info()["selected"] != "-1" ?
+            \ "\<Plug>(completion_confirm_completion)" :
+            \ "\<c-e><CR>" :
+            \ "\<CR>"
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 autocmd BufEnter * lua require'completion'.on_attach()
 set completeopt=menuone,noinsert,noselect
@@ -51,9 +59,9 @@ nnoremap <leader>qn <cmd>NextDiagnosticCycle<CR>
 nnoremap <leader>qp <cmd>PrevDiagnosticCycle<CR>
 nnoremap <leader>qd <cmd>OpenDiagnostic<CR>
 
-let g:diagnostic_enable_virtual_text = 0
+let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_virtual_text_prefix = ' '
-let g:diagnostic_trimmed_virtual_text = '20'
+let g:diagnostic_trimmed_virtual_text = '70'
 let g:space_before_virtual_text = 5
 
 lua require('init')
