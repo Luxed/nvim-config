@@ -140,6 +140,7 @@ function! PackInit() abort
     " LSP related plugins
     call minpac#add('neovim/nvim-lspconfig')
     call minpac#add('nvim-lua/diagnostic-nvim')
+    call minpac#add('tjdevries/nlua.nvim')
     call minpac#add('nvim-lua/completion-nvim')
     "call minpac#add('steelsoja/completion-buffers')
 

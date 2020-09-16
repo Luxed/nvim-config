@@ -63,6 +63,7 @@ let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_virtual_text_prefix = ' '
 let g:diagnostic_trimmed_virtual_text = '70'
 let g:space_before_virtual_text = 5
+let g:diagnostic_insert_delay = 1
 
 lua require('init')
 

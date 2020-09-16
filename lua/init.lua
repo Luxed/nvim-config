@@ -1,4 +1,6 @@
-vim.cmd [[packloadall]]
+vim.cmd('packloadall')
+
+local nvim_lsp = require('nvim_lsp')
 
 require'colorizer'.setup {
     dosini = {
@@ -12,27 +14,41 @@ require'colorizer'.setup {
 }
 
 -- vuels: `npm install -g vls`
-require'nvim_lsp'.vuels.setup{
+nvim_lsp.vuels.setup{
     on_attach = require'diagnostic'.on_attach
 }
 -- rls: `rustup component add rust-src rust-analysis rls`
-require'nvim_lsp'.rls.setup{}
+nvim_lsp.rls.setup{}
 -- tsserver: `npm install -g typescript-language-server`
-require'nvim_lsp'.tsserver.setup{
+nvim_lsp.tsserver.setup{
     on_attach = require'diagnostic'.on_attach
 }
 -- vimls: `npm install -g vim-language-server`
-require'nvim_lsp'.vimls.setup{
+nvim_lsp.vimls.setup{
     on_attach = require'diagnostic'.on_attach
 }
 -- lua-language-server: LspInstall sumneko_lua
-require'nvim_lsp'.sumneko_lua.setup{
+--[[nvim_lsp.sumneko_lua.setup{
     cmd = {
         "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
         "-E",
         "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua"
-    }
-}
+    },
+    [>runtime = {
+        path = {
+            "?.lua",
+            "?/init.lua",
+            "?/?.lua",
+            "~/git/neovim/runtime/lua/?.lua",
+            "~/git/neovim/runtime/lua/?/?.lua",
+            "~/git/neovim/src/nvim/lua/?.lua"
+        },
+    },<]
+    on_attach = require'diagnostic'.on_attach
+}]]
+require('nlua.lsp.nvim').setup(nvim_lsp, {
+        on_attach = require('diagnostic').on_attach,
+})
 
 --[[require'nvim-treesitter.configs'.setup {
     ensure_installed = { "typescript" },
