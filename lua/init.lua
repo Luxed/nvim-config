@@ -61,3 +61,19 @@ require('nlua.lsp.nvim').setup(nvim_lsp, {
         }
     }
 }]]
+
+--[[local telescope_theme = require('telescope.themes').get_dropdown {
+    previewer = nil
+}]]
+
+require('telescope').setup{
+    defaults = {
+        sorting_strategy = "ascending",
+        layout_strategy = "center",
+        borderchars = {
+            prompt = {"─", "│", " ", "│", "╭", "╮", "│", "│"},
+            results = {"─", "│", "─", "│", "├", "┤", "╯", "╰"},
+            preview = {"─", "│", "─", "│", "╭", "╮", "┤", "├"}
+        }
+    }
+}
