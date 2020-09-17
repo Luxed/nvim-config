@@ -66,7 +66,7 @@ require('nlua.lsp.nvim').setup(nvim_lsp, {
     previewer = nil
 }]]
 
-require('telescope').setup{
+--[[require('telescope').setup{
     defaults = {
         sorting_strategy = "ascending",
         layout_strategy = "center",
@@ -76,4 +76,4 @@ require('telescope').setup{
             preview = {"─", "│", "─", "│", "╭", "╮", "┤", "├"}
         }
     }
-}
+}]]
