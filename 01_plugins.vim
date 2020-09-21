@@ -114,7 +114,7 @@ function! PackInit() abort
     call minpac#add('reedes/vim-colors-pencil')
     call minpac#add('ajmwagar/vim-deus') " Gruvbox based
     call minpac#add('aonemd/kuroi.vim')
-    call minpac#add('dracula/vim', {'name': 'dracula-git'})
+    call minpac#add('dracula/vim', {'name': 'dracula'})
     call minpac#add('jacoborus/tender.vim')
     call minpac#add('arcticicestudio/nord-vim')
     call minpac#add('ayu-theme/ayu-vim')
@@ -123,6 +123,7 @@ function! PackInit() abort
     call minpac#add('cseelus/vim-colors-lucid')
     call minpac#add('bluz71/vim-nightfly-guicolors')
     call minpac#add('srcery-colors/srcery-vim')
+    call minpac#add('embark-theme/vim', {'name': 'embark'})
 
     " }}}
 
