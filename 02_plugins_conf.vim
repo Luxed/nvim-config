@@ -262,15 +262,17 @@ let g:fzf_layout =  { 'window': 'call CreateCenteredFloatingWindow()' }
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ''
 
-"nnoremap <silent> <leader>ff :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
+nnoremap <silent> <leader>fd :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
 nnoremap <leader>ff :lua require'telescope.builtin'.find_files{}<CR>
 "nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>
 " 'outline': tags for current buffer only
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>
-nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
-nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
+"nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <leader>gb :lua require('custom_telescope').branch({})<CR>
+"nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <leader>gt :lua require('custom_telescope').tags({})<CR>
 
 " 2}}}
 
