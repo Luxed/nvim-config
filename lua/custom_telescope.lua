@@ -21,10 +21,9 @@ custom_telescope.branch = function(opts)
   local current_branch = vim.fn.systemlist('git branch --show-current')[1]
 
   local results = {}
-  for i=1, #branches do
-    local branch = branches[i]
+  for _, branch in pairs(branches) do
     if branch ~= current_branch and branch ~= "HEAD" then
-      table.insert(results, branches[i])
+      table.insert(results, branch)
     end
   end
 
@@ -35,18 +34,19 @@ custom_telescope.branch = function(opts)
 
     attach_mappings = function (_, map)
       map('i', '<CR>', checkout_actions.set_branch)
+      map('n', '<CR>', checkout_actions.set_branch)
       return true
     end,
   }):find()
 end
 
 custom_telescope.tags = function(opts)
-  local tags_str = vim.fn.systemlist('git ls-remote -t --refs')
-  table.remove(tags_str, 1)
+  local tags = vim.fn.systemlist('git ls-remote -t --refs')
+  table.remove(tags, 1)
 
   local results = {}
-  for i=1, #tags_str do
-    local tag = vim.fn.substitute(tags_str[i], '^.*refs/tags/', '', '')
+  for _, tag in pairs(tags) do
+    tag = vim.fn.substitute(tag, '^.*refs/tags/', '', '')
     table.insert(results, tag)
   end
 
@@ -57,6 +57,7 @@ custom_telescope.tags = function(opts)
 
     attach_mappings = function (_, map)
       map('i', '<CR>', checkout_actions.set_branch)
+      map('n', '<CR>', checkout_actions.set_branch)
       return true
     end,
   }):find()
