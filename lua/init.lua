@@ -3,29 +3,31 @@ vim.cmd('packloadall')
 local nvim_lsp = require('nvim_lsp')
 
 require'colorizer'.setup {
-    dosini = {
-        names = false;
-        mode = 'background';
-    },
-    cfg = {
-        names = false;
-        RRGGBBAA = true;
-    }
+  dosini = {
+    names = false;
+    mode = 'background';
+  },
+  cfg = {
+    names = false;
+    RRGGBBAA = true;
+  }
 }
 
 -- vuels: `npm install -g vls`
 nvim_lsp.vuels.setup{
-    on_attach = require'diagnostic'.on_attach
+  on_attach = require'diagnostic'.on_attach
 }
 -- rls: `rustup component add rust-src rust-analysis rls`
-nvim_lsp.rls.setup{}
+nvim_lsp.rls.setup{
+  on_attach = require'diagnostic'.on_attach
+}
 -- tsserver: `npm install -g typescript-language-server`
 nvim_lsp.tsserver.setup{
-    on_attach = require'diagnostic'.on_attach
+  on_attach = require'diagnostic'.on_attach
 }
 -- vimls: `npm install -g vim-language-server`
 nvim_lsp.vimls.setup{
-    on_attach = require'diagnostic'.on_attach
+  on_attach = require'diagnostic'.on_attach
 }
 -- lua-language-server: LspInstall sumneko_lua
 --[[nvim_lsp.sumneko_lua.setup{
@@ -46,9 +48,9 @@ nvim_lsp.vimls.setup{
     },<]
     on_attach = require'diagnostic'.on_attach
 }]]
-require('nlua.lsp.nvim').setup(nvim_lsp, {
+--[[require('nlua.lsp.nvim').setup(nvim_lsp, {
         on_attach = require('diagnostic').on_attach,
-})
+})]]
 
 --[[require'nvim-treesitter.configs'.setup {
     ensure_installed = { "typescript" },
