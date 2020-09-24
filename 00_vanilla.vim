@@ -51,7 +51,7 @@ set mouse=a
 set cmdheight=2
 
 " Enable syntax based folding
-set foldmethod=syntax
+"set foldmethod=syntax
 
 " Enable code completion
 augroup omnicomp
