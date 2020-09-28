@@ -48,9 +48,9 @@ nvim_lsp.vimls.setup{
     },<]
     on_attach = require'diagnostic'.on_attach
 }]]
---[[require('nlua.lsp.nvim').setup(nvim_lsp, {
+require('nlua.lsp.nvim').setup(nvim_lsp, {
         on_attach = require('diagnostic').on_attach,
-})]]
+})
 
 --[[require'nvim-treesitter.configs'.setup {
     ensure_installed = { "typescript" },

@@ -24,11 +24,11 @@ colorscheme ayu
 
 " {{{ completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_timer_cycle = 80
+let g:completion_timer_cycle = 40
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 let g:completion_chain_complete_list = {
             \ 'default': [
-            \       { 'complete_items': ['lsp'] },
+            \       { 'complete_items': ['lsp', 'snippet', 'path'] },
             \       { 'mode': '<c-p>' },
             \       { 'mode': '<c-n>' }
             \ ]
