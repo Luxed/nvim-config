@@ -22,14 +22,13 @@ endif
 let g:ayucolor = 'mirage'
 colorscheme ayu
 
+" {{{ completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
-
-" completion
 let g:completion_timer_cycle = 80
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 let g:completion_chain_complete_list = {
             \ 'default': [
-            \       { 'complete_items': ['lsp', 'snippet', 'path'] },
+            \       { 'complete_items': ['lsp'] },
             \       { 'mode': '<c-p>' },
             \       { 'mode': '<c-n>' }
             \ ]
@@ -44,17 +43,20 @@ imap <expr> <CR> pumvisible() ?
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 autocmd BufEnter * lua require'completion'.on_attach()
 set completeopt=menuone,noinsert,noselect
+" }}}
 
-" lsp (builtin)
+" {{{ lsp (builtin)
 nnoremap <silent> <leader>qk <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>qK <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>qq <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>qgr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>qgd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>qgi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>qr <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>qa <cmd>lua vim.lsp.buf.code_action()<CR>
+" }}}
 
-" lsp (diagnostic-nvim)
+" {{{ lsp (diagnostic-nvim)
 nnoremap <leader>qn <cmd>NextDiagnosticCycle<CR>
 nnoremap <leader>qp <cmd>PrevDiagnosticCycle<CR>
 nnoremap <leader>qd <cmd>OpenDiagnostic<CR>
@@ -64,6 +66,7 @@ let g:diagnostic_virtual_text_prefix = ' '
 let g:diagnostic_trimmed_virtual_text = '70'
 let g:space_before_virtual_text = 5
 let g:diagnostic_insert_delay = 1
+" }}}
 
 lua require('init')
 
