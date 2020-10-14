@@ -29,6 +29,8 @@ nvim_lsp.tsserver.setup{
 nvim_lsp.vimls.setup{
   on_attach = require'diagnostic'.on_attach
 }
+-- html languages server: LspInstall html
+nvim_lsp.html.setup{}
 -- lua-language-server: LspInstall sumneko_lua
 --[[nvim_lsp.sumneko_lua.setup{
     cmd = {
