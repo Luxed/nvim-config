@@ -270,7 +270,7 @@ nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = 
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>fg :call RgFZF()<CR>
 "nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
-nnoremap <leader>gb :lua require('telescope.builtin').git_branches({})<CR>
+nnoremap <leader>gb :lua require('custom_telescope').branch({})<CR>
 "nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
 nnoremap <leader>gt :lua require('custom_telescope').tags({})<CR>
 
