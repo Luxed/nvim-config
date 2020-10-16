@@ -26,6 +26,7 @@ colorscheme ayu
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_timer_cycle = 40
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
+let g:completion_sorting = "none"
 let g:completion_chain_complete_list = {
             \ 'default': [
             \       { 'complete_items': ['lsp', 'snippet', 'path'] },
