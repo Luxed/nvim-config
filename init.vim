@@ -70,4 +70,9 @@ let g:diagnostic_insert_delay = 1
 
 lua require('init')
 
+augroup lsp
+    au!
+    au FileType java lua require('jdtls').start_or_attach({cmd = { 'jdtls' }})
+augroup end
+
 filetype plugin indent on

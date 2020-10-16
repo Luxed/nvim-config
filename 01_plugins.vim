@@ -52,7 +52,7 @@ function! PackInit() abort
     call minpac#add('leafo/moonscript-vim')
     call minpac#add('bakpakin/fennel.vim')
     " C#
-    call minpac#add('OmniSharp/omnisharp-vim')
+    "call minpac#add('OmniSharp/omnisharp-vim')
 
     " }}}
 

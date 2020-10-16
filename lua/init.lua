@@ -34,6 +34,7 @@ nvim_lsp.html.setup{}
 -- java language server: LspInstall jdtls
 --nvim_lsp.jdtls.setup{}
 -- lua-language-server: LspInstall sumneko_lua
+nvim_lsp.omnisharp.setup{}
 --[[nvim_lsp.sumneko_lua.setup{
     cmd = {
         "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
