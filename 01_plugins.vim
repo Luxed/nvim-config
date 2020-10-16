@@ -144,6 +144,7 @@ function! PackInit() abort
     call minpac#add('tjdevries/nlua.nvim')
     call minpac#add('nvim-lua/completion-nvim')
     "call minpac#add('steelsoja/completion-buffers')
+    call minpac#add('mfussenegger/nvim-jdtls')
 
     " }}}
 endfunction

@@ -28,3 +28,5 @@
   Replacement to fzf
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
   Debug Adapter Protocol client for neovim
+- [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
+  Better Java language server support
