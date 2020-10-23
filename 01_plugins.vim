@@ -61,8 +61,8 @@ function! PackInit() abort
     " ALE
     "call minpac#add('w0rp/ale')
     " Snippets
-    call minpac#add('sirver/ultisnips')
-    call minpac#add('honza/vim-snippets')
+    "call minpac#add('sirver/ultisnips')
+    "call minpac#add('honza/vim-snippets')
     " coc
     "call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
     "call minpac#add('neoclide/coc-sources')
@@ -128,6 +128,9 @@ function! PackInit() abort
     " }}}
 
     " {{{ Lua plugins
+
+    call minpac#add('hrsh7th/vim-vsnip')
+    call minpac#add('hrsh7th/vim-vsnip-integ')
 
     call minpac#add('norcalli/nvim-colorizer.lua')
 

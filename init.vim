@@ -22,11 +22,35 @@ endif
 let g:ayucolor = 'mirage'
 colorscheme ayu
 
+" {{{ vsnip
+imap <expr> <C-e> vsnip#expandable() ?
+            \ '<Plug>(vsnip-expand)' :
+            \ '<C-e>'
+smap <expr> <C-e> vsnip#expandable() ?
+            \ '<Plug>(vsnip-expand)' :
+            \ '<C-e>'
+
+imap <expr> <C-j> vsnip#jumpable(1) ?
+            \ '<Plug>(vsnip-jump-next)' :
+            \ '<C-j>'
+smap <expr> <C-j> vsnip#jumpable(1) ?
+            \ '<Plug>(vsnip-jump-next)' :
+            \ '<C-j>'
+imap <expr> <C-k> vsnip#jumpable(-1) ?
+            \ '<Plug>(vsnip-jump-prev)' :
+            \ '<C-k>'
+smap <expr> <C-k> vsnip#jumpable(-1) ?
+            \ '<Plug>(vsnip-jump-prev)' :
+            \ '<C-k>'
+" }}}
+
 " {{{ completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_timer_cycle = 40
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
-let g:completion_sorting = "none"
+"let g:completion_sorting = "none"
+" same as coc.nvim ?
+let g:completion_sorting = "length"
 let g:completion_chain_complete_list = {
             \ 'default': [
             \       { 'complete_items': ['lsp', 'snippet', 'path'] },
