@@ -1,5 +1,3 @@
-"nnoremap <buffer><silent> K :call CocAction('doHover')<CR>
-"nmap <buffer> <silent> gd <Plug>(coc-definition)
 nnoremap <buffer><silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <buffer><silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 

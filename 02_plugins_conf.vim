@@ -5,13 +5,6 @@ scriptencoding utf-8
 " * Pandoc
 let g:pandoc#modules#disabled = ['spell']
 
-" OmniSharp {{{
-
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
-
-" }}}
-
 " css,scss {{{2
 augroup CSS3SCSSSyntax
     autocmd!
@@ -22,97 +15,7 @@ augroup END
 
 " }}}
 
-" {{{ Syntax/Error checkers
-
-" Ale {{{2
-
-let g:airline#extensions#ale#enabled=1
-let g:ale_linters = {
-            \ 'rust'       : [],
-            \ 'glsl'       : ['glslang'],
-            \ 'haskell'    : ['hie'],
-            \ 'typescript' : [],
-            \ 'javascript' : [],
-            \ 'python'     : ['pyls'],
-            \ 'html'       : [],
-            \ 'vue'        : [],
-            \ 'vim'        : []
-            \}
-
-let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 0
-let g:ale_open_list = 0
-let g:ale_list_window_size = 6
-"let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
-let g:ale_lint_delay=50
-let g:ale_echo_cursor=1
-let g:ale_virtualtext_cursor=0
-let g:ale_cursor_detail=0
-
-" ALE bindings
-nnoremap <leader>an :ALENextWrap<CR>
-nnoremap <leader>ap :ALEPreviousWrap<CR>
-nnoremap <leader>ah :ALEHover<CR>
-nnoremap <leader>ag :ALEGoToDefinition<CR>
-nnoremap <leader>ar :ALEFindReferences<CR>
-nnoremap <leader>ak :ALEDocumentation<CR>
-
-" 2}}}
-
-" }}}
-
-" Coc {{{
-
-"inoremap <silent><expr> <c-space> coc#refresh()
-
-" Expand when pressing enter
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" next and last diagnostic
-"nmap <silent> <leader>qd :CocList diagnostics<CR>
-"nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
-"nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
-
-" GoTo bindings
-"nmap <silent> <leader>qgd <Plug>(coc-definition)
-"nmap <silent> <leader>qgy <Plug>(coc-type-definition)
-"nmap <silent> <leader>qgi <Plug>(coc-implementation)
-"nmap <silent> <leader>qgr <Plug>(coc-references)
-
-" show 'hover' (documentation)
-"nmap <silent> <leader>qk :call CocAction('doHover')<CR>
-
-"augroup Coc
-    "autocmd CursorHold * silent call CocActionAsync('highlight')
-"augroup END
-
-"nmap <leader>qr <Plug>(coc-rename)
-
-"nmap <leader>qa <Plug>(coc-codeaction)
-"nmap <silent> <leader>qa :CocCommand actions.open<CR>
-"nmap <leader>qf <Plug>(coc-fix-current)
-
-" use `:OR` for organize import of current buffer
-"command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-"let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-json', 'coc-tsserver', 'coc-prettier', 'coc-css', 'coc-html', 'coc-emmet', 'coc-angular', 'coc-vimlsp', 'coc-vetur']
-
-" }}}
-
 " {{{ Utility
-
-" {{{2 UltiSnips
-
-"let g:UltiSnipsExpandTrigger='<c-e>'
-"function FixUltiSnipsMappings()
-    "inoremap <buffer> <silent> <c-j> <C-R>=UltiSnips#JumpForwards()<cr>
-    "snoremap <buffer> <silent> <c-j> <Esc>:call UltiSnips#JumpForwards()<cr>
-    "inoremap <buffer> <silent> <c-k> <C-R>=UltiSnips#JumpBackwards()<cr>
-    "snoremap <buffer> <silent> <c-k> <Esc>:call UltiSnips#JumpBackwards()<cr>
-"endfunction
-
-" 2}}}
 
 " {{{2 NerdTree
 
@@ -193,41 +96,9 @@ let g:airline_mode_map = {
 
 " 2}}}
 
-" fzf {{{2
+" Telescope {{{2
 
-" fzf functions {{{3
-
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([120, &columns - 60])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {
-                \'relative': 'editor',
-                \'row': top,
-                \'col': left,
-                \'width': width,
-                \'height': height,
-                \'style': 'minimal'
-                \}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-
-function! RgFZF()
+function! RgTelescope()
     let input = input('Riprep: ')
 
     if input !=# ''
@@ -238,40 +109,10 @@ function! RgFZF()
     endif
 endfunction
 
-function! GitTagsFZF()
-    let l:tags = systemlist('git ls-remote -t --refs')
-    let l:first_tag = remove(l:tags, 0) " The first line is always the information about the remote
-
-    if !empty(l:tags)
-        function! TransformTag(key, val)
-            return substitute(a:val, '^.*refs\/tags\/', '', '')
-        endfunction
-        let l:tags = map(l:tags, function('TransformTag'))
-    endif
-
-    return l:tags
-endfunction
-
-function! GitBranchesFZF()
-    return systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
-endfunction
-
-" 3}}}
-
-let g:fzf_layout =  { 'window': 'call CreateCenteredFloatingWindow()' }
-let g:fzf_command_prefix = 'Fzf'
-let g:fzf_preview_window = ''
-
-nnoremap <silent> <leader>fd :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
 nnoremap <leader>ff :lua require'telescope.builtin'.find_files{}<CR>
-"nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>
-" 'outline': tags for current buffer only
-nnoremap <leader>fo :FzfBTags<CR>
-nnoremap <leader>fg :call RgFZF()<CR>
-"nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
+nnoremap <leader>fg :call RgTelescope()<CR>
 nnoremap <leader>gb :lua require('custom_telescope').branch({})<CR>
-"nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
 nnoremap <leader>gt :lua require('custom_telescope').tags({})<CR>
 
 " 2}}}

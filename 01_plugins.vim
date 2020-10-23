@@ -56,23 +56,6 @@ function! PackInit() abort
 
     " }}}
 
-    " {{{ Syntax, LSP, Completion, Linters
-
-    " ALE
-    "call minpac#add('w0rp/ale')
-    " Snippets
-    "call minpac#add('sirver/ultisnips')
-    "call minpac#add('honza/vim-snippets')
-    " coc
-    "call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-    "call minpac#add('neoclide/coc-sources')
-    "call minpac#add('neoclide/coc-neco')
-    " neco
-    "call minpac#add('Shougo/neco-syntax')
-    "call minpac#add('Shougo/neco-vim')
-
-    " }}}
-
     " {{{ Utility
 
     call minpac#add('tpope/vim-fugitive') " Git integration
