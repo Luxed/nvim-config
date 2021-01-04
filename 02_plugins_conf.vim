@@ -128,7 +128,7 @@ nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
 "nnoremap <silent> <leader>gb :Denite branches<CR>
 function! s:fugitive_settings()
-    nnoremap <leader>gp :Gpush<CR>
+    nnoremap <buffer> <leader>gp :Gpush<CR>
 endfunction
 augroup fugitiveoptions
     autocmd FileType fugitive call s:fugitive_settings()
@@ -292,6 +292,17 @@ let g:semshi#error_sign = v:false
 let g:semshi#always_update_all_highlights = v:false
 
 " 2}}}
+
+" CtrlSF {{{2
+
+let g:ctrlsf_populate_qflist = 1
+"let g:ctrlsf_default_view_mode = 'compact'
+
+" 2}}}
+
+" }}}
+
+" {{{ Themes
 
 let g:pencil_higher_contrast_ui = 1
 let g:pencil_gutter_color = 0
