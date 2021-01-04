@@ -1,6 +1,6 @@
 vim.cmd('packloadall')
 
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
 
 require'colorizer'.setup {
   dosini = {
