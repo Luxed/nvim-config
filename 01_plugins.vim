@@ -103,7 +103,6 @@ function! PackInit() abort
     call minpac#add('mhinz/vim-signify') " Version control gutter signs (git, svn, mercurial, etc.)
     call minpac#add('godlygeek/tabular') " Tabularize everything
     call minpac#add('ryanoasis/vim-devicons') " Needs a patched font
-    call minpac#add('henrik/vim-indexed-search')
     call minpac#add('junegunn/rainbow_parentheses.vim')
     call minpac#add('dyng/ctrlsf.vim')
 
@@ -142,6 +141,3 @@ endif
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
-
-" Load filetype-specific indent files
-filetype plugin indent on

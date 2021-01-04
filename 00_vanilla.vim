@@ -5,14 +5,14 @@
 " Syntax because I like colors
 syntax enable
 
-" visual size of tab
+" 4 spaces is better than tabs
 set tabstop=4
 set softtabstop=4
-" Tabs are spaces
 set expandtab
 set shiftwidth=4
 set smarttab
 
+" better line wraping
 set wrap
 set linebreak
 let &showbreak = '> '
@@ -20,12 +20,10 @@ set breakindent
 set breakindentopt=shift:2
 
 " Show line numbers
-" relative number is causing issues with some plugins and is generally slower
 set number norelativenumber
 " Highlight current line
 set cursorline
-" Load filetype-specific indent files
-filetype plugin indent on
+
 " Autocomplete for command menu
 set wildmenu
 set showcmd
@@ -37,6 +35,10 @@ set showmatch
 " Search
 set incsearch
 set nohlsearch
+" ignorecase option is needed for smartcase to work (for some reason, might be
+" a plugin related issue)
+set ignorecase
+set smartcase
 
 set autoindent
 set ruler
@@ -74,13 +76,15 @@ set splitright
 
 " Enable autowrite
 set autowrite
-
 set updatetime=300
 
 set diffopt+=internal,algorithm:patience
 
 set t_Co=256 " Force terminal colors to be 256 (fallback in case the terminal used doesn't accept TrueColor)
 set termguicolors " Sets the colors of the terminal to work as Truecolor (gui colors)
+
+" set default grep program:
+set grepprg=rg\ --no-heading\ --vimgrep\ --smart-case
 
 " }}}
 
@@ -111,13 +115,12 @@ nnoremap <leader>si :source $MYVIMRC<CR>
 " Syntax name of element under cursor
 nnoremap zS :echo join(reverse(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')),' ')<cr>
 
-" Removes last highlight
-command! Rmhl :let @/=""
-
 " remove highlight
 nnoremap <leader>th :set hlsearch!<CR>
 nnoremap <leader>n :nohl<CR>
 nnoremap <leader>N :Rmhl<CR>
+" Removes last highlight
+command! Rmhl :let @/=""
 
 " Folds keybinds
 nnoremap <Space> za
