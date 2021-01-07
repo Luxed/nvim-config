@@ -13,21 +13,23 @@ require'colorizer'.setup {
   }
 }
 
-nvim_lsp.vuels.setup{
-  on_attach = require'diagnostic'.on_attach
-}
-nvim_lsp.rls.setup{
-  on_attach = require'diagnostic'.on_attach
-}
-nvim_lsp.tsserver.setup{
-  on_attach = require'diagnostic'.on_attach
-}
-nvim_lsp.vimls.setup{
-  on_attach = require'diagnostic'.on_attach
-}
+require('nlua.lsp.nvim').setup(require('lspconfig'), {})
+nvim_lsp.vuels.setup{}
+nvim_lsp.rls.setup{}
+nvim_lsp.tsserver.setup{}
+nvim_lsp.vimls.setup{}
 nvim_lsp.html.setup{}
 --nvim_lsp.jdtls.setup{}
 nvim_lsp.omnisharp.setup{}
-require('nlua.lsp.nvim').setup(nvim_lsp, {
-        on_attach = require('diagnostic').on_attach,
-})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = {
+      spacing = 5,
+      prefix = ' '
+    },
+    signs = true,
+    update_in_insert = false
+  }
+)

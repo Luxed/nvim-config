@@ -73,7 +73,7 @@ set completeopt=menuone,noinsert,noselect
 " {{{ lsp (builtin)
 nnoremap <silent> <leader>qk <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>qK <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>qq <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>qq <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>qgr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>qgd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>qgi <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -81,16 +81,10 @@ nnoremap <leader>qr <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>qa <cmd>lua vim.lsp.buf.code_action()<CR>
 " }}}
 
-" {{{ lsp (diagnostic-nvim)
-nnoremap <leader>qn <cmd>NextDiagnosticCycle<CR>
-nnoremap <leader>qp <cmd>PrevDiagnosticCycle<CR>
-nnoremap <leader>qd <cmd>OpenDiagnostic<CR>
-
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_virtual_text_prefix = ' '
-"let g:diagnostic_trimmed_virtual_text = '70'
-let g:space_before_virtual_text = 5
-let g:diagnostic_insert_delay = 1
+" {{{ lsp diagnostics
+nnoremap <leader>qn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>qp <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <leader>qd <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 " }}}
 
 lua require('init')
