@@ -48,7 +48,8 @@ function! PackInit() abort
     call minpac#add('PProvost/vim-ps1')
     call minpac#add('blankname/vim-fish')
     " Lua
-    call minpac#add('tbastos/vim-lua')
+    "call minpac#add('tbastos/vim-lua')
+    call minpac#add('euclidianAce/BetterLua.vim')
     call minpac#add('leafo/moonscript-vim')
     call minpac#add('bakpakin/fennel.vim')
     " C#
