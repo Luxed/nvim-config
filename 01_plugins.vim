@@ -130,6 +130,12 @@ function! PackInit() abort
     call minpac#add('norcalli/nvim-colorizer.lua')
 
     " }}}
+
+    """ {{{ Tracking
+
+    call minpac#add('ActivityWatch/aw-watcher-vim')
+
+    """ }}}
 endfunction
 
 if !isdirectory(g:minpac_plugin_path)
