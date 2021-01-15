@@ -48,28 +48,12 @@ function! PackInit() abort
     call minpac#add('PProvost/vim-ps1')
     call minpac#add('blankname/vim-fish')
     " Lua
-    call minpac#add('tbastos/vim-lua')
+    "call minpac#add('tbastos/vim-lua')
+    call minpac#add('euclidianAce/BetterLua.vim')
     call minpac#add('leafo/moonscript-vim')
     call minpac#add('bakpakin/fennel.vim')
     " C#
-    call minpac#add('OmniSharp/omnisharp-vim')
-
-    " }}}
-
-    " {{{ Syntax, LSP, Completion, Linters
-
-    " ALE
-    "call minpac#add('w0rp/ale')
-    " Snippets
-    call minpac#add('sirver/ultisnips')
-    call minpac#add('honza/vim-snippets')
-    " coc
-    "call minpac#add('neoclide/coc.nvim', { 'branch' : 'release' })
-    "call minpac#add('neoclide/coc-sources')
-    "call minpac#add('neoclide/coc-neco')
-    " neco
-    "call minpac#add('Shougo/neco-syntax')
-    "call minpac#add('Shougo/neco-vim')
+    "call minpac#add('OmniSharp/omnisharp-vim')
 
     " }}}
 
@@ -127,6 +111,9 @@ function! PackInit() abort
 
     " {{{ Lua plugins
 
+    call minpac#add('hrsh7th/vim-vsnip')
+    call minpac#add('hrsh7th/vim-vsnip-integ')
+
     call minpac#add('norcalli/nvim-colorizer.lua')
 
     " Telescope (fuzzy finder)
@@ -138,10 +125,10 @@ function! PackInit() abort
 
     " LSP related plugins
     call minpac#add('neovim/nvim-lspconfig')
-    call minpac#add('nvim-lua/diagnostic-nvim')
     call minpac#add('tjdevries/nlua.nvim')
     call minpac#add('nvim-lua/completion-nvim')
     "call minpac#add('steelsoja/completion-buffers')
+    call minpac#add('mfussenegger/nvim-jdtls')
 
     " }}}
 endfunction

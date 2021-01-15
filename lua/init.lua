@@ -1,6 +1,6 @@
 vim.cmd('packloadall')
 
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
 
 require'colorizer'.setup {
   dosini = {
@@ -13,69 +13,23 @@ require'colorizer'.setup {
   }
 }
 
--- vuels: `npm install -g vls`
-nvim_lsp.vuels.setup{
-  on_attach = require'diagnostic'.on_attach
-}
--- rls: `rustup component add rust-src rust-analysis rls`
-nvim_lsp.rls.setup{
-  on_attach = require'diagnostic'.on_attach
-}
--- tsserver: `npm install -g typescript-language-server`
-nvim_lsp.tsserver.setup{
-  on_attach = require'diagnostic'.on_attach
-}
--- vimls: `npm install -g vim-language-server`
-nvim_lsp.vimls.setup{
-  on_attach = require'diagnostic'.on_attach
-}
--- lua-language-server: LspInstall sumneko_lua
---[[nvim_lsp.sumneko_lua.setup{
-    cmd = {
-        "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-        "-E",
-        "/home/cbrunel/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua"
+require('nlua.lsp.nvim').setup(require('lspconfig'), {})
+nvim_lsp.vuels.setup{}
+nvim_lsp.rls.setup{}
+nvim_lsp.tsserver.setup{}
+nvim_lsp.vimls.setup{}
+nvim_lsp.html.setup{}
+--nvim_lsp.jdtls.setup{}
+nvim_lsp.omnisharp.setup{}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = {
+      spacing = 5,
+      prefix = ' '
     },
-    [>runtime = {
-        path = {
-            "?.lua",
-            "?/init.lua",
-            "?/?.lua",
-            "~/git/neovim/runtime/lua/?.lua",
-            "~/git/neovim/runtime/lua/?/?.lua",
-            "~/git/neovim/src/nvim/lua/?.lua"
-        },
-    },<]
-    on_attach = require'diagnostic'.on_attach
-}]]
---[[require('nlua.lsp.nvim').setup(nvim_lsp, {
-        on_attach = require('diagnostic').on_attach,
-})]]
-
---[[require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "typescript" },
-    highlight = {
-        enable = true
-    },
-    refactor = {
-        highlight_definitions = {
-            enable = true
-        }
-    }
-}]]
-
---[[local telescope_theme = require('telescope.themes').get_dropdown {
-    previewer = nil
-}]]
-
---[[require('telescope').setup{
-    defaults = {
-        sorting_strategy = "ascending",
-        layout_strategy = "center",
-        borderchars = {
-            prompt = {"─", "│", " ", "│", "╭", "╮", "│", "│"},
-            results = {"─", "│", "─", "│", "├", "┤", "╯", "╰"},
-            preview = {"─", "│", "─", "│", "╭", "╮", "┤", "├"}
-        }
-    }
-}]]
+    signs = true,
+    update_in_insert = false
+  }
+)

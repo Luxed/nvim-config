@@ -5,13 +5,6 @@ scriptencoding utf-8
 " * Pandoc
 let g:pandoc#modules#disabled = ['spell']
 
-" OmniSharp {{{
-
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
-
-" }}}
-
 " css,scss {{{2
 augroup CSS3SCSSSyntax
     autocmd!
@@ -22,97 +15,7 @@ augroup END
 
 " }}}
 
-" {{{ Syntax/Error checkers
-
-" Ale {{{2
-
-let g:airline#extensions#ale#enabled=1
-let g:ale_linters = {
-            \ 'rust'       : [],
-            \ 'glsl'       : ['glslang'],
-            \ 'haskell'    : ['hie'],
-            \ 'typescript' : [],
-            \ 'javascript' : [],
-            \ 'python'     : ['pyls'],
-            \ 'html'       : [],
-            \ 'vue'        : [],
-            \ 'vim'        : []
-            \}
-
-let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_completion_enabled = 0
-let g:ale_open_list = 0
-let g:ale_list_window_size = 6
-"let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
-let g:ale_lint_delay=50
-let g:ale_echo_cursor=1
-let g:ale_virtualtext_cursor=0
-let g:ale_cursor_detail=0
-
-" ALE bindings
-nnoremap <leader>an :ALENextWrap<CR>
-nnoremap <leader>ap :ALEPreviousWrap<CR>
-nnoremap <leader>ah :ALEHover<CR>
-nnoremap <leader>ag :ALEGoToDefinition<CR>
-nnoremap <leader>ar :ALEFindReferences<CR>
-nnoremap <leader>ak :ALEDocumentation<CR>
-
-" 2}}}
-
-" }}}
-
-" Coc {{{
-
-"inoremap <silent><expr> <c-space> coc#refresh()
-
-" Expand when pressing enter
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" next and last diagnostic
-"nmap <silent> <leader>qd :CocList diagnostics<CR>
-"nmap <silent> <leader>qn <Plug>(coc-diagnostic-next)
-"nmap <silent> <leader>qp <Plug>(coc-diagnostic-prev)
-
-" GoTo bindings
-"nmap <silent> <leader>qgd <Plug>(coc-definition)
-"nmap <silent> <leader>qgy <Plug>(coc-type-definition)
-"nmap <silent> <leader>qgi <Plug>(coc-implementation)
-"nmap <silent> <leader>qgr <Plug>(coc-references)
-
-" show 'hover' (documentation)
-"nmap <silent> <leader>qk :call CocAction('doHover')<CR>
-
-"augroup Coc
-    "autocmd CursorHold * silent call CocActionAsync('highlight')
-"augroup END
-
-"nmap <leader>qr <Plug>(coc-rename)
-
-"nmap <leader>qa <Plug>(coc-codeaction)
-"nmap <silent> <leader>qa :CocCommand actions.open<CR>
-"nmap <leader>qf <Plug>(coc-fix-current)
-
-" use `:OR` for organize import of current buffer
-"command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-"let g:coc_global_extensions = ['coc-actions', 'coc-ultisnips', 'coc-rls', 'coc-json', 'coc-tsserver', 'coc-prettier', 'coc-css', 'coc-html', 'coc-emmet', 'coc-angular', 'coc-vimlsp', 'coc-vetur']
-
-" }}}
-
 " {{{ Utility
-
-" {{{2 UltiSnips
-
-let g:UltiSnipsExpandTrigger='<c-e>'
-function FixUltiSnipsMappings()
-    inoremap <buffer> <silent> <c-j> <C-R>=UltiSnips#JumpForwards()<cr>
-    snoremap <buffer> <silent> <c-j> <Esc>:call UltiSnips#JumpForwards()<cr>
-    inoremap <buffer> <silent> <c-k> <C-R>=UltiSnips#JumpBackwards()<cr>
-    snoremap <buffer> <silent> <c-k> <Esc>:call UltiSnips#JumpBackwards()<cr>
-endfunction
-
-" 2}}}
 
 " {{{2 NerdTree
 
@@ -193,7 +96,7 @@ let g:airline_mode_map = {
 
 " 2}}}
 
-" telescope {{{2
+" Telescope {{{2
 
 function! RgTelescope()
     let input = input('Riprep: ')
@@ -208,8 +111,10 @@ endfunction
 nnoremap <leader>ff :lua require'telescope.builtin'.find_files{}<CR>
 nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>
 nnoremap <leader>fg :call RgTelescope()<CR>
-nnoremap <leader>gb :lua require('telescope.builtin').git_branches()<CR>
-nnoremap <leader>gt :lua require('telescope.builtin').git_tags({})<CR>
+"nnoremap <leader>gb :lua require('telescope.builtin').git_branches()<CR>
+"nnoremap <leader>gt :lua require('telescope.builtin').git_tags({})<CR>
+nnoremap <leader>gb :lua require('custom_telescope').branch({})<CR>
+nnoremap <leader>gt :lua require('custom_telescope').tags({})<CR>
 
 " 2}}}
 
