@@ -91,8 +91,6 @@ function! PackInit() abort
     call minpac#add('machakann/vim-highlightedyank') " highlights what's been yanked
     call minpac#add('mattn/emmet-vim')
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
-    call minpac#add('junegunn/fzf')
-    call minpac#add('junegunn/fzf.vim')
 
     " }}}
 

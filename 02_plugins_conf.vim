@@ -193,86 +193,23 @@ let g:airline_mode_map = {
 
 " 2}}}
 
-" fzf {{{2
+" telescope {{{2
 
-" fzf functions {{{3
-
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([120, &columns - 60])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {
-                \'relative': 'editor',
-                \'row': top,
-                \'col': left,
-                \'width': width,
-                \'height': height,
-                \'style': 'minimal'
-                \}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-
-function! RgFZF()
+function! RgTelescope()
     let input = input('Riprep: ')
 
     if input !=# ''
-        "execute ':FzfRg ' . input
-        execute 'lua require''telescope.builtin''.grep_string{ search = ''' . input . ''' }'
+        execute 'lua require("telescope.builtin").grep_string({ search = "' . input . '" })'
     else
         echo 'Exiting: given input was empty'
     endif
 endfunction
 
-function! GitTagsFZF()
-    let l:tags = systemlist('git ls-remote -t --refs')
-    let l:first_tag = remove(l:tags, 0) " The first line is always the information about the remote
-
-    if !empty(l:tags)
-        function! TransformTag(key, val)
-            return substitute(a:val, '^.*refs\/tags\/', '', '')
-        endfunction
-        let l:tags = map(l:tags, function('TransformTag'))
-    endif
-
-    return l:tags
-endfunction
-
-function! GitBranchesFZF()
-    return systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
-endfunction
-
-" 3}}}
-
-let g:fzf_layout =  { 'window': 'call CreateCenteredFloatingWindow()' }
-let g:fzf_command_prefix = 'Fzf'
-let g:fzf_preview_window = ''
-
-nnoremap <silent> <leader>fd :call fzf#run(fzf#wrap({'source': 'rg --files'}))<CR>
 nnoremap <leader>ff :lua require'telescope.builtin'.find_files{}<CR>
-"nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>fb :lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>
-" 'outline': tags for current buffer only
-nnoremap <leader>fo :FzfBTags<CR>
-nnoremap <leader>fg :call RgFZF()<CR>
-"nnoremap <silent> <leader>gb :call fzf#run(fzf#wrap({'source': GitBranchesFZF(), 'sink': 'Git checkout'}))<CR>
-nnoremap <leader>gb :lua require('custom_telescope').branch({})<CR>
-"nnoremap <silent> <leader>gt :call fzf#run(fzf#wrap({'source': GitTagsFZF(), 'sink': 'Git checkout'}))<CR>
-nnoremap <leader>gt :lua require('custom_telescope').tags({})<CR>
+nnoremap <leader>fg :call RgTelescope()<CR>
+nnoremap <leader>gb :lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>gt :lua require('telescope.builtin').git_tags({})<CR>
 
 " 2}}}
 
