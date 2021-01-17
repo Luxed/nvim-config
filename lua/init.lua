@@ -1,4 +1,4 @@
-vim.cmd('packloadall')
+--vim.cmd('packloadall')
 
 local nvim_lsp = require('lspconfig')
 

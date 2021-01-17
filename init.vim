@@ -10,8 +10,10 @@ endif
 let g:minimal_config = 0
 let g:config_path = fnamemodify($MYVIMRC, ':h')
 
-execute 'source ' . g:config_path . '/00_vanilla.vim'
-execute 'source ' . g:config_path . '/01_plugins.vim'
+"execute 'source ' . g:config_path . '/00_vanilla.vim'
+lua require('00_vanilla')
+"execute 'source ' . g:config_path . '/01_plugins.vim'
+lua require('01_plugins')
 execute 'source ' . g:config_path . '/02_plugins_conf.vim'
 
 let system_config_path = g:config_path . '/system_config.vim'

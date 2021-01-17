@@ -72,7 +72,7 @@ function! PackInit() abort
     call minpac#add('wellle/targets.vim') " adds text-objects to work with (like 'ci,' for example))
     call minpac#add('tpope/vim-repeat') " .
     call minpac#add('Luxed/vim-switcher') " Switch between filetypes, TODO: delete repo and move to config files directly
-    call minpac#add('machakann/vim-highlightedyank') " highlights what's been yanked
+    call minpac#add('machakann/vim-highlightedyank') " highlights what's been yanked, TODO: replace with built-in neovim `on_yank`
     call minpac#add('mattn/emmet-vim')
     call minpac#add('rhysd/clever-f.vim') " Better (visual) f, F, t and T motion
 

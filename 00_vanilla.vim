@@ -3,14 +3,14 @@
 " {{{ Setting options
 
 " Syntax because I like colors
-syntax enable
+"syntax enable
 
 " 4 spaces is better than tabs
 set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=4
-set smarttab
+"set smarttab " by default, it's already on
 
 " better line wraping
 set wrap
@@ -146,6 +146,9 @@ endfunction
     "autocmd VimLeave * call s:SaveSession()
 "augroup END
 
+" }}}
+
+" TODO: convert this to Lua
 function! s:DeleteHiddenBuffers() " Vim with the 'hidden' option
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
@@ -154,5 +157,3 @@ function! s:DeleteHiddenBuffers() " Vim with the 'hidden' option
     endfor
 endfunction
 command! DeleteHiddenBuffers call s:DeleteHiddenBuffers()
-
-" }}}

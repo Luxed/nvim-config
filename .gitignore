@@ -7,3 +7,4 @@ tags
 system_config.vim
 Session.vim
 pack/
+plugin/packer_compiled.vim
