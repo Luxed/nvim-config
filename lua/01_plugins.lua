@@ -55,8 +55,10 @@ local function startup(use)
     use('PProvost/vim-ps1')
     use('blankname/vim-fish')
     -- Lua
-    --use('tbastos/vim-lua')
-    use('euclidianAce/BetterLua.vim')
+    use('tbastos/vim-lua')
+    -- the following give me worse folding with syntax fold activated
+    --use('euclidianAce/BetterLua.vim')
+    --use('tjdevries/manillua.nvim')
     use('leafo/moonscript-vim')
     use('bakpakin/fennel.vim')
     -- C#
