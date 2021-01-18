@@ -63,4 +63,14 @@ custom_telescope.tags = function(opts)
   }):find()
 end
 
+custom_telescope.rg = function()
+  local input = vim.fn.input('Ripgrep: ')
+
+  if input ~= '' then
+    require('telescope.builtin').grep_string({search = input})
+  else
+    print('Exiting: given input was empty')
+  end
+end
+
 return custom_telescope

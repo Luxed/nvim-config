@@ -1,0 +1,29 @@
+local map = require('helpers.map')
+
+return {
+  setup_mappings = function()
+    vim.api.nvim_set_keymap(
+      'i',
+      '<CR>',
+      'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<C-e><CR>" : "<CR>"',
+      { expr = true })
+
+    map.inore('<C-Space>', 'completion#trigger_completion()', {silent = true, expr = true})
+  end,
+  options = {
+    enable_snippet = 'vim-vsnip',
+    timer_cycle = 40,
+    matching_strategy_list = {'exact', 'fuzzy'},
+    sorting = 'length', -- possible values: 'length', 'alphabet', 'none'
+    confirm_key = '', -- disable default confirm mapping
+    chain_complete_list = {
+      default = {
+        { complete_items = { 'lsp', 'snippet' } },
+        { complete_items = { 'path' }, triggered_only = { '/' } },
+        { mode = '<c-p>' },
+        { mode = '<c-n>' }
+      },
+      comment = {},
+    }
+  }
+}

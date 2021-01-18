@@ -112,6 +112,7 @@ local function startup(use)
   end
 
   local function lua_plugins()
+    -- TODO: look into replacing this by snippets.nvim
     use('hrsh7th/vim-vsnip')
     use('hrsh7th/vim-vsnip-integ')
 

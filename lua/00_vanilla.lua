@@ -45,6 +45,7 @@ set('assign', {
     termguicolors = true,
     grepprg = 'rg --no-heading --vimgrep --smart-case',
     hidden = true,
+    completeopt = 'menuone,noinsert,noselect',
   }
 })
 

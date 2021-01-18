@@ -43,12 +43,6 @@ xnoremap <leader>w :call wrap#func()<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
 "nnoremap <silent> <leader>gb :Denite branches<CR>
-function! s:fugitive_settings()
-    nnoremap <leader>gp :Gpush<CR>
-endfunction
-augroup fugitiveoptions
-    autocmd FileType fugitive call s:fugitive_settings()
-augroup END
 
 " 2}}}
 

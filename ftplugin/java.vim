@@ -1,3 +1,5 @@
+au FileType java lua require('jdtls').start_or_attach({cmd = { 'jdtls' }})
+
 nnoremap <buffer><silent> <leader>qa <cmd>lua require('jdtls').code_action()<CR>
 nmap <buffer><silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <buffer><silent> K <cmd>lua vim.lsp.buf.hover()<CR>
