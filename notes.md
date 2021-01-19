@@ -50,6 +50,7 @@
 - `completion-nvim` relative paths aren't supported
 - `completion-nvim` chain completion just isn't my thing
 - `completion-nvim` support for Java and Omnisharp isn't optimal (completing `Console.WriteLi|<c-n>` for example will write `Console.WriteLine();|`. When parameters are available, their information will be written)
+- `completion-nvim` (most likely Neovim related issue) Documentation popup sometimes gets collapsed by my folds configuration ("syntax" globally + folded by default)
 - `diagnostic-nvim` "NextDiagnostic" and "NextDiagnoticCycle" don't always work (even when there are visible diagnostics)
 - `omnisharp-vim` features only work with ALE for linting (no support for integration with builtin lsp), doesn't work with `completion-nvim`, doesn't work with `telescope.nvim`
 - `telescope.nvim` works but still feels rough around the edges sometimes

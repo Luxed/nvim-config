@@ -71,7 +71,8 @@ local function interface()
   map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
   map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>')
   -- TODO: look into git branches builtin
-  map.nnore('<leader>gb', ':lua require("plugins.telescope").branch({})<CR>')
+  --map.nnore('<leader>gb', ':lua require("plugins.telescope").branch({})<CR>')
+  map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
   map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
 
   -- Startify
