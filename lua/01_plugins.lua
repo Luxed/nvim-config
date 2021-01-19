@@ -3,15 +3,15 @@ local au = require('helpers.command').autocmd
 local function bootstrap()
   local data_path = vim.fn.stdpath('data')
   local packer_path = data_path .. '/site/pack/packer/opt/packer.nvim'
-  local is_installed = vim.fn.isdirectory(packer_path) == 0
+  local not_installed = vim.fn.isdirectory(packer_path) == 0
 
-  if is_installed then
+  if not_installed then
     vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
   end
 
   vim.cmd('packadd packer.nvim')
 
-  return is_installed
+  return not_installed
 end
 
 local function startup(use)

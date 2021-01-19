@@ -68,7 +68,8 @@ local function interface()
 
   -- Telescope
   map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files({})<CR>')
-  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})')
+  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
+  map.nnore('<leader>fg', ':lua require("custom_telescope").rg()<CR>')
   -- TODO: look into git branches builtin
   map.nnore('<leader>gb', ':lua require("custom_telescope").branch({})<CR>')
   map.nnore('<leader>gt', ':lua require("custom_telescope").tags({})<CR>')

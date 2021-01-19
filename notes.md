@@ -25,6 +25,20 @@
   Debug Adapter Protocol client for neovim
 - [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
   Better Java language server support
+- [nvim-lsputils](https://github.com/RishabhRD/nvim-lsputils)
+  Some better UI for builtin lsp
+- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+  Maybe a working autopair plugin
+- [formatter.nvim](https://github.com/mhartington/formatter.nvim)
+  Formatter
+
+### Status bar
+
+- [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
+- [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
+- [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
+- [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)
+  Helper functions
 
 ## Current issues/complaints
 
