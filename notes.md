@@ -13,6 +13,7 @@
 
 - ~~Move some plugin configurations to own files (in autoload or in new directory with dynamic loading)~~
 - Move entire config to Lua
+- Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
 
 # Neovim 0.5 features
 
