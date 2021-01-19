@@ -14,9 +14,9 @@ checkout_actions.set_branch = function(prompt_bufnr)
   vim.cmd(git_cmd)
 end
 
-local custom_telescope = {}
+local M = {}
 
-custom_telescope.branch = function(opts)
+M.branch = function(opts)
   local branches = vim.fn.systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
   local current_branch = vim.fn.systemlist('git branch --show-current')[1]
 
@@ -40,7 +40,7 @@ custom_telescope.branch = function(opts)
   }):find()
 end
 
-custom_telescope.tags = function(opts)
+M.tags = function(opts)
   local tags = vim.fn.systemlist('git ls-remote -t --refs')
   table.remove(tags, 1)
 
@@ -63,7 +63,7 @@ custom_telescope.tags = function(opts)
   }):find()
 end
 
-custom_telescope.rg = function()
+M.rg = function()
   local input = vim.fn.input('Ripgrep: ')
 
   if input ~= '' then
@@ -73,4 +73,4 @@ custom_telescope.rg = function()
   end
 end
 
-return custom_telescope
+return M
