@@ -159,6 +159,7 @@ local function lua_plugins()
   nvim_lsp.vimls.setup{on_attach = on_attach_lsp}
   nvim_lsp.html.setup{on_attach = on_attach_lsp}
   --nvim_lsp.jdtls.setup{}
+  -- TODO: make this work for Linux and Windows
   local pid = vim.fn.getpid()
   local home = vim.fn.expand('~')
   local omnisharp_bin = home .. '/.local/opt/omnisharp-server/run'

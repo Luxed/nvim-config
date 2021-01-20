@@ -20,12 +20,17 @@ return {
     confirm_key = '', -- disable default confirm mapping
     chain_complete_list = {
       default = {
-        { complete_items = { 'lsp', 'snippet' } },
-        { complete_items = { 'path' }, triggered_only = { '/' } },
-        { mode = '<c-p>' },
-        { mode = '<c-n>' }
-      },
-      comment = {},
+        default = {
+          { complete_items = { 'lsp', 'snippet' } },
+          --{ complete_items = { 'path' }, triggered_only = { '/' } },
+          { mode = '<c-p>' },
+          { mode = '<c-n>' }
+        },
+        string = {
+          { complete_items = { 'path' }, triggered_only = { '/' } }
+        },
+        comment = {}
+      }
     }
   }
 }
