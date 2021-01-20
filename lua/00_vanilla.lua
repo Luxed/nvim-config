@@ -80,3 +80,5 @@ map.nnore('<space>', 'za')
 map.nnore('<S-Space>', 'zA')
 
 map.tnore('<leader>n', '<C-\\><C-N>')
+
+command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')

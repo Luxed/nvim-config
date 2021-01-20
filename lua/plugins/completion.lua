@@ -5,12 +5,14 @@ return {
     vim.api.nvim_set_keymap(
       'i',
       '<CR>',
-      'pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<C-e><CR>" : "<CR>"',
+      'pumvisible() ? complete_info()["selected"] != "-1" ? "\\<Plug>(completion_confirm_completion)" : "\\<C-e><CR>" : "\\<CR>"',
       { expr = true })
 
     map.inore('<C-Space>', 'completion#trigger_completion()', {silent = true, expr = true})
   end,
   options = {
+    -- This option gives me some _heavy_ flickering with paths
+    --auto_change_source = 1,
     enable_snippet = 'vim-vsnip',
     timer_cycle = 40,
     matching_strategy_list = {'exact', 'fuzzy'},

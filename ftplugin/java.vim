@@ -1,8 +1,6 @@
-au FileType java lua require('jdtls').start_or_attach({cmd = { 'jdtls' }})
+lua require('jdtls').start_or_attach({cmd = { 'jdtls' }})
 
 nnoremap <buffer><silent> <leader>qa <cmd>lua require('jdtls').code_action()<CR>
-nmap <buffer><silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <buffer><silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 command! -buffer OR :lua require('jdtls').organize_imports()<CR>
 command! -buffer RF :lua require('jdtls').code_action(false, 'refactor')<CR>

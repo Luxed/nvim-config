@@ -148,7 +148,6 @@ endfunction
 
 " }}}
 
-" TODO: convert this to Lua
 function! s:DeleteHiddenBuffers() " Vim with the 'hidden' option
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')

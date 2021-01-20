@@ -70,7 +70,6 @@ local function interface()
   map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files({})<CR>')
   map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
   map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>')
-  -- TODO: look into git branches builtin
   --map.nnore('<leader>gb', ':lua require("plugins.telescope").branch({})<CR>')
   map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
   map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
@@ -113,17 +112,33 @@ local function lua_plugins()
   require('plugins.completion').setup_mappings()
 
   -- lsp (builtin)
-  map.nnore('<leader>qk', '<cmd>lua vim.lsp.buf.hover()<CR>', {silent = true})
-  map.nnore('<leader>qK', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {silent = true})
-  map.nnore('<leader>qq', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {silent = true})
-  map.nnore('<leader>qgr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent = true})
-  map.nnore('<leader>qgd', '<cmd>lua vim.lsp.buf.definition()<CR>', {silent = true})
-  map.nnore('<leader>qgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {silent = true})
-  map.nnore('<leader>qr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  map.nnore('<leader>qa', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map.nnore('<leader>qn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  map.nnore('<leader>qp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-  map.nnore('<leader>qd', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+  local function on_attach_lsp()
+    local silent_opts = {silent = true}
+    map.nnore('<leader>qk', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
+    map.nnore('K', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
+    map.nnore('<leader>qK', '<cmd>lua vim.lsp.buf.signature_help()<CR>', silent_opts, true)
+    map.nnore('<leader>qq', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', silent_opts, true)
+    --map.nnore('<leader>qgr', '<cmd>lua vim.lsp.buf.references()<CR>', silent_opts, true)
+    map.nnore('<leader>qgd', '<cmd>lua vim.lsp.buf.definition()<CR>', silent_opts, true)
+    map.nnore('<leader>qgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', silent_opts, true)
+    map.nnore('<leader>qr', '<cmd>lua vim.lsp.buf.rename()<CR>', {}, true)
+    --map.nnore('<leader>qa', '<cmd>lua vim.lsp.buf.code_action()<CR>', {}, true)
+    map.nnore('<leader>qn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {}, true)
+    map.nnore('<leader>qp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {}, true)
+    map.nnore('<leader>qd', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {}, true)
+
+    -- use Telescope for more convenient and consistent UI
+    map.nnore('<leader>qgr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', {}, true)
+    map.nnore('<leader>qa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', {}, true)
+    map.nnore('<leader>qs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', {}, true)
+
+    -- override default keymap
+    vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
+
+    au('CursorHold',  '<buffer>', 'lua vim.lsp.buf.document_highlight()')
+    au('CursorHoldI', '<buffer>', 'lua vim.lsp.buf.document_highlight()')
+    au('CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()')
+  end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -135,6 +150,23 @@ local function lua_plugins()
       signs = true,
       update_in_insert = false
     })
+
+  -- lspconfig
+  local nvim_lsp = require('lspconfig')
+  nvim_lsp.vuels.setup{on_attach = on_attach_lsp}
+  nvim_lsp.rls.setup{on_attach = on_attach_lsp}
+  nvim_lsp.tsserver.setup{on_attach = on_attach_lsp}
+  nvim_lsp.vimls.setup{on_attach = on_attach_lsp}
+  nvim_lsp.html.setup{on_attach = on_attach_lsp}
+  --nvim_lsp.jdtls.setup{}
+  local pid = vim.fn.getpid()
+  local home = vim.fn.expand('~')
+  local omnisharp_bin = home .. '/.local/opt/omnisharp-server/run'
+  nvim_lsp.omnisharp.setup{
+    cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
+    on_attach = on_attach_lsp
+  }
+  require('nlua.lsp.nvim').setup(require('lspconfig'), {on_attach = on_attach_lsp})
 
   -- colorizer
   require('colorizer').setup({
@@ -148,16 +180,6 @@ local function lua_plugins()
       }
     })
 
-  -- lspconfig
-  local nvim_lsp = require('lspconfig')
-  nvim_lsp.vuels.setup{}
-  nvim_lsp.rls.setup{}
-  nvim_lsp.tsserver.setup{}
-  nvim_lsp.vimls.setup{}
-  nvim_lsp.html.setup{}
-  --nvim_lsp.jdtls.setup{}
-  nvim_lsp.omnisharp.setup{}
-  require('nlua.lsp.nvim').setup(require('lspconfig'), {})
 end
 
 languages()
