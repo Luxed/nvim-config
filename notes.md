@@ -16,6 +16,7 @@
 - Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
 - Make interface to create Lua mappings without needing to use strings
 - Fix error message when Language server doesn't implement `textDocument/documentHighlight`
+  Buffer bound keys might be more difficult to handle (this might grow too big and slow down)
 
 # Neovim 0.5 features
 
