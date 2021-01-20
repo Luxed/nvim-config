@@ -98,12 +98,16 @@ local function interface()
   }
 
   -- Semshi
-  g['semshi#error_sign'] = 0
-  g['semshi#always_update_all_highlights'] = 0
+  g['semshi#error_sign'] = false
+  g['semshi#always_update_all_highlights'] = false
 
   -- Pencil
   g['pencil_higher_contrast_ui'] = 1
   g['pencil_gutter_color'] = 0
+
+  -- CtrlSF
+  g['ctrlsf_populate_qflist'] = true
+  --g['ctrlsf_default_view_mode'] = 'compact'
 end
 
 local function lua_plugins()

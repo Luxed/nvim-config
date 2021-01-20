@@ -134,11 +134,16 @@ local function startup(use)
     use('mfussenegger/nvim-jdtls')
   end
 
+  local function tracking()
+    use('ActivityWatch/aw-watcher-vim')
+  end
+
   languages()
   utility()
   interface()
   themes()
   lua_plugins()
+  tracking()
 end
 
 local first_install = bootstrap()

@@ -1,1 +1,1 @@
-nnoremap <leader>gp :Gpush<CR>
+nnoremap <buffer> <leader>gp :Gpush<CR>
