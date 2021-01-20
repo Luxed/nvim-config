@@ -43,14 +43,25 @@
 
 ## Current issues/complaints
 
-- `nvim-treesitter` doesn't update properly when doing some actions and needs to be completely refreshed
-- `nvim-treesitter` highlighting doesn't look all that good on all themes out of the box
-- `completion-nvim` orders things weirdly (maybe setting the sorting to "none" would resolve this issue?)
-- `completion-nvim` flickers when using "fuzzy" matching strategy (not a deal breaker, but it makes it look much less polished than other completion plugins)
-- `completion-nvim` relative paths aren't supported
-- `completion-nvim` chain completion just isn't my thing
-- `completion-nvim` support for Java and Omnisharp isn't optimal (completing `Console.WriteLi|<c-n>` for example will write `Console.WriteLine();|`. When parameters are available, their information will be written)
-- `completion-nvim` (most likely Neovim related issue) Documentation popup sometimes gets collapsed by my folds configuration ("syntax" globally + folded by default)
-- `diagnostic-nvim` "NextDiagnostic" and "NextDiagnoticCycle" don't always work (even when there are visible diagnostics)
-- `omnisharp-vim` features only work with ALE for linting (no support for integration with builtin lsp), doesn't work with `completion-nvim`, doesn't work with `telescope.nvim`
-- `telescope.nvim` works but still feels rough around the edges sometimes
+### nvim-treesitter
+
+- Doesn't update properly when doing some actions and needs to be completely refreshed
+- Highlighting doesn't look all that good on all themes out of the box
+
+### completion-nvim
+
+- Orders things weirdly (maybe setting the sorting to "none" would resolve this issue?)
+- Flickers when using "fuzzy" matching strategy (not a deal breaker, but it makes it look much less polished than other completion plugins)
+- Relative paths aren't supported
+- Chain completion just isn't my thing (maybe)
+- Using `vim-vsnip` fixed this issue
+- (most likely Neovim related issue) Documentation popup sometimes gets collapsed by my folds configuration ("syntax" globally + folded by default)
+
+### omnisharp-vim
+
+- Features only work with ALE for linting (no support for integration with builtin lsp), doesn't work with `completion-nvim`, doesn't work with `telescope.nvim`
+
+### built-in LSP
+
+- Missing colors for errors, Warnins, etc.
+- Missing underline for error.
