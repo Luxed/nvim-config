@@ -193,6 +193,15 @@ local function lua_plugins()
       }
     })
 
+  -- treesitter
+  require('nvim-treesitter.configs').setup {
+    highlight = {
+      enable = true
+    },
+    --[[indent = {
+      enable = true
+    }]]
+  }
 end
 
 languages()

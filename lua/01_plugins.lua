@@ -123,7 +123,7 @@ local function startup(use)
     use('nvim-lua/plenary.nvim')
     use('nvim-lua/telescope.nvim')
 
-    -- use('nvim-treesitter/nvim-treesitter')
+    use('nvim-treesitter/nvim-treesitter')
 
     -- LSP related plugins
     use('neovim/nvim-lspconfig')
