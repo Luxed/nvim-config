@@ -111,8 +111,16 @@ local function lua_plugins()
   au('BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)')
   require('plugins.completion').setup_mappings()
 
+  -- TODO: Move to file
+  -- TODO: Make it "modular" (will depend on how much it grows)
+  local function on_attach_au()
+    au('CursorHold',  '<buffer>', 'lua vim.lsp.buf.document_highlight()')
+    au('CursorHoldI', '<buffer>', 'lua vim.lsp.buf.document_highlight()')
+    au('CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()')
+  end
+
   -- lsp (builtin)
-  local function on_attach_lsp()
+  local function on_attach_keymaps()
     local silent_opts = {silent = true}
     map.nnore('<leader>qk', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
     map.nnore('K', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
@@ -134,14 +142,14 @@ local function lua_plugins()
 
     -- override default keymap
     vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
-
-    au('CursorHold',  '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorHoldI', '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()')
   end
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
+  local function on_attach_complete()
+    on_attach_au()
+    on_attach_keymaps()
+  end
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       underline = true,
       virtual_text = {
         spacing = 5,
@@ -153,11 +161,11 @@ local function lua_plugins()
 
   -- lspconfig
   local nvim_lsp = require('lspconfig')
-  nvim_lsp.vuels.setup{on_attach = on_attach_lsp}
-  nvim_lsp.rls.setup{on_attach = on_attach_lsp}
-  nvim_lsp.tsserver.setup{on_attach = on_attach_lsp}
-  nvim_lsp.vimls.setup{on_attach = on_attach_lsp}
-  nvim_lsp.html.setup{on_attach = on_attach_lsp}
+  nvim_lsp.vuels.setup{on_attach = on_attach_complete}
+  nvim_lsp.rls.setup{on_attach = on_attach_complete}
+  nvim_lsp.tsserver.setup{on_attach = on_attach_complete}
+  nvim_lsp.vimls.setup{on_attach = on_attach_complete}
+  nvim_lsp.html.setup{on_attach = on_attach_complete}
   --nvim_lsp.jdtls.setup{}
   -- TODO: make this work for Linux and Windows
   local pid = vim.fn.getpid()
@@ -165,9 +173,9 @@ local function lua_plugins()
   local omnisharp_bin = home .. '/.local/opt/omnisharp-server/run'
   nvim_lsp.omnisharp.setup{
     cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-    on_attach = on_attach_lsp
+    on_attach = on_attach_keymaps
   }
-  require('nlua.lsp.nvim').setup(require('lspconfig'), {on_attach = on_attach_lsp})
+  require('nlua.lsp.nvim').setup(require('lspconfig'), {on_attach = on_attach_complete})
 
   -- colorizer
   require('colorizer').setup({

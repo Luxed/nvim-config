@@ -14,6 +14,7 @@ local function bootstrap()
   return not_installed
 end
 
+-- TODO: look into properly managing dependencies
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 

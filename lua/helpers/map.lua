@@ -1,5 +1,4 @@
 -- TODO: refactor this mini-api. There might be a better way to do it (boilerplate is fine, code should never change once it's done)
-
 local function map(mode, lhs, rhs, opts, buffer)
   if buffer then
     vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, opts)
