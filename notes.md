@@ -5,9 +5,6 @@
 - vim-open-color
 - vim-obsession + vim-prosession (session management)
 - vim-markdown-composer (markdown live preview)
-- vim-packager (possible replacement to minpac)
-- [packer.nvim](https://github.com/wbthomason/packer.nvim)
-  Lua replacement for minpac
 
 # TODO
 
@@ -19,19 +16,20 @@
 
 ## Plugins
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-  Better syntax highlighting where possible.
-  This one will need a lot more work since not all colorshemes are compatible. `nightfly` seems to be the only supported theme that I currently have.
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
   Debug Adapter Protocol client for neovim
-- [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
-  Better Java language server support
 - [nvim-lsputils](https://github.com/RishabhRD/nvim-lsputils)
   Some better UI for builtin lsp
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
   Maybe a working autopair plugin
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
+- [nvim-treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)
+  Looks interesting to manipulate text using TreeSitter instead of the LSP
+- [nvim-treesitter-context](https://github.com/romgrk/nvim-treesitter-context)
+  Really nice looking way to show the current context (might be better in status bar though)
+- [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
+  Working (?) rainbow parentheses using TreeSitter
 
 ### Status bar
 
@@ -45,23 +43,19 @@
 
 ### nvim-treesitter
 
-- Doesn't update properly when doing some actions and needs to be completely refreshed
+- ~~Doesn't update properly when doing some actions and needs to be completely refreshed~~
+  Didn't notice the issue anymore, might be fixed.
 - Highlighting doesn't look all that good on all themes out of the box
+- `nvim-ts-rainbow` performs extremely poorly and makes Neovim feel like Visual Studio
 
 ### completion-nvim
 
 - Orders things weirdly (maybe setting the sorting to "none" would resolve this issue?)
 - Flickers when using "fuzzy" matching strategy (not a deal breaker, but it makes it look much less polished than other completion plugins)
-- Relative paths aren't supported
 - Chain completion just isn't my thing (maybe)
-- Using `vim-vsnip` fixed this issue
 - (most likely Neovim related issue) Documentation popup sometimes gets collapsed by my folds configuration ("syntax" globally + folded by default)
+  Folding would need to be disabled globally and setup for every filetypes I want
 
-### omnisharp-vim
+### built-in lsp
 
-- Features only work with ALE for linting (no support for integration with builtin lsp), doesn't work with `completion-nvim`, doesn't work with `telescope.nvim`
-
-### built-in LSP
-
-- Missing colors for errors, Warnins, etc.
-- Missing underline for error.
+- Find a way to remove annoying quickfix list being automatically shown on "go to definition"

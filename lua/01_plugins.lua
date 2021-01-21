@@ -90,7 +90,7 @@ local function startup(use)
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('ryanoasis/vim-devicons') -- Needs a patched font
-    use('junegunn/rainbow_parentheses.vim')
+    --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
   end
 
@@ -123,7 +123,9 @@ local function startup(use)
     use('nvim-lua/plenary.nvim')
     use('nvim-lua/telescope.nvim')
 
+    -- TreeSitter
     use('nvim-treesitter/nvim-treesitter')
+    use('p00f/nvim-ts-rainbow')
 
     -- LSP related plugins
     use('neovim/nvim-lspconfig')
@@ -134,7 +136,7 @@ local function startup(use)
   end
 
   local function tracking()
-    use('ActivityWatch/aw-watcher-vim')
+    use({'ActivityWatch/aw-watcher-vim', opt = true})
   end
 
   languages()

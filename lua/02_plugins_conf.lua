@@ -70,7 +70,6 @@ local function interface()
   map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files({})<CR>')
   map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
   map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>')
-  --map.nnore('<leader>gb', ':lua require("plugins.telescope").branch({})<CR>')
   map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
   map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
 
@@ -198,6 +197,9 @@ local function lua_plugins()
     highlight = {
       enable = true
     },
+    --[[rainbow = {
+      enable = true
+    }]]
     --[[indent = {
       enable = true
     }]]
