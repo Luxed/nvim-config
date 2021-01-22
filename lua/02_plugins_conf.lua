@@ -67,7 +67,21 @@ local function interface()
   }
 
   -- Telescope
-  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files({})<CR>')
+  require('telescope').setup {
+    defaults = {
+      prompt_prefix = "λ",
+      layout_strategy = 'flex',
+      file_sorter = require('telescope.sorters').get_fzy_sorter,
+      generic_sorter = require('telescope.sorters').get_fzy_sorter,
+      mappings = {
+        i = {
+          -- close in insert mode
+          ['<esc>'] = require('telescope.actions').close
+        }
+      }
+    }
+  }
+  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>')
   map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
   map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>')
   map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
