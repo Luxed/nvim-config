@@ -199,10 +199,19 @@ local function lua_plugins()
     },
     --[[rainbow = {
       enable = true
-    }]]
+    },]]
     --[[indent = {
       enable = true
-    }]]
+    },]]
+    refactor = {
+      -- Not a fan, but it works as expected
+      --highlight_current_scope = { enable = true },
+      highlight_definitions = {
+        enable = true,
+        -- Disable for languages that support highlighting through LSP (it usually gives better results)
+        disable = { 'lua' }
+      }
+    },
   }
 end
 

@@ -109,6 +109,7 @@ local function startup(use)
     use('bluz71/vim-nightfly-guicolors')
     use('srcery-colors/srcery-vim')
     use({'embark-theme/vim', as = 'embark'})
+    use('sainnhe/sonokai')
   end
 
   local function lua_plugins()
@@ -125,6 +126,7 @@ local function startup(use)
 
     -- TreeSitter
     use('nvim-treesitter/nvim-treesitter')
+    use('nvim-treesitter/nvim-treesitter-refactor')
     use('p00f/nvim-ts-rainbow')
 
     -- LSP related plugins
