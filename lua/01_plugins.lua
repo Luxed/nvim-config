@@ -90,6 +90,7 @@ local function startup(use)
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('ryanoasis/vim-devicons') -- Needs a patched font
+    use('kyazdani42/nvim-web-devicons')
     --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
   end
@@ -109,6 +110,7 @@ local function startup(use)
     use('bluz71/vim-nightfly-guicolors')
     use('srcery-colors/srcery-vim')
     use({'embark-theme/vim', as = 'embark'})
+    use('sainnhe/sonokai')
   end
 
   local function lua_plugins()
@@ -125,6 +127,7 @@ local function startup(use)
 
     -- TreeSitter
     use('nvim-treesitter/nvim-treesitter')
+    use('nvim-treesitter/nvim-treesitter-refactor')
     use('p00f/nvim-ts-rainbow')
 
     -- LSP related plugins
