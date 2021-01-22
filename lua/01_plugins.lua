@@ -90,6 +90,7 @@ local function startup(use)
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('ryanoasis/vim-devicons') -- Needs a patched font
+    use('kyazdani42/nvim-web-devicons')
     --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
   end

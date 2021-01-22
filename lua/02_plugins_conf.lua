@@ -213,6 +213,11 @@ local function lua_plugins()
       }
     },
   }
+
+  -- devicons
+  require('nvim-web-devicons').setup {
+    default = true
+  }
 end
 
 languages()
