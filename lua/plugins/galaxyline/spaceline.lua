@@ -1,6 +1,6 @@
 local gl = require('galaxyline')
 local gls = gl.section
-gl.short_line_list = {'LuaTree','vista','dbui'}
+--gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
   bg = '#282c34',
@@ -16,6 +16,21 @@ local colors = {
   red = '#ec5f67'
 }
 
+-- not happy with this
+--[[if vim.g.colors_name == 'ayu' then
+  colors.bg = '#232834'
+  colors.yellow = '#FFCC66'
+  colors.cyan = '#5CCFE6'
+  colors.blue = '#77A8D9'
+  colors.darkblue = '#399EE6'
+  colors.green = '#BAE67E'
+  colors.orange = '#FFA759'
+  colors.purple = '#A34ACC'
+  colors.magenta = '#D4BFFF'
+  colors.grey = '#CBCCC6'
+  colors.red = '#F28779'
+end]]
+
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
     return true
@@ -29,22 +44,36 @@ gls.left[1] = {
     highlight = {colors.blue,colors.yellow}
   },
 }
+
 gls.left[2] = {
   ViMode = {
     provider = function()
-      local alias = {n = 'NORMAL',i = 'INSERT',c= 'COMMAND',V= 'VISUAL', [''] = 'VISUAL'}
+      local alias = {
+        n      = 'NORMAL',
+        i      = 'INSERT',
+        c      = 'COMMAND',
+        R      = 'REPLACE',
+        t      = '>_',
+        v      = 'VISUAL',
+        V      = 'V-LINE',
+        [''] = 'V-BLOCK',
+      }
       return alias[vim.fn.mode()]
     end,
     separator = '',
-    separator_highlight = {colors.yellow,function()
-      if not buffer_not_empty() then
-        return colors.purple
+    separator_highlight = {
+      colors.yellow,
+      function()
+        if not buffer_not_empty() then
+          return colors.purple
+        end
+        return colors.darkblue
       end
-      return colors.darkblue
-    end},
-    highlight = {colors.magenta,colors.yellow,'bold'},
+    },
+    highlight = {colors.magenta, colors.yellow, 'bold'},
   },
 }
+
 gls.left[3] ={
   FileIcon = {
     provider = 'FileIcon',
@@ -126,7 +155,8 @@ gls.left[11] = {
 }
 gls.left[12] = {
   Space = {
-    provider = function () return ' ' end
+    provider = function () return ' ' end,
+    highlight = {colors.bg, colors.bg}
   }
 }
 gls.left[13] = {
@@ -175,13 +205,24 @@ gls.short_line_left[1] = {
     highlight = {colors.grey,colors.purple}
   }
 }
-
+gls.short_line_left[2] = {
+  SpaceShort = {
+    provider = function () return ' ' end,
+    highlight = {colors.bg, colors.bg}
+  }
+}
+gls.short_line_left[3] = {
+  FileNameShort = {
+    provider = {'FileName','FileSize'},
+    highlight = {colors.grey, colors.bg}
+  }
+}
 
 gls.short_line_right[1] = {
   BufferIcon = {
     provider= 'BufferIcon',
     separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.grey,colors.purple}
+    separator_highlight = {colors.purple, colors.bg},
+    highlight = {colors.grey, colors.purple}
   }
 }

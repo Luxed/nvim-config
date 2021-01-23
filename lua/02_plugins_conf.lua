@@ -247,7 +247,6 @@ local function lua_plugins()
   }
 
   -- galaxyline
-  --require('plugins.galaxyline.eviline')
   require('plugins.galaxyline.spaceline')
 
   require('plugins.bufferline').init()
