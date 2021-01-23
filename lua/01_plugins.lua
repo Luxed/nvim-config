@@ -85,14 +85,15 @@ local function startup(use)
   end
 
   local function interface()
-    use('vim-airline/vim-airline') -- Status bar + tabline
-    use('vim-airline/vim-airline-themes')
+    --use('vim-airline/vim-airline') -- Status bar + tabline
+    --use('vim-airline/vim-airline-themes')
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('ryanoasis/vim-devicons') -- Needs a patched font
     use('kyazdani42/nvim-web-devicons')
     --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
+    use('f-person/git-blame.nvim') -- Simple, virtual text, git blame
   end
 
   local function themes()
@@ -134,9 +135,15 @@ local function startup(use)
     -- LSP related plugins
     use('neovim/nvim-lspconfig')
     use('tjdevries/nlua.nvim')
+    use('mfussenegger/nvim-jdtls')
+
+    -- Completion
     use('nvim-lua/completion-nvim')
     -- use('steelsoja/completion-buffers')
-    use('mfussenegger/nvim-jdtls')
+
+    -- Statusline/Tabline
+    use('glepnir/galaxyline.nvim')
+    use('akinsho/nvim-bufferline.lua')
   end
 
   local function tracking()

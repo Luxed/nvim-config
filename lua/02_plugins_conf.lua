@@ -81,9 +81,9 @@ local function interface()
       }
     }
   }
-  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>')
-  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>')
-  map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>')
+  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {silent = true})
+  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>', {silent = true})
+  map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>', {silent = true})
   map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
   map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
 
@@ -124,6 +124,9 @@ local function interface()
   -- CtrlSF
   g['ctrlsf_populate_qflist'] = true
   --g['ctrlsf_default_view_mode'] = 'compact'
+
+  -- git-blame.nvim
+  g['gitblame_enabled'] = 0
 end
 
 local function lua_plugins()
@@ -211,15 +214,16 @@ local function lua_plugins()
 
   -- treesitter
   require('nvim-treesitter.configs').setup {
+    ensure_installed = { 'c_sharp', 'lua', 'rust' },
     highlight = {
       enable = true
     },
     --[[rainbow = {
       enable = true
     },]]
-    indent = {
+    --[[indent = {
       enable = true
-    },
+    },]]
     refactor = {
       -- Not a fan, but it works as expected
       --highlight_current_scope = { enable = true },
@@ -241,6 +245,12 @@ local function lua_plugins()
   require('nvim-web-devicons').setup {
     default = true
   }
+
+  -- galaxyline
+  --require('plugins.galaxyline.eviline')
+  require('plugins.galaxyline.spaceline')
+
+  require('plugins.bufferline').init()
 end
 
 languages()

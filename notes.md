@@ -11,6 +11,7 @@
 - Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
 - Make interface to create Lua mappings without needing to use strings
   Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
+- Change colors of statusline
 
 # Neovim 0.5 features
 
@@ -24,18 +25,15 @@
   Maybe a working autopair plugin
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
-- [nvim-treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)
-  Looks interesting to manipulate text using TreeSitter instead of the LSP
 - [nvim-treesitter-context](https://github.com/romgrk/nvim-treesitter-context)
   Really nice looking way to show the current context (might be better in status bar though)
-- [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
-  Working (?) rainbow parentheses using TreeSitter
 
 ### Status bar
 
 - [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
 - [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
 - [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
+
 - [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)
   Helper functions
 
