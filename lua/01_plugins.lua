@@ -111,6 +111,7 @@ local function startup(use)
     use('srcery-colors/srcery-vim')
     use({'embark-theme/vim', as = 'embark'})
     use('sainnhe/sonokai')
+    use('glepnir/zephyr-nvim')
   end
 
   local function lua_plugins()

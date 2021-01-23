@@ -15,7 +15,6 @@ if vim.fn.filereadable(config_path .. '/lua/system_config.lua') == 1 then
   require('system_config')
 end
 
-vim.g.ayucolor = 'mirage'
 vim.cmd('colorscheme ayu')
 
 vim.cmd('filetype plugin indent on')

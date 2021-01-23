@@ -118,6 +118,9 @@ local function interface()
   g['pencil_higher_contrast_ui'] = 1
   g['pencil_gutter_color'] = 0
 
+  -- Ayu
+  g['ayucolor'] = 'mirage'
+
   -- CtrlSF
   g['ctrlsf_populate_qflist'] = true
   --g['ctrlsf_default_view_mode'] = 'compact'
@@ -214,9 +217,9 @@ local function lua_plugins()
     --[[rainbow = {
       enable = true
     },]]
-    --[[indent = {
+    indent = {
       enable = true
-    },]]
+    },
     refactor = {
       -- Not a fan, but it works as expected
       --highlight_current_scope = { enable = true },
@@ -224,6 +227,12 @@ local function lua_plugins()
         enable = true,
         -- Disable for languages that support highlighting through LSP (it usually gives better results)
         disable = { 'lua' }
+      },
+      smart_rename = {
+        enable = true,
+        keymaps = {
+          smart_rename = 'grr'
+        }
       }
     },
   }
