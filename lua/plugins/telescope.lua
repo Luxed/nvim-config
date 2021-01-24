@@ -73,7 +73,7 @@ M.rg = function()
   end
 end
 
-M.setup = function()
+M.init = function()
   local map = require('helpers.map')
   require('telescope').setup {
     defaults = {
