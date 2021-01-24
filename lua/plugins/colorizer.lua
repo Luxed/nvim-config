@@ -9,5 +9,8 @@ require('colorizer').setup({
     },
     lua = {
       names = false,
+    },
+    vim = {
+      names = false
     }
   })
