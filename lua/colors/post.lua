@@ -29,8 +29,6 @@ return {
       hi_link('LspReferenceRead', 'Visual')
       hi('LspDiagnosticsDefaultError', {guifg='#FF3333'})
       hi_link('LspDiagnosticsDefaultWarning', 'Keyword')
-      -- only underline errors
-      hi('LspDiagnosticsUnderlineError', {gui='underline'})
 
       hi('DiffDelete', {guifg='#F28779', guibg='#272D38'})
     elseif colors_name == 'afterglow' then
@@ -51,6 +49,10 @@ return {
       hi_link('NERDTreeFile', 'NONE')
 
       hi_link('rustKeyword', 'Type')
+
+      hi_link('LspReferenceRead', 'CursorLine')
+      hi_link('LspDiagnosticsDefaultWarning', 'WarningMsg')
+      hi('LspDiagnosticsDefaultError', {guifg='#AC4142'})
     elseif colors_name == 'dracula' then
       hi_link('CocErrorSign', 'DraculaRed')
       hi_link('CocErrorFloat', 'DraculaRed')
@@ -62,6 +64,8 @@ return {
 
       hi_link('Conceal', 'Comment')
       hi_link('fugitiveHash', 'DraculaCyan')
+
+      hi_link('LspReferenceRead', 'CursorLine')
     elseif colors_name == 'nord' then
       hi_link('Conceal', 'Comment')
       hi_link('Folded', 'Comment')
@@ -97,6 +101,10 @@ return {
       hi_link('typescriptCall', 'NONE')
       hi_link('typescriptObjectLabel', 'NONE')
     end
+
+    -- only underline errors
+    -- TODO: verify if it is already set by theme
+    hi('LspDiagnosticsUnderlineError', {gui='underline'})
 
     require('nvim-web-devicons').setup()
   end
