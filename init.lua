@@ -11,6 +11,8 @@ require('01_plugins')
 
 -- load colorscheme as soon as possible
 vim.cmd('colorscheme ayu')
+-- setup an autocommand to modify themes to my liking
+vim.cmd('au! ColorScheme * lua require("colors.post").init()')
 
 require('02_plugins_conf')
 

@@ -1,5 +1,7 @@
 local map = require('helpers.map')
 
+-- TODO: move all config in this file directly, nothing needs to be returned here
+
 return {
   setup_mappings = function()
     vim.api.nvim_set_keymap(
