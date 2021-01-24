@@ -136,6 +136,7 @@ local function startup(use)
     use('neovim/nvim-lspconfig')
     use('tjdevries/nlua.nvim')
     use('mfussenegger/nvim-jdtls')
+    use('nvim-lua/lsp-status.nvim')
 
     -- Completion
     use('nvim-lua/completion-nvim')
