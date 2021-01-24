@@ -33,12 +33,10 @@ end]]
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
-
 local function checkwidth()
   local squeeze_width  = vim.fn.winwidth(0) / 2
   return squeeze_width > 40
 end
-
 local function get_icon_color()
   local file_name = vim.fn.expand('%:t')
   local file_ext = vim.fn.expand('%:e')
@@ -48,6 +46,13 @@ local function get_icon_color()
   local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
 
   return hl_hex_color
+end
+local function has_lsp_clients()
+  return #vim.lsp.buf_get_clients() > 0
+end
+local function ts_whitelist()
+  local whitelist_filetype = { rust = true }
+  return whitelist_filetype[vim.bo.filetype]
 end
 
 gls.left[1] = {
@@ -121,7 +126,7 @@ gls.left[7] = {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = checkwidth,
-    icon = ' ',
+    icon = '',
     highlight = {colors.green,colors.purple},
   }
 }
@@ -150,22 +155,28 @@ gls.left[10] = {
   }
 }
 
-local function has_lsp_clients()
-  return #vim.lsp.buf_get_clients() > 0
-end
-
 gls.right = {
-  -- needs to be played around with
-  --[[{
+  {
     TreeSitter = {
       provider = function()
         return require('nvim-treesitter').statusline(40)
       end,
+      condition = ts_whitelist,
       separator = '',
-      separator_highlight = {colors.bg, colors.purple},
-      highlight = {colors.grey, colors.purple}
+      separator_highlight = {
+        colors.bg,
+        function()
+          return has_lsp_clients() and colors.purple or colors.darkblue
+        end
+      },
+      highlight = {
+        colors.grey,
+        function()
+          return has_lsp_clients() and colors.purple or colors.darkblue
+        end
+      }
     }
-  },]]
+  },
   {
     LspStatus = {
       provider = function()
@@ -173,7 +184,13 @@ gls.right = {
       end,
       condition = has_lsp_clients,
       separator = '',
-      separator_highlight = {colors.darkblue, colors.bg},
+      separator_highlight = {
+        colors.darkblue,
+        --colors.bg
+        function()
+          return ts_whitelist() and colors.purple or colors.bg
+        end
+      },
       highlight = {colors.grey, colors.darkblue},
     }
   },
@@ -183,7 +200,7 @@ gls.right = {
       separator = '',
       separator_highlight = {
         function()
-          return has_lsp_clients() and colors.darkblue or colors.bg
+          return (has_lsp_clients() or ts_whitelist()) and colors.darkblue or colors.bg
         end,
         colors.purple
       },
