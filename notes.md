@@ -12,6 +12,8 @@
 - Make interface to create Lua mappings without needing to use strings
   Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
 - Change colors of statusline
+- Make `nvim-bufferline.lua` reloadable
+- Make `galaxyline.nvim` change colors when vim mode changes
 
 # Neovim 0.5 features
 
