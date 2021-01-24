@@ -73,4 +73,28 @@ M.rg = function()
   end
 end
 
+M.setup = function()
+  local map = require('helpers.map')
+  require('telescope').setup {
+    defaults = {
+      prompt_prefix = "λ",
+      layout_strategy = 'flex',
+      file_sorter = require('telescope.sorters').get_fzy_sorter,
+      generic_sorter = require('telescope.sorters').get_fzy_sorter,
+      mappings = {
+        i = {
+          -- close in insert mode
+          ['<esc>'] = require('telescope.actions').close
+        }
+      }
+    }
+  }
+
+  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {silent = true})
+  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>', {silent = true})
+  map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>', {silent = true})
+  map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
+  map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
+end
+
 return M

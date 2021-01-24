@@ -66,49 +66,8 @@ local function interface()
     [''] = 'V-BLOCK',
   }
 
-  -- Telescope
-  require('telescope').setup {
-    defaults = {
-      prompt_prefix = "λ",
-      layout_strategy = 'flex',
-      file_sorter = require('telescope.sorters').get_fzy_sorter,
-      generic_sorter = require('telescope.sorters').get_fzy_sorter,
-      mappings = {
-        i = {
-          -- close in insert mode
-          ['<esc>'] = require('telescope.actions').close
-        }
-      }
-    }
-  }
-  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {silent = true})
-  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>', {silent = true})
-  map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>', {silent = true})
-  map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
-  map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
-
   -- Startify
-  -- ensure vim-startify is loaded
-  vim.cmd('packadd vim-startify')
-
-  g['startify_change_to_dir'] = 0
-  g['startify_custom_header'] = {
-    [[  _   _                 _           ]],
-    [[ | \ | |               (_)          ]],
-    [[ |  \| | ___  _____   ___ _ __ ___  ]],
-    [[ | . ` |/ _ \/ _ \ \ / / | '_ ` _ \ ]],
-    [[ | |\  |  __/ (_) \ V /| | | | | | |]],
-    [[ |_| \_|\___|\___/ \_/ |_|_| |_| |_|]],
-    [[                                    ]],
-    unpack(vim.fn['startify#fortune#boxed']())
-  }
-  g['startify_lists'] = {
-    { type = 'dir',       header = {'   MRU ' .. vim.fn.getcwd()} },
-    { type = 'files',     header = {'   MRU'}            },
-    { type = 'sessions',  header = {'   Sessions'}       },
-    { type = 'bookmarks', header = {'   Bookmarks'}      },
-    { type = 'commands',  header = {'   Commands'}       },
-  }
+  require('plugins.startify')
 
   -- Semshi
   g['semshi#error_sign'] = false
@@ -130,126 +89,17 @@ local function interface()
 end
 
 local function lua_plugins()
+  require('plugins.telescope').setup()
   -- completion-nvim
   au('BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)')
   require('plugins.completion').setup_mappings()
 
-  -- TODO: Move to file
-  -- TODO: Make it "modular" (will depend on how much it grows)
-  local function on_attach_au()
-    au('CursorHold',  '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorHoldI', '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()')
-  end
+  require('plugins.lsp')
+  require('plugins.colorizer')
+  require('plugins.treesitter')
 
-  -- lsp (builtin)
-  local function on_attach_keymaps()
-    local silent_opts = {silent = true}
-    map.nnore('<leader>qk', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
-    map.nnore('K', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
-    map.nnore('<leader>qK', '<cmd>lua vim.lsp.buf.signature_help()<CR>', silent_opts, true)
-    map.nnore('<leader>qq', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', silent_opts, true)
-    --map.nnore('<leader>qgr', '<cmd>lua vim.lsp.buf.references()<CR>', silent_opts, true)
-    map.nnore('<leader>qgd', '<cmd>lua vim.lsp.buf.definition()<CR>', silent_opts, true)
-    map.nnore('<leader>qgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', silent_opts, true)
-    map.nnore('<leader>qr', '<cmd>lua vim.lsp.buf.rename()<CR>', {}, true)
-    --map.nnore('<leader>qa', '<cmd>lua vim.lsp.buf.code_action()<CR>', {}, true)
-    map.nnore('<leader>qn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {}, true)
-    map.nnore('<leader>qp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {}, true)
-    map.nnore('<leader>qd', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {}, true)
-
-    -- use Telescope for more convenient and consistent UI
-    map.nnore('<leader>qgr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', {}, true)
-    map.nnore('<leader>qa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', {}, true)
-    map.nnore('<leader>qs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', {}, true)
-
-    -- override default keymap
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
-  end
-
-  local function on_attach_complete()
-    on_attach_au()
-    on_attach_keymaps()
-  end
-
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = {
-        spacing = 5,
-        prefix = ' '
-      },
-      signs = true,
-      update_in_insert = false
-    })
-
-  -- lspconfig
-  local nvim_lsp = require('lspconfig')
-  nvim_lsp.vuels.setup{on_attach = on_attach_complete}
-  nvim_lsp.rls.setup{on_attach = on_attach_complete}
-  nvim_lsp.tsserver.setup{on_attach = on_attach_complete}
-  nvim_lsp.vimls.setup{on_attach = on_attach_complete}
-  nvim_lsp.html.setup{on_attach = on_attach_complete}
-  --nvim_lsp.jdtls.setup{}
-  -- TODO: make this work for Linux and Windows
-  local pid = vim.fn.getpid()
-  local home = vim.fn.expand('~')
-  local omnisharp_bin = home .. '/.local/opt/omnisharp-server/run'
-  nvim_lsp.omnisharp.setup{
-    cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-    on_attach = on_attach_keymaps
-  }
-  require('nlua.lsp.nvim').setup(require('lspconfig'), {on_attach = on_attach_complete})
-
-  -- colorizer
-  require('colorizer').setup({
-      dosini = {
-        names = false;
-        mode = 'background';
-      },
-      cfg = {
-        names = false;
-        RRGGBBAA = true;
-      }
-    })
-
-  -- treesitter
-  require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'c_sharp', 'lua', 'rust' },
-    highlight = {
-      enable = true
-    },
-    --[[rainbow = {
-      enable = true
-    },]]
-    --[[indent = {
-      enable = true
-    },]]
-    refactor = {
-      -- Not a fan, but it works as expected
-      --highlight_current_scope = { enable = true },
-      highlight_definitions = {
-        enable = true,
-        -- Disable for languages that support highlighting through LSP (it usually gives better results)
-        disable = { 'lua' }
-      },
-      smart_rename = {
-        enable = true,
-        keymaps = {
-          smart_rename = 'grr'
-        }
-      }
-    },
-  }
-
-  -- devicons
-  require('nvim-web-devicons').setup {
-    default = true
-  }
-
-  -- galaxyline
   require('plugins.galaxyline.spaceline')
-
-  require('plugins.bufferline').init()
+  require('plugins.bufferline')
 end
 
 languages()
