@@ -94,6 +94,7 @@ local function lua_plugins()
   au('BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)')
   require('plugins.completion').setup_mappings()
 
+  require('plugins.lsp_status')
   require('plugins.lsp')
   require('plugins.colorizer')
   require('plugins.treesitter')
