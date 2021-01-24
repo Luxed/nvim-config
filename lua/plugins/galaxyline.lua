@@ -15,21 +15,6 @@ local colors = {
   red = '#ec5f67'
 }
 
--- not happy with this
---[[if vim.g.colors_name == 'ayu' then
-  colors.bg = '#232834'
-  colors.yellow = '#FFCC66'
-  colors.cyan = '#5CCFE6'
-  colors.darkblue = '#399EE6'
-  colors.green = '#BAE67E'
-  colors.orange = '#FFA759'
-  colors.purple = '#A34ACC'
-  colors.magenta = '#D4BFFF'
-  colors.grey = '#CBCCC6'
-  colors.blue = '#77A8D9'
-  colors.red = '#F28779'
-end]]
-
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
@@ -55,143 +40,161 @@ local function ts_whitelist()
   return whitelist_filetype[vim.bo.filetype]
 end
 
-gls.left[1] = {
-  FirstElement = {
-    provider = function() return ' ' end,
-    highlight = {colors.yellow,colors.yellow}
-  },
+-- Colors from ayu_mirage.vim from the "vim-airline-themes" repository
+local function mode_color()
+  local mode = vim.fn.mode()
+
+  if mode == 'i' then
+    return '#80d4ff'
+  elseif mode == 'v' or mode == 'V' or mode == '' then
+    return '#ffae57'
+  elseif mode == 'R' then
+    return '#f07178'
+  end
+  return '#bbe67e'
+end
+
+local colors_ayu = {
+  light_bg = '#232834',
+  dark_bg = '#141925',
+  light_fg = '#cbccc6',
+  dark_fg = '#232834'
 }
-gls.left[2] = {
-  ViMode = {
-    provider = function()
-      local alias = {
-        n      = 'NORMAL',
-        i      = 'INSERT',
-        c      = 'COMMAND',
-        R      = 'REPLACE',
-        t      = '>_',
-        v      = 'VISUAL',
-        V      = 'V-LINE',
-        [''] = 'V-BLOCK',
-      }
-      return alias[vim.fn.mode()]
-    end,
-    separator = '',
-    separator_highlight = {
-      colors.yellow,
-      function()
-        if not buffer_not_empty() then
-          return colors.purple
+
+gls.left = {
+  {
+    FirstElement = {
+      provider = function() return ' ' end,
+      highlight = {colors_ayu.dark_fg, mode_color}
+    },
+  },
+  {
+    ViMode = {
+      provider = function()
+        local mode = vim.fn.mode()
+        local alias = {
+          n      = 'NORMAL',
+          i      = 'INSERT',
+          c      = 'COMMAND',
+          R      = 'REPLACE',
+          t      = '>_',
+          v      = 'VISUAL',
+          V      = 'V-LINE',
+          [''] = 'V-BLOCK',
+        }
+        -- FIXME: Hack to force refresh colors when vim mode changes
+        require('galaxyline.colors').init_theme(function() return gls end)
+        return alias[mode]
+      end,
+      separator = '',
+      separator_highlight = {
+        mode_color,
+        function()
+          if not buffer_not_empty() then
+            return colors_ayu.dark_bg
+          end
+          return colors_ayu.light_bg
         end
-        return colors.darkblue
-      end
-    },
-    highlight = {colors.magenta, colors.yellow, 'bold'},
+      },
+      highlight = {colors_ayu.dark_fg, mode_color, 'bold'},
+    }
   },
-}
-gls.left[3] = {
-  FileIcon = {
-    provider = 'FileIcon',
-    condition = buffer_not_empty,
-    highlight = {
-      get_icon_color,
-      colors.darkblue
+  {
+    FileIcon = {
+      provider = 'FileIcon',
+      condition = buffer_not_empty,
+      highlight = {get_icon_color, colors_ayu.light_bg}
     },
   },
-}
-gls.left[4] = {
-  FileName = {
-    provider = {'FileName','FileSize'},
-    condition = buffer_not_empty,
-    separator = '',
-    separator_highlight = {colors.purple,colors.darkblue},
-    highlight = {colors.magenta,colors.darkblue}
-  }
-}
-gls.left[5] = {
-  GitIcon = {
-    provider = function() return '  ' end,
-    condition = buffer_not_empty,
-    highlight = {colors.orange,colors.purple},
-  }
-}
-gls.left[6] = {
-  GitBranch = {
-    provider = 'GitBranch',
-    condition = buffer_not_empty,
-    highlight = {colors.grey,colors.purple},
-  }
-}
-gls.left[7] = {
-  DiffAdd = {
-    provider = 'DiffAdd',
-    condition = checkwidth,
-    icon = '',
-    highlight = {colors.green,colors.purple},
-  }
-}
-gls.left[8] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = checkwidth,
-    icon = '',
-    highlight = {colors.orange,colors.purple},
-  }
-}
-gls.left[9] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
-    condition = checkwidth,
-    icon = '',
-    highlight = {colors.red,colors.purple},
-  }
-}
-gls.left[10] = {
-  LeftEnd = {
-    provider = function() return '' end,
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.purple,colors.purple}
+  {
+    FileName = {
+      provider = {'FileName','FileSize'},
+      condition = buffer_not_empty,
+      separator = '',
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      highlight = {mode_color, colors_ayu.light_bg}
+    }
+  },
+  {
+    GitIcon = {
+      provider = function() return '  ' end,
+      condition = buffer_not_empty,
+      highlight = {colors.orange, colors_ayu.dark_bg},
+    }
+  },
+  {
+    GitBranch = {
+      provider = 'GitBranch',
+      condition = buffer_not_empty,
+      highlight = {colors_ayu.light_fg, colors_ayu.dark_bg},
+    }
+  },
+  {
+    DiffAdd = {
+      provider = 'DiffAdd',
+      condition = checkwidth,
+      icon = '',
+      highlight = {'#bbe67e', colors_ayu.dark_bg}, -- fg from DiffAdd
+    }
+  },
+  {
+    DiffModified = {
+      provider = 'DiffModified',
+      condition = checkwidth,
+      icon = '',
+      highlight = {'#5ccfe6', colors_ayu.dark_bg}, -- fg from DiffChange
+    }
+  },
+  {
+    DiffRemove = {
+      provider = 'DiffRemove',
+      condition = checkwidth,
+      icon = '',
+      highlight = {'#F28779', colors_ayu.dark_bg}, -- fg from DiffDelete
+    }
+  },
+  {
+    LeftEnd = {
+      provider = function() return '' end,
+      separator = '',
+      separator_highlight = {colors_ayu.dark_bg, '#212733'}, -- bg from Normal
+      highlight = {colors_ayu.dark_bg, colors_ayu.dark_bg}
+    }
   }
 }
 
 gls.right = {
   {
     TreeSitter = {
-      provider = function()
-        return require('nvim-treesitter').statusline(40)
-      end,
+      provider = function() return require('nvim-treesitter').statusline(40) end,
       condition = ts_whitelist,
       separator = '',
       separator_highlight = {
-        colors.bg,
+        '#212733', -- fg is bg from Normal
         function()
-          return has_lsp_clients() and colors.purple or colors.darkblue
+          return has_lsp_clients() and colors_ayu.light_bg or colors_ayu.dark_bg
         end
       },
       highlight = {
-        colors.grey,
+        colors_ayu.light_fg,
         function()
-          return has_lsp_clients() and colors.purple or colors.darkblue
+          return has_lsp_clients() and colors_ayu.light_bg or colors_ayu.dark_bg
         end
       }
     }
   },
   {
     LspStatus = {
-      provider = function()
-        return require('lsp-status').status()
-      end,
+      provider = require('lsp-status').status,
       condition = has_lsp_clients,
       separator = '',
       separator_highlight = {
-        colors.darkblue,
-        --colors.bg
+        colors_ayu.dark_bg,
         function()
-          return ts_whitelist() and colors.purple or colors.bg
+          return ts_whitelist() and colors_ayu.light_bg or '#212733'
         end
       },
-      highlight = {colors.grey, colors.darkblue},
+      highlight = {colors_ayu.light_fg, colors_ayu.dark_bg},
     }
   },
   {
@@ -200,63 +203,67 @@ gls.right = {
       separator = '',
       separator_highlight = {
         function()
-          return (has_lsp_clients() or ts_whitelist()) and colors.darkblue or colors.bg
+          return (has_lsp_clients() or ts_whitelist()) and colors_ayu.dark_bg or '#212733'
         end,
-        colors.purple
+        colors_ayu.light_bg
       },
-      highlight = {colors.grey,colors.purple},
+      highlight = {colors_ayu.light_fg, colors_ayu.light_bg},
     }
   },
   {
     LineInfo = {
       provider = 'LineColumn',
       separator = ' | ',
-      separator_highlight = {colors.darkblue,colors.purple},
-      highlight = {colors.grey,colors.purple},
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      highlight = {colors_ayu.light_fg, colors_ayu.light_bg},
     }
   },
   {
     PerCent = {
       provider = 'LinePercent',
       separator = '',
-      separator_highlight = {colors.darkblue,colors.purple},
-      highlight = {colors.grey,colors.darkblue},
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      highlight = {colors_ayu.light_fg, colors_ayu.dark_bg},
     }
   },
   {
     ScrollBar = {
       provider = 'ScrollBar',
-      highlight = {colors.yellow,colors.purple},
+      highlight = {mode_color, colors_ayu.light_bg},
     }
   },
 }
 
-gls.short_line_left[1] = {
-  BufferType = {
-    provider = 'FileTypeName',
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.grey,colors.purple}
-  }
-}
-gls.short_line_left[2] = {
-  SpaceShort = {
-    provider = function () return ' ' end,
-    highlight = {colors.bg, colors.bg}
-  }
-}
-gls.short_line_left[3] = {
-  FileNameShort = {
-    provider = {'FileName','FileSize'},
-    highlight = {colors.grey, colors.bg}
+gls.short_line_left = {
+  {
+    BufferType = {
+      provider = 'FileTypeName',
+      separator = '',
+      separator_highlight = {colors.purple,colors.bg},
+      highlight = {colors.grey,colors.purple}
+    }
+  },
+  {
+    SpaceShort = {
+      provider = function () return ' ' end,
+      highlight = {colors.bg, colors.bg}
+    }
+  },
+  {
+    FileNameShort = {
+      provider = {'FileName','FileSize'},
+      highlight = {colors.grey, colors.bg}
+    }
   }
 }
 
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider= 'BufferIcon',
-    separator = '',
-    separator_highlight = {colors.purple, colors.bg},
-    highlight = {colors.grey, colors.purple}
+gls.short_line_right = {
+  {
+    BufferIcon = {
+      provider= 'BufferIcon',
+      separator = '',
+      separator_highlight = {colors.purple, colors.bg},
+      highlight = {colors.grey, colors.purple}
+    }
   }
-}
+} 
