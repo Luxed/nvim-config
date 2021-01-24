@@ -98,7 +98,7 @@ local function lua_plugins()
   require('plugins.colorizer')
   require('plugins.treesitter')
 
-  require('plugins.galaxyline.spaceline')
+  require('plugins.galaxyline')
   require('plugins.bufferline')
 end
 

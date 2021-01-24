@@ -1,6 +1,5 @@
 local gl = require('galaxyline')
 local gls = gl.section
---gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
   bg = '#282c34',
@@ -130,7 +129,7 @@ gls.left[8] = {
   DiffModified = {
     provider = 'DiffModified',
     condition = checkwidth,
-    icon = ' ',
+    icon = '',
     highlight = {colors.orange,colors.purple},
   }
 }
@@ -138,7 +137,7 @@ gls.left[9] = {
   DiffRemove = {
     provider = 'DiffRemove',
     condition = checkwidth,
-    icon = ' ',
+    icon = '',
     highlight = {colors.red,colors.purple},
   }
 }
@@ -150,56 +149,69 @@ gls.left[10] = {
     highlight = {colors.purple,colors.purple}
   }
 }
-gls.left[11] = {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.red,colors.bg}
-  }
-}
-gls.left[12] = {
-  Space = {
-    provider = function () return ' ' end,
-    highlight = {colors.bg, colors.bg}
-  }
-}
-gls.left[13] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.blue,colors.bg},
-  }
-}
 
-gls.right[1] = {
-  FileFormat = {
-    provider = 'FileFormat',
-    separator = '',
-    separator_highlight = {colors.bg,colors.purple},
-    highlight = {colors.grey,colors.purple},
-  }
-}
-gls.right[2] = {
-  LineInfo = {
-    provider = 'LineColumn',
-    separator = ' | ',
-    separator_highlight = {colors.darkblue,colors.purple},
-    highlight = {colors.grey,colors.purple},
+local function has_lsp_clients()
+  return #vim.lsp.buf_get_clients() > 0
+end
+
+gls.right = {
+  -- needs to be played around with
+  --[[{
+    TreeSitter = {
+      provider = function()
+        return require('nvim-treesitter').statusline(40)
+      end,
+      separator = '',
+      separator_highlight = {colors.bg, colors.purple},
+      highlight = {colors.grey, colors.purple}
+    }
+  },]]
+  {
+    LspStatus = {
+      provider = function()
+        return require('lsp-status').status()
+      end,
+      condition = has_lsp_clients,
+      separator = '',
+      separator_highlight = {colors.darkblue, colors.bg},
+      highlight = {colors.grey, colors.darkblue},
+    }
   },
-}
-gls.right[3] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = '',
-    separator_highlight = {colors.darkblue,colors.purple},
-    highlight = {colors.grey,colors.darkblue},
-  }
-}
-gls.right[4] = {
-  ScrollBar = {
-    provider = 'ScrollBar',
-    highlight = {colors.yellow,colors.purple},
-  }
+  {
+    FileFormat = {
+      provider = 'FileFormat',
+      separator = '',
+      separator_highlight = {
+        function()
+          return has_lsp_clients() and colors.darkblue or colors.bg
+        end,
+        colors.purple
+      },
+      highlight = {colors.grey,colors.purple},
+    }
+  },
+  {
+    LineInfo = {
+      provider = 'LineColumn',
+      separator = ' | ',
+      separator_highlight = {colors.darkblue,colors.purple},
+      highlight = {colors.grey,colors.purple},
+    }
+  },
+  {
+    PerCent = {
+      provider = 'LinePercent',
+      separator = '',
+      separator_highlight = {colors.darkblue,colors.purple},
+      highlight = {colors.grey,colors.darkblue},
+    }
+  },
+  {
+    ScrollBar = {
+      provider = 'ScrollBar',
+      highlight = {colors.yellow,colors.purple},
+    }
+  },
 }
 
 gls.short_line_left[1] = {
