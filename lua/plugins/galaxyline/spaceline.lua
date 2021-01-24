@@ -21,30 +21,42 @@ local colors = {
   colors.bg = '#232834'
   colors.yellow = '#FFCC66'
   colors.cyan = '#5CCFE6'
-  colors.blue = '#77A8D9'
   colors.darkblue = '#399EE6'
   colors.green = '#BAE67E'
   colors.orange = '#FFA759'
   colors.purple = '#A34ACC'
   colors.magenta = '#D4BFFF'
   colors.grey = '#CBCCC6'
+  colors.blue = '#77A8D9'
   colors.red = '#F28779'
 end]]
 
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
+local function buffer_not_empty()
+  return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+end
+
+local function checkwidth()
+  local squeeze_width  = vim.fn.winwidth(0) / 2
+  return squeeze_width > 40
+end
+
+local function get_icon_color()
+  local file_name = vim.fn.expand('%:t')
+  local file_ext = vim.fn.expand('%:e')
+
+  local _, icon_hl = require('nvim-web-devicons').get_icon(file_name, file_ext, { default = true })
+  local hl_id = vim.fn.hlID(icon_hl)
+  local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
+
+  return hl_hex_color
 end
 
 gls.left[1] = {
   FirstElement = {
-    provider = function() return '▋' end,
-    highlight = {colors.blue,colors.yellow}
+    provider = function() return ' ' end,
+    highlight = {colors.yellow,colors.yellow}
   },
 }
-
 gls.left[2] = {
   ViMode = {
     provider = function()
@@ -73,12 +85,14 @@ gls.left[2] = {
     highlight = {colors.magenta, colors.yellow, 'bold'},
   },
 }
-
-gls.left[3] ={
+gls.left[3] = {
   FileIcon = {
     provider = 'FileIcon',
     condition = buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.darkblue},
+    highlight = {
+      get_icon_color,
+      colors.darkblue
+    },
   },
 }
 gls.left[4] = {
@@ -90,7 +104,6 @@ gls.left[4] = {
     highlight = {colors.magenta,colors.darkblue}
   }
 }
-
 gls.left[5] = {
   GitIcon = {
     provider = function() return '  ' end,
@@ -105,15 +118,6 @@ gls.left[6] = {
     highlight = {colors.grey,colors.purple},
   }
 }
-
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
-
 gls.left[7] = {
   DiffAdd = {
     provider = 'DiffAdd',
@@ -166,7 +170,8 @@ gls.left[13] = {
     highlight = {colors.blue,colors.bg},
   }
 }
-gls.right[1]= {
+
+gls.right[1] = {
   FileFormat = {
     provider = 'FileFormat',
     separator = '',
