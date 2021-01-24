@@ -20,7 +20,7 @@ set('assign', {
     breakindentopt = 'shift:2',
     number = true,
     cursorline = true,
-    foldmethod = 'syntax',
+    --foldmethod = 'syntax',
     signcolumn = 'yes'
   },
   o = {
