@@ -131,11 +131,11 @@ function! PackInit() abort
 
     " }}}
 
-    """ {{{ Tracking
+    " {{{ Tracking
 
-    call minpac#add('ActivityWatch/aw-watcher-vim')
+    call minpac#add('ActivityWatch/aw-watcher-vim', { 'type': 'opt' })
 
-    """ }}}
+    " }}}
 endfunction
 
 if !isdirectory(g:minpac_plugin_path)
