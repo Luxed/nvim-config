@@ -14,6 +14,7 @@
 - Change colors of statusline
 - Make `nvim-bufferline.lua` reloadable
 - Make `galaxyline.nvim` change colors when vim mode changes
+- Only show git indicator when in a git repo
 
 # Neovim 0.5 features
 
