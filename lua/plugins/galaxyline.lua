@@ -1,20 +1,6 @@
 local gl = require('galaxyline')
 local gls = gl.section
 
-local colors = {
-  bg = '#282c34',
-  yellow = '#fabd2f',
-  cyan = '#008080',
-  darkblue = '#081633',
-  green = '#afd700',
-  orange = '#FF8800',
-  purple = '#5d4d7a',
-  magenta = '#d16d9e',
-  grey = '#c0c0c0',
-  blue = '#0087d7',
-  red = '#ec5f67'
-}
-
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
@@ -27,6 +13,13 @@ local function get_icon_color()
   local file_ext = vim.fn.expand('%:e')
 
   local _, icon_hl = require('nvim-web-devicons').get_icon(file_name, file_ext, { default = true })
+  local hl_id = vim.fn.hlID(icon_hl)
+  local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
+
+  return hl_hex_color
+end
+local function get_git_logo_color()
+  local _, icon_hl = require('nvim-web-devicons').get_icon('git', 'git', { default = true })
   local hl_id = vim.fn.hlID(icon_hl)
   local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
 
@@ -108,18 +101,39 @@ gls.left = {
   },
   {
     FileName = {
-      provider = {'FileName','FileSize'},
+      provider = 'FileName',
+      condition = buffer_not_empty,
+      highlight = {mode_color, colors_ayu.light_bg}
+    }
+  },
+  {
+    FileType = {
+      provider = function()
+        local ft = vim.bo.filetype
+        return ' (' .. ft .. ')'
+      end,
+      condition = function()
+        local ft = vim.bo.filetype
+        local ext = vim.fn.expand('%:e')
+
+        return buffer_not_empty() and ft ~= '' and ft ~= ext
+      end,
+      highlight = {mode_color, colors_ayu.light_bg}
+    }
+  },
+  {
+    BeforeGitSeparator = {
+      provider = function() return '' end,
       condition = buffer_not_empty,
       separator = '',
       separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
-      highlight = {mode_color, colors_ayu.light_bg}
     }
   },
   {
     GitIcon = {
       provider = function() return '  ' end,
       condition = buffer_not_empty,
-      highlight = {colors.orange, colors_ayu.dark_bg},
+      highlight = {get_git_logo_color, colors_ayu.dark_bg},
     }
   },
   {
@@ -239,20 +253,20 @@ gls.short_line_left = {
     BufferType = {
       provider = 'FileTypeName',
       separator = '',
-      separator_highlight = {colors.purple,colors.bg},
-      highlight = {colors.grey,colors.purple}
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      highlight = {colors_ayu.light_fg, colors_ayu.dark_bg}
     }
   },
   {
     SpaceShort = {
       provider = function () return ' ' end,
-      highlight = {colors.bg, colors.bg}
+      highlight = {colors_ayu.light_bg, colors_ayu.light_bg}
     }
   },
   {
     FileNameShort = {
       provider = {'FileName','FileSize'},
-      highlight = {colors.grey, colors.bg}
+      highlight = {colors_ayu.light_fg, colors_ayu.light_bg}
     }
   }
 }
@@ -262,8 +276,8 @@ gls.short_line_right = {
     BufferIcon = {
       provider= 'BufferIcon',
       separator = '',
-      separator_highlight = {colors.purple, colors.bg},
-      highlight = {colors.grey, colors.purple}
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      highlight = {colors_ayu.light_fg, colors_ayu.dark_bg}
     }
   }
 } 
