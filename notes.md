@@ -11,9 +11,11 @@
 - Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
 - Make interface to create Lua mappings without needing to use strings
   Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
-- Change colors of statusline
 - Make `nvim-bufferline.lua` reloadable
-- Make `galaxyline.nvim` change colors when vim mode changes
+- Only show git indicator when in a git repo
+- Add file type to status line
+- Improve ayu-vim for better TreeSitter support.
+  - Update theme to use current colors?
 
 # Neovim 0.5 features
 
@@ -37,9 +39,6 @@
 - [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
 - [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
 - [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
-
-- [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)
-  Helper functions
 
 ## Current issues/complaints
 
