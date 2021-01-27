@@ -1,5 +1,6 @@
 local gl = require('galaxyline')
 local gls = gl.section
+local lsp_status = require('lsp-status')
 
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -43,6 +44,8 @@ local function mode_color()
     return '#ffae57'
   elseif mode == 'R' then
     return '#f07178'
+  elseif mode == 'c' then
+    return '#d4bfff'
   end
   return '#bbe67e'
 end
@@ -54,6 +57,7 @@ local colors_ayu = {
   dark_fg = '#232834'
 }
 
+local current_mode = vim.fn.mode()
 gls.left = {
   {
     FirstElement = {
@@ -75,8 +79,10 @@ gls.left = {
           V      = 'V-LINE',
           [''] = 'V-BLOCK',
         }
-        -- FIXME: Hack to force refresh colors when vim mode changes
-        require('galaxyline.colors').init_theme(function() return gls end)
+        if current_mode ~= mode then
+          require('galaxyline.colors').init_theme(function() return gls end)
+          current_mode = mode
+        end
         return alias[mode]
       end,
       separator = '',
@@ -199,7 +205,10 @@ gls.right = {
   },
   {
     LspStatus = {
-      provider = require('lsp-status').status,
+      --provider = require('lsp-status').status,
+      provider = function()
+        return lsp_status.status()
+      end,
       condition = has_lsp_clients,
       separator = '',
       separator_highlight = {
