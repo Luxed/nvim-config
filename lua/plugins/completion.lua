@@ -24,7 +24,17 @@ return {
     --sorting = 'length', -- possible values: 'length', 'alphabet', 'none'
     sorting = 'length',
     confirm_key = '', -- disable default confirm mapping
+    -- TODO: something to look into
+    --items_priority = {
+      --Function = 0,
+      --Buffers = 2
+    --},
     chain_complete_list = {
+      fugitive = {
+        default = {
+          { complete_items = { 'snippet', 'buffers' } }
+        }
+      },
       default = {
         default = {
           { complete_items = { 'lsp', 'snippet', 'buffers' } },
