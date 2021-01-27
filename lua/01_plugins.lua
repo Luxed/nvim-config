@@ -1,5 +1,6 @@
 local au = require('helpers.command').autocmd
 
+
 local function bootstrap()
   local data_path = vim.fn.stdpath('data')
   local packer_path = data_path .. '/site/pack/packer/opt/packer.nvim'
@@ -71,8 +72,8 @@ local function startup(use)
     use('junegunn/gv.vim') -- Git log graphical visualisation
     use('jiangmiao/auto-pairs') -- Auto close things ('(', '{', '[', etc.)
     use('alvan/vim-closetag') -- Auto close html tags
-    use('scrooloose/nerdtree') -- File explorer
-    use('scrooloose/nerdcommenter') -- Commenting tool
+    use('preservim/nerdtree') -- File explorer
+    use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use('AndrewRadev/bufferize.vim') -- Execute commands in a buffer
     use('andrewradev/splitjoin.vim') -- Better split and join (gS, gJ)
@@ -89,7 +90,8 @@ local function startup(use)
     --use('vim-airline/vim-airline-themes')
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
-    use('ryanoasis/vim-devicons') -- Needs a patched font
+    use('ryanoasis/vim-devicons')
+    use('tiagofumo/vim-nerdtree-syntax-highlight')
     use('kyazdani42/nvim-web-devicons')
     --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
@@ -125,7 +127,7 @@ local function startup(use)
     -- Telescope (fuzzy finder)
     use('nvim-lua/popup.nvim')
     use('nvim-lua/plenary.nvim')
-    use('nvim-lua/telescope.nvim')
+    use('nvim-telescope/telescope.nvim')
 
     -- TreeSitter
     use('nvim-treesitter/nvim-treesitter')
