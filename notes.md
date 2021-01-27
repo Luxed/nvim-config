@@ -29,8 +29,10 @@
   Formatter
 - [nvim-treesitter-context](https://github.com/romgrk/nvim-treesitter-context)
   Really nice looking way to show the current context (might be better in status bar though)
+- [playground](https://github.com/nvim-treesitter/playground)
+  Usefull treesitter related things
 
-### Status bar
+### Scurltatus bar
 
 - [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
 - [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
