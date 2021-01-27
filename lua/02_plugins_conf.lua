@@ -65,9 +65,8 @@ end
 
 local function lua_plugins()
   require('plugins.telescope').init()
-  -- completion-nvim
-  au('BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)')
-  require('plugins.completion').setup_mappings()
+  require('plugins.completion').init()
+  --require('plugins.compe')
 
   require('plugins.lsp_status')
   require('plugins.lsp')

@@ -139,8 +139,9 @@ local function startup(use)
     use('nvim-lua/lsp-status.nvim')
 
     -- Completion
-    use('nvim-lua/completion-nvim')
-    -- use('steelsoja/completion-buffers')
+    use({'nvim-lua/completion-nvim', opt = true})
+    use({'steelsojka/completion-buffers', opt = true})
+    use({'hrsh7th/nvim-compe', opt = true})
 
     -- Statusline/Tabline
     use('glepnir/galaxyline.nvim')
