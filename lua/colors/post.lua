@@ -28,6 +28,8 @@ return {
       -- Add highlight for word under cursor
       hi_link('LspReferenceRead', 'Visual')
       hi('LspDiagnosticsDefaultError', {guifg='#FF3333'})
+      hi('LspDiagnosticsUnderlineError', {guifg='#FF3333', gui='underline'})
+      hi('LspDiagnosticsUnderlineWarning', {guifg='#FFAE57', gui='underline'})
       hi_link('LspDiagnosticsDefaultWarning', 'Keyword')
 
       hi('DiffDelete', {guifg='#F28779', guibg='#272D38'})
@@ -101,10 +103,6 @@ return {
       hi_link('typescriptCall', 'NONE')
       hi_link('typescriptObjectLabel', 'NONE')
     end
-
-    -- only underline errors
-    -- TODO: verify if it is already set by theme
-    hi('LspDiagnosticsUnderlineError', {gui='underline'})
 
     require('nvim-web-devicons').setup()
   end
