@@ -66,14 +66,13 @@ nvim_lsp.html.setup(complete_lsp_setup)
 --nvim_lsp.jdtls.setup(complete_lsp_setup)
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
--- TODO: make this work for Linux and Windows
-local pid = vim.fn.getpid()
-local home = vim.fn.expand('~')
-local omnisharp_bin = home .. '/.local/opt/omnisharp-server/run'
-nvim_lsp.omnisharp.setup{
-  cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-  on_attach = on_attach_complete
-}
+if vim.g.config_omnisharp_bin then
+  local pid = vim.fn.getpid()
+  nvim_lsp.omnisharp.setup{
+    cmd = { vim.g.config_omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
+    on_attach = on_attach_complete
+  }
+end
 
 vim.fn.sign_define('LspDiagnosticsSignError', { text = '' })
 vim.fn.sign_define('LspDiagnosticsSignWarning', { text='' })
