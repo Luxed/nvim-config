@@ -23,16 +23,12 @@ return {
 
       hi_link('CocHighlightText', 'Visual')
 
-      hi_link('TelescopeMatching', 'Statement')
-
       -- Add highlight for word under cursor
       hi_link('LspReferenceRead', 'Visual')
       hi('LspDiagnosticsDefaultError', {guifg='#FF3333'})
       hi('LspDiagnosticsUnderlineError', {guifg='#FF3333', gui='underline'})
       hi('LspDiagnosticsUnderlineWarning', {guifg='#FFAE57', gui='underline'})
       hi_link('LspDiagnosticsDefaultWarning', 'Keyword')
-
-      hi('DiffDelete', {guifg='#F28779', guibg='#272D38'})
     elseif colors_name == 'afterglow' then
       -- Set pmenu to complete black for better Fzf highlighting
       hi('Pmenu', {guibg='#000000'})
