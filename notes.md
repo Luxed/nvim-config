@@ -14,7 +14,6 @@
 - Make `nvim-bufferline.lua` reloadable
 - Only show git indicator when in a git repo
 - Improve ayu-vim for better TreeSitter support.
-- Add "modified" icon highlight info for bufferline
 
 # Neovim 0.5 features
 

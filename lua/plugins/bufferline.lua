@@ -33,6 +33,12 @@ local function custom_highlights()
     },
     duplicate_visible = {
       guibg = ''
+    },
+    modified_selected = {
+      guibg = ayu_get_color('panel_bg')
+    },
+    modified_visible = {
+      guibg = ayu_get_color('panel_shadow')
     }
   }
 end
