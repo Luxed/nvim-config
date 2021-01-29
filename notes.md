@@ -13,9 +13,8 @@
   Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
 - Make `nvim-bufferline.lua` reloadable
 - Only show git indicator when in a git repo
-- Add file type to status line
 - Improve ayu-vim for better TreeSitter support.
-  - Update theme to use current colors?
+- Add "modified" icon highlight info for bufferline
 
 # Neovim 0.5 features
 
@@ -34,7 +33,7 @@
 - [playground](https://github.com/nvim-treesitter/playground)
   Usefull treesitter related things
 
-### Scurltatus bar
+### Status bar
 
 - [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
 - [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
@@ -44,19 +43,23 @@
 
 ### nvim-treesitter
 
-- ~~Doesn't update properly when doing some actions and needs to be completely refreshed~~
-  Didn't notice the issue anymore, might be fixed.
 - Highlighting doesn't look all that good on all themes out of the box
 - `nvim-ts-rainbow` performs extremely poorly and makes Neovim feel like Visual Studio
+- Folds do not get updated until I reload the file with `:e`
 
 ### completion-nvim
 
 - Orders things weirdly (maybe setting the sorting to "none" would resolve this issue?)
 - Flickers when using "fuzzy" matching strategy (not a deal breaker, but it makes it look much less polished than other completion plugins)
-- Chain completion just isn't my thing (maybe)
+- Chain completion just isn't my thing.
 - (most likely Neovim related issue) Documentation popup sometimes gets collapsed by my folds configuration ("syntax" globally + folded by default)
-  Folding would need to be disabled globally and setup for every filetypes I want
 
 ### built-in lsp
 
 - Find a way to remove annoying quickfix list being automatically shown on "go to definition"
+
+### telescope
+
+- error when changing to a branch a with a lot of commits (`cend` variable is nil, add check)
+- Going to a file doesn't enable folds
+
