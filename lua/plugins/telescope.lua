@@ -77,7 +77,6 @@ M.init = function()
   local map = require('helpers.map')
   require('telescope').setup {
     defaults = {
-      --prompt_prefix = "λ",
       prompt_prefix = "",
       layout_strategy = 'flex',
       file_sorter = require('telescope.sorters').get_fzy_sorter,

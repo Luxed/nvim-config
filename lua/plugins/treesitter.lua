@@ -15,7 +15,7 @@ require('nvim-treesitter.configs').setup {
     highlight_definitions = {
       enable = true,
       -- Disable for languages that support highlighting through LSP (it usually gives better results)
-      disable = { 'lua', 'typescript' }
+      disable = { 'lua' }
     },
     smart_rename = {
       enable = true,
