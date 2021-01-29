@@ -1,6 +1,7 @@
 local gl = require('galaxyline')
 local gls = gl.section
 local lsp_status = require('lsp-status')
+gl.short_line_list = {'packer', 'nerdtree'}
 
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -275,7 +276,12 @@ gls.short_line_left = {
   {
     FileNameShort = {
       provider = {'FileName','FileSize'},
-      highlight = {colors_ayu.light_fg, colors_ayu.light_bg}
+      highlight = {colors_ayu.light_fg, colors_ayu.light_bg},
+      condition = function()
+        local ft = vim.bo.filetype
+        local blacklist = {packer = true, nerdtree = true}
+        return not blacklist[ft]
+      end
     }
   }
 }
