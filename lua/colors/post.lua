@@ -1,17 +1,5 @@
-  -- TODO: find if there's a better way to do this using vim functions
-local function hi(group, options)
-  local cmd = 'hi! ' .. group .. ' '
-
-  for k,v in pairs(options) do
-    cmd = cmd .. k .. '=' .. v .. ' '
-  end
-
-  vim.cmd(cmd)
-end
-
-local function hi_link(group, link_group)
-  vim.cmd('hi! link ' .. group .. ' ' .. link_group)
-end
+local hi = require('helpers.colors').hi
+local hi_link = require('helpers.colors').hi_link
 
 return {
   init = function()
@@ -25,10 +13,6 @@ return {
 
       -- Add highlight for word under cursor
       hi_link('LspReferenceRead', 'Visual')
-      hi('LspDiagnosticsDefaultError', {guifg='#FF3333'})
-      hi('LspDiagnosticsUnderlineError', {guifg='#FF3333', gui='underline'})
-      hi('LspDiagnosticsUnderlineWarning', {guifg='#FFAE57', gui='underline'})
-      hi_link('LspDiagnosticsDefaultWarning', 'Keyword')
     elseif colors_name == 'afterglow' then
       -- Set pmenu to complete black for better Fzf highlighting
       hi('Pmenu', {guibg='#000000'})
