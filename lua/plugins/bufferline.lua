@@ -9,16 +9,30 @@ local function custom_highlights()
   return {
     fill = {
       guifg = '',
+      guibg = ayu_get_color('panel_border')
+    },
+    buffer_selected = {
       guibg = ayu_get_color('panel_bg')
     },
+    buffer_visible = {
+      guibg = ayu_get_color('panel_shadow')
+    },
     separator_selected = {
-      guifg = ayu_get_color('panel_bg')
+      guifg = ayu_get_color('panel_border'),
+      guibg = ayu_get_color('panel_bg')
     },
     separator_visible = {
-      guifg = ayu_get_color('panel_bg')
+      guifg = ayu_get_color('panel_border'),
+      guibg = ayu_get_color('panel_shadow')
     },
     separator = {
-      guifg = ayu_get_color('panel_bg')
+      guifg = ayu_get_color('panel_border')
+    },
+    duplicate_selected = {
+      guibg = '',
+    },
+    duplicate_visible = {
+      guibg = ''
     }
   }
 end
