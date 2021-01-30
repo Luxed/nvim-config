@@ -1,7 +1,7 @@
 local gl = require('galaxyline')
 local gls = gl.section
 local lsp_status = require('lsp-status')
-gl.short_line_list = {'packer', 'nerdtree'}
+gl.short_line_list = {'packer', 'nerdtree', 'fugitive', 'startify'}
 
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1

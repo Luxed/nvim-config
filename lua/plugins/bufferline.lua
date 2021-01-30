@@ -39,6 +39,19 @@ local function custom_highlights()
     },
     modified_visible = {
       guibg = ayu_get_color('panel_shadow')
+    },
+    warning_selected = {
+      guibg = ayu_get_color('panel_bg')
+    },
+    warning_visible = {
+      guibg = ayu_get_color('panel_shadow')
+    },
+    error_selected = {
+      guibg = ayu_get_color('panel_bg'),
+      guifg = ayu_get_color('error')
+    },
+    error_visible = {
+      guibg = ayu_get_color('panel_shadow')
     }
   }
 end
