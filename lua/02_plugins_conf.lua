@@ -74,7 +74,7 @@ local function lua_plugins()
   require('plugins.treesitter')
 
   require('plugins.galaxyline')
-  require('plugins.bufferline')
+  require('plugins.bufferline').init()
 end
 
 languages()

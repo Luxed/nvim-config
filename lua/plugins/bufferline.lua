@@ -1,6 +1,7 @@
 local bufferline = require('bufferline')
 local ayu_get_color = vim.fn['ayu#get_color']
 
+-- TODO: look into fixing ayu-vim directly
 local function custom_highlights()
   if vim.g.colors_name ~= 'ayu' then
     return nil
@@ -56,16 +57,20 @@ local function custom_highlights()
   }
 end
 
-bufferline.setup{
-  options = {
-    --numbers = 'ordinal',
-    show_buffer_close_icons = false,
-    separator_style = 'slant',
-    diagnostics = 'nvim_lsp',
-    diagnostics_indicator = function(count, level)
-      local icon = level:match("error") and "" or ""
-      return " " .. icon .. count
-    end,
-  },
-  highlights = custom_highlights()
+return {
+  init = function()
+    bufferline.setup{
+      options = {
+        --numbers = 'ordinal',
+        show_buffer_close_icons = false,
+        separator_style = 'slant',
+        diagnostics = 'nvim_lsp',
+        diagnostics_indicator = function(count, level)
+          local icon = level:match("error") and "" or ""
+          return " " .. icon .. count
+        end,
+      },
+      highlights = custom_highlights()
+    }
+  end
 }
