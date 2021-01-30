@@ -76,7 +76,7 @@ local function startup(use)
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use('AndrewRadev/bufferize.vim') -- Execute commands in a buffer
-    use('andrewradev/splitjoin.vim') -- Better split and join (gS, gJ)
+    use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
     use('mhinz/vim-startify') -- Nice startup screen
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
@@ -170,5 +170,3 @@ if first_install then
   print('Restart Neovim once the update is fully finished')
   vim.cmd('PackerSync')
 end
-
-au('bufWritePost', 'plugins.lua', 'PackerCompile')
