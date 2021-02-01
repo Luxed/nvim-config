@@ -1,6 +1,3 @@
-local au = require('helpers.command').autocmd
-
-
 local function bootstrap()
   local data_path = vim.fn.stdpath('data')
   local packer_path = data_path .. '/site/pack/packer/opt/packer.nvim'
@@ -133,6 +130,7 @@ local function startup(use)
     use('nvim-treesitter/nvim-treesitter')
     use('nvim-treesitter/nvim-treesitter-refactor')
     use('p00f/nvim-ts-rainbow')
+    use('nvim-treesitter/playground')
 
     -- LSP related plugins
     use('neovim/nvim-lspconfig')
