@@ -14,6 +14,7 @@
 - Make `nvim-bufferline.lua` reloadable
 - Only show git indicator when in a git repo
 - Improve ayu-vim for better TreeSitter support.
+- Make real "dropdown" theme for Telescope based on current cursor position. (useful for quick actions like LSP Code Actions)
 
 # Neovim 0.5 features
 
@@ -29,8 +30,8 @@
   Formatter
 - [nvim-treesitter-context](https://github.com/romgrk/nvim-treesitter-context)
   Really nice looking way to show the current context (might be better in status bar though)
-- [playground](https://github.com/nvim-treesitter/playground)
-  Usefull treesitter related things
+- [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
+  Interesting plugin for better LSP UIs
 
 ### Status bar
 

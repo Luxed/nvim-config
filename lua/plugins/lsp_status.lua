@@ -2,7 +2,11 @@ local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
 local lsp_status_config = {
-  kind_labels = {},
+  kind_labels = {
+    ['Function'] = 'f',
+    ['Method'] = 'm',
+    ['Class'] = 'c',
+  },
   current_function = true,
   indicator_separator = ' ',
   indicator_errors = '',

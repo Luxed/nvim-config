@@ -14,11 +14,11 @@ vim.cmd('colorscheme ayu')
 -- setup an autocommand to modify themes to my liking
 vim.cmd('au! ColorScheme * lua require("colors.post").init()')
 
-require('02_plugins_conf')
-
 local config_path = vim.fn.stdpath('config')
 if vim.fn.filereadable(config_path .. '/lua/system_config.lua') == 1 then
   require('system_config')
 end
+
+require('02_plugins_conf')
 
 vim.cmd('filetype plugin indent on')

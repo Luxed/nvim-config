@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 local au = require('helpers.command').autocmd
 local map = require('helpers.map')
 local lsp_status = require('lsp-status')
+local root_pattern = require('lspconfig.util').root_pattern
 
 -- TODO: Investigate why highlighting is _really_ slow with the typescript-language-server specifically
 local highlight_blacklist = {
@@ -63,7 +64,17 @@ local complete_lsp_setup = {
   capabilities = lsp_status.capabilities
 }
 
-nvim_lsp.vuels.setup(complete_lsp_setup)
+nvim_lsp.vuels.setup(vim.tbl_extend('force', complete_lsp_setup, {
+      init_options = {
+        config = {
+          vetur = {
+            experimental = {
+              templateInterpolationService = true
+            }
+          }
+        }
+      }
+  }))
 nvim_lsp.rls.setup(complete_lsp_setup)
 nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
@@ -75,7 +86,12 @@ if vim.g.config_omnisharp_bin then
   local pid = vim.fn.getpid()
   nvim_lsp.omnisharp.setup{
     cmd = { vim.g.config_omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-    on_attach = on_attach_complete
+    on_attach = on_attach_complete,
+    capabilities = lsp_status.capabilities,
+    root_dir = function(path)
+      -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
+      return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
+    end
   }
 end
 
