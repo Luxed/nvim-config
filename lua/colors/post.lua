@@ -13,6 +13,7 @@ return {
 
       -- Add highlight for word under cursor
       hi_link('LspReferenceRead', 'Visual')
+      hi('LspDiagnosticsUnderlineHint', {gui='underline'})
     elseif colors_name == 'afterglow' then
       -- Set pmenu to complete black for better Fzf highlighting
       hi('Pmenu', {guibg='#000000'})
