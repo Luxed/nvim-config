@@ -3,9 +3,9 @@ lsp_status.register_progress()
 
 local lsp_status_config = {
   kind_labels = {
-    ['Function'] = 'f',
-    ['Method'] = 'm',
-    ['Class'] = 'c',
+    ['Function'] = 'F',
+    ['Method'] = 'M',
+    ['Class'] = 'C',
   },
   current_function = true,
   indicator_separator = ' ',
