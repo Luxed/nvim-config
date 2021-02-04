@@ -1,6 +1,9 @@
 local gl = require('galaxyline')
 local gls = gl.section
 local lsp_status = require('lsp-status')
+local ayu_get_color = vim.fn['ayu#get_color']
+local get_hi_attr = require('helpers.colors').get_hi_attr
+
 gl.short_line_list = {'packer', 'nerdtree', 'fugitive', 'startify'}
 
 local function buffer_not_empty()
@@ -10,22 +13,17 @@ local function checkwidth()
   local squeeze_width  = vim.fn.winwidth(0) / 2
   return squeeze_width > 40
 end
+-- TODO: maybe something has been merged for this?
 local function get_icon_color()
   local file_name = vim.fn.expand('%:t')
   local file_ext = vim.fn.expand('%:e')
 
   local _, icon_hl = require('nvim-web-devicons').get_icon(file_name, file_ext, { default = true })
-  local hl_id = vim.fn.hlID(icon_hl)
-  local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
-
-  return hl_hex_color
+  return get_hi_attr(icon_hl, 'fg#')
 end
 local function get_git_logo_color()
   local _, icon_hl = require('nvim-web-devicons').get_icon('git', 'git', { default = true })
-  local hl_id = vim.fn.hlID(icon_hl)
-  local hl_hex_color = vim.fn.synIDattr(hl_id, 'fg#')
-
-  return hl_hex_color
+  return get_hi_attr(icon_hl, 'fg#')
 end
 local function has_lsp_clients()
   return #vim.lsp.buf_get_clients() > 0
@@ -36,28 +34,30 @@ local function ts_whitelist()
 end
 
 -- Colors from ayu_mirage.vim from the "vim-airline-themes" repository
--- TODO: Use exported ayu colors
 -- TODO: Make work with other themes (maybe add some simple highlights that any theme can implement)
 local function mode_color()
   local mode = vim.fn.mode()
 
   if mode == 'i' then
-    return '#80d4ff'
+    return ayu_get_color('entity')
   elseif mode == 'v' or mode == 'V' or mode == '' then
-    return '#ffae57'
+    return ayu_get_color('keyword')
   elseif mode == 'R' then
-    return '#f07178'
+    return ayu_get_color('markup')
   elseif mode == 'c' then
-    return '#d4bfff'
+    return ayu_get_color('constant')
   end
-  return '#bbe67e'
+  return ayu_get_color('string')
+end
+local function color_middle()
+  return get_hi_attr('Normal', 'bg#')
 end
 
 local colors_ayu = {
-  light_bg = '#232834',
-  dark_bg = '#141925',
-  light_fg = '#cbccc6',
-  dark_fg = '#232834'
+  light_bg = ayu_get_color('panel_bg'),
+  dark_bg = ayu_get_color('panel_shadow'),
+  light_fg = ayu_get_color('fg'),
+  dark_fg = ayu_get_color('panel_bg')
 }
 
 local current_mode = vim.fn.mode()
@@ -153,6 +153,7 @@ gls.left = {
     }
   },
   {
+    -- TODO: get fg highlights from defined diff highlights
     DiffAdd = {
       provider = 'DiffAdd',
       condition = checkwidth,
@@ -180,7 +181,7 @@ gls.left = {
     LeftEnd = {
       provider = function() return '' end,
       separator = '',
-      separator_highlight = {colors_ayu.dark_bg, '#212733'}, -- bg from Normal
+      separator_highlight = {colors_ayu.dark_bg, color_middle},
       highlight = {colors_ayu.dark_bg, colors_ayu.dark_bg}
     }
   }
@@ -193,7 +194,7 @@ gls.right = {
       condition = ts_whitelist,
       separator = '',
       separator_highlight = {
-        '#212733', -- fg is bg from Normal
+        color_middle,
         function()
           return has_lsp_clients() and colors_ayu.light_bg or colors_ayu.dark_bg
         end
@@ -217,7 +218,7 @@ gls.right = {
       separator_highlight = {
         colors_ayu.dark_bg,
         function()
-          return ts_whitelist() and colors_ayu.light_bg or '#212733'
+          return ts_whitelist() and colors_ayu.light_bg or color_middle()
         end
       },
       highlight = {colors_ayu.light_fg, colors_ayu.dark_bg},
@@ -229,7 +230,7 @@ gls.right = {
       separator = '',
       separator_highlight = {
         function()
-          return (has_lsp_clients() or ts_whitelist()) and colors_ayu.dark_bg or '#212733'
+          return (has_lsp_clients() or ts_whitelist()) and colors_ayu.dark_bg or color_middle()
         end,
         colors_ayu.light_bg
       },
