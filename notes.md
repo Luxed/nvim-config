@@ -11,9 +11,7 @@
 - Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
 - Make interface to create Lua mappings without needing to use strings
   Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
-- Make `nvim-bufferline.lua` reloadable
-- Only show git indicator when in a git repo
-- Improve ayu-vim for better TreeSitter support.
+- Only show git indicator when in a git repo in custom `galaxyline` line
 - Make real "dropdown" theme for Telescope based on current cursor position. (useful for quick actions like LSP Code Actions)
 
 # Neovim 0.5 features
