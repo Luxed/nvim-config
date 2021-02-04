@@ -36,6 +36,8 @@ local function ts_whitelist()
 end
 
 -- Colors from ayu_mirage.vim from the "vim-airline-themes" repository
+-- TODO: Use exported ayu colors
+-- TODO: Make work with other themes (maybe add some simple highlights that any theme can implement)
 local function mode_color()
   local mode = vim.fn.mode()
 
@@ -81,7 +83,7 @@ gls.left = {
           [''] = 'V-BLOCK',
         }
         if current_mode ~= mode then
-          require('galaxyline.colors').init_theme(function() return gls end)
+          require('galaxyline.colors').init_theme(gls)
           current_mode = mode
         end
         return alias[mode]
