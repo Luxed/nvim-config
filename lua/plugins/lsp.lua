@@ -1,19 +1,20 @@
 local nvim_lsp = require('lspconfig')
-local au = require('helpers.command').autocmd
+local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local lsp_status = require('lsp-status')
 local root_pattern = require('lspconfig.util').root_pattern
 
 -- TODO: Investigate why highlighting is _really_ slow with the typescript-language-server specifically
 local highlight_blacklist = {
-  typescript = true
+  --typescript = true
 }
 
 local function on_attach_au(client)
   if client.resolved_capabilities.document_highlight and not highlight_blacklist[vim.bo.filetype] then
-    au('CursorHold',  '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorHoldI', '<buffer>', 'lua vim.lsp.buf.document_highlight()')
-    au('CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()')
+    augroup('lsp_document_highlight', {
+        { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
+        { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }
+      })
   end
 end
 
