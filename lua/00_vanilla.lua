@@ -9,8 +9,6 @@ set('assign', {
     softtabstop = default_indent,
     expandtab = true,
     shiftwidth = default_indent,
-    -- TODO: Look into how the following works:
-    -- smartindent = true
     autoindent = true
   },
   w = {
@@ -45,7 +43,8 @@ set('assign', {
     termguicolors = true,
     grepprg = 'rg --no-heading --vimgrep --smart-case',
     hidden = true,
-    completeopt = 'menuone,noinsert,noselect',
+    --completeopt = 'menuone,noinsert,noselect',
+    completeopt = 'menu,menuone,noselect'
   }
 })
 

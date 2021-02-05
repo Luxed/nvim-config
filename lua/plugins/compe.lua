@@ -1,3 +1,5 @@
+local map = require('helpers.map')
+
 vim.cmd('packadd nvim-compe')
 
 require('compe').setup {
@@ -5,7 +7,8 @@ require('compe').setup {
   source = {
     path = true,
     buffer = true,
-    nvim_lsp = true
+    nvim_lsp = true,
+    vsnip = true
   }
 }
 
