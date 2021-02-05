@@ -60,9 +60,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = false
   })
 
+local lsp_capabilities = lsp_status.capabilities
+lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local complete_lsp_setup = {
   on_attach = on_attach_complete,
-  capabilities = lsp_status.capabilities
+  capabilities = lsp_capabilities
 }
 
 nvim_lsp.vuels.setup(vim.tbl_extend('force', complete_lsp_setup, {
