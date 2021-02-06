@@ -16,30 +16,6 @@ end
 
 local M = {}
 
-M.branch = function(opts)
-  local branches = vim.fn.systemlist('git branch -r --sort=-committerdate --format="%(refname:lstrip=3)"')
-  local current_branch = vim.fn.systemlist('git branch --show-current')[1]
-
-  local results = {}
-  for _, branch in pairs(branches) do
-    if branch ~= current_branch and branch ~= "HEAD" then
-      table.insert(results, branch)
-    end
-  end
-
-  pickers.new(opts, {
-    prompt = 'Branches',
-    finder = finders.new_table(results),
-    sorter = sorters.get_generic_fuzzy_sorter(),
-
-    attach_mappings = function (_, map)
-      map('i', '<CR>', checkout_actions.set_branch)
-      map('n', '<CR>', checkout_actions.set_branch)
-      return true
-    end,
-  }):find()
-end
-
 M.tags = function(opts)
   local tags = vim.fn.systemlist('git ls-remote -t --refs')
   table.remove(tags, 1)
