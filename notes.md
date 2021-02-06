@@ -41,7 +41,6 @@
 
 ### nvim-treesitter
 
-- Highlighting doesn't look all that good on all themes out of the box
 - `nvim-ts-rainbow` performs extremely poorly and makes Neovim feel like Visual Studio
 - Folds do not get updated until I reload the file with `:e`
 
@@ -58,6 +57,5 @@
 
 ### telescope
 
-- error when changing to a branch a with a lot of commits (`cend` variable is nil, add check)
 - Going to a file doesn't enable folds
 
