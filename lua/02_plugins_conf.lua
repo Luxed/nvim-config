@@ -66,6 +66,7 @@ end
 local function lua_plugins()
   require('plugins.telescope').init()
   --require('plugins.completion').init()
+  --require('plugins.autopairs')
   require('plugins.compe')
 
   require('plugins.lsp_status')

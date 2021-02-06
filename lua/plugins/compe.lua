@@ -14,3 +14,5 @@ require('compe').setup {
 
 map.inore('<C-Space>', 'compe#complete()', { expr = true, silent = true })
 map.inore('<CR>', 'compe#confirm("<CR>")', { expr = true, silent = true })
+--map.inore('<CR>', 'lua require("plugins.autopairs").completion_confirm()', { expr = true })
+--map.inore('<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true})

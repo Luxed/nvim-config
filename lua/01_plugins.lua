@@ -67,7 +67,8 @@ local function startup(use)
   local function utility()
     use('tpope/vim-fugitive') -- Git integration
     use('junegunn/gv.vim') -- Git log graphical visualisation
-    use({'jiangmiao/auto-pairs', opt = true}) -- Auto close things ('(', '{', '[', etc.)
+    use{'jiangmiao/auto-pairs', opt = true} -- Auto close things ('(', '{', '[', etc.)
+    use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
     use('preservim/nerdtree') -- File explorer
     use('preservim/nerdcommenter') -- Commenting tool
