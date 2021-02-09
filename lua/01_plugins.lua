@@ -12,7 +12,6 @@ local function bootstrap()
   return not_installed
 end
 
--- TODO: look into properly managing dependencies
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
@@ -166,5 +165,5 @@ require('packer').startup(startup)
 if first_install then
   print('First install. Plugins will be automatically installed.')
   print('Restart Neovim once the update is fully finished')
-  vim.cmd('PackerSync')
+  require('packer').sync()
 end
