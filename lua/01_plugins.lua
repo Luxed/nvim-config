@@ -54,13 +54,8 @@ local function startup(use)
     use('blankname/vim-fish')
     -- Lua
     use('tbastos/vim-lua')
-    -- the following give me worse folding with syntax fold activated
-    --use('euclidianAce/BetterLua.vim')
-    --use('tjdevries/manillua.nvim')
     use('leafo/moonscript-vim')
     use('bakpakin/fennel.vim')
-    -- C#
-    --use('OmniSharp/omnisharp-vim')
   end
 
   local function utility()
@@ -82,14 +77,11 @@ local function startup(use)
   end
 
   local function interface()
-    --use('vim-airline/vim-airline') -- Status bar + tabline
-    --use('vim-airline/vim-airline-themes')
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('ryanoasis/vim-devicons')
     use('tiagofumo/vim-nerdtree-syntax-highlight')
     use('kyazdani42/nvim-web-devicons')
-    --use('junegunn/rainbow_parentheses.vim')
     use('dyng/ctrlsf.vim') -- Search and replace interface
     use('f-person/git-blame.nvim') -- Simple, virtual text, git blame
   end
