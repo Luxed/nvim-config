@@ -9,10 +9,12 @@ end
 require('00_vanilla')
 require('01_plugins')
 
--- load colorscheme as soon as possible
-vim.cmd('colorscheme ayu')
 -- setup an autocommand to modify themes to my liking
 vim.cmd('au! ColorScheme * lua require("colors.post").init()')
+-- Ayu
+vim.g.ayucolor = 'mirage'
+-- load colorscheme as soon as possible
+vim.cmd('colorscheme ayu')
 
 local config_path = vim.fn.stdpath('config')
 if vim.fn.filereadable(config_path .. '/lua/system_config.lua') == 1 then

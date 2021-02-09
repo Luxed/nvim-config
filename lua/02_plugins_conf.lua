@@ -52,9 +52,6 @@ local function interface()
   g['pencil_higher_contrast_ui'] = 1
   g['pencil_gutter_color'] = 0
 
-  -- Ayu
-  g['ayucolor'] = 'mirage'
-
   -- CtrlSF
   g['ctrlsf_populate_qflist'] = true
   --g['ctrlsf_default_view_mode'] = 'compact'
