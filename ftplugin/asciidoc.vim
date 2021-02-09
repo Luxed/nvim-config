@@ -32,5 +32,5 @@ function! GetAsciidocFold()
     return '0'
 endfunction
 
-set foldmethod=expr
-set foldexpr=GetAsciidocFold()
+setlocal foldmethod=expr
+setlocal foldexpr=GetAsciidocFold()

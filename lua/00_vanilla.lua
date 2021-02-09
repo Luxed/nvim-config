@@ -66,7 +66,7 @@ map.nnore('<leader>bq', ':b# <BAR> bd #<CR>')
 map.nnore('<leader>ei', ':e $MYVIMRC<CR>')
 map.nnore('<leader>si', ':source $MYVIMRC<CR>')
 
-map.nnore('zS', ':lua print(require("helpers.syntax").getCursorHighlights())<CR>', {silent = true})
+map.nnore('zS', ':lua require("helpers.syntax").showCursorHighlights()<CR>', {silent = true})
 
 -- toggle highlight
 map.nnore('<leader>th', ':set hlsearch!<CR>')
