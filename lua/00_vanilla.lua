@@ -1,6 +1,7 @@
 local set = require('helpers.set')
 local map = require('helpers.map')
 local command = require('helpers.command').command
+local au = require('helpers.command').autocmd
 
 local default_indent = 4
 set('assign', {
@@ -81,3 +82,5 @@ map.nnore('<S-Space>', 'zA')
 map.tnore('<leader>n', '<C-\\><C-N>')
 
 command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
+
+au('TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=500}')

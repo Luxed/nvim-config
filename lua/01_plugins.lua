@@ -78,7 +78,6 @@ local function startup(use)
     use('mhinz/vim-startify') -- Nice startup screen
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
-    use('machakann/vim-highlightedyank') -- highlights what's been yanked, TODO: replace with built-in neovim `on_yank`
     use('mattn/emmet-vim')
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
   end
