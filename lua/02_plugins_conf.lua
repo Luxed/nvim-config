@@ -40,8 +40,6 @@ local function utility()
 end
 
 local function interface()
-  require('plugins.airline')
-
   require('plugins.startify')
 
   -- Semshi
