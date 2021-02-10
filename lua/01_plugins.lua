@@ -15,6 +15,7 @@ end
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
+  -- TODO: A lot of things in there could be removed thanks to TreeSitter.
   local function languages()
     -- Rust
     use('rust-lang/rust.vim')
@@ -60,19 +61,19 @@ local function startup(use)
 
   local function utility()
     use('tpope/vim-fugitive') -- Git integration
-    use('junegunn/gv.vim') -- Git log graphical visualisation
+    use{'junegunn/gv.vim', opt = true, cmd = {'GV'}} -- Git log graphical visualisation
     use{'jiangmiao/auto-pairs', opt = true} -- Auto close things ('(', '{', '[', etc.)
     use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
     use('preservim/nerdtree') -- File explorer
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
-    use('AndrewRadev/bufferize.vim') -- Execute commands in a buffer
+    use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
     use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
     use('mhinz/vim-startify') -- Nice startup screen
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
-    use('mattn/emmet-vim')
+    use{'mattn/emmet-vim', opt = true, ft={'html'}}
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
   end
 
@@ -118,7 +119,7 @@ local function startup(use)
     use('nvim-telescope/telescope.nvim')
 
     -- TreeSitter
-    use('nvim-treesitter/nvim-treesitter')
+    use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use('nvim-treesitter/nvim-treesitter-refactor')
     use('p00f/nvim-ts-rainbow')
     use('nvim-treesitter/playground')
@@ -130,9 +131,9 @@ local function startup(use)
     use('nvim-lua/lsp-status.nvim')
 
     -- Completion
-    use({'nvim-lua/completion-nvim', opt = true})
-    use({'steelsojka/completion-buffers', opt = true})
-    use({'hrsh7th/nvim-compe', opt = true})
+    use{'nvim-lua/completion-nvim', opt = true}
+    use{'steelsojka/completion-buffers', opt = true}
+    use{'hrsh7th/nvim-compe', opt = true}
 
     -- Statusline/Tabline
     use('glepnir/galaxyline.nvim')
@@ -140,7 +141,7 @@ local function startup(use)
   end
 
   local function tracking()
-    use({'ActivityWatch/aw-watcher-vim', opt = true})
+    use{'ActivityWatch/aw-watcher-vim', opt = true}
   end
 
   languages()
