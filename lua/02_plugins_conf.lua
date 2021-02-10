@@ -1,6 +1,7 @@
 local g = vim.g
 local au = require('helpers.command').autocmd
 local map = require('helpers.map')
+local config_path = vim.fn.stdpath('config')
 
 local function languages()
   -- Pandoc
@@ -37,6 +38,7 @@ local function utility()
   vsnip_mapper('<C-e>', 'vsnip#expandable()', '<Plug>(vsnip-expand)')
   vsnip_mapper('<C-j>', 'vsnip#jumpable(1)', '<Plug>(vsnip-jump-next)')
   vsnip_mapper('<C-k>', 'vsnip#jumpable(-1)', '<Plug>(vsnip-jump-prev)')
+  g['vsnip_snippet_dir'] = config_path .. '/vsnip'
 end
 
 local function interface()
