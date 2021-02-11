@@ -13,6 +13,7 @@ require('01_plugins')
 vim.cmd('au! ColorScheme * lua require("colors.post").init()')
 -- Ayu
 vim.g.ayucolor = 'mirage'
+vim.g.ayu_italic_comment = true
 -- load colorscheme as soon as possible
 vim.cmd('colorscheme ayu')
 
