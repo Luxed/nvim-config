@@ -9,10 +9,9 @@
 # TODO
 
 - Look into `netrw` (built in file explorer) to potentially replace NERDTree (only used for quick look at project or sometimes "project drawer" style which doesn't fit Vim very well)
-- Make interface to create Lua mappings without needing to use strings
-  Buffer bound keys might be more difficult to handle (this might grow too big and slow down, or it won't because it's dynamic, so it should be fine)
 - Only show git indicator when in a git repo in custom `galaxyline` line
 - Make real "dropdown" theme for Telescope based on current cursor position. (useful for quick actions like LSP Code Actions)
+- Find the cause of the slowdows after some time
 
 # Neovim 0.5 features
 
@@ -41,7 +40,6 @@
 
 ### nvim-treesitter
 
-- `nvim-ts-rainbow` performs extremely poorly and makes Neovim feel like Visual Studio
 - Folds do not get updated until I reload the file with `:e`
 
 ### completion-nvim
