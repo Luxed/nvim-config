@@ -34,7 +34,7 @@ local function startup(use)
     use('reasonml-editor/vim-reason-plus')
     use('herringtondarkholme/yats.vim') -- Typescript syntax
     use('posva/vim-vue')
-    -- Html
+    -- Html/css
     use('othree/html5.vim')
     use('hail2u/vim-css3-syntax')
     use('cakebaker/scss-syntax.vim')
@@ -48,8 +48,8 @@ local function startup(use)
     -- Vimscript
     use('junegunn/vader.vim')
     -- Python
-    use('numirias/semshi') -- Python semantic syntax highlighting
-    use('tmhedberg/simpylfold') -- Python code folding
+    use{'numirias/semshi', opt=true, ft={'python'}} -- Python semantic syntax highlighting
+    use{'tmhedberg/simpylfold', opt=true, ft={'python'} } -- Python code folding
     -- Shell
     use('PProvost/vim-ps1')
     use('blankname/vim-fish')
