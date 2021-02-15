@@ -1,3 +1,3 @@
-nnoremap <buffer> <leader>gp :Gpush<CR>
+nnoremap <buffer> <leader>gp :Git push<CR>
 
 setlocal foldmethod=syntax
