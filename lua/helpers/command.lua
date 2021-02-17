@@ -3,9 +3,6 @@ return {
   command = function(name, cmd)
     vim.cmd(string.format('command! %s %s', name, cmd))
   end,
-  autocmd = function(event, file, cmd)
-    vim.cmd(string.format('autocmd %s %s %s', event, file, cmd))
-  end,
   augroup = function(group_name, autocmds)
     local str_autocmds = ''
     for _, v in ipairs(autocmds) do

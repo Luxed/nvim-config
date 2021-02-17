@@ -1,5 +1,5 @@
 local g = vim.g
-local au = require('helpers.command').autocmd
+local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local config_path = vim.fn.stdpath('config')
 
@@ -8,7 +8,9 @@ local function languages()
   g['pandoc#modules#disabled'] = {'spell'}
   g['pandoc#syntax#codeblocks#embeds#langs'] = { 'VimL=vim' }
 
-  au('FileType', 'css,scss', 'setlocal iskeyword+=-')
+  augroup('css_keyword', {
+      { 'FileType', 'css,scss', 'setlocal iskeyword+=-' }
+    })
 end
 
 local function utility()

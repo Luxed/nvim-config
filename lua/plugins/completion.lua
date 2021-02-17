@@ -2,7 +2,7 @@ vim.cmd('packadd completion-nvim')
 vim.cmd('packadd completion-buffers')
 
 local map = require('helpers.map')
-local au = require('helpers.command').autocmd
+local augroup = require('helpers.command').augroup
 
 local function setup_mappings()
   vim.api.nvim_set_keymap(
@@ -47,7 +47,9 @@ return {
     }
   },
   init = function()
-    au('BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)')
+    augroup('completion_buf_enable', {
+        { 'BufEnter', '*', 'lua require("completion").on_attach(require("plugins.completion").options)' }
+      })
     setup_mappings()
   end
 }
