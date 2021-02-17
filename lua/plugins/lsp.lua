@@ -7,7 +7,8 @@ local root_pattern = require('lspconfig.util').root_pattern
 local function on_attach_au(client)
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
   if client.resolved_capabilities.document_highlight then
-    augroup('lsp_document_highlight', {
+    local bufnr = vim.fn.bufnr()
+    augroup('lsp_document_highlight_' .. tostring(bufnr), {
         { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
         { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }
       })
