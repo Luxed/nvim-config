@@ -95,7 +95,7 @@ local function startup(use)
     use({'dracula/vim', as = 'dracula'})
     use('jacoborus/tender.vim')
     use('arcticicestudio/nord-vim')
-    use('Luxed/ayu-vim')
+    use{'Luxed/ayu-vim', branch = 'experimental-colors'}
     use('zeis/vim-kolor')
     use('danilo-augusto/vim-afterglow')
     use('cseelus/vim-colors-lucid')
