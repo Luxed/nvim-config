@@ -1,0 +1,12 @@
+{
+    "Print": {
+        "prefix": ["pln"],
+        "body": ["println!(\"$1\");"],
+        "description": "print line"
+    },
+    "PrintFormat": {
+        "prefix": ["pln,"],
+        "body": ["println!(\"{}\", $1);"],
+        "description": "print line format"
+    }
+}
