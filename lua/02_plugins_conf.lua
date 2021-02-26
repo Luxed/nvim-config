@@ -6,7 +6,7 @@ local config_path = vim.fn.stdpath('config')
 local function languages()
   -- Pandoc
   g['pandoc#modules#disabled'] = {'spell'}
-  g['pandoc#syntax#codeblocks#embeds#langs'] = { 'VimL=vim' }
+  g['pandoc#syntax#codeblocks#embeds#langs'] = { 'VimL=vim', 'vim', 'viml=vim', 'lua' }
 
   augroup('css_keyword', {
       { 'FileType', 'css,scss', 'setlocal iskeyword+=-' }
