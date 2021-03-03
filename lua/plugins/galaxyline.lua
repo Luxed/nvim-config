@@ -83,7 +83,7 @@ gls.left = {
           [''] = 'V-BLOCK',
         }
         if current_mode ~= mode then
-          require('galaxyline.colors').init_theme(gls)
+          --require('galaxyline.colors').init_theme(gls)
           current_mode = mode
         end
         return alias[mode]
