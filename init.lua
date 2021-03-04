@@ -20,6 +20,7 @@ vim.cmd('colorscheme ayu')
 
 local config_path = vim.fn.stdpath('config')
 if vim.fn.filereadable(config_path .. '/lua/system_config.lua') == 1 then
+  -- TODO: use pcall require instead
   require('system_config')
 end
 

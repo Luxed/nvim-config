@@ -18,6 +18,9 @@ local function utility()
   map.nore('', '<C-N>', ':NERDTreeToggle<CR>')
   g['NERDTreeShowHidden'] = 1
 
+  -- fern.vim
+  require('plugins.fern')
+
   -- Switch
   map.nnore('<leader>ss', ':call switcher#Switch()<CR>')
   map.nnore('<leader>sv', ':call switcher#SwitchWithOptions({"edit_command": "vs"})<CR>')
