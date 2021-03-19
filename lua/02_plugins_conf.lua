@@ -14,10 +14,6 @@ local function languages()
 end
 
 local function utility()
-  -- NerdTree
-  map.nore('', '<C-N>', ':NERDTreeToggle<CR>')
-  g['NERDTreeShowHidden'] = 1
-
   -- fern.vim
   require('plugins.fern')
 

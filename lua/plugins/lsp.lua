@@ -65,7 +65,7 @@ local complete_lsp_setup = {
 
 -- NOTE: On windows, some commands created by npm will not work unless you explicitely tell lspconfig to use the ".cmd" executable
 nvim_lsp.vuels.setup(vim.tbl_extend('force', complete_lsp_setup, {
-      cmd = vim.g.vls_cmd,
+      cmd = vim.g.vls_cmd or 'vls',
       init_options = {
         config = {
           vetur = {
