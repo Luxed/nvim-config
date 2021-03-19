@@ -102,7 +102,7 @@ local function startup(use)
     use('cseelus/vim-colors-lucid')
     use('bluz71/vim-nightfly-guicolors')
     use('srcery-colors/srcery-vim')
-    use({'embark-theme/vim', as = 'embark'})
+    use({'embark-theme/vim', as = 'embark', branch = 'main'})
     use('sainnhe/sonokai')
     use('glepnir/zephyr-nvim')
   end
