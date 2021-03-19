@@ -31,7 +31,7 @@ local function startup(use)
     -- Javascript, Typescript
     use('pangloss/vim-javascript')
     use('heavenshell/vim-jsdoc')
-    use('reasonml-editor/vim-reason-plus')
+    --use('reasonml-editor/vim-reason-plus')
     use('herringtondarkholme/yats.vim') -- Typescript syntax
     use('posva/vim-vue')
     -- Html/css
@@ -44,7 +44,7 @@ local function startup(use)
     use('udalov/kotlin-vim')
     -- Haskell
     use('neovimhaskell/haskell-vim')
-    use('hspec/Hspec.vim')
+    use{'hspec/Hspec.vim', opt=true, ft={'haskell'}}
     -- Vimscript
     use('junegunn/vader.vim')
     -- Python
@@ -57,6 +57,8 @@ local function startup(use)
     use('tbastos/vim-lua')
     use('leafo/moonscript-vim')
     use('bakpakin/fennel.vim')
+    -- Reason
+    use('rescript-lang/vim-rescript')
   end
 
   local function utility()
@@ -65,7 +67,7 @@ local function startup(use)
     use{'jiangmiao/auto-pairs', opt = true} -- Auto close things ('(', '{', '[', etc.)
     use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
-    use('preservim/nerdtree') -- File explorer
+    --use('preservim/nerdtree') -- File explorer
     use('lambdalisue/fern.vim')
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
@@ -81,11 +83,11 @@ local function startup(use)
   local function interface()
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
-    use('ryanoasis/vim-devicons')
-    use('tiagofumo/vim-nerdtree-syntax-highlight')
+    --use('ryanoasis/vim-devicons')
+    --use('tiagofumo/vim-nerdtree-syntax-highlight')
     use('kyazdani42/nvim-web-devicons')
     use('dyng/ctrlsf.vim') -- Search and replace interface
-    use('f-person/git-blame.nvim') -- Simple, virtual text, git blame
+    --use('f-person/git-blame.nvim') -- Simple, virtual text, git blame
   end
 
   local function themes()
