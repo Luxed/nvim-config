@@ -68,7 +68,7 @@ local function startup(use)
     use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
     --use('preservim/nerdtree') -- File explorer
-    use('lambdalisue/fern.vim')
+    use{'lambdalisue/fern.vim', requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'}}
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
@@ -111,31 +111,36 @@ local function startup(use)
 
   local function lua_plugins()
     -- TODO: look into replacing this by snippets.nvim
-    use('hrsh7th/vim-vsnip')
-    use('hrsh7th/vim-vsnip-integ')
+    use{'hrsh7th/vim-vsnip', requires = {'hrsh7th/vim-vsnip-integ'}}
 
     use('norcalli/nvim-colorizer.lua')
 
     -- Telescope (fuzzy finder)
-    use('nvim-lua/popup.nvim')
-    use('nvim-lua/plenary.nvim')
-    use('nvim-telescope/telescope.nvim')
+    use{'nvim-telescope/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
 
     -- TreeSitter
-    use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use('nvim-treesitter/nvim-treesitter-refactor')
-    use('p00f/nvim-ts-rainbow')
-    use('nvim-treesitter/playground')
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      requires = {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'p00f/nvim-ts-rainbow',
+        'nvim-treesitter/playground'
+      }
+    }
 
     -- LSP related plugins
-    use('neovim/nvim-lspconfig')
-    use('tjdevries/nlua.nvim')
-    use('mfussenegger/nvim-jdtls')
+    use {
+      'neovim/nvim-lspconfig',
+      requires = {
+        'tjdevries/nlua.nvim',
+        'mfussenegger/nvim-jdtls'
+      }
+    }
     use('nvim-lua/lsp-status.nvim')
 
     -- Completion
-    use{'nvim-lua/completion-nvim', opt = true}
-    use{'steelsojka/completion-buffers', opt = true}
+    use{'nvim-lua/completion-nvim', opt = true, requires = {'steelsojka/completion-buffers'}}
     use{'hrsh7th/nvim-compe', opt = true}
 
     -- Statusline/Tabline

@@ -1,5 +1,7 @@
 local map = require('helpers.map')
 
+vim.g['fern#renderer'] = 'nerdfont'
+
 map.nnore('<C-f>f', ':Fern . -reveal=%<CR>', { silent = true })
 map.nnore('<C-f><C-f>', ':Fern . -reveal=%<CR>', { silent = true })
 --map.nnore('<C-f>v', ':Fern . -reveal=% -opener=vertical\\ leftabove\\ split<CR>', { silent = true })
