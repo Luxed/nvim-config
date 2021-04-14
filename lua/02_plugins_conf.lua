@@ -26,7 +26,7 @@ local function utility()
   map.xnore('<leader>w', ':call wrap#func()<CR>')
 
   -- Fugitive
-  map.nnore('<leader>gs', ':Gstatus<CR>', {silent = true})
+  map.nnore('<leader>gs', ':Git<CR>', {silent = true})
   map.nnore('<leader>gf', ':Git fetch<CR>', {silent = true})
 
   -- vim-closetag
