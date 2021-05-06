@@ -83,6 +83,7 @@ nvim_lsp.rls.setup(complete_lsp_setup)
 nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
 nvim_lsp.html.setup(complete_lsp_setup)
+nvim_lsp.yamlls.setup(complete_lsp_setup)
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then
