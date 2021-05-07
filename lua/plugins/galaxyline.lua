@@ -4,7 +4,7 @@ local lsp_status = require('lsp-status')
 local ayu_get_color = vim.fn['ayu#get_color']
 local get_hi_attr = require('helpers.colors').get_hi_attr
 
-gl.short_line_list = {'packer', 'nerdtree', 'fugitive', 'startify'}
+gl.short_line_list = {'packer', 'nerdtree', 'fugitive', 'startify', 'fern'}
 
 local function buffer_not_empty()
   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -134,8 +134,8 @@ gls.left = {
     BeforeGitSeparator = {
       provider = function() return '' end,
       condition = buffer_not_empty,
-      separator = '',
-      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      separator = '',
+      separator_highlight = {colors_ayu.light_bg, colors_ayu.dark_bg},
     }
   },
   {
@@ -192,7 +192,7 @@ gls.right = {
     TreeSitter = {
       provider = function() return require('nvim-treesitter').statusline(40) end,
       condition = ts_whitelist,
-      separator = '',
+      separator = '',
       separator_highlight = {
         color_middle,
         function()
@@ -209,7 +209,6 @@ gls.right = {
   },
   {
     LspStatus = {
-      --provider = require('lsp-status').status,
       provider = function()
         return lsp_status.status()
       end,
@@ -227,12 +226,12 @@ gls.right = {
   {
     FileFormat = {
       provider = 'FileFormat',
-      separator = '',
+      separator = '',
       separator_highlight = {
         function()
-          return (has_lsp_clients() or ts_whitelist()) and colors_ayu.dark_bg or color_middle()
+          return (has_lsp_clients() or ts_whitelist()) and colors_ayu.light_bg or color_middle()
         end,
-        colors_ayu.light_bg
+        colors_ayu.dark_bg
       },
       highlight = {colors_ayu.light_fg, colors_ayu.light_bg},
     }
@@ -265,8 +264,8 @@ gls.short_line_left = {
   {
     BufferType = {
       provider = 'FileTypeName',
-      separator = '',
-      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
+      separator = '',
+      separator_highlight = {colors_ayu.light_bg, colors_ayu.dark_bg},
       highlight = {colors_ayu.light_fg, colors_ayu.dark_bg}
     }
   },
