@@ -89,15 +89,13 @@ require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then
   local pid = vim.fn.getpid()
-  nvim_lsp.omnisharp.setup{
+  nvim_lsp.omnisharp.setup(vim.tbl_extend('force', complete_lsp_setup, {
     cmd = { vim.g.config_omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-    on_attach = on_attach_complete,
-    capabilities = lsp_status.capabilities,
     root_dir = function(path)
       -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
       return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
-    end
-  }
+    end,
+  }))
 end
 
 vim.fn.sign_define('LspDiagnosticsSignError'      , { text='' })
