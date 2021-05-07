@@ -22,3 +22,8 @@ function! s:TableFormat()
 endfunction
 
 command! -buffer TableFormat call s:TableFormat()
+
+" table format
+nnoremap <buffer> <leader>tf <cmd>TableFormat<cr>
+" table emtpy cell
+nnoremap <buffer> <leader>tec <cmd>normal vi\|r <cr>

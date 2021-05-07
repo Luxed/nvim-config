@@ -1,0 +1,11 @@
+{
+    "If": {
+        "prefix": ["if"],
+        "body": [
+            "if $1 then",
+            "\t$0",
+            "end"
+        ],
+        "description": "lua if"
+    }
+}

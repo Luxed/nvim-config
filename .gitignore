@@ -7,3 +7,5 @@ tags
 system_config.vim
 Session.vim
 pack/
+plugin/packer_compiled.vim
+lua/system_config.lua

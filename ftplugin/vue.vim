@@ -1,2 +1,5 @@
-nnoremap <buffer><silent> K :call CocAction('doHover')<CR>
-nmap <buffer> <silent> gd <Plug>(coc-definition)
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+
+setlocal foldmethod=syntax
