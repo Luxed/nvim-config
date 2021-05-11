@@ -88,7 +88,7 @@ gls.left = {
         end
         return alias[mode]
       end,
-      separator = '',
+      separator = '',
       separator_highlight = {
         mode_color,
         function()
@@ -134,7 +134,7 @@ gls.left = {
     BeforeGitSeparator = {
       provider = function() return '' end,
       condition = buffer_not_empty,
-      separator = '',
+      separator = '',
       separator_highlight = {colors_ayu.light_bg, colors_ayu.dark_bg},
     }
   },
@@ -179,8 +179,8 @@ gls.left = {
   },
   {
     LeftEnd = {
-      provider = function() return '' end,
-      separator = '',
+      provider = function() return '' end,
+      separator = '',
       separator_highlight = {colors_ayu.dark_bg, color_middle},
       highlight = {colors_ayu.dark_bg, colors_ayu.dark_bg}
     }
@@ -192,7 +192,7 @@ gls.right = {
     TreeSitter = {
       provider = function() return require('nvim-treesitter').statusline(40) end,
       condition = ts_whitelist,
-      separator = '',
+      separator = '',
       separator_highlight = {
         color_middle,
         function()
@@ -213,7 +213,7 @@ gls.right = {
         return lsp_status.status()
       end,
       condition = has_lsp_clients,
-      separator = '',
+      separator = '',
       separator_highlight = {
         colors_ayu.dark_bg,
         function()
@@ -226,7 +226,7 @@ gls.right = {
   {
     FileFormat = {
       provider = 'FileFormat',
-      separator = '',
+      separator = '',
       separator_highlight = {
         function()
           return (has_lsp_clients() or ts_whitelist()) and colors_ayu.light_bg or color_middle()
@@ -247,7 +247,7 @@ gls.right = {
   {
     PerCent = {
       provider = 'LinePercent',
-      separator = '',
+      separator = '',
       separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
       highlight = {colors_ayu.light_fg, colors_ayu.dark_bg},
     }
