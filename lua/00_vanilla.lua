@@ -86,3 +86,5 @@ command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
 augroup('yank_post_highlight', {
     { 'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=500}' }
   })
+
+command('-nargs=1 YarnS', 'sp term://yarn <args>');
