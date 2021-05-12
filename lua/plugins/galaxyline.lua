@@ -264,8 +264,8 @@ gls.short_line_left = {
   {
     BufferType = {
       provider = 'FileTypeName',
-      separator = '',
-      separator_highlight = {colors_ayu.light_bg, colors_ayu.dark_bg},
+      separator = '',
+      separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
       highlight = {colors_ayu.light_fg, colors_ayu.dark_bg}
     }
   },
@@ -292,7 +292,7 @@ gls.short_line_right = {
   {
     BufferIcon = {
       provider= 'BufferIcon',
-      separator = '',
+      separator = '',
       separator_highlight = {colors_ayu.dark_bg, colors_ayu.light_bg},
       highlight = {colors_ayu.light_fg, colors_ayu.dark_bg}
     }
