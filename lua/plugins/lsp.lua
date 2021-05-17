@@ -3,6 +3,7 @@ local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local lsp_status = require('lsp-status')
 local root_pattern = require('lspconfig.util').root_pattern
+local home = vim.fn.expand('~')
 
 local function on_attach_au(client)
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
@@ -86,6 +87,11 @@ nvim_lsp.vimls.setup(complete_lsp_setup)
 nvim_lsp.html.setup(complete_lsp_setup)
 nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
+nvim_lsp.powershell_es.setup(vim.tbl_extend('force', complete_lsp_setup, {
+  -- TODO: will not work on Windows
+  bundle_path = home .. '/.local/opt/PowerShellEditorServices'
+}))
+nvim_lsp.angularls.setup(complete_lsp_setup)
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then
