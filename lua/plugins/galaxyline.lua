@@ -29,7 +29,7 @@ local function has_lsp_clients()
   return #vim.lsp.buf_get_clients() > 0
 end
 local function ts_whitelist()
-  local whitelist_filetype = { rust = true }
+  local whitelist_filetype = { }
   return whitelist_filetype[vim.bo.filetype]
 end
 

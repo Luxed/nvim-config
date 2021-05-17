@@ -6,7 +6,7 @@
     },
     "PrintFormat": {
         "prefix": ["pln,"],
-        "body": ["println!(\"{}\", $1);"],
+        "body": ["println!(\"$1{$2}\", $3);"],
         "description": "print line format"
     }
 }
