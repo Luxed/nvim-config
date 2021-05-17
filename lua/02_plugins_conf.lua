@@ -75,6 +75,8 @@ local function lua_plugins()
 
   require('plugins.galaxyline')
   require('plugins.bufferline').init()
+
+  --require('plugins.indent_blankline')
 end
 
 languages()

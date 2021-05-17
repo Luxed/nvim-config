@@ -146,6 +146,8 @@ local function startup(use)
     -- Statusline/Tabline
     use('glepnir/galaxyline.nvim')
     use('akinsho/nvim-bufferline.lua')
+
+    use({'lukas-reineke/indent-blankline.nvim', opt = true, branch = 'lua'})
   end
 
   local function tracking()
