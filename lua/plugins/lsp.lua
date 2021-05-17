@@ -83,7 +83,7 @@ nvim_lsp.cssls.setup(vim.tbl_extend('force', complete_lsp_setup, {
   }))
 --nvim_lsp.rls.setup(complete_lsp_setup)
 nvim_lsp.rust_analyzer.setup(vim.tbl_extend('force', complete_lsp_setup, {
-      cmd = vim.g.rust_analyzer_cmd or 'rust-analyzer'
+      cmd = vim.g.rust_analyzer_cmd or {'rust-analyzer'}
   }))
 nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
