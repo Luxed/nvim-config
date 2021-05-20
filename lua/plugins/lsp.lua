@@ -95,6 +95,7 @@ nvim_lsp.powershell_es.setup(vim.tbl_extend('force', complete_lsp_setup, {
   bundle_path = home .. '/.local/opt/PowerShellEditorServices'
 }))
 nvim_lsp.angularls.setup(complete_lsp_setup)
+nvim_lsp.pylsp.setup(complete_lsp_setup)
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then

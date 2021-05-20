@@ -47,9 +47,6 @@ local function startup(use)
     use{'hspec/Hspec.vim', opt=true, ft={'haskell'}}
     -- Vimscript
     use('junegunn/vader.vim')
-    -- Python
-    use{'numirias/semshi', opt=true, ft={'python'}} -- Python semantic syntax highlighting
-    use{'tmhedberg/simpylfold', opt=true, ft={'python'} } -- Python code folding
     -- Shell
     use('PProvost/vim-ps1')
     use('blankname/vim-fish')
