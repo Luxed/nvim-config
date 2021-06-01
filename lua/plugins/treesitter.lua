@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'c_sharp', 'css', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'python', 'rust', 'yaml' },
+  ensure_installed = { 'c_sharp', 'css', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'python', 'query', 'rust', 'yaml' },
   highlight = {
     enable = true,
   },
