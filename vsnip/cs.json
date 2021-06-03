@@ -1,0 +1,16 @@
+{
+  "Prop": {
+    "prefix": ["prop"],
+    "description": "New property",
+    "body": [
+      "${1:public} ${2:Type} ${3:Name} { ${4:get; set;} }$5"
+    ]
+  },
+  "VirtProp": {
+    "prefix": ["vprop"],
+    "descript": "New virtual property",
+    "body": [
+      "${1:public} virtual ${2:Type} ${3:Name} { ${4:get; set;} }$5"
+    ]
+  }
+}
