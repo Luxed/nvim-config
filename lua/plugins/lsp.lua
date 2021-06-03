@@ -35,6 +35,8 @@ local function on_attach_keymaps()
   map.nnore('<leader>qa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', {}, true)
   map.nnore('<leader>qs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', {}, true)
   map.nnore('<leader>qd', '<cmd>lua require("telescope.builtin").lsp_document_diagnostics()<CR>', {}, true)
+  map.nnore('<leader>qwd', '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>', {}, true)
+  map.nnore('<leader>qws', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', {}, true)
 
   -- override default keymap
   vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
@@ -65,8 +67,14 @@ local complete_lsp_setup = {
   capabilities = lsp_capabilities
 }
 
+local extended_setup = function(additional_options)
+  additional_options = additional_options or {}
+
+  return vim.tbl_extend('force', complete_lsp_setup, additional_options)
+end
+  
 -- NOTE: On windows, some commands created by npm will not work unless you explicitely tell lspconfig to use the ".cmd" executable
-nvim_lsp.vuels.setup(vim.tbl_extend('force', complete_lsp_setup, {
+nvim_lsp.vuels.setup(extended_setup({
       cmd = vim.g.vls_cmd or {'vls'},
       init_options = {
         config = {
@@ -78,24 +86,27 @@ nvim_lsp.vuels.setup(vim.tbl_extend('force', complete_lsp_setup, {
         }
       }
   }))
-nvim_lsp.cssls.setup(vim.tbl_extend('force', complete_lsp_setup, {
+nvim_lsp.cssls.setup(extended_setup({
       cmd = vim.g.cssls_cmd
   }))
 --nvim_lsp.rls.setup(complete_lsp_setup)
-nvim_lsp.rust_analyzer.setup(vim.tbl_extend('force', complete_lsp_setup, {
+nvim_lsp.rust_analyzer.setup(extended_setup({
       cmd = vim.g.rust_analyzer_cmd or {'rust-analyzer'}
   }))
+nvim_lsp.powershell_es.setup(extended_setup({
+      -- TODO: will not work on Windows
+      bundle_path = home .. '/.local/opt/PowerShellEditorServices'
+  }))
+
 nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
 nvim_lsp.html.setup(complete_lsp_setup)
 nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
-nvim_lsp.powershell_es.setup(vim.tbl_extend('force', complete_lsp_setup, {
-  -- TODO: will not work on Windows
-  bundle_path = home .. '/.local/opt/PowerShellEditorServices'
-}))
 nvim_lsp.angularls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
+nvim_lsp.dockerls.setup(complete_lsp_setup)
+
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then
