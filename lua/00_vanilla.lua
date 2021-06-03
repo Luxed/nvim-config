@@ -63,13 +63,11 @@ map.nnore('<leader>l', ':bnext<CR>')
 map.nnore('<leader>h', ':bprevious<CR>')
 map.nnore('<leader>bq', ':b# <BAR> bd #<CR>')
 
-map.nnore('<leader>ei', ':e $MYVIMRC<CR>')
-map.nnore('<leader>si', ':source $MYVIMRC<CR>')
-
 map.nnore('zS', ':lua require("helpers.syntax").showCursorHighlights()<CR>', {silent = true})
 
 -- toggle highlight
 map.nnore('<leader>th', ':set hlsearch!<CR>')
+map.nnore('<leader>tw', ':setlocal wrap!<CR>')
 map.nnore('<leader>n', ':nohl<CR>')
 map.nnore('<leader>N', ':Rmhl<CR>')
 -- Removes last highlight
