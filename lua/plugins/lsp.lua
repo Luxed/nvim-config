@@ -1,8 +1,11 @@
+-- Plugins require
 local nvim_lsp = require('lspconfig')
+local lsp_status = require('lsp-status')
+local lsp_signature = require('lsp_signature')
+local root_pattern = require('lspconfig.util').root_pattern
+-- Local require
 local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
-local lsp_status = require('lsp-status')
-local root_pattern = require('lspconfig.util').root_pattern
 local home = vim.fn.expand('~')
 
 local function on_attach_au(client)
@@ -47,6 +50,15 @@ local function on_attach_complete(client)
   on_attach_keymaps()
 
   lsp_status.on_attach(client)
+  lsp_signature.on_attach({
+      bind = true,
+      hint_prefix = '',
+      --hi_parameter = 'IncSearch',
+      handler_opts = {
+        -- TODO: look into how to handle borders properly. They can look good but are also kind of a waste of space
+        border = 'none'
+      }
+    })
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -61,6 +73,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 local lsp_capabilities = lsp_status.capabilities
 lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+lsp_capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits'
+  }
+}
 
 local complete_lsp_setup = {
   on_attach = on_attach_complete,
@@ -111,7 +130,7 @@ require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 if vim.g.config_omnisharp_bin then
   local pid = vim.fn.getpid()
-  nvim_lsp.omnisharp.setup(vim.tbl_extend('force', complete_lsp_setup, {
+  nvim_lsp.omnisharp.setup(extended_setup({
     cmd = { vim.g.config_omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
     root_dir = function(path)
       -- Make sure an sln doesn't already exist before trying to use the nearest csproj file

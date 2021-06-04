@@ -145,6 +145,8 @@ local function startup(use)
     use('akinsho/nvim-bufferline.lua')
 
     use({'lukas-reineke/indent-blankline.nvim', opt = true, branch = 'lua'})
+
+    use('ray-x/lsp_signature.nvim')
   end
 
   local function tracking()
