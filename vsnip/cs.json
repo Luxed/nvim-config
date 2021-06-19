@@ -1,16 +1,47 @@
 {
-  "Prop": {
+  "Class": {
+    "prefix": ["class"],
+    "description": "New class",
+    "body": [
+      "${1:public} class ${2:$TM_FILENAME_BASE}$3",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Property": {
     "prefix": ["prop"],
     "description": "New property",
     "body": [
       "${1:public} ${2:Type} ${3:Name} { ${4:get; set;} }$5"
     ]
   },
-  "VirtProp": {
+  "Virtual Property": {
     "prefix": ["vprop"],
-    "descript": "New virtual property",
+    "description": "New virtual property",
     "body": [
       "${1:public} virtual ${2:Type} ${3:Name} { ${4:get; set;} }$5"
+    ]
+  },
+  "Async Function": {
+    "prefix": ["asfn"],
+    "description": "Asynchronous function",
+    "body": [
+      "${1:public} async Task<$2> $3($4)",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+  "API Function": {
+    "prefix": ["apiasfn"],
+    "description": "API Asynchronous Function",
+    "body": [
+      "public async Task<ActionResult<$1>> $2($3",
+      "\tCancellationToken ct = default)",
+      "{",
+      "\t$0",
+      "}"
     ]
   }
 }
