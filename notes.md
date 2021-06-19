@@ -2,7 +2,6 @@
 
 - nvim-gdb (visual debugger)
 - vim-inspector (visual debugger)
-- vim-open-color
 - vim-obsession + vim-prosession (session management)
 - vim-markdown-composer (markdown live preview)
 - ionide-vim (for fsharp)
@@ -10,7 +9,6 @@
 # TODO
 
 - Only show git indicator when in a git repo in custom `galaxyline` line
-- Make real "dropdown" theme for Telescope based on current cursor position. (useful for quick actions like LSP Code Actions)
 
 # Neovim 0.5 features
 
@@ -39,11 +37,19 @@
 
 - Folds do not get updated until I reload the file with `:e`
 
-### built-in lsp
-
-- Find a way to remove annoying quickfix list being automatically shown on "go to definition"
-
 ### telescope
 
 - Going to a file doesn't enable folds
 
+# Better CS tooling
+
+- Create file with namespace. Could be based on path relative to Solution (or csproj).
+
+## Current issues
+
+- Highlighting is imperfect at best. Support for Semantic tokens is comming which should improve the situation a lot.
+- Completion doesn't work well with things that are not imported (not at all or is very slow when enabled).
+- Completion doesn't allow for auto imports.
+- Completion float only shows 1 implementation and the number of overloads.
+- Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
+- Completion's first element sometimes gets highlighted
