@@ -7,5 +7,21 @@
             "end"
         ],
         "description": "lua if"
+    },
+    "Function": {
+      "prefix": ["fn"],
+      "body": [
+        "function $1($2)",
+        "\t$0",
+        "end"
+      ]
+    },
+    "Local Function": {
+      "prefix": ["lfn"],
+      "body": [
+        "local function $1($2)",
+        "\t$0",
+        "end"
+      ]
     }
 }
