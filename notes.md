@@ -53,3 +53,10 @@
 - Completion float only shows 1 implementation and the number of overloads.
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
 - Completion's first element sometimes gets highlighted
+
+# Treesitter issues
+
+## CSharp
+
+- Named arguments not highlighted
+- `nameof` not highlighted like `typeof` (operator)

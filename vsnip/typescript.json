@@ -1,0 +1,12 @@
+{
+  "Console Log": {
+    "prefix": ["clog"],
+    "description": "Console log",
+    "body": ["console.log('$1');$0"]
+  },
+  "Console log with value": {
+    "prefix": ["clog,"],
+    "description": "Console log with value",
+    "body": ["console.log('$1:', $1);$0"]
+  }
+}
