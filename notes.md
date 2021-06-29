@@ -60,3 +60,5 @@
 
 - Named arguments not highlighted
 - `nameof` not highlighted like `typeof` (operator)
+- `out` keyword is not detected
+- type after `out` keyword is not highlighted

@@ -9,6 +9,15 @@
       "}"
     ]
   },
+  "Class Constructor": {
+    "prefix": ["constructor"],
+    "description": "New class constructor",
+    "body": [
+      "${1:public} ${2:$TM_FILENAME_BASE}($3)",
+      "{$0",
+      "}"
+    ]
+  },
   "Property": {
     "prefix": ["prop"],
     "description": "New property",
