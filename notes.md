@@ -58,7 +58,14 @@
 
 ## CSharp
 
-- Named arguments not highlighted
-- `nameof` not highlighted like `typeof` (operator)
-- `out` keyword is not detected
-- type after `out` keyword is not highlighted
+- ~~Named arguments not highlighted~~
+- ~~`nameof` not highlighted like `typeof` (operator)~~
+- ~~`out` keyword is not detected~~
+- ~~type after `out` keyword is not highlighted~~
+- ~~highlight tuple definition (locals)~~
+- highlight `base` as Constructor?
+- Type parameter constraint clause needs to be idented
+- Things like `Where(a => { return true; });` does not get indented as I would expect (but it still makes sense)
+- ~~Add support for LinQ query syntax~~
+- ~~`in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)~~
+- Indentation does not work properly on binary expressions
