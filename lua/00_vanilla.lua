@@ -79,6 +79,11 @@ map.nnore('<S-Space>', 'zA')
 
 map.tnore('<leader>n', '<C-\\><C-N>')
 
+if vim.fn.has('win32') then
+  -- Because Windows is such a great operating system, doing <C-Z> will completely lock up Neovim in the terminal. see: https://github.com/neovim/neovim/issues/6660
+  vim.api.nvim_set_keymap('n', '<C-Z>', '<CMD>lua require("term").open()<CR>', {})
+end
+
 command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
 
 augroup('yank_post_highlight', {
@@ -86,3 +91,5 @@ augroup('yank_post_highlight', {
   })
 
 command('-nargs=1 YarnS', 'sp term://yarn <args>');
+
+command('Term', 'lua require("term").open()')
