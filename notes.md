@@ -69,3 +69,4 @@
 - ~~Add support for LinQ query syntax~~
 - ~~`in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)~~
 - Indentation does not work properly on binary expressions
+- Highlight reference does not show parameter as declaration
