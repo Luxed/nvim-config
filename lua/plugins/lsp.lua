@@ -119,12 +119,31 @@ nvim_lsp.powershell_es.setup(extended_setup({
 
 nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
-nvim_lsp.html.setup(complete_lsp_setup)
 nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
-nvim_lsp.angularls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
+
+if vim.fn.has('win32') then
+  -- For some reason, npm on Windows doesn't create a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
+  local function build_angular_cmd(node_path)
+    return { 'ngserver.cmd', '--stdio', '--tsProbeLocations', node_path, '--ngProbeLocations', node_path }
+  end
+
+  nvim_lsp.angularls.setup(extended_setup({
+        cmd = build_angular_cmd(),
+        on_new_config = function(new_config, new_root_dir)
+          new_config.cmd = build_angular_cmd(new_root_dir)
+        end
+    }))
+
+  nvim_lsp.html.setup(extended_setup({
+        cmd = { 'vscode-html-language-server.cmd', '--stdio' }
+    }))
+else
+  nvim_lsp.angularls.setup(complete_lsp_setup)
+  nvim_lsp.html.setup(complete_lsp_setup)
+end
 
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
