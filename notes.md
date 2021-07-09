@@ -70,3 +70,4 @@
 - ~~`in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)~~
 - Indentation does not work properly on binary expressions
 - `this` keyword on extension methods not highlighted
+- Highlight reference does not show parameter as declaration
