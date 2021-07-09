@@ -1,3 +1,4 @@
+local map = require('helpers.map')
 local term_id = 0
 
 return {
@@ -9,10 +10,12 @@ return {
     end
 
     vim.api.nvim_set_current_buf(term_id)
+    vim.cmd('startinsert')
 
     if new_term then
       vim.cmd('command! -buffer Fg :b#')
       vim.fn.termopen('powershell')
+      map.tnore('<leader>n', '<C-\\><C-N>:b#<CR>', { silent = true }, new_term)
     end
   end,
 }
