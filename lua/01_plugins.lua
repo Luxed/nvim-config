@@ -144,7 +144,7 @@ local function startup(use)
     use('glepnir/galaxyline.nvim')
     use('akinsho/nvim-bufferline.lua')
 
-    use({'lukas-reineke/indent-blankline.nvim', opt = true, branch = 'lua'})
+    use({'lukas-reineke/indent-blankline.nvim', opt = true})
 
     use('ray-x/lsp_signature.nvim')
   end
