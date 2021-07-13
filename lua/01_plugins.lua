@@ -32,7 +32,7 @@ local function startup(use)
     use('pangloss/vim-javascript')
     use('heavenshell/vim-jsdoc')
     --use('reasonml-editor/vim-reason-plus')
-    use('herringtondarkholme/yats.vim') -- Typescript syntax
+    --use('herringtondarkholme/yats.vim') -- Typescript syntax
     use('posva/vim-vue')
     -- Html/css
     use('othree/html5.vim')
@@ -61,10 +61,8 @@ local function startup(use)
   local function utility()
     use('tpope/vim-fugitive') -- Git integration
     use{'junegunn/gv.vim', opt = true, cmd = {'GV'}} -- Git log graphical visualisation
-    use{'jiangmiao/auto-pairs', opt = true} -- Auto close things ('(', '{', '[', etc.)
     use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
-    --use('preservim/nerdtree') -- File explorer
     use{'lambdalisue/fern.vim', requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'}}
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
@@ -80,30 +78,12 @@ local function startup(use)
   local function interface()
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
-    --use('ryanoasis/vim-devicons')
-    --use('tiagofumo/vim-nerdtree-syntax-highlight')
     use('kyazdani42/nvim-web-devicons')
     use('dyng/ctrlsf.vim') -- Search and replace interface
-    --use('f-person/git-blame.nvim') -- Simple, virtual text, git blame
   end
 
   local function themes()
-    use('iCyMind/NeoSolarized')
-    use('reedes/vim-colors-pencil')
-    use('ajmwagar/vim-deus') -- Gruvbox based
-    use('aonemd/kuroi.vim')
-    use({'dracula/vim', as = 'dracula'})
-    use('jacoborus/tender.vim')
-    use('arcticicestudio/nord-vim')
     use{'Luxed/ayu-vim', branch = 'experimental-colors'}
-    use('zeis/vim-kolor')
-    use('danilo-augusto/vim-afterglow')
-    use('cseelus/vim-colors-lucid')
-    use('bluz71/vim-nightfly-guicolors')
-    use('srcery-colors/srcery-vim')
-    use({'embark-theme/vim', as = 'embark', branch = 'main'})
-    use('sainnhe/sonokai')
-    use('glepnir/zephyr-nvim')
   end
 
   local function lua_plugins()
@@ -139,8 +119,8 @@ local function startup(use)
     use('nvim-lua/lsp-status.nvim')
 
     -- Completion
-    use{'nvim-lua/completion-nvim', opt = true, requires = {'steelsojka/completion-buffers'}}
     use{'hrsh7th/nvim-compe', opt = true}
+    use{'kosayoda/nvim-lightbulb'}
 
     -- Statusline/Tabline
     use('glepnir/galaxyline.nvim')
@@ -149,6 +129,8 @@ local function startup(use)
     use({'lukas-reineke/indent-blankline.nvim', opt = true})
 
     use('ray-x/lsp_signature.nvim')
+
+    use('jose-elias-alvarez/nvim-lsp-ts-utils')
   end
 
   local function tracking()

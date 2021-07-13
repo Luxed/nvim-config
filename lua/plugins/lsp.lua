@@ -1,23 +1,12 @@
 -- Plugins require
 local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
-local lsp_signature = require('lsp_signature')
+--local lsp_signature = require('lsp_signature')
 local root_pattern = require('lspconfig.util').root_pattern
 -- Local require
 local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local home = vim.fn.expand('~')
-
-local function on_attach_au(client)
-  -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
-  if client.resolved_capabilities.document_highlight then
-    local bufnr = vim.fn.bufnr()
-    augroup('lsp_document_highlight_' .. tostring(bufnr), {
-        { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
-        { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }
-      })
-  end
-end
 
 -- TODO use buffer number from LSP to bind keys
 local function on_attach_keymaps()
@@ -46,11 +35,22 @@ local function on_attach_keymaps()
 end
 
 local function on_attach_complete(client)
-  on_attach_au(client)
+  local bufnr = vim.fn.bufnr()
+  -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
+  if client.resolved_capabilities.document_highlight then
+    augroup('lsp_document_highlight_' .. tostring(bufnr), {
+        { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
+        { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }
+      })
+  end
+  augroup('lsp_lightbulb_' .. tostring(bufnr), {
+      { 'CursorMoved,CursorMovedI', '<buffer>', 'lua require("nvim-lightbulb").update_lightbulb()' }
+    })
   on_attach_keymaps()
 
   lsp_status.on_attach(client)
-  lsp_signature.on_attach({
+
+  --[[lsp_signature.on_attach({
       bind = true,
       hint_prefix = '',
       --hi_parameter = 'IncSearch',
@@ -58,7 +58,7 @@ local function on_attach_complete(client)
         -- TODO: look into how to handle borders properly. They can look good but are also kind of a waste of space
         border = 'none'
       }
-    })
+    })]]
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -117,14 +117,13 @@ nvim_lsp.powershell_es.setup(extended_setup({
       bundle_path = home .. '/.local/opt/PowerShellEditorServices'
   }))
 
-nvim_lsp.tsserver.setup(complete_lsp_setup)
 nvim_lsp.vimls.setup(complete_lsp_setup)
 nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
 
-if vim.fn.has('win32') then
+if vim.fn.has('win32') == 1 then
   -- For some reason, npm on Windows doesn't create a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
   local function build_angular_cmd(node_path)
     return { 'ngserver.cmd', '--stdio', '--tsProbeLocations', node_path, '--ngProbeLocations', node_path }
@@ -157,6 +156,23 @@ if vim.g.config_omnisharp_bin then
     end,
   }))
 end
+
+nvim_lsp.tsserver.setup{
+  on_attach = function(client)
+    on_attach_complete(client)
+
+    local ts_utils = require('nvim-lsp-ts-utils')
+
+    ts_utils.setup{
+      debug = false,
+      disable_commands = false,
+
+      update_imports_on_move = true
+    }
+    ts_utils.setup_client(client)
+  end,
+  capabilities = lsp_capabilities
+}
 
 vim.fn.sign_define('LspDiagnosticsSignError'      , { text='' })
 vim.fn.sign_define('LspDiagnosticsSignWarning'    , { text='' })

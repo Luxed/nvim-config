@@ -43,7 +43,7 @@
 
 # Better CS tooling
 
-- Create file with namespace. Could be based on path relative to Solution (or csproj).
+- Create file with namespace. Could be based on path relative to Solution (or csproj) (csproj or solution file needs to be read for a Namespace too, maybe the LSP would have something for this?)
 
 ## Current issues
 
@@ -51,8 +51,8 @@
 - Completion doesn't work well with things that are not imported (not at all or is very slow when enabled).
 - Completion doesn't allow for auto imports.
 - Completion float only shows 1 implementation and the number of overloads.
+  Instead of showing documentation it could show every implementation maybe?
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
-- Completion's first element sometimes gets highlighted
 
 # Treesitter issues
 
@@ -70,4 +70,5 @@
 - ~~`in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)~~
 - Indentation does not work properly on binary expressions
 - `this` keyword on extension methods not highlighted
-- Highlight reference does not show parameter as declaration
+- One line "ifs" are not indented properly
+- ~~function with generic (without `this.`) gets highlighted as a Type~~
