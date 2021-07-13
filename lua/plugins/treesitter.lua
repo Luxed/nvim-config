@@ -1,5 +1,5 @@
 local enabled = { 'c_sharp', 'css', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'python', 'query', 'rust', 'typescript', 'yaml' }
-local disabled = {           'css', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'python',          'rust', 'typescript', 'yaml' }
+local disabled = {           'css', 'html', 'javascript', 'jsdoc',         'lua', 'python',          'rust', 'typescript', 'yaml' }
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = enabled,

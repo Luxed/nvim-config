@@ -49,6 +49,12 @@ M.rg = function()
   end
 end
 
+M.code_actions = function()
+  local builtin = require('telescope.builtin')
+  local themes = require('telescope.themes')
+  builtin.lsp_code_actions(themes.get_cursor())
+end
+
 M.init = function()
   local map = require('helpers.map')
   require('telescope').setup {

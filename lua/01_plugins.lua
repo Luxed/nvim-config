@@ -93,7 +93,8 @@ local function startup(use)
     use('norcalli/nvim-colorizer.lua')
 
     -- Telescope (fuzzy finder)
-    use{'nvim-telescope/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
+    --use{'nvim-telescope/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
+    use{'Luxed/telescope.nvim', branch = "feat/add-cursor-layout", requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
 
     -- TreeSitter
     use {

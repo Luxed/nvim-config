@@ -52,5 +52,15 @@
       "\t$0",
       "}"
     ]
+  },
+  "Foreach": {
+    "prefix": ["foreach"],
+    "description": "Foreach",
+    "body": [
+      "foreach (var ${1:i} in ${2:list})",
+      "{",
+      "\t$0",
+      "}"
+    ]
   }
 }
