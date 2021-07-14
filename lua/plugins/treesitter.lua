@@ -9,7 +9,8 @@ require('nvim-treesitter.configs').setup {
   -- TODO: It looks OK by default but would be better with a custom list of colors
   -- Maybe from a simple gradient? Would be cool and minimal
   rainbow = {
-    enable = true
+    enable = true,
+    disable = { 'html' }
   },
   indent = {
     enable = true,
