@@ -72,3 +72,4 @@
 - `this` keyword on extension methods not highlighted
 - One line "ifs" are not indented properly
 - ~~function with generic (without `this.`) gets highlighted as a Type~~
+- Single line methods indentation
