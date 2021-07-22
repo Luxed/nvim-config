@@ -54,6 +54,11 @@
   Instead of showing documentation it could show every implementation maybe?
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
 
+## Create omnisharp-nvim
+
+- OmniSharpFixUsings: Remove unused using directives
+  (in file `usings.vim`)
+
 # Treesitter issues
 
 ## CSharp
