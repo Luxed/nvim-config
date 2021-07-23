@@ -79,3 +79,5 @@
 - ~~function with generic (without `this.`) gets highlighted as a Type~~
 - Single line methods indentation
 - partial keyword not highlighted (maybe only on methods?)
+- Properties not folded
+- Only highlight `group` keyword in linq queries
