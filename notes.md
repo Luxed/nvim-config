@@ -54,6 +54,11 @@
   Instead of showing documentation it could show every implementation maybe?
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
 
+## Create omnisharp-nvim
+
+- OmniSharpFixUsings: Remove unused using directives
+  (in file `usings.vim`)
+
 # Treesitter issues
 
 ## CSharp
@@ -73,3 +78,6 @@
 - One line "ifs" are not indented properly
 - ~~function with generic (without `this.`) gets highlighted as a Type~~
 - Single line methods indentation
+- partial keyword not highlighted (maybe only on methods?)
+- Properties not folded
+- Only highlight `group` keyword in linq queries

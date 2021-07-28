@@ -132,6 +132,9 @@ if vim.fn.has('win32') == 1 then
 
   nvim_lsp.angularls.setup(extended_setup({
         cmd = build_angular_cmd(),
+        root_dir = function(path)
+          return root_pattern('angular.json')(path)
+        end,
         on_new_config = function(new_config, new_root_dir)
           new_config.cmd = build_angular_cmd(new_root_dir)
         end
