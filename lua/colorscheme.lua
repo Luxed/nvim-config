@@ -1,3 +1,6 @@
+-- Temporary fix for https://github.com/neovim/neovim/issues/15205
+vim.cmd('syntax on')
+
 -- setup an autocommand to modify themes to my liking
 vim.cmd('au! ColorScheme * lua require("colors.post").init()')
 -- Ayu
