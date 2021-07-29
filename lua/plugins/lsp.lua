@@ -4,6 +4,7 @@ local lsp_status = require('lsp-status')
 --local lsp_signature = require('lsp_signature')
 local root_pattern = require('lspconfig.util').root_pattern
 -- Local require
+local buf_command = require('helpers.command').buf_command
 local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local home = vim.fn.expand('~')
@@ -33,6 +34,8 @@ local function on_attach_keymaps()
 
   -- override default keymap
   vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
+
+  buf_command('Format', 'lua vim.lsp.buf.formatting()')
 end
 
 local function on_attach_complete(client)
