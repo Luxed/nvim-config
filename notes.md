@@ -49,35 +49,42 @@
 
 - Highlighting is imperfect at best. Support for Semantic tokens is comming which should improve the situation a lot.
 - Completion doesn't work well with things that are not imported (not at all or is very slow when enabled).
-- Completion doesn't allow for auto imports.
+  Seems like this is a lot faster in VSCode somehow.
+- Completion doesn't allow for auto imports (works in VSCode)
 - Completion float only shows 1 implementation and the number of overloads.
   Instead of showing documentation it could show every implementation maybe?
+  The way OmniSharp-vim does it is to have 1 completion item per implementation.
+  While VSCode gives you 1 completion item for all, but then the popup can be scrolled through using the arrow keys to find the implementation/documentation of the override you want.
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
-
-## Create omnisharp-nvim
-
-- OmniSharpFixUsings: Remove unused using directives
-  (in file `usings.vim`)
+- Everything feels extremely slow.
+- Nothing works in 0.6 preview (at least on Windows)
+- 2 OmniSharp instances are created whenever I work on a project
 
 # Treesitter issues
 
 ## CSharp
 
-- ~~Named arguments not highlighted~~
-- ~~`nameof` not highlighted like `typeof` (operator)~~
-- ~~`out` keyword is not detected~~
-- ~~type after `out` keyword is not highlighted~~
-- ~~highlight tuple definition (locals)~~
+### Current
+
 - highlight `base` as Constructor?
 - Type parameter constraint clause needs to be idented
 - Things like `Where(a =>\n{\n\treturn true;\n});` does not get indented as I would expect (but it still makes sense)
-- ~~Add support for LinQ query syntax~~
-- ~~`in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)~~
+  The correct fix for this would be to always have the brackets always be ignored for identation? Maybe like the comments?
 - Indentation does not work properly on binary expressions
 - `this` keyword on extension methods not highlighted
 - One line "ifs" are not indented properly
-- ~~function with generic (without `this.`) gets highlighted as a Type~~
 - Single line methods indentation
-- partial keyword not highlighted (maybe only on methods?)
+- `partial` keyword not highlighted (maybe only on methods?)
 - Properties not folded
 - Only highlight `group` keyword in linq queries
+
+### Fixed
+
+- Named arguments not highlighted
+- `nameof` not highlighted like `typeof` (operator)
+- `out` keyword is not detected
+- type after `out` keyword is not highlighted
+- highlight tuple definition (locals)
+- Add support for LinQ query syntax
+- `in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)
+- function with generic (without `this.`) gets highlighted as a Type
