@@ -66,17 +66,13 @@
 
 ### Current
 
-- highlight `base` as Constructor?
 - Type parameter constraint clause needs to be idented
 - Things like `Where(a =>\n{\n\treturn true;\n});` does not get indented as I would expect (but it still makes sense)
   The correct fix for this would be to always have the brackets always be ignored for identation? Maybe like the comments?
 - Indentation does not work properly on binary expressions
-- `this` keyword on extension methods not highlighted
 - One line "ifs" are not indented properly
 - Single line methods indentation
-- `partial` keyword not highlighted (maybe only on methods?)
-- Properties not folded
-- Only highlight `group` keyword in linq queries
+- Object creation (`new Object()`) should maybe use the contructor highlight
 
 ### Fixed
 
@@ -88,3 +84,8 @@
 - Add support for LinQ query syntax
 - `in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)
 - function with generic (without `this.`) gets highlighted as a Type
+- Only highlight `group` keyword in linq queries
+- Properties not folded
+- `partial` keyword not highlighted (maybe only on methods?)
+- `this` keyword on extension methods not highlighted
+- highlight `base` as Constructor?
