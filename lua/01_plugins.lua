@@ -20,9 +20,15 @@ local function startup(use)
     -- Rust
     use('rust-lang/rust.vim')
     -- Markdown
-    use('vim-pandoc/vim-pandoc')
-    use('vim-pandoc/vim-pandoc-syntax')
-    use('vim-pandoc/vim-markdownfootnotes')
+    use {
+      'vim-pandoc/vim-pandoc',
+      requires = {'vim-pandoc/vim-pandoc-syntax', 'vim-pandoc/vim-markdownfootnotes'},
+      config = function()
+        -- TODO: I'm not entirely sure about this
+        -- It seems like a good idea with the way I've been doing my configuration, but it abstracts everything through the plugin's implementation
+        vim.g['pandoc#modules#disabled'] = {'spell'}
+      end
+    }
     -- File Format
     use('editorconfig/editorconfig-vim')
     use('mboughaba/i3config.vim')

@@ -15,6 +15,9 @@ local function noremap(mode, lhs, rhs, opts, buffer)
   map(mode, lhs, rhs, options, buffer)
 end
 
+local actions = {}
+local actions_counter = 0
+
 return {
   nore = noremap,
   nnore = function(lhs, rhs, opts, buffer)
@@ -33,5 +36,31 @@ return {
     for _, mode in pairs(modes) do
       vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
     end
+  end,
+
+  -- TODO: maybe add a ".buf" subtable for buffer specific bindings?
+
+  lua = function(mode, keybind, callback, opts)
+    -- TODO: allow for keybind table
+    --local key = mode .. keybind
+    actions_counter = actions_counter + 1
+    local key = actions_counter
+    actions[key] = callback
+
+    local options = { noremap = true, silent = true }
+    if opts then
+      options = vim.tbl_extend('force', options, opts)
+    end
+
+    -- make sure that "buffer" is a boolean
+    local buffer = options.buffer and true or false
+    if options.buffer then
+      options['buffer'] = nil
+    end
+
+    map(mode, keybind, ':lua require("helpers.map").__action('.. key ..')<CR>', options, buffer)
+  end,
+  __action = function(key)
+    actions[key]()
   end
 }

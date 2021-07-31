@@ -9,31 +9,36 @@ local augroup = require('helpers.command').augroup
 local map = require('helpers.map')
 local home = vim.fn.expand('~')
 
--- TODO use buffer number from LSP to bind keys
 local function on_attach_keymaps()
-  local silent_opts = {silent = true}
-  map.nnore('<leader>qk', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
-  map.nnore('K', '<cmd>lua vim.lsp.buf.hover()<CR>', silent_opts, true)
-  map.nnore('<leader>qK', '<cmd>lua vim.lsp.buf.signature_help()<CR>', silent_opts, true)
-  map.nnore('<leader>qq', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', silent_opts, true)
-  map.nnore('<leader>qgd', '<cmd>lua vim.lsp.buf.definition()<CR>', silent_opts, true)
-  map.nnore('<leader>qgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', silent_opts, true)
-  map.nnore('<leader>qr', '<cmd>lua vim.lsp.buf.rename()<CR>', {}, true)
-  map.nnore('<leader>qn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {}, true)
-  map.nnore('<leader>qp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {}, true)
-  --map.nnore('<leader>qd', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {}, true)
+local lsp = vim.lsp
+  local builtin = require('telescope.builtin')
+
+  local function m(mode, keybind, callback, opts)
+    opts = opts or {}
+    opts = vim.tbl_extend('force', opts, { buffer=true })
+    map.lua(mode, keybind, callback, opts)
+  end
+
+  m('n', '<leader>qk', function() lsp.buf.hover() end)
+  m('n', 'K', function() lsp.buf.hover() end)
+  m('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
+  m('n', '<leader>qq', function() vim.lsp.diagnostic.show_line_diagnostics() end)
+  m('n', '<leader>qgd', function() vim.lsp.buf.definition() end)
+  m('n', '<leader>qgi', function() vim.lsp.buf.implementation() end)
+  m('n', '<leader>qr', function() vim.lsp.buf.rename() end)
+  m('n', '<leader>qn', function() vim.lsp.diagnostic.goto_next() end)
+  m('n', '<leader>qp', function() vim.lsp.diagnostic.goto_prev() end)
 
   -- use Telescope for more convenient and consistent UI
-  map.nnore('<leader>qgr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', {}, true)
-  --map.nnore('<leader>qa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', {}, true)
-  map.nnore('<leader>qa', '<cmd>lua require("plugins.telescope").code_actions()<CR>', {}, true)
-  map.nnore('<leader>qs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', {}, true)
-  map.nnore('<leader>qd', '<cmd>lua require("telescope.builtin").lsp_document_diagnostics()<CR>', {}, true)
-  map.nnore('<leader>qwd', '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>', {}, true)
-  map.nnore('<leader>qws', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', {}, true)
+  m('n', '<leader>qgr', function() builtin.lsp_references() end)
+  m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
+  m('n', '<leader>qs', function() builtin.lsp_document_symbols() end)
+  m('n', '<leader>qd', function() builtin.lsp_document_diagnostics() end)
+  m('n', '<leader>qwd', function() builtin.lsp_workspace_diagnostics() end)
+  m('n', '<leader>qws', function() builtin.lsp_workspace_symbols() end)
 
   -- override default keymap
-  vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
+  m('n', 'gd', function() lsp.buf.definition() end)
 
   buf_command('Format', 'lua vim.lsp.buf.formatting()')
 end
@@ -59,7 +64,6 @@ local function on_attach_complete(client)
       hint_prefix = '',
       --hi_parameter = 'IncSearch',
       handler_opts = {
-        -- TODO: look into how to handle borders properly. They can look good but are also kind of a waste of space
         border = 'none'
       }
     })]]
@@ -128,7 +132,7 @@ nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
 
 if vim.fn.has('win32') == 1 then
-  -- For some reason, npm on Windows doesn't create a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
+  -- For some reason, npm on Windows doesn't have a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
   local function build_angular_cmd(node_path)
     return { 'ngserver.cmd', '--stdio', '--tsProbeLocations', node_path, '--ngProbeLocations', node_path }
   end
@@ -185,4 +189,4 @@ vim.fn.sign_define('LspDiagnosticsSignError'      , { text='' })
 vim.fn.sign_define('LspDiagnosticsSignWarning'    , { text='' })
 vim.fn.sign_define('LspDiagnosticsSignInformation', { text='' })
 vim.fn.sign_define('LspDiagnosticsSignHint'       , { text='ﯦ' })
-vim.fn.sign_define('LightBulbSign', { text='' })
+vim.fn.sign_define('LightBulbSign'                , { text='' })

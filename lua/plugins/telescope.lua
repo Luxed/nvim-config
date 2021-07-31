@@ -2,6 +2,9 @@ local actions = require('telescope.actions')
 local pickers = require('telescope.pickers')
 local sorters = require('telescope.sorters')
 local finders = require('telescope.finders')
+local builtin = require('telescope.builtin')
+local themes = require('telescope.themes')
+local map = require('helpers.map')
 
 local checkout_actions = {}
 
@@ -14,9 +17,8 @@ checkout_actions.set_branch = function(prompt_bufnr)
   vim.cmd(git_cmd)
 end
 
-local M = {}
-
-M.tags = function(opts)
+function tags(opts)
+  opts = opts or {}
   local tags = vim.fn.systemlist('git ls-remote -t --refs')
   table.remove(tags, 1)
 
@@ -39,44 +41,40 @@ M.tags = function(opts)
   }):find()
 end
 
-M.rg = function()
+function rg()
   local input = vim.fn.input('Ripgrep: ')
 
   if input ~= '' then
-    require('telescope.builtin').grep_string({search = input})
+    builtin.grep_string({search = input})
   else
     print('Exiting: given input was empty')
   end
 end
 
-M.code_actions = function()
-  local builtin = require('telescope.builtin')
-  local themes = require('telescope.themes')
-  builtin.lsp_code_actions(themes.get_cursor())
-end
-
-M.init = function()
-  local map = require('helpers.map')
-  require('telescope').setup {
-    defaults = {
-      prompt_prefix = " ",
-      layout_strategy = 'flex',
-      file_sorter = require('telescope.sorters').get_fzy_sorter,
-      generic_sorter = require('telescope.sorters').get_fzy_sorter,
-      mappings = {
-        i = {
-          -- close in insert mode
-          ['<esc>'] = require('telescope.actions').close
+return {
+  code_actions = function()
+    builtin.lsp_code_actions(themes.get_cursor())
+  end,
+  init = function()
+    require('telescope').setup {
+      defaults = {
+        prompt_prefix = " ",
+        layout_strategy = 'flex',
+        file_sorter = sorters.get_fzy_sorter,
+        generic_sorter = sorters.get_fzy_sorter,
+        mappings = {
+          i = {
+            -- close in insert mode
+            ['<esc>'] = require('telescope.actions').close
+          }
         }
       }
     }
-  }
 
-  map.nnore('<leader>ff', ':lua require("telescope.builtin").find_files()<CR>', {silent = true})
-  map.nnore('<leader>fb', ':lua require("telescope.builtin").buffers({show_all_buffers = true})<CR>', {silent = true})
-  map.nnore('<leader>fg', ':lua require("plugins.telescope").rg()<CR>', {silent = true})
-  map.nnore('<leader>gb', ':lua require("telescope.builtin").git_branches()<CR>')
-  map.nnore('<leader>gt', ':lua require("plugins.telescope").tags({})<CR>')
-end
-
-return M
+    map.lua('n', '<leader>ff', function() builtin.find_files() end)
+    map.lua('n', '<leader>fb', function() builtin.buffers({ show_all_buffers = true }) end)
+    map.lua('n', '<leader>fg', rg)
+    map.lua('n', '<leader>gb', function() builtin.git_branches() end)
+    map.lua('n', '<leader>gt', tags)
+  end
+}
