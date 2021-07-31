@@ -13,11 +13,7 @@ local function on_attach_keymaps()
 local lsp = vim.lsp
   local builtin = require('telescope.builtin')
 
-  local function m(mode, keybind, callback, opts)
-    opts = opts or {}
-    opts = vim.tbl_extend('force', opts, { buffer=true })
-    map.lua(mode, keybind, callback, opts)
-  end
+  local m = map.buf.lua
 
   m('n', '<leader>qk', function() lsp.buf.hover() end)
   m('n', 'K', function() lsp.buf.hover() end)

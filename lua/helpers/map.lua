@@ -18,6 +18,25 @@ end
 local actions = {}
 local actions_counter = 0
 
+local function lua_map(mode, keybind, callback, opts)
+  actions_counter = actions_counter + 1
+  local key = actions_counter
+  actions[key] = callback
+
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+
+  -- make sure that "buffer" is a boolean
+  local buffer = options.buffer and true or false
+  if options.buffer then
+    options['buffer'] = nil
+  end
+
+  map(mode, keybind, ':lua require("helpers.map").__action('.. key ..')<CR>', options, buffer)
+end
+
 return {
   nore = noremap,
   nnore = function(lhs, rhs, opts, buffer)
@@ -38,28 +57,14 @@ return {
     end
   end,
 
-  -- TODO: maybe add a ".buf" subtable for buffer specific bindings?
-
-  lua = function(mode, keybind, callback, opts)
-    -- TODO: allow for keybind table
-    --local key = mode .. keybind
-    actions_counter = actions_counter + 1
-    local key = actions_counter
-    actions[key] = callback
-
-    local options = { noremap = true, silent = true }
-    if opts then
-      options = vim.tbl_extend('force', options, opts)
+  buf = {
+    lua = function(mode, keybind, callback, opts)
+      opts = vim.tbl_extend('force', opts or {}, { buffer = true })
+      lua_map(mode, keybind, callback, opts)
     end
+  },
 
-    -- make sure that "buffer" is a boolean
-    local buffer = options.buffer and true or false
-    if options.buffer then
-      options['buffer'] = nil
-    end
-
-    map(mode, keybind, ':lua require("helpers.map").__action('.. key ..')<CR>', options, buffer)
-  end,
+  lua = lua_map,
   __action = function(key)
     actions[key]()
   end

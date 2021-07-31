@@ -15,7 +15,6 @@ end
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
-  -- TODO: A lot of things in there could be removed thanks to TreeSitter.
   local function languages()
     -- Rust
     use('rust-lang/rust.vim')
@@ -24,7 +23,6 @@ local function startup(use)
       'vim-pandoc/vim-pandoc',
       requires = {'vim-pandoc/vim-pandoc-syntax', 'vim-pandoc/vim-markdownfootnotes'},
       config = function()
-        -- TODO: I'm not entirely sure about this
         -- It seems like a good idea with the way I've been doing my configuration, but it abstracts everything through the plugin's implementation
         vim.g['pandoc#modules#disabled'] = {'spell'}
       end
@@ -69,12 +67,23 @@ local function startup(use)
     use{'junegunn/gv.vim', opt = true, cmd = {'GV'}} -- Git log graphical visualisation
     use{'windwp/nvim-autopairs', opt = true}
     use('alvan/vim-closetag') -- Auto close html tags
-    use{'lambdalisue/fern.vim', requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'}}
+    use{
+      'lambdalisue/fern.vim',
+      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'},
+      config = function()
+        require('plugins.fern')
+      end
+    }
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
     use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
-    use('mhinz/vim-startify') -- Nice startup screen
+    use{
+      'mhinz/vim-startify',
+      config = function()
+        require('plugins.startify')
+      end
+    } -- Nice startup screen
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
     use{'mattn/emmet-vim', opt = true, ft={'html'}}
@@ -85,7 +94,13 @@ local function startup(use)
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use('godlygeek/tabular') -- Tabularize everything
     use('kyazdani42/nvim-web-devicons')
-    use('dyng/ctrlsf.vim') -- Search and replace interface
+    use{ -- Search and replace interface
+      'dyng/ctrlsf.vim',
+      config = function()
+        vim.g['ctrlsf_populate_qflist'] = true
+        --g['ctrlsf_default_view_mode'] = 'compact'
+      end
+    }
   end
 
   local function themes()
@@ -96,7 +111,12 @@ local function startup(use)
     -- TODO: look into replacing this by snippets.nvim
     use{'hrsh7th/vim-vsnip', requires = {'hrsh7th/vim-vsnip-integ'}}
 
-    use('norcalli/nvim-colorizer.lua')
+    use{
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require('plugins.colorizer')
+      end
+    }
 
     -- Telescope (fuzzy finder)
     use{'nvim-telescope/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}

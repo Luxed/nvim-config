@@ -10,9 +10,6 @@ local function languages()
 end
 
 local function utility()
-  -- fern.vim
-  require('plugins.fern')
-
   -- Switch
   map.nnore('<leader>ss', ':call switcher#Switch()<CR>')
   map.nnore('<leader>sv', ':call switcher#SwitchWithOptions({"edit_command": "vs"})<CR>')
@@ -40,8 +37,6 @@ local function utility()
 end
 
 local function interface()
-  require('plugins.startify')
-
   -- Semshi
   g['semshi#error_sign'] = false
   g['semshi#always_update_all_highlights'] = false
@@ -49,10 +44,6 @@ local function interface()
   -- Pencil
   g['pencil_higher_contrast_ui'] = 1
   g['pencil_gutter_color'] = 0
-
-  -- CtrlSF
-  g['ctrlsf_populate_qflist'] = true
-  --g['ctrlsf_default_view_mode'] = 'compact'
 
   -- git-blame.nvim
   g['gitblame_enabled'] = 0
@@ -66,8 +57,6 @@ local function lua_plugins()
 
   require('plugins.lsp_status')
   require('plugins.lsp')
-
-  require('plugins.colorizer')
 
   require('plugins.treesitter')
 
