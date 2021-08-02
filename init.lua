@@ -6,9 +6,8 @@ if string.find(vim.o.shell, 'fish') ~= nil then
   end
 end
 
-require('00_vanilla')
-require('01_plugins')
+require('vanilla')
+require('plugins')
 require('colorscheme')
 pcall(require, 'system_config')
-require('02_plugins_conf')
-vim.cmd('filetype plugin indent on')
+require('plugins_configuration')

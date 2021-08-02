@@ -23,7 +23,6 @@ local function startup(use)
       'vim-pandoc/vim-pandoc',
       requires = {'vim-pandoc/vim-pandoc-syntax', 'vim-pandoc/vim-markdownfootnotes'},
       config = function()
-        -- It seems like a good idea with the way I've been doing my configuration, but it abstracts everything through the plugin's implementation
         vim.g['pandoc#modules#disabled'] = {'spell'}
       end
     }
@@ -63,27 +62,35 @@ local function startup(use)
   end
 
   local function utility()
-    use('tpope/vim-fugitive') -- Git integration
+    use{ -- Git integration
+      'tpope/vim-fugitive',
+      config = function() require('plugins.fugitive') end
+    }
     use{'junegunn/gv.vim', opt = true, cmd = {'GV'}} -- Git log graphical visualisation
-    use{'windwp/nvim-autopairs', opt = true}
-    use('alvan/vim-closetag') -- Auto close html tags
+    use{
+      'windwp/nvim-autopairs',
+      config = function() require('plugins.autopairs') end
+    }
+    use{ -- Auto close html tags
+      'alvan/vim-closetag',
+      config = function()
+        vim.g['closetag_filenames'] = '*.html,*.xhtml,*.phtml,*.vue,*.xml'
+        vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml'
+      end
+    }
     use{
       'lambdalisue/fern.vim',
       requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'},
-      config = function()
-        require('plugins.fern')
-      end
+      config = function() require('plugins.fern') end
     }
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
     use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
-    use{
+    use{ -- Nice startup screen
       'mhinz/vim-startify',
-      config = function()
-        require('plugins.startify')
-      end
-    } -- Nice startup screen
+      config = function() require('plugins.startify') end
+    }
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
     use{'mattn/emmet-vim', opt = true, ft={'html'}}
@@ -98,7 +105,7 @@ local function startup(use)
       'dyng/ctrlsf.vim',
       config = function()
         vim.g['ctrlsf_populate_qflist'] = true
-        --g['ctrlsf_default_view_mode'] = 'compact'
+        --vim.g['ctrlsf_default_view_mode'] = 'compact'
       end
     }
   end
@@ -108,18 +115,24 @@ local function startup(use)
   end
 
   local function lua_plugins()
-    -- TODO: look into replacing this by snippets.nvim
     use{'hrsh7th/vim-vsnip', requires = {'hrsh7th/vim-vsnip-integ'}}
 
-    use{
+    use{ -- colorizer
       'norcalli/nvim-colorizer.lua',
-      config = function()
-        require('plugins.colorizer')
-      end
+      config = function() require('plugins.colorizer') end
     }
 
     -- Telescope (fuzzy finder)
-    use{'nvim-telescope/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
+    use{
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim'
+      },
+      config = function()
+        require('plugins.telescope').init()
+      end
+    }
 
     -- TreeSitter
     use {
@@ -131,7 +144,10 @@ local function startup(use)
         'nvim-treesitter/nvim-treesitter-refactor',
         'p00f/nvim-ts-rainbow',
         'nvim-treesitter/playground'
-      }
+      },
+      config = function()
+        require('plugins.treesitter')
+      end
     }
 
     -- LSP related plugins
@@ -139,20 +155,45 @@ local function startup(use)
       'neovim/nvim-lspconfig',
       requires = {
         'tjdevries/nlua.nvim',
-        'mfussenegger/nvim-jdtls'
-      }
+        'mfussenegger/nvim-jdtls',
+        'nvim-lua/lsp-status.nvim'
+      },
+      config = function()
+        require('plugins.lsp_status')
+        require('plugins.lsp')
+      end
     }
-    use('nvim-lua/lsp-status.nvim')
 
     -- Completion
-    use{'hrsh7th/nvim-compe', opt = true}
+    use{
+      'hrsh7th/nvim-compe',
+      config = function()
+        require('plugins.compe')
+      end
+    }
     use{'kosayoda/nvim-lightbulb'}
 
     -- Statusline/Tabline
-    use('glepnir/galaxyline.nvim')
-    use('akinsho/nvim-bufferline.lua')
+    use{
+      'glepnir/galaxyline.nvim',
+      config = function()
+        require('plugins.galaxyline')
+      end
+    }
+    use{
+      'akinsho/nvim-bufferline.lua',
+      config = function()
+        require('plugins.bufferline').init()
+      end
+    }
 
-    use({'lukas-reineke/indent-blankline.nvim', opt = true})
+    use{
+      'lukas-reineke/indent-blankline.nvim',
+      opt = true,
+      config = function()
+        require('plugins.indent_blankline')
+      end
+    }
 
     use('ray-x/lsp_signature.nvim')
 

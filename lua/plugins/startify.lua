@@ -1,8 +1,5 @@
 local g = vim.g
 
--- ensure vim-startify is loaded
-vim.cmd('packadd vim-startify')
-
 g['startify_change_to_dir'] = 0
 g['startify_custom_header'] = {
   [[  _   _                 _           ]],

@@ -9,6 +9,7 @@
 # TODO
 
 - Only show git indicator when in a git repo in custom `galaxyline` line
+- Move all keybinds in a single location
 
 # Neovim 0.5 features
 

@@ -1,4 +1,3 @@
-vim.cmd('packadd nvim-autopairs')
 local npairs = require('nvim-autopairs')
 
 npairs.setup{

@@ -1,7 +1,5 @@
 local map = require('helpers.map')
 
-vim.cmd('packadd nvim-compe')
-
 require('compe').setup{
   enabled = true,
   source = {
