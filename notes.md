@@ -67,13 +67,18 @@
 
 ### Current
 
-- Type parameter constraint clause needs to be idented
-- Things like `Where(a =>\n{\n\treturn true;\n});` does not get indented as I would expect (but it still makes sense)
-  The correct fix for this would be to always have the brackets always be ignored for identation? Maybe like the comments?
-- Indentation does not work properly on binary expressions
-- One line "ifs" are not indented properly
-- Single line methods indentation
-- Object creation (`new Object()`) should maybe use the contructor highlight
+- Indentation:
+  - Type parameter constraint clause needs to be idented
+  - Things like `Where(a =>\n{\n\treturn true;\n});` does not get indented as I would expect (but it still makes sense)
+    The correct fix for this would be to always have the brackets always be ignored for identation? Maybe like the comments?
+  - Indentation does not work properly on binary expressions
+  - One line "ifs" are not indented properly
+  - Single line methods indentation
+- Highlighting:
+  - Object creation (`new Object()`) should maybe use the contructor highlight
+  - is expression not highlighting type
+  - catch's "when" keyword not highlighted
+  - maybe "default" should be highlighted as a "keyword operator" instead of a "keyword"
 
 ### Fixed
 
