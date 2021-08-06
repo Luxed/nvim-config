@@ -142,9 +142,7 @@ local function startup(use)
 
     -- TreeSitter
     use {
-      --'nvim-treesitter/nvim-treesitter',
-      'Luxed/nvim-treesitter',
-      branch = 'c_sharp_cleaned',
+      'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       requires = {
         'nvim-treesitter/nvim-treesitter-refactor',
