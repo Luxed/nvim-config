@@ -115,7 +115,13 @@ local function startup(use)
   end
 
   local function lua_plugins()
-    use{'hrsh7th/vim-vsnip', requires = {'hrsh7th/vim-vsnip-integ'}}
+    use{
+      'hrsh7th/vim-vsnip',
+      requires = {'hrsh7th/vim-vsnip-integ'},
+      config = function()
+        require('plugins.vsnip')
+      end
+    }
 
     use{ -- colorizer
       'norcalli/nvim-colorizer.lua',
