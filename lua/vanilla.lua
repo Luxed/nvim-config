@@ -73,6 +73,14 @@ if vim.fn.has('win32') == 1 then
   map.lua('n', '<C-Z>', function() require('term').open() end)
 end
 
+-- Switch
+map.nnore('<leader>ss', ':call switcher#Switch()<CR>')
+map.nnore('<leader>sv', ':call switcher#SwitchWithOptions({"edit_command": "vs"})<CR>')
+map.nnore('<leader>sh', ':call switcher#SwitchWithOptions({"edit_command": "sp"})<CR>')
+
+-- Wrap
+map.xnore('<leader>w', ':call wrap#func()<CR>')
+
 command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
 
 augroup('yank_post_highlight', {

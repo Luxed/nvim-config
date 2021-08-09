@@ -62,12 +62,12 @@ local function startup(use)
   end
 
   local function utility()
-    use{ -- Git integration
+    use{ -- Fugitive: Git integration
       'tpope/vim-fugitive',
       config = function() require('plugins.fugitive') end
     }
     use{'junegunn/gv.vim', opt = true, cmd = {'GV'}} -- Git log graphical visualisation
-    use{
+    use{ -- autopairs
       'windwp/nvim-autopairs',
       config = function() require('plugins.autopairs') end
     }
@@ -78,7 +78,7 @@ local function startup(use)
         vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml'
       end
     }
-    use{
+    use{ -- Fern: file manager
       'lambdalisue/fern.vim',
       requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'},
       config = function() require('plugins.fern') end
@@ -87,7 +87,7 @@ local function startup(use)
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
     use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
-    use{ -- Nice startup screen
+    use{ -- Startify: Nice startup screen
       'mhinz/vim-startify',
       config = function() require('plugins.startify') end
     }
@@ -115,7 +115,7 @@ local function startup(use)
   end
 
   local function lua_plugins()
-    use{
+    use{ -- vsnip
       'hrsh7th/vim-vsnip',
       requires = {'hrsh7th/vim-vsnip-integ'},
       config = function()
@@ -128,8 +128,7 @@ local function startup(use)
       config = function() require('plugins.colorizer') end
     }
 
-    -- Telescope (fuzzy finder)
-    use{
+    use{ -- Telescope
       'nvim-telescope/telescope.nvim',
       requires = {
         'nvim-lua/popup.nvim',
@@ -140,8 +139,7 @@ local function startup(use)
       end
     }
 
-    -- TreeSitter
-    use {
+    use { -- TreeSitter
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       requires = {
@@ -154,8 +152,7 @@ local function startup(use)
       end
     }
 
-    -- LSP related plugins
-    use {
+    use { -- lspconfig
       'neovim/nvim-lspconfig',
       requires = {
         'tjdevries/nlua.nvim',
@@ -168,8 +165,7 @@ local function startup(use)
       end
     }
 
-    -- Completion
-    use{
+    use{ -- compe
       'hrsh7th/nvim-compe',
       config = function()
         require('plugins.compe')
@@ -177,21 +173,20 @@ local function startup(use)
     }
     use{'kosayoda/nvim-lightbulb'}
 
-    -- Statusline/Tabline
-    use{
+    use{ -- galaxyline
       'glepnir/galaxyline.nvim',
       config = function()
         require('plugins.galaxyline')
       end
     }
-    use{
+    use{ -- bufferline
       'akinsho/nvim-bufferline.lua',
       config = function()
         require('plugins.bufferline').init()
       end
     }
 
-    use{
+    use{ -- indent-blankline
       'lukas-reineke/indent-blankline.nvim',
       opt = true,
       config = function()

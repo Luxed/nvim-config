@@ -1,3 +1,4 @@
+-- Most plugins that execute commands expect a POSIX compliant shell.
 if string.find(vim.o.shell, 'fish') ~= nil then
   if vim.fn.filereadable('/bin/zsh') == 1 then
     vim.o.shell = '/bin/zsh'
@@ -10,4 +11,3 @@ require('vanilla')
 require('plugins')
 require('colorscheme')
 pcall(require, 'system_config')
-require('plugins_configuration')
