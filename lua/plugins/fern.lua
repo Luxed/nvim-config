@@ -1,6 +1,8 @@
 local map = require('helpers.map')
 
 vim.g['fern#renderer'] = 'nerdfont'
+vim.g['fern#default_hidden'] = 1
+vim.g['fern#default_exclude'] = '.git'
 
 map.nnore('<C-f>f', ':Fern . -reveal=%<CR>', { silent = true })
 map.nnore('<C-f><C-f>', ':Fern . -reveal=%<CR>', { silent = true })

@@ -80,7 +80,7 @@ local function startup(use)
     }
     use{ -- Fern: file manager
       'lambdalisue/fern.vim',
-      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'},
+      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/fern-git-status.vim'},
       config = function() require('plugins.fern') end
     }
     use('preservim/nerdcommenter') -- Commenting tool
