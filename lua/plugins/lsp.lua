@@ -84,6 +84,7 @@ lsp_capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits'
   }
 }
+lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(lsp_capabilities)
 
 local complete_lsp_setup = {
   on_attach = on_attach_complete,
