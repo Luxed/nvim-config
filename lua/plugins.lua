@@ -80,7 +80,7 @@ local function startup(use)
     }
     use{ -- Fern: file manager
       'lambdalisue/fern.vim',
-      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim'},
+      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/fern-git-status.vim'},
       config = function() require('plugins.fern') end
     }
     use('preservim/nerdcommenter') -- Commenting tool
@@ -165,12 +165,26 @@ local function startup(use)
       end
     }
 
-    use{ -- compe
+    --[[use{ -- compe
       'hrsh7th/nvim-compe',
       config = function()
         require('plugins.compe')
       end
+    }]]
+
+    use{ -- cmp
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-vsnip'
+      },
+      config = function()
+        require('plugins.cmp')
+      end
     }
+
     use{'kosayoda/nvim-lightbulb'}
 
     use{ -- galaxyline
