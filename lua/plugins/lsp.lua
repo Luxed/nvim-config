@@ -127,6 +127,7 @@ nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
+nvim_lsp.jsonls.setup(complete_lsp_setup)
 
 if vim.fn.has('win32') == 1 then
   -- For some reason, npm on Windows doesn't have a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
