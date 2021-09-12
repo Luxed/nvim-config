@@ -123,7 +123,6 @@ nvim_lsp.powershell_es.setup(extended_setup({
   }))
 
 nvim_lsp.vimls.setup(complete_lsp_setup)
-nvim_lsp.yamlls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
@@ -148,9 +147,14 @@ if vim.fn.has('win32') == 1 then
   nvim_lsp.html.setup(extended_setup({
         cmd = { 'vscode-html-language-server.cmd', '--stdio' }
     }))
+
+  nvim_lsp.yamlls.setup(extended_setup({
+        cmd = { 'yaml-language-server.cmd', '--stdio' }
+    }))
 else
   nvim_lsp.angularls.setup(complete_lsp_setup)
   nvim_lsp.html.setup(complete_lsp_setup)
+  nvim_lsp.yamlls.setup(complete_lsp_setup)
 end
 
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
