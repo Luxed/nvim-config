@@ -182,8 +182,12 @@ nvim_lsp.tsserver.setup{
   capabilities = lsp_capabilities
 }
 
-vim.fn.sign_define('LspDiagnosticsSignError'      , { text='' })
-vim.fn.sign_define('LspDiagnosticsSignWarning'    , { text='' })
-vim.fn.sign_define('LspDiagnosticsSignInformation', { text='' })
-vim.fn.sign_define('LspDiagnosticsSignHint'       , { text='ﯦ' })
-vim.fn.sign_define('LightBulbSign'                , { text='' })
+vim.fn.sign_define('DiagnosticSignError'           , { text='' })
+vim.fn.sign_define('DiagnosticSignWarn'            , { text='' })
+vim.fn.sign_define('DiagnosticSignInfo'            , { text='' })
+vim.fn.sign_define('DiagnosticSignHint'            , { text='ﯦ' })
+vim.fn.sign_define('LspDiagnosticsSignError'       , { text='' })
+vim.fn.sign_define('LspDiagnosticsSignWarning'     , { text='' })
+vim.fn.sign_define('LspDiagnosticsSignInformation' , { text='' })
+vim.fn.sign_define('LspDiagnosticsSignHint'        , { text='ﯦ' })
+vim.fn.sign_define('LightBulbSign'                 , { text='' })
