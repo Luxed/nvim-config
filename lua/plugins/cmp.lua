@@ -21,6 +21,7 @@ cmp.setup{
   },
 
   sources = {
+    { name = 'nvim_lsp' },
     {
       name = 'buffer',
       opts = {
@@ -34,7 +35,6 @@ cmp.setup{
       },
     },
     { name = 'path' },
-    { name = 'nvim_lsp' },
     { name = 'vsnip' }
   }
 }
