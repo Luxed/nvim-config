@@ -18,26 +18,16 @@
 
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
   Debug Adapter Protocol client for neovim
-- [nvim-lsputils](https://github.com/RishabhRD/nvim-lsputils)
-  Some better UI for builtin lsp
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
-- [nvim-treesitter-context](https://github.com/romgrk/nvim-treesitter-context)
-  Really nice looking way to show the current context (might be better in status bar though)
-- [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
-  Interesting plugin for better LSP UIs
 
 ### Status bar
 
 - [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
 - [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
-- [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 ## Current issues/complaints
-
-### nvim-treesitter
-
-- Folds do not get updated until I reload the file with `:e`
 
 ### telescope
 
@@ -50,17 +40,11 @@
 ## Current issues
 
 - Highlighting is imperfect at best. Support for Semantic tokens is comming which should improve the situation a lot.
-- Completion doesn't work well with things that are not imported (not at all or is very slow when enabled).
-  Seems like this is a lot faster in VSCode somehow.
-- Completion doesn't allow for auto imports (works in VSCode)
 - Completion float only shows 1 implementation and the number of overloads.
   Instead of showing documentation it could show every implementation maybe?
   The way OmniSharp-vim does it is to have 1 completion item per implementation.
   While VSCode gives you 1 completion item for all, but then the popup can be scrolled through using the arrow keys to find the implementation/documentation of the override you want.
 - Go to metadata doesn't work yet (doesn't help with completion floats not handled properly).
-- Everything feels extremely slow.
-- Nothing works in 0.6 preview (at least on Windows)
-- 2 OmniSharp instances are created whenever I work on a project
 
 # Treesitter issues
 
@@ -76,23 +60,6 @@
   - One line "ifs" are not indented properly
   - Single line methods indentation
 - Highlighting:
-  - Object creation (`new Object()`) should maybe use the contructor highlight
   - is expression not highlighting type
   - catch's "when" keyword not highlighted
   - maybe "default" should be highlighted as a "keyword operator" instead of a "keyword"
-
-### Fixed
-
-- Named arguments not highlighted
-- `nameof` not highlighted like `typeof` (operator)
-- `out` keyword is not detected
-- type after `out` keyword is not highlighted
-- highlight tuple definition (locals)
-- Add support for LinQ query syntax
-- `in` in linq query should be a "keyword", not a "repeat" (maybe it could be a keyword everywhere?)
-- function with generic (without `this.`) gets highlighted as a Type
-- Only highlight `group` keyword in linq queries
-- Properties not folded
-- `partial` keyword not highlighted (maybe only on methods?)
-- `this` keyword on extension methods not highlighted
-- highlight `base` as Constructor?
