@@ -8,6 +8,7 @@ local map = require('helpers.map')
 
 local checkout_actions = {}
 
+-- TODO: Redo tags selection + make PR to add it upstream
 checkout_actions.set_branch = function(prompt_bufnr)
   local entry = actions.get_selected_entry(prompt_bufnr)
 
@@ -17,7 +18,7 @@ checkout_actions.set_branch = function(prompt_bufnr)
   vim.cmd(git_cmd)
 end
 
-function tags(opts)
+local function tags(opts)
   opts = opts or {}
   local tags = vim.fn.systemlist('git ls-remote -t --refs')
   table.remove(tags, 1)
@@ -41,11 +42,12 @@ function tags(opts)
   }):find()
 end
 
-function rg()
+local function rg(opts)
   local input = vim.fn.input('Ripgrep: ')
 
   if input ~= '' then
-    builtin.grep_string({search = input})
+    opts = opts or {}
+    builtin.grep_string(vim.tbl_extend('force', opts, {search = input}))
   else
     print('Exiting: given input was empty')
   end
@@ -71,9 +73,21 @@ return {
       }
     }
 
-    map.lua('n', '<leader>ff', function() builtin.find_files() end)
+    local fix_folds = {
+      attach_mappings = function(_)
+        -- TEMP: Fix fold issues (https://github.com/nvim-telescope/telescope.nvim/issues/559)
+        require('telescope.actions.set').select:enhance{
+          post = function(_)
+            vim.cmd(':normal! zx')
+          end
+        }
+        return true
+      end
+    }
+
+    map.lua('n', '<leader>ff', function() builtin.find_files(fix_folds) end)
     map.lua('n', '<leader>fb', function() builtin.buffers({ show_all_buffers = true }) end)
-    map.lua('n', '<leader>fg', rg)
+    map.lua('n', '<leader>fg', function() rg(fix_folds) end)
     map.lua('n', '<leader>gb', function() builtin.git_branches() end)
     map.lua('n', '<leader>gt', tags)
   end

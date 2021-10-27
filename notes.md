@@ -8,7 +8,8 @@
 
 # TODO
 
-- Only show git indicator when in a git repo in custom `galaxyline` line
+- ~~Only show git indicator when in a git repo in custom `galaxyline` line~~
+  Either update to a maintained version of Galaxyline or change status line
 - Move all keybinds in a single location
 - Disable virtual text for hints
 
