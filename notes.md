@@ -37,6 +37,8 @@
 # Better CS tooling
 
 - Create file with namespace. Could be based on path relative to Solution (or csproj) (csproj or solution file needs to be read for a Namespace too, maybe the LSP would have something for this?)
+- Go to metadata
+- Completion float multiple implementations (hover)
 
 ## Current issues
 
@@ -64,3 +66,6 @@
   - is expression not highlighting type
   - catch's "when" keyword not highlighted
   - maybe "default" should be highlighted as a "keyword operator" instead of a "keyword"
+  - `:` and `??` are not highlighted
+  - In `new Type()`, "Type" should be highlighted as constructor
+  - `where T : EntityBase`, "EntityBase" is not highlighted, it should be "type"
