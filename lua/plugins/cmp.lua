@@ -14,10 +14,10 @@ cmp.setup{
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     -- This is mapped by the autopairs plugin instead
-    --['<CR>'] = cmp.mapping.confirm({
+    ['<CR>'] = cmp.mapping.confirm({
         --behavior = cmp.ConfirmBehavior.Insert,
-        --select = false,
-      --}),
+        select = false,
+      }),
   },
 
   sources = {
@@ -38,3 +38,6 @@ cmp.setup{
     { name = 'vsnip' }
   }
 }
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({}))
