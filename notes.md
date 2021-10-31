@@ -30,6 +30,7 @@
   See [here](https://github.com/jchannon/csharpextensions) and [here](https://github.com/KreativJos/csharpextensions) (newer version).
 - Go to metadata.
   See [here](https://github.com/OmniSharp/omnisharp-vim/blob/master/autoload/OmniSharp/actions/definition.vim).
+  See [this](https://github.com/Hoffs/omnisharp-extended-lsp.nvim) for a working example of how to do it in Neovim curently.
 - Completion float multiple implementations (hover). Handle overloaded methods.
   See [here](https://github.com/OmniSharp/omnisharp-vim).
 
