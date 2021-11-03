@@ -20,11 +20,11 @@ end
 
 local function tags(opts)
   opts = opts or {}
-  local tags = vim.fn.systemlist('git ls-remote -t --refs')
-  table.remove(tags, 1)
+  local tags_list = vim.fn.systemlist('git ls-remote -t --refs')
+  table.remove(tags_list, 1)
 
   local results = {}
-  for _, tag in pairs(tags) do
+  for _, tag in pairs(tags_list) do
     tag = vim.fn.substitute(tag, '^.*refs/tags/', '', '')
     table.insert(results, tag)
   end
@@ -88,7 +88,7 @@ return {
     map.lua('n', '<leader>ff', function() builtin.find_files(fix_folds) end)
     map.lua('n', '<leader>fb', function() builtin.buffers({ show_all_buffers = true }) end)
     map.lua('n', '<leader>fg', function() rg(fix_folds) end)
-    map.lua('n', '<leader>gb', function() builtin.git_branches() end)
+    map.lua('n', '<leader>gb', builtin.git_branches)
     map.lua('n', '<leader>gt', tags)
   end
 }
