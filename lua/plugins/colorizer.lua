@@ -2,6 +2,9 @@ require('colorizer').setup({
     css = {
       names = true
     },
+    scss = {
+      names = true
+    },
     cfg = {
       names = false,
       RRGGBBAA = true,
