@@ -157,20 +157,14 @@ local function startup(use)
       requires = {
         'tjdevries/nlua.nvim',
         'mfussenegger/nvim-jdtls',
-        'nvim-lua/lsp-status.nvim'
+        'nvim-lua/lsp-status.nvim',
+        'Hoffs/omnisharp-extended-lsp.nvim'
       },
       config = function()
         require('plugins.lsp_status')
         require('plugins.lsp')
       end
     }
-
-    --[[use{ -- compe
-      'hrsh7th/nvim-compe',
-      config = function()
-        require('plugins.compe')
-      end
-    }]]
 
     use{ -- cmp
       'hrsh7th/nvim-cmp',
