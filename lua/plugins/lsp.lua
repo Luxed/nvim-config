@@ -10,13 +10,12 @@ local map = require('helpers.map')
 local home = vim.fn.expand('~')
 
 local function on_attach_keymaps()
-local lsp = vim.lsp
   local builtin = require('telescope.builtin')
 
   local m = map.buf.lua
 
-  m('n', '<leader>qk', function() lsp.buf.hover() end)
-  m('n', 'K', function() lsp.buf.hover() end)
+  m('n', '<leader>qk', function() vim.lsp.buf.hover() end)
+  m('n', 'K', function() vim.lsp.buf.hover() end)
   m('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
   m('n', '<leader>qq', function() vim.lsp.diagnostic.show_line_diagnostics() end)
   m('n', '<leader>qgd', function() vim.lsp.buf.definition() end)
@@ -27,14 +26,19 @@ local lsp = vim.lsp
 
   -- use Telescope for more convenient and consistent UI
   m('n', '<leader>qgr', function() builtin.lsp_references() end)
-  m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
   m('n', '<leader>qs', function() builtin.lsp_document_symbols() end)
   m('n', '<leader>qd', function() builtin.lsp_document_diagnostics() end)
   m('n', '<leader>qwd', function() builtin.lsp_workspace_diagnostics() end)
   m('n', '<leader>qws', function() builtin.lsp_workspace_symbols() end)
 
-  -- override default keymap
-  m('n', 'gd', function() lsp.buf.definition() end)
+  if vim.o.filetype == 'cs' then
+    m('n', 'gd', function() require('omnisharp_extended').telescope_lsp_definitions() end)
+    -- TODO: temporary, Telescope sometimes deadlocks the vim instance when asked for code actions...
+    m('n', '<leader>qa', function() vim.lsp.buf.code_action() end)
+  else
+    m('n', 'gd', function() vim.lsp.buf.definition() end)
+    m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
+  end
 
   buf_command('Format', 'lua vim.lsp.buf.formatting()')
 end
