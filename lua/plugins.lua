@@ -29,18 +29,9 @@ local function startup(use)
     -- File Format
     use('editorconfig/editorconfig-vim')
     use('mboughaba/i3config.vim')
-    use('elzr/vim-json')
     use('cespare/vim-toml')
-    -- Javascript, Typescript
-    use('pangloss/vim-javascript')
-    use('heavenshell/vim-jsdoc')
-    --use('reasonml-editor/vim-reason-plus')
-    --use('herringtondarkholme/yats.vim') -- Typescript syntax
+    -- Vue
     use('posva/vim-vue')
-    -- Html/css
-    use('othree/html5.vim')
-    use('hail2u/vim-css3-syntax')
-    use('cakebaker/scss-syntax.vim')
     -- Glsl
     use('tikhomirov/vim-glsl')
     -- Kotlin
@@ -53,12 +44,10 @@ local function startup(use)
     -- Shell
     use('PProvost/vim-ps1')
     use('blankname/vim-fish')
-    -- Lua
-    use('tbastos/vim-lua')
-    use('leafo/moonscript-vim')
-    use('bakpakin/fennel.vim')
     -- Reason
     use('rescript-lang/vim-rescript')
+
+    use{'openembedded/bitbake', rtp = 'contrib/vim'}
   end
 
   local function utility()
@@ -80,7 +69,11 @@ local function startup(use)
     }
     use{ -- Fern: file manager
       'lambdalisue/fern.vim',
-      requires = {'lambdalisue/nerdfont.vim', 'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/fern-git-status.vim'},
+      requires = {
+        'lambdalisue/nerdfont.vim',
+        'lambdalisue/fern-renderer-nerdfont.vim',
+        'lambdalisue/fern-git-status.vim'
+      },
       config = function() require('plugins.fern') end
     }
     use('preservim/nerdcommenter') -- Commenting tool
@@ -93,13 +86,13 @@ local function startup(use)
     }
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
-    use{'mattn/emmet-vim', opt = true, ft={'html'}}
+    --use{'mattn/emmet-vim', opt = true, ft={'html'}}
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
   end
 
   local function interface()
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
-    use('godlygeek/tabular') -- Tabularize everything
+    use{'godlygeek/tabular', opt = true, cmd = {'Tabularize'}} -- Tabularize everything
     use('kyazdani42/nvim-web-devicons')
     use{ -- Search and replace interface
       'dyng/ctrlsf.vim',
@@ -157,20 +150,14 @@ local function startup(use)
       requires = {
         'tjdevries/nlua.nvim',
         'mfussenegger/nvim-jdtls',
-        'nvim-lua/lsp-status.nvim'
+        'nvim-lua/lsp-status.nvim',
+        'Hoffs/omnisharp-extended-lsp.nvim'
       },
       config = function()
         require('plugins.lsp_status')
         require('plugins.lsp')
       end
     }
-
-    --[[use{ -- compe
-      'hrsh7th/nvim-compe',
-      config = function()
-        require('plugins.compe')
-      end
-    }]]
 
     use{ -- cmp
       'hrsh7th/nvim-cmp',
@@ -188,7 +175,7 @@ local function startup(use)
     use{'kosayoda/nvim-lightbulb'}
 
     use{ -- galaxyline
-      'glepnir/galaxyline.nvim',
+      'NTBBloodbath/galaxyline.nvim',
       config = function()
         require('plugins.galaxyline')
       end

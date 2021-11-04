@@ -167,6 +167,9 @@ if vim.g.config_omnisharp_bin then
       -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
       return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
     end,
+    handlers = {
+      ['textDocument/definition'] = require('omnisharp_extended').handler
+    }
   }))
 end
 
