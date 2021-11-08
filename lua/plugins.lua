@@ -189,7 +189,6 @@ local function startup(use)
 
     use{ -- indent-blankline
       'lukas-reineke/indent-blankline.nvim',
-      opt = true,
       config = function()
         require('plugins.indent_blankline')
       end

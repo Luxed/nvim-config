@@ -63,8 +63,8 @@ map.nnore('<leader>N', ':Rmhl<CR>')
 command('Rmhl', ':let @/=""')
 
 -- Folds keybinds
-map.nnore('<space>', 'za')
-map.nnore('<S-Space>', 'zA')
+map.n('<space>', 'za', {})
+map.n('<C-space>', 'zA', {})
 
 map.tnore('<leader>n', '<C-\\><C-N>')
 

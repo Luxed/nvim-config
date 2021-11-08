@@ -78,7 +78,7 @@ return {
         -- TEMP: Fix fold issues (https://github.com/nvim-telescope/telescope.nvim/issues/559)
         require('telescope.actions.set').select:enhance{
           post = function(_)
-            vim.cmd(':normal! zx')
+            vim.cmd(':normal zx')
           end
         }
         return true

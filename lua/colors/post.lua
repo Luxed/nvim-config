@@ -6,15 +6,19 @@ return {
     local colors_name = vim.g.colors_name
 
     if colors_name == 'ayu' then
+      local ayu_get_color = vim.fn['ayu#get_color']
       hi_link('csUserIdentifier', 'NONE')
       hi_link('csModifier', 'Structure')
 
       hi_link('CocHighlightText', 'Visual')
 
       -- Add highlight for word under cursor
-      hi_link('LspReferenceRead', 'Visual')
+      --hi_link('LspReferenceRead', 'Visual')
       hi('LspDiagnosticsUnderlineHint', {gui='underline'})
       --hi_link('TSConstructor', 'NONE')
+
+      -- TODO: Add into fork
+      hi('IndentBlanklineContextChar', {guifg=ayu_get_color('comment')})
     elseif colors_name == 'afterglow' then
       -- Set pmenu to complete black for better Fzf highlighting
       hi('Pmenu', {guibg='#000000'})

@@ -56,6 +56,9 @@ return {
       vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
     end
   end,
+  n = function(lhs, rhs, opts, buffer)
+    map('n', lhs, rhs, opts, buffer)
+  end,
 
   buf = {
     lua = function(mode, keybind, callback, opts)
