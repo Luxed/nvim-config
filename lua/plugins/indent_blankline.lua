@@ -2,7 +2,7 @@ local map = require('helpers.map')
 
 require('indent_blankline').setup {
   buftype_exclude = {'terminal', 'help'},
-  filetype_exclude = {'startify', 'fugitive'},
+  filetype_exclude = {'startify', 'fugitive', 'pandoc'},
   char_list = {'|', '¦', '┆', '┊'},
   use_treesitter = false,
   show_first_indent_level = false,
