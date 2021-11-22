@@ -2,7 +2,7 @@ local map = require('helpers.map')
 
 require('indent_blankline').setup {
   buftype_exclude = {'terminal', 'help'},
-  filetype_exclude = {'startify', 'fugitive', 'pandoc'},
+  filetype_exclude = {'startify', 'fugitive', 'pandoc', 'packer'},
   char_list = {'|', '¦', '┆', '┊'},
   use_treesitter = false,
   show_first_indent_level = false,
@@ -12,7 +12,7 @@ require('indent_blankline').setup {
 
 local function remap(lhss)
   for _,lhs in pairs(lhss) do
-    map.nnore(lhs, lhs .. ':IndentBlanklineRefresh<CR>', {})
+    map.nnore(lhs, lhs .. ':IndentBlanklineRefresh<CR>', { silent = true })
   end
 end
 
