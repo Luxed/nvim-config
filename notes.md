@@ -9,6 +9,7 @@
   Debug Adapter Protocol client for neovim
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
+- [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 
 ## Status bars
 
