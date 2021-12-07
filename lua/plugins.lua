@@ -151,7 +151,8 @@ local function startup(use)
         'tjdevries/nlua.nvim',
         'mfussenegger/nvim-jdtls',
         'nvim-lua/lsp-status.nvim',
-        'Hoffs/omnisharp-extended-lsp.nvim'
+        'Hoffs/omnisharp-extended-lsp.nvim',
+        'simrat39/rust-tools.nvim'
       },
       config = function()
         require('plugins.lsp_status')

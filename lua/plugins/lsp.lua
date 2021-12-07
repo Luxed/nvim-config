@@ -116,10 +116,11 @@ nvim_lsp.vuels.setup(extended_setup({
 nvim_lsp.cssls.setup(extended_setup({
       cmd = vim.g.cssls_cmd
   }))
---nvim_lsp.rls.setup(complete_lsp_setup)
-nvim_lsp.rust_analyzer.setup(extended_setup({
-      cmd = vim.g.rust_analyzer_cmd or {'rust-analyzer'}
-  }))
+require('rust-tools').setup({
+  server = {
+    on_attach = on_attach_complete
+  }
+})
 nvim_lsp.powershell_es.setup(extended_setup({
       -- TODO: will not work on Windows
       bundle_path = home .. '/.local/opt/PowerShellEditorServices'
