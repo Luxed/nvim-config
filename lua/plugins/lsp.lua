@@ -17,10 +17,10 @@ local function on_attach_keymaps()
   m('n', '<leader>qk', function() vim.lsp.buf.hover() end)
   m('n', 'K', function() vim.lsp.buf.hover() end)
   m('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
-  m('n', '<leader>qq', function() vim.lsp.diagnostic.show_line_diagnostics() end)
+  m('n', '<leader>qq', function() vim.diagnostic.open_float() end)
   m('n', '<leader>qr', function() vim.lsp.buf.rename() end)
-  m('n', '<leader>qn', function() vim.lsp.diagnostic.goto_next() end)
-  m('n', '<leader>qp', function() vim.lsp.diagnostic.goto_prev() end)
+  m('n', '<leader>qn', function() vim.diagnostic.goto_next() end)
+  m('n', '<leader>qp', function() vim.diagnostic.goto_prev() end)
 
   -- use Telescope for more convenient and consistent UI
   m('n', '<leader>qgr', function() builtin.lsp_references() end)
