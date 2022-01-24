@@ -23,6 +23,7 @@
   Either update to a maintained version of Galaxyline or change status line
 - Move all keybinds in a single location
 - Disable virtual text for hints
+- Use new Neovim `lua.keymap` interface ([pull request](https://github.com/neovim/neovim/pull/16591))
 
 # Better CS tooling
 
