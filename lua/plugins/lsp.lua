@@ -1,18 +1,11 @@
--- Plugins require
 local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
---local lsp_signature = require('lsp_signature')
-local root_pattern = require('lspconfig.util').root_pattern
--- Local require
-local buf_command = require('helpers.command').buf_command
-local augroup = require('helpers.command').augroup
-local map = require('helpers.map')
-local home = vim.fn.expand('~')
 
 local function on_attach_keymaps()
   local builtin = require('telescope.builtin')
+  local buf_command = require('helpers.command').buf_command
 
-  local m = map.buf.lua
+  local m = require('helpers.map').buf.lua
 
   m('n', '<leader>qk', function() vim.lsp.buf.hover() end)
   m('n', 'K', function() vim.lsp.buf.hover() end)
@@ -44,6 +37,8 @@ end
 
 local function on_attach_complete(client)
   local bufnr = vim.fn.bufnr()
+  local augroup = require('helpers.command').augroup
+
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
   if client.resolved_capabilities.document_highlight then
     augroup('lsp_document_highlight_' .. tostring(bufnr), {
@@ -58,7 +53,7 @@ local function on_attach_complete(client)
 
   lsp_status.on_attach(client)
 
-  --[[lsp_signature.on_attach({
+  --[[require('lsp_signature').on_attach({
       bind = true,
       hint_prefix = '',
       --hi_parameter = 'IncSearch',
@@ -100,92 +95,19 @@ local extended_setup = function(additional_options)
   return vim.tbl_extend('force', complete_lsp_setup, additional_options)
 end
   
--- NOTE: On windows, some commands created by npm will not work unless you explicitely tell lspconfig to use the ".cmd" executable
-nvim_lsp.vuels.setup(extended_setup({
-      cmd = vim.g.vls_cmd or {'vls'},
-      init_options = {
-        config = {
-          vetur = {
-            experimental = {
-              templateInterpolationService = true
-            }
-          }
-        }
-      }
-  }))
-nvim_lsp.cssls.setup(extended_setup({
-      cmd = vim.g.cssls_cmd
-  }))
 require('rust-tools').setup({
   server = {
     on_attach = on_attach_complete
   }
 })
-nvim_lsp.powershell_es.setup(extended_setup({
-      -- TODO: will not work on Windows
-      bundle_path = home .. '/.local/opt/PowerShellEditorServices'
-  }))
 
 nvim_lsp.vimls.setup(complete_lsp_setup)
 nvim_lsp.bashls.setup(complete_lsp_setup)
 nvim_lsp.pylsp.setup(complete_lsp_setup)
 nvim_lsp.dockerls.setup(complete_lsp_setup)
 nvim_lsp.jsonls.setup(complete_lsp_setup)
-nvim_lsp.gopls.setup(extended_setup({
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    }
-  }
-}))
-
-if vim.fn.has('win32') == 1 then
-  -- For some reason, npm on Windows doesn't have a normal executable, only a .cmd and .ps1. To avoid issues, it is important to specify the .cmd so it doesn't fail when trying to start the server. Since this is not an issue on Linux, we only apply these changes on Windows.
-  local function build_angular_cmd(node_path)
-    return { 'ngserver.cmd', '--stdio', '--tsProbeLocations', node_path, '--ngProbeLocations', node_path }
-  end
-
-  nvim_lsp.angularls.setup(extended_setup({
-        cmd = build_angular_cmd(),
-        root_dir = function(path)
-          return root_pattern('angular.json')(path)
-        end,
-        on_new_config = function(new_config, new_root_dir)
-          new_config.cmd = build_angular_cmd(new_root_dir)
-        end
-    }))
-
-  nvim_lsp.html.setup(extended_setup({
-        cmd = { 'vscode-html-language-server.cmd', '--stdio' }
-    }))
-
-  nvim_lsp.yamlls.setup(extended_setup({
-        cmd = { 'yaml-language-server.cmd', '--stdio' }
-    }))
-else
-  nvim_lsp.angularls.setup(complete_lsp_setup)
-  nvim_lsp.html.setup(complete_lsp_setup)
-  nvim_lsp.yamlls.setup(complete_lsp_setup)
-end
 
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
-
-if vim.g.config_omnisharp_bin then
-  local pid = vim.fn.getpid()
-  nvim_lsp.omnisharp.setup(extended_setup({
-    cmd = { vim.g.config_omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-    root_dir = function(path)
-      -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
-      return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
-    end,
-    handlers = {
-      ['textDocument/definition'] = require('omnisharp_extended').handler
-    }
-  }))
-end
 
 nvim_lsp.tsserver.setup{
   on_attach = function(client)
@@ -203,6 +125,36 @@ nvim_lsp.tsserver.setup{
   end,
   capabilities = lsp_capabilities
 }
+
+require('nvim-lsp-installer').on_server_ready(function (server)
+  if server.name == 'omnisharp' then
+    server:setup(extended_setup({
+      root_dir = function(path)
+        local root_pattern = require('lspconfig.util').root_pattern
+        -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
+        return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
+      end,
+      handlers = {
+        ['textDocument/definition'] = require('omnisharp_extended').handler
+      }
+    }))
+  elseif server.name == 'vuels' then
+    server:setup(extended_setup({
+      init_options = {
+        config = {
+          vetur = {
+            experimental = {
+              -- template interpolation doesn't seem to be working with my current Vue 2 project
+              templateInterpolationService = false
+            }
+          }
+        }
+      }
+    }))
+  else
+    server:setup(complete_lsp_setup)
+  end
+end)
 
 local data_path = vim.fn.stdpath('data')
 nvim_lsp.rescriptls.setup(extended_setup({
