@@ -88,7 +88,7 @@ local complete_lsp_setup = {
   capabilities = lsp_capabilities
 }
 
-local extended_setup = function(additional_options)
+local function extended_setup(additional_options)
   additional_options = additional_options or {}
 
   return vim.tbl_extend('force', complete_lsp_setup, additional_options)
