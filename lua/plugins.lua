@@ -214,6 +214,7 @@ local function startup(use)
 end
 
 local first_install = bootstrap()
+vim.g['first_install'] = first_install
 require('packer').startup(startup)
 
 if first_install then

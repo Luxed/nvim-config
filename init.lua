@@ -9,5 +9,7 @@ end
 
 require('vanilla')
 require('plugins')
-require('colorscheme')
-pcall(require, 'system_config')
+if not vim.g['first_install'] then
+  require('colorscheme')
+  pcall(require, 'system_config')
+end
