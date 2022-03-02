@@ -9,7 +9,6 @@
   Debug Adapter Protocol client for neovim
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
-- [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 
 ## Status bars
 
@@ -19,8 +18,8 @@
 
 # TODO
 
-- ~~Only show git indicator when in a git repo in custom `galaxyline` line~~
-  Either update to a maintained version of Galaxyline or change status line
+- Only show git indicator when in a git repo in custom `galaxyline` line.
+  Actually, start thinking to switch over to lualine which seems simple and more maintained.
 - Move all keybinds in a single location
 - Disable virtual text for hints
 - Use new Neovim `lua.keymap` interface ([pull request](https://github.com/neovim/neovim/pull/16591))
@@ -30,9 +29,6 @@
 - Create file with namespace. Could be based on path relative to Solution (or csproj)
   (csproj or solution file needs to be read for a Namespace too, maybe the LSP would have something for this?)
   See [here](https://github.com/jchannon/csharpextensions) and [here](https://github.com/KreativJos/csharpextensions) (newer version).
-- Go to metadata.
-  See [here](https://github.com/OmniSharp/omnisharp-vim/blob/master/autoload/OmniSharp/actions/definition.vim).
-  See [this](https://github.com/Hoffs/omnisharp-extended-lsp.nvim) for a working example of how to do it in Neovim curently.
 - Completion float multiple implementations (hover). Handle overloaded methods.
   See [here](https://github.com/OmniSharp/omnisharp-vim).
 
