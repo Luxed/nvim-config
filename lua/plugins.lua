@@ -176,10 +176,10 @@ local function startup(use)
 
     use{'kosayoda/nvim-lightbulb'}
 
-    use{ -- galaxyline
-      'NTBBloodbath/galaxyline.nvim',
+    use{ -- lualine
+      'nvim-lualine/lualine.nvim',
       config = function()
-        require('plugins.galaxyline')
+        require('plugins.lualine')
       end
     }
     use{ -- bufferline
