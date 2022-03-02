@@ -55,7 +55,11 @@ end
 
 return {
   code_actions = function()
-    builtin.lsp_code_actions(themes.get_cursor())
+    builtin.lsp_code_actions(themes.get_cursor({
+      layout_config = {
+        height = 14
+      }
+    }))
   end,
   init = function()
     require('telescope').setup {
