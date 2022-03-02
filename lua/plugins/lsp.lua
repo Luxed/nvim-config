@@ -52,14 +52,14 @@ local function on_attach_complete(client)
 
   lsp_status.on_attach(client)
 
-  --[[require('lsp_signature').on_attach({
+  require('lsp_signature').on_attach({
       bind = true,
       hint_prefix = '',
-      --hi_parameter = 'IncSearch',
+      hi_parameter = 'IncSearch',
       handler_opts = {
         border = 'none'
       }
-    })]]
+    })
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
