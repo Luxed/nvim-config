@@ -94,18 +94,6 @@ local function extended_setup(additional_options)
   return vim.tbl_extend('force', complete_lsp_setup, additional_options)
 end
   
-require('rust-tools').setup({
-  server = {
-    on_attach = on_attach_complete
-  }
-})
-
-nvim_lsp.vimls.setup(complete_lsp_setup)
-nvim_lsp.bashls.setup(complete_lsp_setup)
-nvim_lsp.pylsp.setup(complete_lsp_setup)
-nvim_lsp.dockerls.setup(complete_lsp_setup)
-nvim_lsp.jsonls.setup(complete_lsp_setup)
-
 require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
 
 nvim_lsp.tsserver.setup{
@@ -150,6 +138,13 @@ require('nvim-lsp-installer').on_server_ready(function (server)
         }
       }
     }))
+  elseif server.name == 'rust_analyzer' then
+    require("rust-tools").setup({
+      server = vim.tbl_deep_extend('force', server:get_default_options(), {
+        on_attach = on_attach_complete
+      })
+    })
+    server:attach_buffers()
   else
     server:setup(complete_lsp_setup)
   end
