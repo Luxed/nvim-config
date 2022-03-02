@@ -25,12 +25,11 @@ local function on_attach_keymaps()
 
   if vim.o.filetype == 'cs' then
     m('n', 'gd', function() require('omnisharp_extended').telescope_lsp_definitions() end)
-    -- TODO: temporary, Telescope sometimes deadlocks the vim instance when asked for code actions...
-    m('n', '<leader>qa', function() vim.lsp.buf.code_action() end)
   else
     m('n', 'gd', function() vim.lsp.buf.definition() end)
-    m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
   end
+
+  m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
 
   buf_command('Format', 'lua vim.lsp.buf.formatting()')
 end
