@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup{
   snippet = {
@@ -36,6 +37,14 @@ cmp.setup{
     },
     { name = 'path' },
     { name = 'vsnip' }
+  },
+  
+  formatting = {
+    format = lspkind.cmp_format(),
+  },
+
+  documentation = {
+    border = 'single'
   }
 }
 

@@ -153,7 +153,8 @@ local function startup(use)
         'nvim-lua/lsp-status.nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
         'simrat39/rust-tools.nvim',
-        'williamboman/nvim-lsp-installer'
+        'williamboman/nvim-lsp-installer',
+        'onsails/lspkind-nvim'
       },
       config = function()
         require('plugins.lsp_status')
