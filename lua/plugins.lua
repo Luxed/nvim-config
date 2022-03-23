@@ -104,7 +104,7 @@ local function startup(use)
   end
 
   local function themes()
-    use{'Luxed/ayu-vim', branch = 'ayu-vim-generator'}
+    use{'Luxed/ayu-vim'}
   end
 
   local function lua_plugins()
