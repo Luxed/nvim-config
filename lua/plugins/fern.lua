@@ -4,10 +4,13 @@ vim.g['fern#renderer'] = 'nerdfont'
 vim.g['fern#default_hidden'] = 1
 vim.g['fern#default_exclude'] = '.git'
 
-map.nnore('<C-f>f', ':Fern . -reveal=%<CR>', { silent = true })
-map.nnore('<C-f><C-f>', ':Fern . -reveal=%<CR>', { silent = true })
---map.nnore('<C-f>v', ':Fern . -reveal=% -opener=vertical\\ leftabove\\ split<CR>', { silent = true })
-map.nnore('<C-f>v', ':Fern . -reveal=% -opener=vsplit<CR>', { silent = true })
-map.nnore('<C-f><C-v>', ':Fern . -reveal=% -opener=vsplit<CR>', { silent = true })
-map.nnore('<C-f>h', ':Fern . -reveal=% -opener=split<CR>', { silent = true })
-map.nnore('<C-f><C-h>', ':Fern . -reveal=% -opener=split<CR>', { silent = true })
+local function f_map(key, opener)
+  map.nnore('<C-f>' .. key, ':Fern . -reveal=% -opener=' .. opener .. '<CR>', { silent = true })
+  map.nnore('<C-f><C-' .. key .. '>', ':Fern . -reveal=% -opener=' .. opener .. '<CR>', { silent = true })
+end
+
+f_map('f', 'edit')
+f_map('v', 'vsplit')
+f_map('h', 'split')
+f_map('x', 'split')
+f_map('t', 'tabedit')
