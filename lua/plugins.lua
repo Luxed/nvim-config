@@ -29,7 +29,7 @@ local function startup(use)
     -- File Format
     use('editorconfig/editorconfig-vim')
     use('mboughaba/i3config.vim')
-    use('cespare/vim-toml')
+    use{'cespare/vim-toml', branch = 'main'}
     -- Vue
     use('posva/vim-vue')
     -- Glsl
