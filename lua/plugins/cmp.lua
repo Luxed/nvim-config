@@ -43,8 +43,10 @@ cmp.setup{
     format = lspkind.cmp_format(),
   },
 
-  documentation = {
-    border = 'single'
+  window = {
+    documentation = {
+      border = 'single'
+    }
   }
 }
 
