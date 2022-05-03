@@ -9,17 +9,11 @@
   Debug Adapter Protocol client for neovim
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim)
   Formatter
-
-## Status bars
-
-- [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
-- [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [spellsitter.nvim](https://github.com/lewis6991/spellsitter.nvim)
+  Only check for spelling mistakes in comments
 
 # TODO
 
-- Only show git indicator when in a git repo in custom `galaxyline` line.
-  Actually, start thinking to switch over to lualine which seems simple and more maintained.
 - Move all keybinds in a single location
 - Disable virtual text for hints
 - Use new Neovim `lua.keymap` interface ([pull request](https://github.com/neovim/neovim/pull/16591))
