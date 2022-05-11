@@ -28,7 +28,8 @@ local function on_attach_keymaps()
     m('n', 'gd', function() vim.lsp.buf.definition() end)
   end
 
-  m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
+  --m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
+  m('n', '<leader>qa', function() vim.lsp.buf.code_action() end)
 
   buf_command('Format', 'lua vim.lsp.buf.formatting()')
 end
@@ -38,7 +39,7 @@ local function on_attach_complete(client)
   local augroup = require('helpers.command').augroup
 
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities['documentHighlightProvider'] then
     augroup('lsp_document_highlight_' .. tostring(bufnr), {
         { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
         { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }

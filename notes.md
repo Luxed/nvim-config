@@ -17,6 +17,8 @@
 - Move all keybinds in a single location
 - Disable virtual text for hints
 - Use new Neovim `lua.keymap` interface ([pull request](https://github.com/neovim/neovim/pull/16591))
+- Use [Dressing.nvim](https://github.com/stevearc/dressing.nvim) to replace [now missing](https://github.com/nvim-telescope/telescope.nvim/issues/1470#issuecomment-1106707726) code actions from Telescope
+- Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Would be one more step towards Neovim being not only a good editor, but also a good OS
 
 # Better CS tooling
 
