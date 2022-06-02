@@ -201,6 +201,11 @@ local function startup(use)
     use('ray-x/lsp_signature.nvim')
 
     use('jose-elias-alvarez/nvim-lsp-ts-utils')
+
+    use{ -- dressing.nvim
+      'stevearc/dressing.nvim',
+      config = function() require('plugins.dressing') end
+    }
   end
 
   local function tracking()
