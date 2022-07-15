@@ -207,7 +207,7 @@ local function startup(use)
       config = function() require('plugins.dressing') end
     }
 
-    use{
+    use{ -- neodim
       'zbirenbaum/neodim',
       event = 'LspAttach',
       config = function() require('plugins.dim') end
