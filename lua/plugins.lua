@@ -69,6 +69,7 @@ local function startup(use)
     }
     use{ -- Fern: file manager
       'lambdalisue/fern.vim',
+      branch = 'main',
       requires = {
         'lambdalisue/nerdfont.vim',
         'lambdalisue/fern-renderer-nerdfont.vim',
