@@ -163,7 +163,6 @@ local function startup(use)
       config = function()
         require('plugins.lsp_status')
         require('plugins.lsp')
-        require('plugins.mason')
       end
     }
 
