@@ -234,9 +234,6 @@ local function startup(use)
   themes()
   lua_plugins()
   tracking()
-
-  -- Private stuff, no need to commit/push
-  use('git@bitbucket.org:cbrunel/snippets.git')
 end
 
 local first_install = bootstrap()
