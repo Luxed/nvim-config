@@ -1,17 +1,9 @@
 local lsp_status = require('lsp-status')
 
-local function on_attach_keymaps()
-  local buf_command = require('helpers.command').buf_command
-  buf_command('Format', 'lua vim.lsp.buf.formatting()')
-
-  require('keymaps').lsp()
-end
-
 local function on_attach_complete(client)
-  local bufnr = vim.fn.bufnr()
-
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
   if client.server_capabilities['documentHighlightProvider'] then
+    local bufnr = vim.fn.bufnr()
     local highlight_augroup = vim.api.nvim_create_augroup('lsp_document_highlight_' .. tostring(bufnr), {clear = true})
     vim.api.nvim_create_autocmd('CursorHold', {
       group = highlight_augroup,
@@ -29,6 +21,11 @@ local function on_attach_complete(client)
     })
   end
 
+  require('commands').lsp()
+  require('keymaps').lsp()
+
+  lsp_status.on_attach(client)
+
   require('nvim-lightbulb').setup({
     autocmd = {
       enabled = true
@@ -37,10 +34,6 @@ local function on_attach_complete(client)
       enabled = false
     }
   })
-
-  on_attach_keymaps()
-
-  lsp_status.on_attach(client)
 
   require('lsp_signature').on_attach({
       bind = true,

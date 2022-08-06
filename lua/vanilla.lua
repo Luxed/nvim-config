@@ -41,12 +41,7 @@ vim.opt.shortmess:append('c')
 vim.opt.diffopt:append('algorithm:patience')
 
 require('keymaps').vanilla()
-
-local command = require('helpers.command').command
-
--- Removes last highlight
-command('Rmhl', ':let @/=""')
-command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
+require('commands').vanilla()
 
 local yank_augroup = vim.api.nvim_create_augroup('yank_post_highlight', {clear = true})
 vim.api.nvim_create_autocmd({'TextYankPost'}, {
