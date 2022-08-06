@@ -180,6 +180,12 @@ local function startup(use)
     }
 
     use{'kosayoda/nvim-lightbulb'}
+    use{
+      'antoinemadec/FixCursorHold.nvim',
+      config = function()
+        vim.g.cursorhold_updatetime = 100
+      end
+    }
 
     use{ -- lualine
       'nvim-lualine/lualine.nvim',
