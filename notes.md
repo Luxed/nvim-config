@@ -8,6 +8,8 @@
   Formatter
 - [spellsitter.nvim](https://github.com/lewis6991/spellsitter.nvim)
   Only check for spelling mistakes in comments
+- [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu)
+  Shows not only the available code actions but also their effect in a handy diff float.
 
 # TODO
 
