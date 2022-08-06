@@ -9,18 +9,35 @@ end
 
 local function on_attach_complete(client)
   local bufnr = vim.fn.bufnr()
-  local augroup = require('helpers.command').augroup
 
   -- NOTE: Some lsp (like omnisharp for example) will _crash_ instead of doing nothing when asked for highlight
   if client.server_capabilities['documentHighlightProvider'] then
-    augroup('lsp_document_highlight_' .. tostring(bufnr), {
-        { 'CursorHold', '<buffer>', 'lua vim.lsp.buf.document_highlight()' },
-        { 'CursorMoved', '<buffer>', 'lua vim.lsp.buf.clear_references()' }
-      })
-  end
-  augroup('lsp_lightbulb_' .. tostring(bufnr), {
-      { 'CursorMoved,CursorMovedI', '<buffer>', 'lua require("nvim-lightbulb").update_lightbulb()' }
+    local highlight_augroup = vim.api.nvim_create_augroup('lsp_document_highlight_' .. tostring(bufnr), {clear = true})
+    vim.api.nvim_create_autocmd('CursorHold', {
+      group = highlight_augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end
     })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      group = highlight_augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end
+    })
+  end
+
+  require('nvim-lightbulb').setup({
+    autocmd = {
+      enabled = true
+    },
+    float = {
+      enabled = false
+    }
+  })
+
   on_attach_keymaps()
 
   lsp_status.on_attach(client)

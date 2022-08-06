@@ -1,6 +1,3 @@
-local command = require('helpers.command').command
-local augroup = require('helpers.command').augroup
-
 local default_indent = 4
 
 vim.opt.tabstop = default_indent
@@ -38,7 +35,6 @@ vim.opt.updatetime = 300
 vim.opt.termguicolors = true
 vim.opt.grepprg = 'rg --no-heading --vimgrep --smart-case'
 vim.opt.hidden = true
---vim.opt.completeopt = 'menuone,noinsert,noselect'
 vim.opt.completeopt = 'menu,menuone,noselect'
 
 vim.opt.shortmess:append('c')
@@ -46,10 +42,17 @@ vim.opt.diffopt:append('algorithm:patience')
 
 require('keymaps').vanilla()
 
+local command = require('helpers.command').command
+
 -- Removes last highlight
 command('Rmhl', ':let @/=""')
 command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
 
-augroup('yank_post_highlight', {
-    { 'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=500}' }
-  })
+local yank_augroup = vim.api.nvim_create_augroup('yank_post_highlight', {clear = true})
+vim.api.nvim_create_autocmd({'TextYankPost'}, {
+  group = yank_augroup,
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({timeout = 500})
+  end
+})
