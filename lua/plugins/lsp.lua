@@ -22,7 +22,7 @@ local function on_attach_complete(client)
   end
 
   require('commands').lsp()
-  require('keymaps').lsp()
+  require('keymaps').lsp(client)
 
   lsp_status.on_attach(client)
 

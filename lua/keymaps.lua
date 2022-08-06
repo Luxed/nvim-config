@@ -69,9 +69,10 @@ return {
     vim.keymap.set('n', '<leader>gb', builtin.git_branches)
     vim.keymap.set('n', '<leader>gt', function() require('plugins.telescope').tags() end)
   end,
-  lsp = function()
-    vim.keymap.set('n', '<leader>qk', function() vim.lsp.buf.hover() end)
+  lsp = function(client)
     vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+
+    vim.keymap.set('n', '<leader>qk', function() vim.lsp.buf.hover() end)
     vim.keymap.set('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
     vim.keymap.set('n', '<leader>qq', function() vim.diagnostic.open_float() end)
     vim.keymap.set('n', '<leader>qr', function() vim.lsp.buf.rename() end)
@@ -87,13 +88,11 @@ return {
     vim.keymap.set('n', '<leader>qws', function() builtin.lsp_workspace_symbols() end)
     vim.keymap.set('n', '<leader>qgi', function() builtin.lsp_implementations() end)
 
-    vim.keymap.set('n', 'gd', function()
-      if vim.o.filetype == 'cs' then
-        require('omnisharp_extended').telescope_lsp_definitions()
-      else
-        builtin.lsp_definitions()
-      end
-    end)
+    if client.name == 'omnisharp' then
+      vim.keymap.set('n', 'gd', function() require('omnisharp_extended').telescope_lsp_definitions() end)
+    else
+      vim.keymap.set('n', 'gd', function() builtin.lsp_definitions() end)
+    end
   end,
   indent_blankline = function()
     local function remap(lhss)
