@@ -1,4 +1,3 @@
-local map = require('helpers.map')
 local term_id = 0
 
 return {
@@ -15,7 +14,7 @@ return {
     if new_term then
       vim.cmd('command! -buffer Fg :b#')
       vim.fn.termopen('powershell')
-      map.tnore('<leader>n', '<C-\\><C-N>:b#<CR>', { silent = true }, new_term)
+      require('keymaps').term(new_term)
     end
   end,
 }

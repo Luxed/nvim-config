@@ -1,4 +1,3 @@
-local map = require('helpers.map')
 local command = require('helpers.command').command
 local augroup = require('helpers.command').augroup
 
@@ -45,48 +44,12 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.shortmess:append('c')
 vim.opt.diffopt:append('algorithm:patience')
 
-vim.g.mapleader = ','
+require('keymaps').vanilla()
 
-map.nnore(';', ':')
-map.nnore('<leader>l', ':bnext<CR>')
-map.nnore('<leader>h', ':bprevious<CR>')
-map.nnore('<leader>bq', ':b# <BAR> bd #<CR>')
-
-map.lua('n', 'zS', function() require('helpers.syntax').showCursorHighlights() end)
-
--- toggle highlight
-map.nnore('<leader>th', ':set hlsearch!<CR>')
-map.nnore('<leader>tw', ':setlocal wrap!<CR>')
-map.nnore('<leader>n', ':nohl<CR>')
-map.nnore('<leader>N', ':Rmhl<CR>')
 -- Removes last highlight
 command('Rmhl', ':let @/=""')
-
--- Folds keybinds
-map.n('<space>', 'za', {})
-map.n('<C-space>', 'zA', {})
-
-map.tnore('<leader>n', '<C-\\><C-N>')
-
-if vim.fn.has('win32') == 1 then
-  -- Because Windows is such a great operating system, doing <C-Z> will completely lock up Neovim in the terminal. see: https://github.com/neovim/neovim/issues/6660
-  map.lua('n', '<C-Z>', function() require('term').open() end)
-end
-
--- Switch
-map.nnore('<leader>ss', ':call switcher#Switch()<CR>')
-map.nnore('<leader>sv', ':call switcher#SwitchWithOptions({"edit_command": "vs"})<CR>')
-map.nnore('<leader>sh', ':call switcher#SwitchWithOptions({"edit_command": "sp"})<CR>')
-
--- Wrap
-map.xnore('<leader>w', ':call wrap#func()<CR>')
-
 command('DeleteHiddenBuffers', 'call buffers#delete_all_hidden()')
 
 augroup('yank_post_highlight', {
     { 'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=500}' }
   })
-
-command('-nargs=1 YarnS', 'sp term://yarn <args>');
-
-command('Term', 'lua require("term").open()')

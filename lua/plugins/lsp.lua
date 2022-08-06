@@ -1,37 +1,10 @@
 local lsp_status = require('lsp-status')
 
 local function on_attach_keymaps()
-  local builtin = require('telescope.builtin')
   local buf_command = require('helpers.command').buf_command
-
-  local m = require('helpers.map').buf.lua
-
-  m('n', '<leader>qk', function() vim.lsp.buf.hover() end)
-  m('n', 'K', function() vim.lsp.buf.hover() end)
-  m('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
-  m('n', '<leader>qq', function() vim.diagnostic.open_float() end)
-  m('n', '<leader>qr', function() vim.lsp.buf.rename() end)
-  m('n', '<leader>qn', function() vim.diagnostic.goto_next() end)
-  m('n', '<leader>qp', function() vim.diagnostic.goto_prev() end)
-
-  -- use Telescope for more convenient and consistent UI
-  m('n', '<leader>qgr', function() builtin.lsp_references() end)
-  m('n', '<leader>qs', function() builtin.lsp_document_symbols() end)
-  m('n', '<leader>qd', function() builtin.lsp_document_diagnostics() end)
-  m('n', '<leader>qwd', function() builtin.lsp_workspace_diagnostics() end)
-  m('n', '<leader>qws', function() builtin.lsp_workspace_symbols() end)
-  m('n', '<leader>qgi', function() builtin.lsp_implementations() end)
-
-  if vim.o.filetype == 'cs' then
-    m('n', 'gd', function() require('omnisharp_extended').telescope_lsp_definitions() end)
-  else
-    m('n', 'gd', function() vim.lsp.buf.definition() end)
-  end
-
-  --m('n', '<leader>qa', function() require("plugins.telescope").code_actions() end)
-  m('n', '<leader>qa', function() vim.lsp.buf.code_action() end)
-
   buf_command('Format', 'lua vim.lsp.buf.formatting()')
+
+  require('keymaps').lsp()
 end
 
 local function on_attach_complete(client)

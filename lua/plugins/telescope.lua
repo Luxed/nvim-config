@@ -4,8 +4,6 @@ local sorters = require('telescope.sorters')
 local finders = require('telescope.finders')
 local builtin = require('telescope.builtin')
 local themes = require('telescope.themes')
-local map = require('helpers.map')
-
 local checkout_actions = {}
 
 -- TODO: Redo tags selection + make PR to add it upstream
@@ -53,6 +51,19 @@ local function rg(opts)
   end
 end
 
+local fix_folds = {
+  attach_mappings = function(_)
+    -- TEMP: Fix fold issues (https://github.com/nvim-telescope/telescope.nvim/issues/559)
+    require('telescope.actions.set').select:enhance{
+      post = function(_)
+        vim.cmd(':normal zx')
+      end
+    }
+    return true
+  end
+}
+
+
 return {
   code_actions = function()
     builtin.lsp_code_actions(themes.get_cursor({
@@ -61,6 +72,9 @@ return {
       }
     }))
   end,
+  fix_folds = fix_folds,
+  rg = rg,
+  tags = tags,
   init = function()
     require('telescope').setup {
       defaults = {
@@ -77,22 +91,6 @@ return {
       }
     }
 
-    local fix_folds = {
-      attach_mappings = function(_)
-        -- TEMP: Fix fold issues (https://github.com/nvim-telescope/telescope.nvim/issues/559)
-        require('telescope.actions.set').select:enhance{
-          post = function(_)
-            vim.cmd(':normal zx')
-          end
-        }
-        return true
-      end
-    }
-
-    map.lua('n', '<leader>ff', function() builtin.find_files(fix_folds) end)
-    map.lua('n', '<leader>fb', function() builtin.buffers({ show_all_buffers = true }) end)
-    map.lua('n', '<leader>fg', function() rg(fix_folds) end)
-    map.lua('n', '<leader>gb', builtin.git_branches)
-    map.lua('n', '<leader>gt', tags)
+    require('keymaps').telescope()
   end
 }

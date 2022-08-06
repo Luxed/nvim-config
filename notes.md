@@ -11,11 +11,9 @@
 
 # TODO
 
-- Move all keybinds in a single location
-- Disable virtual text for hints
-- Use new Neovim `lua.keymap` interface ([pull request](https://github.com/neovim/neovim/pull/16591))
 - Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Would be one more step towards Neovim being not only a good editor, but also a good OS
 - Look into [nvim-navic](https://github.com/SmiteshP/nvim-navic) as a replacement to `lsp-status.nvim` which seems to be currently unmaintained
+- `:h foldminlines` & `:h foldnestmax`
 
 # Better CS tooling
 
