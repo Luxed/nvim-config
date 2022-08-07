@@ -70,9 +70,14 @@ return {
     vim.keymap.set('n', '<leader>gt', function() require('plugins.telescope').tags() end)
   end,
   lsp = function(client)
-    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+    if client.name == 'rust_analyzer' then
+      vim.keymap.set('n', 'K', function() require('rust-tools.hover_actions').hover_actions() end)
+      vim.keymap.set('n', '<leader>qk', function() require('rust-tools.hover_actions').hover_actions() end)
+    else
+      vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+      vim.keymap.set('n', '<leader>qk', function() vim.lsp.buf.hover() end)
+    end
 
-    vim.keymap.set('n', '<leader>qk', function() vim.lsp.buf.hover() end)
     vim.keymap.set('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
     vim.keymap.set('n', '<leader>qq', function() vim.diagnostic.open_float() end)
     if vim.fn.has('nvim-0.8') == 1 then

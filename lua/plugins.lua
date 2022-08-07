@@ -146,6 +146,11 @@ local function startup(use)
       end
     }
 
+    use { -- rust-tools
+      'simrat39/rust-tools.nvim',
+      branch = 'modularize_and_inlay_rewrite'
+    }
+
     use { -- lspconfig
       'neovim/nvim-lspconfig',
       requires = {
@@ -153,7 +158,6 @@ local function startup(use)
         'mfussenegger/nvim-jdtls',
         'nvim-lua/lsp-status.nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
-        'simrat39/rust-tools.nvim',
         'onsails/lspkind-nvim',
 
         -- LSP installer
