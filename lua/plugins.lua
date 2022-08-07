@@ -166,6 +166,13 @@ local function startup(use)
       end
     }
 
+    use{
+      'smjonas/inc-rename.nvim',
+      config = function()
+        require('inc_rename').setup()
+      end
+    }
+
     use{ -- cmp
       'hrsh7th/nvim-cmp',
       requires = {
