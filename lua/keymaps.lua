@@ -122,5 +122,6 @@ return {
     vim.keymap.set('n', '<C-F11>', ':DapStepOut<CR>')
 
     vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
+    vim.keymap.set('n', '<leader>dk', function() require('dap.ui.widgets').hover() end)
   end
 }
