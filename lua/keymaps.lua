@@ -115,4 +115,12 @@ return {
   term = function(new_term)
     vim.keymap.set('t', '<leader>n', '<C-\\><C-N>:b#<CR>', { silent = true, buffer = new_term })
   end,
+  dap = function()
+    vim.keymap.set('n', '<F5>', ':DapContinue<CR>')
+    vim.keymap.set('n', '<F10>', ':DapStepOver<CR>')
+    vim.keymap.set('n', '<F11>', ':DapStepInto<CR>')
+    vim.keymap.set('n', '<C-F11>', ':DapStepOut<CR>')
+
+    vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
+  end
 }

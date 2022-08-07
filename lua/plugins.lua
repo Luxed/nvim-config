@@ -235,6 +235,15 @@ local function startup(use)
       'stevearc/dressing.nvim',
       config = function() require('plugins.dressing') end
     }
+
+    use{ -- dap
+      'mfussenegger/nvim-dap',
+      requires = {
+        'rcarriga/nvim-dap-ui',
+        'theHamsta/nvim-dap-virtual-text'
+      },
+      config = function() require('plugins.dap') end
+    }
   end
 
   local function tracking()

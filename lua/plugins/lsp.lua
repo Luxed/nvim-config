@@ -118,10 +118,21 @@ require('mason-lspconfig').setup_handlers{
         }
       }))
     elseif server_name == 'rust_analyzer' then
+      -- TODO: Make sure the debugger only gets attached if it is installed
+      local mason_path = vim.fn.stdpath('data') .. '/mason'
+      local extension_path = mason_path .. '/packages/codelldb/extension'
+      local codelldb_path = extension_path .. '/adapter/codelldb'
+      local liblldb_path = extension_path .. '/lldb/lib/liblldb.so'
+      local codelldb_adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+
       require("rust-tools").setup({
+        hover_with_actions = true,
         server = {
           on_attach = on_attach_complete
-        }
+        },
+        dap = {
+          adapter = codelldb_adapter
+        },
       })
     elseif server_name == 'tsserver' then
       lspconfig[server_name].setup({
