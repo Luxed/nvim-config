@@ -38,17 +38,22 @@ return {
   fugitive_buffer = function()
     vim.keymap.set('n', '<leader>gp', ':Git push<CR>', {buffer = true})
   end,
-  fern = function()
-    local function f_map(key, opener)
-      vim.keymap.set('n', '<C-f>' .. key, ':Fern . -reveal=% -opener=' .. opener .. '<CR>', { silent = true })
-      vim.keymap.set('n', '<C-f><C-' .. key .. '>', ':Fern . -reveal=% -opener=' .. opener .. '<CR>', { silent = true })
+  neotree = function()
+    local function n_map(key, opener)
+      if opener ~= '' then
+        opener = opener .. '<bar>'
+      end
+      local tree_command = ':' .. opener .. 'Neotree current reveal<CR>'
+
+      vim.keymap.set('n', '<C-f>' .. key, tree_command)
+      vim.keymap.set('n', '<C-f><C-' .. key .. '>', tree_command)
     end
 
-    f_map('f', 'edit')
-    f_map('v', 'vsplit')
-    f_map('h', 'split')
-    f_map('x', 'split')
-    f_map('t', 'tabedit')
+    n_map('f', '')
+    n_map('v', 'vsplit')
+    n_map('x', 'split')
+    n_map('h', 'split')
+    n_map('t', 'tabedit %')
   end,
   vsnip = function()
     local function v_map(key, expr, on_true)

@@ -67,16 +67,17 @@ local function startup(use)
         vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml'
       end
     }
-    use{ -- Fern: file manager
-      'lambdalisue/fern.vim',
-      branch = 'main',
+
+    use{
+      'nvim-neo-tree/neo-tree.nvim',
       requires = {
-        'lambdalisue/nerdfont.vim',
-        'lambdalisue/fern-renderer-nerdfont.vim',
-        'lambdalisue/fern-git-status.vim'
+        'MunifTanjim/nui.nvim'
       },
-      config = function() require('plugins.fern') end
+      config = function()
+        require('plugins.neo_tree')
+      end
     }
+
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
