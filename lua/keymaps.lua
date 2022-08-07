@@ -22,7 +22,7 @@ return {
     -- Wrap
     vim.keymap.set('x', '<leader>w', ':call wrap#func()<CR>')
 
-    if vim.fn.has('win32') then
+    if vim.fn.has('win32') == 1 then
       -- Because Windows is such a great operating system,
       -- doing <C-Z> will completely lock up Neovim in the terminal.
       -- See: https://github.com/neovim/neovim/issues/6660
@@ -75,7 +75,7 @@ return {
     vim.keymap.set('n', '<leader>qk', function() vim.lsp.buf.hover() end)
     vim.keymap.set('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
     vim.keymap.set('n', '<leader>qq', function() vim.diagnostic.open_float() end)
-    if vim.fn.has('nvim-0.8') then
+    if vim.fn.has('nvim-0.8') == 1 then
       vim.keymap.set('n', '<leader>qr', ':IncRename ')
     else
       vim.keymap.set('n', '<leader>qr', function() vim.lsp.buf.rename() end)

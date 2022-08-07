@@ -166,12 +166,14 @@ local function startup(use)
       end
     }
 
-    use{
-      'smjonas/inc-rename.nvim',
-      config = function()
-        require('inc_rename').setup()
-      end
-    }
+    if vim.fn.has('nvim-0.8') == 1 then
+      use{
+        'smjonas/inc-rename.nvim',
+        config = function()
+          require('inc_rename').setup()
+        end
+      }
+    end
 
     use{ -- cmp
       'hrsh7th/nvim-cmp',
@@ -226,7 +228,7 @@ local function startup(use)
 
     use{ -- neodim
       'zbirenbaum/neodim',
-      event = 'LspAttach',
+      --event = 'LspAttach',
       config = function() require('plugins.dim') end
     }
   end
