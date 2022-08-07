@@ -173,6 +173,12 @@ local function startup(use)
           require('inc_rename').setup()
         end
       }
+
+      use{ -- neodim
+        'zbirenbaum/neodim',
+        event = 'LspAttach',
+        config = function() require('plugins.dim') end
+      }
     end
 
     use{ -- cmp
@@ -224,12 +230,6 @@ local function startup(use)
     use{ -- dressing.nvim
       'stevearc/dressing.nvim',
       config = function() require('plugins.dressing') end
-    }
-
-    use{ -- neodim
-      'zbirenbaum/neodim',
-      --event = 'LspAttach',
-      config = function() require('plugins.dim') end
     }
   end
 
