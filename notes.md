@@ -20,6 +20,7 @@
 - Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Would be one more step towards Neovim being not only a good editor, but also a good OS
 - Look into [nvim-navic](https://github.com/SmiteshP/nvim-navic) as a replacement to `lsp-status.nvim` which seems to be currently unmaintained
 - `:h foldminlines` & `:h foldnestmax`
+- Replace `fern.vim` with _something_. Although it works great, I constantly have small issues with it. See possibilities [here](https://github.com/rockerBOO/awesome-neovim/blob/main/README.md#file-explorer)
 
 # Better CS tooling
 
