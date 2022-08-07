@@ -12,8 +12,6 @@
   Shows not only the available code actions but also their effect in a handy diff float.
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
   An alternative to CtrlsF (which I've never really taken the time to learn and use properly. Last time I checked it also had issues with Neovim)
-- [nvim-tree.lua]
-  I'm happy with `fern.vim` currently, but if nvim-tree works well for Windows, then I might consider switching just because of the "better" icons and maybe slightly better UI (I have difficulties understanding directory levels in fern)
 - [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
   Refactoring library
 
