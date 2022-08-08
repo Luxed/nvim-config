@@ -12,8 +12,6 @@
   Refactoring library
 - [cmp-dap](https://github.com/rcarriga/cmp-dap)
   Completion for dap repl and dap ui watches
-- [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
-  Highlight function arguments inside the functions themselves.
 
 # TODO
 

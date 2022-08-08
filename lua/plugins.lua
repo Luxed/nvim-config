@@ -252,6 +252,15 @@ local function startup(use)
         require('plugins.notify')
       end
     }
+
+    use{
+      'm-demare/hlargs.nvim',
+      config = function()
+        require('hlargs').setup({})
+        -- TODO: Fix in ayu-vim directly
+        vim.cmd('hi! link Hlargs TSParameter')
+      end
+    }
   end
 
   local function tracking()
