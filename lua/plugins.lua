@@ -245,6 +245,13 @@ local function startup(use)
       },
       config = function() require('plugins.dap') end
     }
+
+    use{
+      'rcarriga/nvim-notify',
+      config = function()
+        require('plugins.notify')
+      end
+    }
   end
 
   local function tracking()
