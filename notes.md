@@ -1,4 +1,4 @@
-# Interesting plugins
+# Things to check or do
 
 - [spellsitter.nvim](https://github.com/lewis6991/spellsitter.nvim)
   Only check for spelling mistakes in comments
@@ -12,11 +12,10 @@
   Refactoring library
 - [cmp-dap](https://github.com/rcarriga/cmp-dap)
   Completion for dap repl and dap ui watches
-
-# TODO
-
-- Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Also see `:h nvim_notify` which I didn't even know existed.
-- Look into [nvim-navic](https://github.com/SmiteshP/nvim-navic) as a replacement to `lsp-status.nvim` which seems to be currently unmaintained
+- [other.nvim](https://github.com/rgroli/other.nvim)
+  Better than my "switcher" thing?
+- [lua-dev.nvim](https://github.com/folke/lua-dev.nvim)
+  Could replace nlua.nvim which seems unmaintained?
 - `:h foldminlines` & `:h foldnestmax`
 
 # Better CS tooling
