@@ -1,26 +1,25 @@
 # Interesting plugins
 
-- nvim-gdb (visual debugger)
-- vim-inspector (visual debugger)
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-  Debug Adapter Protocol client for neovim
-- [formatter.nvim](https://github.com/mhartington/formatter.nvim)
-  Formatter
 - [spellsitter.nvim](https://github.com/lewis6991/spellsitter.nvim)
   Only check for spelling mistakes in comments
 - [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu)
   Shows not only the available code actions but also their effect in a handy diff float.
+  NOTE: Finally got around to testing this and am I not even surprised that it doesn't work with Omnisharp...
+  But it _does_ work with csharp-language-server.
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
   An alternative to CtrlsF (which I've never really taken the time to learn and use properly. Last time I checked it also had issues with Neovim)
 - [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
   Refactoring library
+- [cmp-dap](https://github.com/rcarriga/cmp-dap)
+  Completion for dap repl and dap ui watches
+- [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
+  Highlight function arguments inside the functions themselves.
 
 # TODO
 
-- Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Would be one more step towards Neovim being not only a good editor, but also a good OS
+- Look into [nvim-notify](https://github.com/rcarriga/nvim-notify), a very nice looking notification plugin. Also see `:h nvim_notify` which I didn't even know existed.
 - Look into [nvim-navic](https://github.com/SmiteshP/nvim-navic) as a replacement to `lsp-status.nvim` which seems to be currently unmaintained
 - `:h foldminlines` & `:h foldnestmax`
-- Replace `fern.vim` with _something_. Although it works great, I constantly have small issues with it. See possibilities [here](https://github.com/rockerBOO/awesome-neovim/blob/main/README.md#file-explorer)
 
 # Better CS tooling
 
