@@ -48,7 +48,8 @@ local function format_message(message, percentage)
   return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
-vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+local other_handler = vim.lsp.handlers['$/progress']
+vim.lsp.handlers["$/progress"] = function(err, result, ctx, config)
   local client_id = ctx.client_id
 
   local val = result.value
@@ -77,13 +78,17 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
       hide_from_history = false,
     })
   elseif val.kind == "end" and notif_data then
-  notif_data.notification =
-  vim.notify(val.message and format_message(val.message) or "Complete", "info", {
-    icon = "",
-    replace = notif_data.notification,
-    timeout = 3000,
-  })
+    notif_data.notification =
+    vim.notify(val.message and format_message(val.message) or "Complete", "info", {
+      icon = "",
+      replace = notif_data.notification,
+      timeout = 3000,
+    })
 
-  notif_data.spinner = nil
-end
+    notif_data.spinner = nil
+  end
+
+  if other_handler ~= nil then
+    other_handler(err, result, ctx, config)
+  end
 end
