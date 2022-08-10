@@ -149,6 +149,25 @@ require('mason-lspconfig').setup_handlers{
         end,
         capabilities = lsp_capabilities
       })
+    elseif server_name == 'sumneko_lua' then
+      lspconfig[server_name].setup(extended_setup({
+        settings = {
+          Lua = {
+            runtime = {
+              version = 'LuaJIT',
+            },
+            diagnostics = {
+              globals = {'vim'}
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true),
+            },
+            telemetry = {
+              enable = false,
+            }
+          },
+        }
+      }))
     else
       lspconfig[server_name].setup(complete_lsp_setup)
     end
@@ -156,8 +175,6 @@ require('mason-lspconfig').setup_handlers{
 }
 
 local nvim_lsp = require('lspconfig')
-require('nlua.lsp.nvim').setup(nvim_lsp, complete_lsp_setup)
-
 local data_path = vim.fn.stdpath('data')
 nvim_lsp.rescriptls.setup(extended_setup({
   cmd = { 'node', data_path .. '/site/pack/packer/start/vim-rescript/server/out/server.js', '--stdio' }

@@ -155,7 +155,6 @@ local function startup(use)
     use { -- lspconfig
       'neovim/nvim-lspconfig',
       requires = {
-        'tjdevries/nlua.nvim',
         'mfussenegger/nvim-jdtls',
         'nvim-lua/lsp-status.nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
