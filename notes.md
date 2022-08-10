@@ -29,13 +29,37 @@
   Preview folds without opening them
 - `:h foldminlines` & `:h foldnestmax`
 
-# Better CS tooling
+# OmniSharp-nvim plugin ideas/wishlist
+
+These ideas mostly come from the OmniSharp-vim plugin
 
 - Create file with namespace. Could be based on path relative to Solution (or csproj)
   (csproj or solution file needs to be read for a Namespace too, maybe the LSP would have something for this?)
   See [here](https://github.com/jchannon/csharpextensions) and [here](https://github.com/KreativJos/csharpextensions) (newer version).
 - Completion float multiple implementations (hover). Handle overloaded methods.
   See [here](https://github.com/OmniSharp/omnisharp-vim).
+  This already kind of works thanks to the signature plugin.
+- Fix using statements (sort, remove and add missing)
+- Semantic highlighting [when this PR is merged](https://github.com/neovim/neovim/pull/15723) (I swear it will happen one day)
+- Run unit tests and navigate to failing assertions
+- Ability to use dotnet or mono version. Could be also great if csharp_ls could also be used.
+  It would be even better if the choice of language server could be made by project.
+  Especially since csharp_ls should be good enough for simple projects while omnisharp would be better for more complex projects and the mono version would be great to work on anything .NET Framework related.
+- Ability to show diagnostic id
+- Ability to exclude files/paths from diagnostics
+- Debugging using `netcoredbg` (cause, you know, vsdbg, the "working" debugger is still closed source. So much for going "open source")
+- Support for multiple completion engines (as long as the engine supports Neovim's built-in LSP, this should not be a problem)
+
+## Plugins for a better experience
+
+- `neovim/nvim-lspconfig` required for easy configuration of language server
+- `mason.nvim` & `mason-lspconfig.nvim` for automatic installation and management of the lsp and dap clients
+- `Hoffs/omnisharp-extended-lsp.nvim` for the ability to go to definition outside of current project (in dlls)
+- `kosayoda/nvim-lightbulb` show lightbulb on lines that have a code action available. This very useful for C# because of the ammount of code actions available
+- `stevearc/dressing.nvim` for better code actions and other stuff that uses `vim.ui.select`. Could also use `glepnir/lspsaga.nvim`
+- `weilbith/nvim-code-action-menu` to see what the code actions do. Unfortunately, this doesn't work with OmniSharp, but does work with csharp_ls.
+- `nvim-dap`, `nvim-dap-ui` (optional) & `nvim-dap-virtual-text` (optional) for debugging support
+
 
 # Treesitter issues
 
