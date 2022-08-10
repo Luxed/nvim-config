@@ -171,11 +171,9 @@ local function startup(use)
     }
 
     if vim.fn.has('nvim-0.8') == 1 then
-      use{
+      use{ -- inc-rename
         'smjonas/inc-rename.nvim',
-        config = function()
-          require('inc_rename').setup()
-        end
+        config = function() require('inc_rename').setup() end
       }
 
       use{ -- neodim
