@@ -159,6 +159,7 @@ local function startup(use)
         'nvim-lua/lsp-status.nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
         'onsails/lspkind-nvim',
+        'kosayoda/nvim-lightbulb',
 
         -- LSP installer
         'williamboman/mason.nvim',
@@ -196,7 +197,6 @@ local function startup(use)
       end
     }
 
-    use{'kosayoda/nvim-lightbulb'}
     use{ -- FixCursorHold
       'antoinemadec/FixCursorHold.nvim',
       config = function()
