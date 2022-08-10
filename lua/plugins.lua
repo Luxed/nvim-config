@@ -197,7 +197,7 @@ local function startup(use)
     }
 
     use{'kosayoda/nvim-lightbulb'}
-    use{
+    use{ -- FixCursorHold
       'antoinemadec/FixCursorHold.nvim',
       config = function()
         vim.g.cursorhold_updatetime = 100
@@ -243,14 +243,14 @@ local function startup(use)
       config = function() require('plugins.dap') end
     }
 
-    use{
+    use{ -- notify
       'rcarriga/nvim-notify',
       config = function()
         require('plugins.notify')
       end
     }
 
-    use{
+    use{ -- hlargs
       'm-demare/hlargs.nvim',
       config = function()
         require('hlargs').setup({})
