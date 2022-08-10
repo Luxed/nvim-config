@@ -57,6 +57,7 @@ return {
   end,
   vsnip = function()
     local function v_map(key, expr, on_true)
+       -- TODO: Mappings not working right now
       vim.keymap.set({'i', 's'}, key, string.format('%s ? \'%s\' : \'%s\'', expr, on_true, key), {expr = true})
     end
 
