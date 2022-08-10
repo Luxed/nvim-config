@@ -149,7 +149,7 @@ local function startup(use)
 
     use { -- rust-tools
       'simrat39/rust-tools.nvim',
-      branch = 'modularize_and_inlay_rewrite'
+      branch = 'master'
     }
 
     use { -- lspconfig
