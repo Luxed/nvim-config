@@ -30,6 +30,9 @@ return {
     end
 
     vim.keymap.set('t', '<leader>n', '<C-\\><C-N>')
+
+    -- Convenient Control+Backspace insert mode mapping
+    vim.keymap.set('i', '<C-backspace>', '<esc>ciw')
   end,
   fugitive = function()
     vim.keymap.set('n', '<leader>gs', ':Git<CR>', {silent = true})
