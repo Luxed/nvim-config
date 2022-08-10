@@ -40,7 +40,9 @@ These ideas mostly come from the OmniSharp-vim plugin
   See [here](https://github.com/OmniSharp/omnisharp-vim).
   This already kind of works thanks to the signature plugin.
 - Fix using statements (sort, remove and add missing)
-- Semantic highlighting [when this PR is merged](https://github.com/neovim/neovim/pull/15723) (I swear it will happen one day)
+- Semantic highlighting [when this PR is merged](https://github.com/neovim/neovim/pull/15723) (I swear it will happen one day, or not...)
+  Tried to request `textDocument/semanticTokens/full` handler and it is marked as "not implemented" even though omnisharp-vim has it??? Is this some kind of custom thing again??
+  Of course it's custom. Why would it use the specification that they made themselves?? Instead you'll need to use the `o#/v2/highlight` request.
 - Run unit tests and navigate to failing assertions
 - Ability to use dotnet or mono version. Could be also great if csharp_ls could also be used.
   It would be even better if the choice of language server could be made by project.
