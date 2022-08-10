@@ -48,6 +48,27 @@ local function startup(use)
     use('rescript-lang/vim-rescript')
 
     use{'openembedded/bitbake', rtp = 'contrib/vim'}
+
+    use{ -- TreeSitter
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      requires = {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'p00f/nvim-ts-rainbow',
+        'nvim-treesitter/playground',
+        {
+          'm-demare/hlargs.nvim',
+          config = function()
+            require('hlargs').setup({})
+            -- TODO: Fix in ayu-vim directly
+            vim.cmd('hi! link Hlargs TSParameter')
+          end
+        }
+      },
+      config = function()
+        require('plugins.treesitter')
+      end
+    }
   end
 
   local function utility()
@@ -90,31 +111,45 @@ local function startup(use)
     use('tpope/vim-repeat') -- .
     --use{'mattn/emmet-vim', opt = true, ft={'html'}}
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
+
+    use{ -- vsnip
+      'hrsh7th/vim-vsnip',
+      requires = {'hrsh7th/vim-vsnip-integ'},
+      config = function()
+        require('plugins.vsnip')
+      end
+    }
+
+    use{ -- cmp
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-vsnip'
+      },
+      config = function()
+        require('plugins.cmp')
+      end
+    }
+
+    use{ -- FixCursorHold
+      'antoinemadec/FixCursorHold.nvim',
+      config = function()
+        vim.g.cursorhold_updatetime = 100
+      end
+    }
   end
 
   local function interface()
     use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
     use{'godlygeek/tabular', opt = true, cmd = {'Tabularize'}} -- Tabularize everything
     use('kyazdani42/nvim-web-devicons')
-    use{ -- Search and replace interface
+    use{ -- Ctrlsf Search and replace interface
       'dyng/ctrlsf.vim',
       config = function()
         vim.g['ctrlsf_populate_qflist'] = true
         --vim.g['ctrlsf_default_view_mode'] = 'compact'
-      end
-    }
-  end
-
-  local function themes()
-    use{'Luxed/ayu-vim'}
-  end
-
-  local function lua_plugins()
-    use{ -- vsnip
-      'hrsh7th/vim-vsnip',
-      requires = {'hrsh7th/vim-vsnip-integ'},
-      config = function()
-        require('plugins.vsnip')
       end
     }
 
@@ -134,24 +169,46 @@ local function startup(use)
       end
     }
 
-    use { -- TreeSitter
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      requires = {
-        'nvim-treesitter/nvim-treesitter-refactor',
-        'p00f/nvim-ts-rainbow',
-        'nvim-treesitter/playground'
-      },
+    use{ -- lualine
+      'nvim-lualine/lualine.nvim',
       config = function()
-        require('plugins.treesitter')
+        require('plugins.lualine')
       end
     }
 
-    use { -- rust-tools
-      'simrat39/rust-tools.nvim',
-      branch = 'master'
+    use{ -- bufferline
+      'akinsho/nvim-bufferline.lua',
+      branch = 'main',
+      config = function()
+        require('plugins.bufferline').init()
+      end
     }
 
+    use{ -- indent-blankline
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+        require('plugins.indent_blankline')
+      end
+    }
+
+    use{ -- dressing.nvim
+      'stevearc/dressing.nvim',
+      config = function() require('plugins.dressing') end
+    }
+
+    use{ -- notify
+      'rcarriga/nvim-notify',
+      config = function()
+        require('plugins.notify')
+      end
+    }
+  end
+
+  local function themes()
+    use{'Luxed/ayu-vim'}
+  end
+
+  local function lsp_dap()
     use { -- lspconfig
       'neovim/nvim-lspconfig',
       requires = {
@@ -160,6 +217,9 @@ local function startup(use)
         'Hoffs/omnisharp-extended-lsp.nvim',
         'onsails/lspkind-nvim',
         'kosayoda/nvim-lightbulb',
+        'simrat39/rust-tools.nvim',
+        'ray-x/lsp_signature.nvim',
+        'jose-elias-alvarez/nvim-lsp-ts-utils',
 
         -- LSP installer
         'williamboman/mason.nvim',
@@ -184,56 +244,6 @@ local function startup(use)
       }
     end
 
-    use{ -- cmp
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-vsnip'
-      },
-      config = function()
-        require('plugins.cmp')
-      end
-    }
-
-    use{ -- FixCursorHold
-      'antoinemadec/FixCursorHold.nvim',
-      config = function()
-        vim.g.cursorhold_updatetime = 100
-      end
-    }
-
-    use{ -- lualine
-      'nvim-lualine/lualine.nvim',
-      config = function()
-        require('plugins.lualine')
-      end
-    }
-    use{ -- bufferline
-      'akinsho/nvim-bufferline.lua',
-      branch = 'main',
-      config = function()
-        require('plugins.bufferline').init()
-      end
-    }
-
-    use{ -- indent-blankline
-      'lukas-reineke/indent-blankline.nvim',
-      config = function()
-        require('plugins.indent_blankline')
-      end
-    }
-
-    use('ray-x/lsp_signature.nvim')
-
-    use('jose-elias-alvarez/nvim-lsp-ts-utils')
-
-    use{ -- dressing.nvim
-      'stevearc/dressing.nvim',
-      config = function() require('plugins.dressing') end
-    }
-
     use{ -- dap
       'mfussenegger/nvim-dap',
       requires = {
@@ -241,22 +251,6 @@ local function startup(use)
         'theHamsta/nvim-dap-virtual-text'
       },
       config = function() require('plugins.dap') end
-    }
-
-    use{ -- notify
-      'rcarriga/nvim-notify',
-      config = function()
-        require('plugins.notify')
-      end
-    }
-
-    use{ -- hlargs
-      'm-demare/hlargs.nvim',
-      config = function()
-        require('hlargs').setup({})
-        -- TODO: Fix in ayu-vim directly
-        vim.cmd('hi! link Hlargs TSParameter')
-      end
     }
   end
 
@@ -268,7 +262,7 @@ local function startup(use)
   utility()
   interface()
   themes()
-  lua_plugins()
+  lsp_dap()
   tracking()
 end
 
