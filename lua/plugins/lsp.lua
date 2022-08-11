@@ -94,16 +94,7 @@ require('mason-lspconfig').setup_handlers{
   function (server_name)
     local lspconfig = require('lspconfig')
     if server_name == 'omnisharp' then
-      lspconfig[server_name].setup(extended_setup({
-        root_dir = function(path)
-          local root_pattern = require('lspconfig.util').root_pattern
-          -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
-          return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
-        end,
-        handlers = {
-          ['textDocument/definition'] = require('omnisharp_extended').handler
-        }
-      }))
+      require('omnisharp').setup(complete_lsp_setup)
     elseif server_name == 'vuels' then
       lspconfig[server_name].setup(extended_setup({
         init_options = {
