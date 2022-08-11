@@ -50,11 +50,18 @@ end
 
 local other_handler = vim.lsp.handlers['$/progress']
 vim.lsp.handlers["$/progress"] = function(err, result, ctx, config)
-  local client_id = ctx.client_id
-
   local val = result.value
 
   if not val.kind then
+    return
+  end
+
+  local client_id = ctx.client_id
+  local client = vim.lsp.get_client_by_id(client_id)
+
+  -- Disable notifications for sumneko_lua because they appear all the time and it gets distracting
+  if client.name == 'sumneko_lua' then
+    other_handler(err, result, ctx, config)
     return
   end
 
