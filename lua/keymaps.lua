@@ -5,6 +5,7 @@ return {
     vim.keymap.set('n', '<leader>l', ':bnext<CR>')
     vim.keymap.set('n', '<leader>h', ':bprevious<CR>')
     vim.keymap.set('n', '<leader>bq', ':b# <BAR> bd #<CR>')
+    vim.keymap.set('n', '<leader>br', ':%s/<C-r><C-w>//g<left><left>')
     vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>')
     vim.keymap.set('n', '<leader>tw', ':setlocal wrap!<CR>')
     vim.keymap.set('n', '<leader>n', ':nohl<CR>')
