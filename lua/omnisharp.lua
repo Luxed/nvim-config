@@ -21,7 +21,7 @@ local classification_type_names = {
   { name = 'EnumName'                           , highlight = 'OmniSharpEnum'            , desc = 'enum name'}                                ,
   { name = 'InterfaceName'                      , highlight = 'OmniSharpInterface'       , desc = 'interface name'}                           ,
   { name = 'ModuleName'                         , highlight = 0                          , desc = 'module name'}                              ,
-  { name = 'StructName'                         , highlight = 0                          , desc = 'struct name'}                              ,
+  { name = 'StructName'                         , highlight = 'OmniSharpStruct'          , desc = 'struct name'}                              ,
   { name = 'TypeParameterName'                  , highlight = 'OmniSharpTypeParameter'   , desc = 'type parameter name'}                      ,
   { name = 'FieldName'                          , highlight = 'OmniSharpField'           , desc = 'field name'}                               ,
   { name = 'EnumMemberName'                     , highlight = 0                          , desc = 'enum member name'}                         ,
@@ -70,6 +70,7 @@ local function setup_highlight_groups()
   vim.api.nvim_create_namespace('omnisharp')
 
   -- TODO: Needs a way to see the current highlight under the cursor.
+  -- TODO: Put custom colors into ayu-vim directly
 
   vim.api.nvim_set_hl(0, 'OmniSharpComment', {link = 'Comment'})
   vim.api.nvim_set_hl(0, 'OmniSharpIdentifier', {link = 'Identifier'})
@@ -80,10 +81,11 @@ local function setup_highlight_groups()
   vim.api.nvim_set_hl(0, 'OmniSharpStringLiteral', {link = 'String'})
   vim.api.nvim_set_hl(0, 'OmniSharpText', {link = 'String'})
   vim.api.nvim_set_hl(0, 'OmniSharpClass', {link = 'Type'})
-  vim.api.nvim_set_hl(0, 'OmniSharpEnum', {fg = '#00FF00'})
-  vim.api.nvim_set_hl(0, 'OmniSharpInterface', {fg = '#F0E000'})
-  vim.api.nvim_set_hl(0, 'OmniSharpModule', {fg = '#00F0F0'})
-  vim.api.nvim_set_hl(0, 'OmniSharpTypeParameter', {fg = '#F000A0'})
+  vim.api.nvim_set_hl(0, 'OmniSharpEnum', {fg = '#70e6ab'})
+  vim.api.nvim_set_hl(0, 'OmniSharpInterface', {fg = '#70e6d2'})
+  vim.api.nvim_set_hl(0, 'OmniSharpModule', {})
+  vim.api.nvim_set_hl(0, 'OmniSharpStruct', {fg = '#6ae693'})
+  vim.api.nvim_set_hl(0, 'OmniSharpTypeParameter', {fg = '#aabbee'}) -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
   vim.api.nvim_set_hl(0, 'OmniSharpConstant', {link = 'Constant'})
   vim.api.nvim_set_hl(0, 'OmniSharpMethod', {link = 'Function'})
   vim.api.nvim_set_hl(0, 'OmniSharpField', {link = 'TSProperty'})
