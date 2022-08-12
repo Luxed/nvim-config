@@ -60,14 +60,13 @@ return {
     n_map('t', 'tabedit %')
   end,
   vsnip = function()
-    local function v_map(key, expr, on_true)
-       -- TODO: Mappings not working right now
-      vim.keymap.set({'i', 's'}, key, string.format('%s ? \'%s\' : \'%s\'', expr, on_true, key), {expr = true})
+    local function v_map(key, condition, on_true)
+      vim.keymap.set({'i', 's'}, key, function() return condition() ~= 0 and on_true or key end, {expr = true})
     end
 
-    v_map('<C-e>', 'vsnip#expandable()', '<Plug>(vsnip-expand)')
-    v_map('<C-j>', 'vsnip#jumpable(1)', '<Plug>(vsnip-jump-next)')
-    v_map('<C-k>', 'vsnip#jumpable(-1)', '<Plug>(vsnip-jump-prev)')
+    v_map('<C-e>', function() return vim.fn['vsnip#expandable']() end, '<Plug>(vsnip-expand)')
+    v_map('<C-j>', function() return vim.fn['vsnip#jumpable'](1) end, '<Plug>(vsnip-jump-next)')
+    v_map('<C-k>', function() return vim.fn['vsnip#jumpable'](-1) end, '<Plug>(vsnip-jump-prev)')
   end,
   telescope = function()
     local builtin = require('telescope.builtin')
