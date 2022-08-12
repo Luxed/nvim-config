@@ -1,5 +1,9 @@
 -- setup an autocommand to modify themes to my liking
-vim.cmd('au! ColorScheme * lua require("colors.post").init()')
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    require('colors.post').init()
+  end
+})
 -- Ayu
 vim.g.ayucolor = 'mirage'
 vim.g.ayu_italic_comment = true
