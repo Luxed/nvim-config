@@ -6,6 +6,7 @@
   Shows not only the available code actions but also their effect in a handy diff float.
   NOTE: Finally got around to testing this and am I not even surprised that it doesn't work with Omnisharp...
   But it _does_ work with csharp-language-server.
+  Now that I think about it, it's possible that the OmniSharp server has an endpoint under "o#/v2" or just "o#"
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
   An alternative to CtrlsF (which I've never really taken the time to learn and use properly. Last time I checked it also had issues with Neovim)
 - [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
@@ -27,6 +28,8 @@
   Docker management directly inside neovim (might be a good idea to integrate lazydocker instead)
 - [fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)
   Preview folds without opening them
+- [exrc.nvim](https://github.com/MunifTanjim/exrc.nvim)
+  Per project config in lua
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist

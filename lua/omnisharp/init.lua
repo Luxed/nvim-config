@@ -117,6 +117,7 @@ return {
       end
     end
 
+    -- TODO: See require('lspconfig.util').add_hook_after
     if lsp_opts.on_attach then
       local existing_attach = lsp_opts.on_attach
       lsp_opts.on_attach = function(client)
