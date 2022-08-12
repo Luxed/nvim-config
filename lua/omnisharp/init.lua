@@ -9,16 +9,23 @@ local function request_highlight(client)
   client.request('o#/v2/highlight', params, require('omnisharp.highlight').__highlight_handler, bufnr)
 end
 
+local function get_current_omnisharp_client()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_active_clients({
+    bufnr = bufnr,
+    name = 'omnisharp'
+  })
+
+  if #clients == 1 then
+    return clients[1]
+  end
+end
+
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_active_clients({
-      bufnr = bufnr,
-      name = 'omnisharp'
-    })
+    local client = get_current_omnisharp_client()
 
-    if #clients == 1 then
-      local client = clients[1]
+    if client then
       request_highlight(client)
     end
   end
@@ -82,6 +89,20 @@ local function get_default_config()
   }
 end
 
+local function split(str, delimiter)
+  -- https://gist.github.com/jaredallard/ddb152179831dd23b230
+  local result = { }
+  local from  = 1
+  local delim_from, delim_to = string.find(str, delimiter, from)
+  while delim_from do
+    table.insert(result, string.sub(str, from , delim_from-1))
+    from  = delim_to + 1
+    delim_from, delim_to = string.find(str, delimiter, from)
+  end
+  table.insert(result, string.sub(str, from))
+  return result
+end
+
 return {
   setup = function(lsp_opts, config)
     config = vim.tbl_extend('force', get_default_config(), config or {})
@@ -115,8 +136,20 @@ return {
 
     require('lspconfig').omnisharp.setup(lsp_opts)
   end,
-  highlight = function()
-    local client = vim.lsp.get_client_by_id(1)
-    request_highlight(client)
+  fix_usings = function()
+    local client = get_current_omnisharp_client()
+    local params = {
+      fileName = vim.fn.expand('%:p'),
+      column = 1,
+      line = 1
+    }
+
+    client.request('o#/fixusings', params, function(err, result, ctx, config)
+      local normalized_buffer = string.gsub(result.Buffer, '\r\n', '\n')
+      local lines = split(normalized_buffer, '\n')
+
+      -- TODO: This "works" but resets/deletes folds?
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+    end, 0)
   end
 }
