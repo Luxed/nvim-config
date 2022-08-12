@@ -83,6 +83,11 @@ end
 local M = {}
 
 -- TODO: Needs a way to see the current highlight under the cursor.
+-- I cannot seem to find a built-in way to do it.
+-- So there would be 2 solutions.
+-- 1. Put the highlights in a "cache" that can be querried when needed.
+-- 2. Make another request when the user wants the show the highlight under the cursor.
+-- Option 2 would be most likely easier but slower. Considering this will not be used a lot, I think it would be fine
 M.__setup_highlight_groups = function(config)
   create_namespace()
 
