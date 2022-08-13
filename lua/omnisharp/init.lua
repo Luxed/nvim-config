@@ -105,7 +105,7 @@ end
 
 return {
   setup = function(lsp_opts, config)
-    config = vim.tbl_extend('force', get_default_config(), config or {})
+    config = vim.tbl_deep_extend('force', get_default_config(), config or {})
 
     require('omnisharp.highlight').__setup_highlight_groups(config)
 
@@ -117,23 +117,12 @@ return {
       end
     end
 
-    -- TODO: See require('lspconfig.util').add_hook_after
-    if lsp_opts.on_attach then
-      local existing_attach = lsp_opts.on_attach
-      lsp_opts.on_attach = function(client)
-        existing_attach(client)
-
-        if config.highlight then
-          setup_highlight_autocmds(config)
-          request_highlight(client)
-        end
-      end
-    elseif config.highlight then
-      lsp_opts.on_attach = function(client)
+    lsp_opts.on_attach = require('lspconfig.util').add_hook_after(lsp_opts.on_attach, function(client)
+      if config.highlight and config.highlight.enabled then
         setup_highlight_autocmds(config)
         request_highlight(client)
       end
-    end
+    end)
 
     require('lspconfig').omnisharp.setup(lsp_opts)
   end,
@@ -152,5 +141,5 @@ return {
       -- TODO: This "works" but resets/deletes folds?
       vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
     end, 0)
-  end
+  end,
 }
