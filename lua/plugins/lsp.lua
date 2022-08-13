@@ -125,6 +125,7 @@ require('mason-lspconfig').setup_handlers{
             OmniSharpTypeParameterName = {fg = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
             OmniSharpPropertyName = {link = 'TSProperty'},
             OmniSharpFieldName = {link = 'TSField'},
+            OmniSharpParameterName = {link = 'TSParameter'}
           }
         }
       })
