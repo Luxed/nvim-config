@@ -1,4 +1,4 @@
-local function request_highlight(client)
+local function request_highlight(client, handler)
   local bufnr = vim.api.nvim_get_current_buf()
 
   local params = {
@@ -6,7 +6,7 @@ local function request_highlight(client)
     column = 1,
     line = 1
   }
-  client.request('o#/v2/highlight', params, require('omnisharp.highlight').__highlight_handler, bufnr)
+  client.request('o#/v2/highlight', params, handler, bufnr)
 end
 
 local function get_current_omnisharp_client()
@@ -26,7 +26,7 @@ local function setup_highlight_autocmds(config)
     local client = get_current_omnisharp_client()
 
     if client then
-      request_highlight(client)
+      request_highlight(client, require('omnisharp.highlight').__highlight_handler)
     end
   end
 
@@ -120,7 +120,7 @@ return {
     lsp_opts.on_attach = require('lspconfig.util').add_hook_after(lsp_opts.on_attach, function(client)
       if config.highlight and config.highlight.enabled then
         setup_highlight_autocmds(config)
-        request_highlight(client)
+        request_highlight(client, require('omnisharp.highlight').__highlight_handler)
       end
     end)
 
@@ -142,4 +142,8 @@ return {
       vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
     end, 0)
   end,
+  show_highlights_under_cursor = function()
+    local client = get_current_omnisharp_client()
+    request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
+  end
 }

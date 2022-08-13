@@ -82,12 +82,6 @@ end
 
 local M = {}
 
--- TODO: Needs a way to see the current highlight under the cursor.
--- I cannot seem to find a built-in way to do it.
--- So there would be 2 solutions.
--- 1. Put the highlights in a "cache" that can be querried when needed.
--- 2. Make another request when the user wants the show the highlight under the cursor.
--- Option 2 would be most likely easier but slower. Considering this will not be used a lot, I think it would be fine
 M.__setup_highlight_groups = function(config)
   create_namespace()
 
@@ -120,6 +114,30 @@ M.__highlight_handler = function(err, result, ctx, config)
       vim.highlight.range(0, ns_id, group_name, startPos, endPos, {priority = 300})
     end
   end
+end
+
+M.__show_highlight_handler = function(err, result, ctx, config)
+  local buf_pos = {vim.fn.line('.')-1, vim.fn.col('.')-1}
+
+  local highlights_under_cursor = {
+    "# OmniSharp"
+  }
+  for _,span in pairs(result.Spans) do
+    local type = classification_type_names[span.Type + 1] -- convert 0 based index to 1 based index
+    if type then
+      local highStartPos = {span.StartLine, span.StartColumn}
+      local highEndPos = {span.EndLine, span.EndColumn}
+      local group_name = get_group_name(type.name)
+
+      if buf_pos[1] >= highStartPos[1] and buf_pos[1] <= highEndPos[1]
+        and (buf_pos[2]) >= highStartPos[2] and (buf_pos[2]) < highEndPos[2] then
+        table.insert(highlights_under_cursor, '* ' .. group_name)
+      end
+    end
+  end
+
+  -- TODO: Would be nice to have a better floating preview _with_ the color applied to the group name
+  vim.lsp.util.open_floating_preview(highlights_under_cursor, "markdown", { border = "single", pad_left = 4, pad_right = 4 })
 end
 
 return M
