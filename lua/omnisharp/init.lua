@@ -18,6 +18,9 @@ local function get_current_omnisharp_client()
 
   if #clients == 1 then
     return clients[1]
+  else
+    -- TODO: Show error message
+    return nil
   end
 end
 
@@ -149,6 +152,11 @@ local function split(str, delimiter)
 end
 
 return {
+  -- TODO: Both of those tables could be merged into one.
+  --       Maybe there could be a "omnisharp" key in lsp_opts.
+  -- TODO: The parameter could also be a function that takes has the opts as an input and as an output.
+  --       This way we would let the user decide how they want to configure the plugin.
+  --       They could use a deep_extend or modify the defaults directly.
   setup = function(lsp_opts, config)
     config = vim.tbl_deep_extend('force', get_default_config(), config or {})
 

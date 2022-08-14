@@ -50,6 +50,7 @@ These ideas mostly come from the OmniSharp-vim plugin
   This is possible when using `o#/codecheck`.
   So it would have to be integrated into the current diagnostics somehow.
 - Ability to exclude files/paths from diagnostics
+- For some time, the lsp highlight provider for the current symbol under the cursor didn't work with Omnisharp, is this still the case? If yes, would it be possible to implement it using the `o#` endpoints?
 
 ## Additional information
 
