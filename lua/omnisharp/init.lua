@@ -78,18 +78,29 @@ local function configure_dap(client)
         return
       end
 
-      -- TODO: Test on a solution with multiple Executable projects
       local dll_path = project.TargetPath
-      require('dap').configurations.cs = {
-        {
+      local launch_name = 'Launch - ' .. project.AssemblyName
+
+      local dap = require('dap')
+      if dap.configurations.cs == nil then
+        dap.configurations.cs = {}
+      end
+
+      local add_config = true
+      for _, config in pairs(dap.configurations.cs) do
+        if config.name == launch_name then
+          add_config = false
+        end
+      end
+
+      if add_config then
+        table.insert(dap.configurations.cs, {
           type = 'coreclr',
-          name = 'launch',
+          name = launch_name,
           request = 'launch',
-          program = function()
-            return dll_path
-          end
-        }
-      }
+          program = dll_path
+        })
+      end
     end)
 end
 
