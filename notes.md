@@ -47,6 +47,8 @@ These ideas mostly come from the OmniSharp-vim plugin
   It would be even better if the choice of language server could be made by project.
   Especially since csharp_ls should be good enough for simple projects while omnisharp would be better for more complex projects and the mono version would be great to work on anything .NET Framework related.
 - Ability to show diagnostic id
+  This is possible when using `o#/codecheck`.
+  So it would have to be integrated into the current diagnostics somehow.
 - Ability to exclude files/paths from diagnostics
 
 ## Additional information
