@@ -60,9 +60,43 @@ local function setup_highlight_autocmds(config)
   end
 end
 
+local function configure_dap(client)
+  client = client or get_current_omnisharp_client()
+    local params = {
+      fileName = vim.fn.expand('%:p'),
+    }
+
+    client.request('o#/project', params, function(err, result)
+      if err then
+        vim.notify('There was an error while trying to get the project information', vim.log.levels.ERROR)
+        return
+      end
+
+      local project = result.MsBuildProject
+      if not project.IsExe then
+        vim.notify('Only executable projects are currently supported', vim.log.levels.ERROR)
+        return
+      end
+
+      -- TODO: Test on a solution with multiple Executable projects
+      local dll_path = project.TargetPath
+      require('dap').configurations.cs = {
+        {
+          type = 'coreclr',
+          name = 'launch',
+          request = 'launch',
+          program = function()
+            return dll_path
+          end
+        }
+      }
+    end)
+end
+
 local function get_default_config()
   return {
     solution_first = true, -- Find the .sln file first then fallback to the csproj
+    automatic_dap_configuration = false,
     highlight = {
       enabled = true,
       refresh_mode = 'normal',
@@ -122,6 +156,10 @@ return {
         setup_highlight_autocmds(config)
         request_highlight(client, require('omnisharp.highlight').__highlight_handler)
       end
+
+      if config.automatic_dap_configuration then
+        configure_dap(client)
+      end
     end)
 
     require('lspconfig').omnisharp.setup(lsp_opts)
@@ -145,5 +183,6 @@ return {
   show_highlights_under_cursor = function()
     local client = get_current_omnisharp_client()
     request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
-  end
+  end,
+  configure_dap = configure_dap
 }

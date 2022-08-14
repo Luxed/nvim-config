@@ -25,17 +25,5 @@ dap.adapters.coreclr = {
   args = {'--interpreter=vscode'}
 }
 
-dap.configurations.cs = {
-  {
-    type = 'coreclr',
-    name = 'launch - netcoredbg',
-    request = 'launch',
-    program = function()
-      -- TODO: Although this works, it would be better if it was completely automatic. Or maybe at least configured per project somehow
-      return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-    end
-  }
-}
-
 vim.fn.sign_define('DapBreakpoint', { text='', texthl='DiagnosticDefaultError' })
 vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='DiagnosticDefaultError' })

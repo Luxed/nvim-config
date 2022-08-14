@@ -48,7 +48,10 @@ These ideas mostly come from the OmniSharp-vim plugin
   Especially since csharp_ls should be good enough for simple projects while omnisharp would be better for more complex projects and the mono version would be great to work on anything .NET Framework related.
 - Ability to show diagnostic id
 - Ability to exclude files/paths from diagnostics
-- Debugging using `netcoredbg` (cause, you know, vsdbg, the "working" debugger is still closed source. So much for going "open source")
+
+## Additional information
+
+- The `o#/project` and `o#/projects` endpoints have some interesting and useful information about the current project and workspace respectively
 
 ## Done or started
 
@@ -56,11 +59,14 @@ These ideas mostly come from the OmniSharp-vim plugin
   Tried to request `textDocument/semanticTokens/full` handler and it is marked as "not implemented" even though omnisharp-vim has it??? Is this some kind of custom thing again??
   Of course it's custom. Why would it use the specification that they made themselves?? Instead you'll need to use the `o#/v2/highlight` request.
 - Fix using statements (sort, remove and add missing)
+- Debugging using `netcoredbg` (cause, you know, vsdbg, the "working" debugger is still closed source. So much for going "open source")
 
 ## Won't do
 
 - ~~Support for multiple completion engines (as long as the engine supports Neovim's built-in LSP, this should not be a problem)~~
   This shouldn't have to be implemented by this plugin.
+- ~~Loading status for status line and/or notification (similar to the "progress" endpoint?). Found in [vim-sharpenup](https://github.com/nickspoons/vim-sharpenup#statusline)~~
+  Turns out this looks pretty much custom with how OmniSharp-vim internally works
 
 ## Plugins for a better experience
 

@@ -99,6 +99,7 @@ require('mason-lspconfig').setup_handlers{
           ['textDocument/definition'] = require('omnisharp_extended').handler
         }
       }), {
+        automatic_dap_configuration = true,
         highlight = {
           groups = {
             -- defaults
