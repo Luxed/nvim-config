@@ -63,6 +63,11 @@ local function setup_highlight_autocmds(config)
   end
 end
 
+-- TODO: Although dap is configured, a debug build needs to be done _before_ starting the debugging session so everything is up to date and working properly.
+-- TODO: This currently only works for single executable projects. You cannot put a breakpoint in a library project that is referenced by the main executable project.
+--       I am unsure how to fix this or if it is even possible.
+-- TODO: "attach" to a running process
+-- TODO: "attach" to a running process in a docker container
 local function configure_dap(client)
   client = client or get_current_omnisharp_client()
     local params = {
@@ -151,6 +156,7 @@ local function split(str, delimiter)
   return result
 end
 
+-- TODO: Add a way to see project/workspace information in a float (Like LspInfo but specifically for omnisharp)
 return {
   -- TODO: Both of those tables could be merged into one.
   --       Maybe there could be a "omnisharp" key in lsp_opts.
