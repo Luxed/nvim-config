@@ -30,6 +30,8 @@
   Preview folds without opening them
 - [exrc.nvim](https://github.com/MunifTanjim/exrc.nvim)
   Per project config in lua
+- [sqls.nvim](https://github.com/nanotee/sqls.nvim)
+  Language server for SQL in Neovim
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
