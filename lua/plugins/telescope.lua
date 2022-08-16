@@ -41,14 +41,14 @@ local function tags(opts)
 end
 
 local function rg(opts)
-  local input = vim.fn.input('Ripgrep: ')
-
-  if input ~= '' then
-    opts = opts or {}
-    builtin.grep_string(vim.tbl_extend('force', opts, {search = input}))
-  else
-    print('Exiting: given input was empty')
-  end
+  vim.ui.input({ prompt = 'Ripgrep:' }, function(input)
+    if input then
+      opts = opts or {}
+      builtin.grep_string(vim.tbl_extend('force', opts, {search = input}))
+    else
+      vim.notify('Exiting: given input was empty', vim.log.levels.WARN)
+    end
+  end)
 end
 
 local fix_folds = {
