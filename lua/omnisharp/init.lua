@@ -146,7 +146,7 @@ return {
     end, 0)
   end,
   show_highlights_under_cursor = function()
-    local client = require('omnisharp').get_current_omnisharp_client()
+    local client = require('omnisharp.utils').get_current_omnisharp_client()
     request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
   end,
   -- TODO: Maybe nvim-dap has something to execute a build before starting the debug session?
