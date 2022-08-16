@@ -16,7 +16,6 @@ dap_virtual_text.setup()
 
 require('keymaps').dap()
 
--- TODO: Make sure the debugger only gets attached if it is installed
 local mason_path = vim.fn.stdpath('data') .. '/mason'
 local netcoredbg_path = mason_path .. '/bin/netcoredbg'
 dap.adapters.coreclr = {
