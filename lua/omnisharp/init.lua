@@ -9,24 +9,9 @@ local function request_highlight(client, handler)
   client.request('o#/v2/highlight', params, handler, bufnr)
 end
 
-local function get_current_omnisharp_client()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_active_clients({
-    bufnr = bufnr,
-    name = 'omnisharp'
-  })
-
-  if #clients == 1 then
-    return clients[1]
-  else
-    -- TODO: Show error message
-    return nil
-  end
-end
-
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
-    local client = get_current_omnisharp_client()
+    local client = require('omnisharp.utils').get_current_omnisharp_client()
 
     if client then
       request_highlight(client, require('omnisharp.highlight').__highlight_handler)
@@ -61,55 +46,6 @@ local function setup_highlight_autocmds(config)
       })
     end
   end
-end
-
--- TODO: Although dap is configured, a debug build needs to be done _before_ starting the debugging session so everything is up to date and working properly.
--- TODO: This currently only works for single executable projects. You cannot put a breakpoint in a library project that is referenced by the main executable project.
---       I am unsure how to fix this or if it is even possible.
--- TODO: "attach" to a running process
--- TODO: "attach" to a running process in a docker container
-local function configure_dap(client)
-  client = client or get_current_omnisharp_client()
-    local params = {
-      fileName = vim.fn.expand('%:p'),
-    }
-
-    client.request('o#/project', params, function(err, result)
-      if err then
-        vim.notify('There was an error while trying to get the project information', vim.log.levels.ERROR)
-        return
-      end
-
-      local project = result.MsBuildProject
-      if not project.IsExe then
-        vim.notify('Only executable projects are currently supported', vim.log.levels.ERROR)
-        return
-      end
-
-      local dll_path = project.TargetPath
-      local launch_name = 'Launch - ' .. project.AssemblyName
-
-      local dap = require('dap')
-      if dap.configurations.cs == nil then
-        dap.configurations.cs = {}
-      end
-
-      local add_config = true
-      for _, config in pairs(dap.configurations.cs) do
-        if config.name == launch_name then
-          add_config = false
-        end
-      end
-
-      if add_config then
-        table.insert(dap.configurations.cs, {
-          type = 'coreclr',
-          name = launch_name,
-          request = 'launch',
-          program = dll_path
-        })
-      end
-    end)
 end
 
 local function get_default_config()
@@ -183,19 +119,23 @@ return {
       end
 
       if config.automatic_dap_configuration then
-        configure_dap(client)
+        require('omnisharp.dap').configure_dap(client)
       end
     end)
 
     require('lspconfig').omnisharp.setup(lsp_opts)
   end,
   fix_usings = function()
-    local client = get_current_omnisharp_client()
+    local client = require('omnisharp.utils').get_current_omnisharp_client()
     local params = {
       fileName = vim.fn.expand('%:p'),
       column = 1,
       line = 1
     }
+
+    if client == nil then
+      return
+    end
 
     client.request('o#/fixusings', params, function(err, result, ctx, config)
       local normalized_buffer = string.gsub(result.Buffer, '\r\n', '\n')
@@ -206,8 +146,19 @@ return {
     end, 0)
   end,
   show_highlights_under_cursor = function()
-    local client = get_current_omnisharp_client()
+    local client = require('omnisharp.utils').get_current_omnisharp_client()
     request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
   end,
-  configure_dap = configure_dap
+  -- TODO: Maybe nvim-dap has something to execute a build before starting the debug session?
+  launch_debug = function()
+    -- TODO: Launch curren't buffer's project instead of asking which project to launch
+    vim.notify('Launching dotnet debug build')
+    vim.fn.jobstart('dotnet build', {
+      cwd = vim.fn.expand('%:p:h'), -- This will use the path of the current buffer as the current working directory to ensure that only the current project is built instead of the entire solution (if that's where your Neovim instance was started)
+      on_exit = function(chan_id, data, name)
+        vim.notify('Build finished, launching debugging session')
+        require('dap').continue()
+      end
+    })
+  end
 }
