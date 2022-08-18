@@ -142,7 +142,12 @@ local function startup(use)
   end
 
   local function interface()
-    use('mhinz/vim-signify') -- Version control gutter signs (git, svn, mercurial, etc.)
+    use{ -- gitsigns.nvim
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup()
+      end
+    }
     use{'godlygeek/tabular', opt = true, cmd = {'Tabularize'}} -- Tabularize everything
     use('kyazdani42/nvim-web-devicons')
     use{ -- Ctrlsf Search and replace interface
