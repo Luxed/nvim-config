@@ -8,6 +8,7 @@ return {
     vim.keymap.set('n', '<leader>br', ':%s/<C-r><C-w>//g<left><left>')
     vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>')
     vim.keymap.set('n', '<leader>tw', ':setlocal wrap!<CR>')
+    vim.keymap.set('n', '<leader>ts', ':setlocal spell!<CR>')
     vim.keymap.set('n', '<leader>n', ':nohl<CR>')
     vim.keymap.set('n', '<leader>N', ':Rmhl<CR>')
     vim.keymap.set('n', 'zS', function() require('helpers.syntax').showCursorHighlights() end)
