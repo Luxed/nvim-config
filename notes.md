@@ -32,6 +32,9 @@
   Per project config in lua
 - [sqls.nvim](https://github.com/nanotee/sqls.nvim)
   Language server for SQL in Neovim
+  NOTES: Took the time to try it. It works, which is already a good thing, but it's missing a lot of things to be usable.
+  Completion is very lacking for MSSQL (for example I couldn't get any results when search for a user defined table valued function, EXEC is not a keyword, functions are not recognized, etc.).
+  The treesitter syntax is also very incomplete for MSSQL.
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
