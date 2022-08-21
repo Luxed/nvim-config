@@ -7,12 +7,12 @@
   NOTE: Finally got around to testing this and am I not even surprised that it doesn't work with Omnisharp...
   But it _does_ work with csharp-language-server.
   Now that I think about it, it's possible that the OmniSharp server has an endpoint under "o#/v2" or just "o#"
+  NOTE: I searched for it. Didn't find anything conclusive. I don't even know if that's a feature in VSCode? I know it is in Visual Studio, but that might not even come from an endpoint.
+  _Maybe_ a diff could be made with the current buffer and a new temporary buffer with the code action applied? Is that even possible or does it directly change the current buffer?
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
   An alternative to CtrlsF (which I've never really taken the time to learn and use properly. Last time I checked it also had issues with Neovim)
 - [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
   Refactoring library
-- [cmp-dap](https://github.com/rcarriga/cmp-dap)
-  Completion for dap repl and dap ui watches
 - [other.nvim](https://github.com/rgroli/other.nvim)
   Better than my "switcher" thing?
 - [lua-dev.nvim](https://github.com/folke/lua-dev.nvim)
@@ -35,6 +35,25 @@
   NOTES: Took the time to try it. It works, which is already a good thing, but it's missing a lot of things to be usable.
   Completion is very lacking for MSSQL (for example I couldn't get any results when search for a user defined table valued function, EXEC is not a keyword, functions are not recognized, etc.).
   The treesitter syntax is also very incomplete for MSSQL.
+- [vim-sleuth](https://github.com/tpope/vim-sleuth)
+  Detect file indentation automatically
+- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
+  Maybe a replacement for `nerdcommenter`.
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+  Full Lua replacement for vsnip.
+- [document-color.nvim](https://github.com/mrshmllow/document-color.nvim)
+  Colorizer for LSP colors specifically.
+- [recipe.nvim](https://github.com/ten3roberts/recipe.nvim)
+  Load workspace local "recipes" (similar to vscode "tasks").
+- [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
+  Improve "\*" and "#" motions
+- [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim)
+  Keep breakpoints after closing and reopening neovim.
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+  Highlight and search TODO comments in your projects.
+  With how much I use TODO comments to keep track of future things to ~~forget about~~ do, this would be really great.
+- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
+  Better way to highlight word under cursor than the custom things I am currently using?
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
