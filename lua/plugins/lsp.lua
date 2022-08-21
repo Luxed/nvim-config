@@ -124,7 +124,6 @@ require('mason-lspconfig').setup_handlers{
         }
       }))
     elseif server_name == 'rust_analyzer' then
-      -- TODO: Make sure the debugger only gets attached if it is installed
       local mason_path = vim.fn.stdpath('data') .. '/mason'
       local extension_path = mason_path .. '/packages/codelldb/extension'
       local codelldb_path = extension_path .. '/adapter/codelldb'

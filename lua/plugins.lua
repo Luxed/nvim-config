@@ -12,7 +12,6 @@ local function bootstrap()
   return not_installed
 end
 
--- TODO: A good cleanup needs to be done with my plugins to remove anything that I don't currently use. It's fine if I have to reinstall stuff because I started using them again.
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
