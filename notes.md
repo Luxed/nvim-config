@@ -37,8 +37,6 @@
   The treesitter syntax is also very incomplete for MSSQL.
 - [vim-sleuth](https://github.com/tpope/vim-sleuth)
   Detect file indentation automatically
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-  Maybe a replacement for `nerdcommenter`.
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
   Full Lua replacement for vsnip.
 - [document-color.nvim](https://github.com/mrshmllow/document-color.nvim)

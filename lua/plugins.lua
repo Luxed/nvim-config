@@ -78,7 +78,20 @@ local function startup(use)
       end
     }
 
-    use('preservim/nerdcommenter') -- Commenting tool
+    use{ -- Comment.nvim
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup{
+          mappings = {
+            basic = false,
+            extra = false,
+            extended = false
+          }
+        }
+
+        require('keymaps').comments()
+      end
+    }
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
     use{ -- Startify: Nice startup screen

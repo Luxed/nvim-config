@@ -135,5 +135,19 @@ return {
 
     vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
     vim.keymap.set('n', '<leader>dk', function() require('dap.ui.widgets').hover() end)
+  end,
+  comments = function()
+    local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+    vim.keymap.set('n', '<leader>cc', function() require('Comment.api').toggle.linewise.current() end)
+    vim.keymap.set('n', '<leader>cu', function() require('Comment.api').uncomment.linewise.current() end)
+
+    vim.keymap.set('x', '<leader>cm', function()
+      vim.api.nvim_feedkeys(esc, 'nx', false)
+      require('Comment.api').toggle.blockwise(vim.fn.visualmode())
+    end)
+    vim.keymap.set('x', '<leader>cu', function()
+      vim.api.nvim_feedkeys(esc, 'nx', false)
+      require('Comment.api').uncomment.blockwise(vim.fn.visualmode())
+    end)
   end
 }
