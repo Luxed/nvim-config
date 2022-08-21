@@ -49,8 +49,6 @@
   Improve "\*" and "#" motions
 - [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim)
   Keep breakpoints after closing and reopening neovim.
-- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
-  Better way to highlight word under cursor than the custom things I am currently using?
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist

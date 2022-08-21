@@ -17,12 +17,12 @@ require('nvim-treesitter.configs').setup {
   },
   refactor = {
     highlight_definitions = {
-      enable = true,
+      enable = false,
       -- Disable for languages that support highlighting through LSP (it usually gives better results)
       disable = disabled
     },
     smart_rename = {
-      enable = true,
+      enable = false,
       keymaps = {
         smart_rename = 'grr'
       }

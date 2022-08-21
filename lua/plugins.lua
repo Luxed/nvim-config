@@ -61,7 +61,7 @@ local function startup(use)
           'm-demare/hlargs.nvim',
           config = function()
             require('hlargs').setup({})
-            -- TODO: Fix in ayu-vim directly
+            -- TODO: Add to ayu-vim directly
             vim.cmd('hi! link Hlargs TSParameter')
           end
         }
@@ -141,7 +141,7 @@ local function startup(use)
       end
     }
 
-    use{
+    use{ -- todo-comments.nvim
       'folke/todo-comments.nvim',
       config = function()
         require('todo-comments').setup()
@@ -213,6 +213,25 @@ local function startup(use)
       'rcarriga/nvim-notify',
       config = function()
         require('plugins.notify')
+      end
+    }
+
+    use{
+      'RRethy/vim-illuminate',
+      config = function()
+        -- TODO: Add to ayu-vim directly
+        vim.cmd('hi! link IlluminatedWordRead Visual')
+        vim.cmd('hi! link IlluminatedWordText Visual')
+        vim.fn['ayu#hi']('IlluminatedWordWrite', '', 'editor_selection_active')
+        require('illuminate').configure({
+          providers = {
+            'lsp',
+            'treesitter',
+            -- 'regex' -- Currently disabled, but might be useful in some cases
+          },
+          delay = 100,
+          under_cursor = true
+        })
       end
     }
   end
