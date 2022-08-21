@@ -46,7 +46,7 @@
 - [recipe.nvim](https://github.com/ten3roberts/recipe.nvim)
   Load workspace local "recipes" (similar to vscode "tasks").
 - [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
-  Improve "\*" and "#" motions
+  Improve "*" and "#" motions
 - [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim)
   Keep breakpoints after closing and reopening neovim.
 - `:h foldminlines` & `:h foldnestmax`
@@ -99,7 +99,6 @@ These ideas mostly come from the OmniSharp-vim plugin
 - `stevearc/dressing.nvim` for better code actions and other stuff that uses `vim.ui.select`. Could also use `glepnir/lspsaga.nvim`
 - `weilbith/nvim-code-action-menu` to see what the code actions do. Unfortunately, this doesn't work with OmniSharp, but does work with csharp_ls.
 - `nvim-dap`, `nvim-dap-ui` (optional) & `nvim-dap-virtual-text` (optional) for debugging support
-
 
 # Treesitter issues
 

@@ -17,36 +17,15 @@ local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
   local function languages()
-    -- Rust
-    use('rust-lang/rust.vim')
-    -- Markdown
-    use {
-      'vim-pandoc/vim-pandoc',
-      requires = {'vim-pandoc/vim-pandoc-syntax', 'vim-pandoc/vim-markdownfootnotes'},
-      config = function()
-        vim.g['pandoc#modules#disabled'] = {'spell'}
-      end
-    }
     -- File Format
     use('editorconfig/editorconfig-vim')
     use('mboughaba/i3config.vim')
     use{'cespare/vim-toml', branch = 'main'}
-    -- Vue
-    use('posva/vim-vue')
     -- Glsl
     use('tikhomirov/vim-glsl')
-    -- Kotlin
-    use('udalov/kotlin-vim')
-    -- Haskell
-    use('neovimhaskell/haskell-vim')
-    use{'hspec/Hspec.vim', opt=true, ft={'haskell'}}
-    -- Vimscript
-    use('junegunn/vader.vim')
     -- Shell
     use('PProvost/vim-ps1')
     use('blankname/vim-fish')
-    -- Reason
-    use('rescript-lang/vim-rescript')
 
     use{'openembedded/bitbake', rtp = 'contrib/vim'}
 
@@ -54,10 +33,9 @@ local function startup(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       requires = {
-        'nvim-treesitter/nvim-treesitter-refactor',
         'p00f/nvim-ts-rainbow',
         'nvim-treesitter/playground',
-        {
+        { -- hlargs.nvim
           'm-demare/hlargs.nvim',
           config = function()
             require('hlargs').setup({})
@@ -103,14 +81,12 @@ local function startup(use)
     use('preservim/nerdcommenter') -- Commenting tool
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
-    use{'andrewradev/splitjoin.vim', branch = 'main'} -- Better split and join (gS, gJ)
     use{ -- Startify: Nice startup screen
       'mhinz/vim-startify',
       config = function() require('plugins.startify') end
     }
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
-    --use{'mattn/emmet-vim', opt = true, ft={'html'}}
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
 
     use{ -- vsnip
@@ -184,9 +160,7 @@ local function startup(use)
 
     use{ -- lualine
       'nvim-lualine/lualine.nvim',
-      config = function()
-        require('plugins.lualine')
-      end
+      config = function() require('plugins.lualine') end
     }
 
     use{ -- bufferline
@@ -216,7 +190,7 @@ local function startup(use)
       end
     }
 
-    use{
+    use{ -- vim-illuminate
       'RRethy/vim-illuminate',
       config = function()
         -- TODO: Add to ayu-vim directly

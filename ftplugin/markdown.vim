@@ -1,5 +1,3 @@
-"set syntax=pandoc
-
 " From https://github.com/plasticboy/vim-markdown
 function! s:TableFormat()
     let l:pos = getpos('.')
@@ -27,3 +25,9 @@ command! -buffer TableFormat call s:TableFormat()
 nnoremap <buffer> <leader>tf <cmd>TableFormat<cr>
 " table emtpy cell
 nnoremap <buffer> <leader>tec <cmd>normal vi\|r <cr>
+
+" Enable concealing for markdown files
+setlocal conceallevel=1
+
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()

@@ -180,12 +180,6 @@ require('mason-lspconfig').setup_handlers{
   end
 }
 
-local nvim_lsp = require('lspconfig')
-local data_path = vim.fn.stdpath('data')
-nvim_lsp.rescriptls.setup(extended_setup({
-  cmd = { 'node', data_path .. '/site/pack/packer/start/vim-rescript/server/out/server.js', '--stdio' }
-}))
-
 vim.fn.sign_define('DiagnosticSignError'           , { text='' })
 vim.fn.sign_define('DiagnosticSignWarn'            , { text='' })
 vim.fn.sign_define('DiagnosticSignInfo'            , { text='' })

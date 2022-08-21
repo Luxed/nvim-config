@@ -1,5 +1,4 @@
-local enabled = { 'c_sharp', 'css', 'go', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'python', 'query', 'rust', 'sql', 'typescript', 'vim', 'vue', 'yaml' }
-local disabled = {           'css', 'go', 'html', 'javascript', 'jsdoc',         'lua', 'python',          'rust',        'typescript', 'vim', 'vue', 'yaml' }
+local enabled = { 'c_sharp', 'css', 'go', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'markdown', 'markdown_inline', 'python', 'query', 'rust', 'sql', 'typescript', 'vim', 'vue', 'yaml' }
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = enabled,
@@ -13,19 +12,18 @@ require('nvim-treesitter.configs').setup {
   },
   indent = {
     enable = true,
-    disable = disabled
-  },
-  refactor = {
-    highlight_definitions = {
-      enable = false,
-      -- Disable for languages that support highlighting through LSP (it usually gives better results)
-      disable = disabled
-    },
-    smart_rename = {
-      enable = false,
-      keymaps = {
-        smart_rename = 'grr'
-      }
+    disable = {
+      'css',
+      'go',
+      'html',
+      'javascript', 'jsdoc',
+      'lua',
+      'markdown', 'markdown_inline',
+      'python',
+      'rust',
+      'typescript',
+      'vim', 'vue',
+      'yaml'
     }
   },
   playground = {
