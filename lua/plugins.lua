@@ -12,6 +12,7 @@ local function bootstrap()
   return not_installed
 end
 
+-- TODO: A good cleanup needs to be done with my plugins to remove anything that I don't currently use. It's fine if I have to reinstall stuff because I started using them again.
 local function startup(use)
   use({'wbthomason/packer.nvim', opt = true})
 
@@ -137,6 +138,13 @@ local function startup(use)
       'antoinemadec/FixCursorHold.nvim',
       config = function()
         vim.g.cursorhold_updatetime = 100
+      end
+    }
+
+    use{
+      'folke/todo-comments.nvim',
+      config = function()
+        require('todo-comments').setup()
       end
     }
   end

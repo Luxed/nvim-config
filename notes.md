@@ -49,9 +49,6 @@
   Improve "\*" and "#" motions
 - [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim)
   Keep breakpoints after closing and reopening neovim.
-- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-  Highlight and search TODO comments in your projects.
-  With how much I use TODO comments to keep track of future things to ~~forget about~~ do, this would be really great.
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
   Better way to highlight word under cursor than the custom things I am currently using?
 - `:h foldminlines` & `:h foldnestmax`
