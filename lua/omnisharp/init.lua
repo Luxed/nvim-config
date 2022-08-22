@@ -63,7 +63,6 @@ end
 
 local function get_default_groups()
   -- TODO: Maybe add a way to use Treesitter groups instead?
-  -- By using treesitter, I don't think most themes would have to support these groups at all.
   -- Once the offical support comes and there is a plugin that most people are using, or if the groups are included directly in neovim,
   -- then the plugin will be changed to be using those by default since it will make the most sense.
   return {
