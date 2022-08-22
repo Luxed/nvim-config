@@ -131,7 +131,11 @@ M.__show_highlight_handler = function(spans)
   end
 
   -- TODO: Would be nice to have a better floating preview _with_ the color applied to the group name
-  vim.lsp.util.open_floating_preview(highlights_under_cursor, "markdown", { border = "single", pad_left = 4, pad_right = 4 })
+  vim.lsp.util.open_floating_preview(highlights_under_cursor, "markdown", {
+    border = "rounded",
+    pad_left = 4,
+    pad_right = 4
+  })
 end
 
 return M

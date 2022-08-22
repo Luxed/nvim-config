@@ -45,7 +45,7 @@ cmp.setup{
 
   window = {
     documentation = {
-      border = 'single'
+      border = 'rounded'
     }
   }
 }

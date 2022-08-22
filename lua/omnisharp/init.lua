@@ -178,7 +178,7 @@ return {
       end
 
       vim.lsp.util.open_floating_preview(lines, 'markdown', {
-        border = 'single',
+        border = 'rounded',
         pad_left = 4,
         pad_right = 4
       })

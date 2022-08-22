@@ -1,3 +1,9 @@
+vim.diagnostic.config({
+  float = {
+    border = 'rounded'
+  }
+})
+
 local lsp_status = require('lsp-status')
 
 local function on_attach_complete(client)
@@ -20,7 +26,7 @@ local function on_attach_complete(client)
       hint_prefix = '',
       hi_parameter = 'IncSearch',
       handler_opts = {
-        border = 'single'
+        border = 'rounded'
       }
     })
 end
@@ -36,11 +42,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single"
+  border = "rounded"
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp, {
-  border = "single"
+  border = "rounded"
 })
 
 local lsp_capabilities = lsp_status.capabilities
