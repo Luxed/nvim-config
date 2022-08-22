@@ -1,14 +1,9 @@
 local log = require('omnisharp.log')
-local utils = require('omnisharp.utils')
 local request = require('omnisharp.request')
 
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
-    local client = utils.get_current_omnisharp_client()
-
-    if client then
-      request.highlight(client, require('omnisharp.highlight').__highlight_handler)
-    end
+    request.highlight(nil, require('omnisharp.highlight').__highlight_handler)
   end
 
   local bufnr = vim.api.nvim_get_current_buf()
@@ -134,8 +129,7 @@ return {
     end)
   end,
   show_highlights_under_cursor = function()
-    local client = utils.get_current_omnisharp_client()
-    request.highlight(client, require('omnisharp.highlight').__show_highlight_handler)
+    request.highlight(nil, require('omnisharp.highlight').__show_highlight_handler)
   end,
   launch_debug = function()
     log.info('Launching "dotnet build"')
