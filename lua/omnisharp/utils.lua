@@ -1,3 +1,4 @@
+local log = require('omnisharp.log')
 local M = {}
 
 -- NOTE: this only works if your lsp client is called "omnisharp"
@@ -11,9 +12,15 @@ M.get_current_omnisharp_client = function()
   if #clients == 1 then
     return clients[1]
   else
-    vim.notify('Could not find a valid OmniSharp client attached to this buffer', vim.log.levels.ERROR)
+    log.error('Could not find a valid OmniSharp client attached to this buffer')
     return nil
   end
+end
+
+M.make_current_file_params = function()
+  return {
+    fileName = vim.fn.expand('%:p')
+  }
 end
 
 return M

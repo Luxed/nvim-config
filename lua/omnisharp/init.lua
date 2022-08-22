@@ -1,3 +1,5 @@
+local log = require('omnisharp.log')
+
 local function request_highlight(client, handler)
   local bufnr = vim.api.nvim_get_current_buf()
 
@@ -155,15 +157,17 @@ return {
     local client = require('omnisharp.utils').get_current_omnisharp_client()
     request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
   end,
-  -- TODO: Maybe nvim-dap has something to execute a build before starting the debug session?
   launch_debug = function()
-    -- TODO: Launch curren't buffer's project instead of asking which project to launch
-    vim.notify('Launching dotnet debug build')
+    log.info('Launching "dotnet build"')
     vim.fn.jobstart('dotnet build', {
       cwd = vim.fn.expand('%:p:h'), -- This will use the path of the current buffer as the current working directory to ensure that only the current project is built instead of the entire solution (if that's where your Neovim instance was started)
-      on_exit = function(chan_id, data, name)
-        vim.notify('Build finished, launching debugging session')
-        require('dap').continue()
+      on_exit = function(chan_id, exit_code, name)
+        if exit_code ~= 0 then
+          log.error('"dotnet build" has failed. The debugging session will not be launched!')
+        else
+          log.info('Build finished, launching debugging session')
+          require('omnisharp.dap').launch_current_configuration()
+        end
       end
     })
   end,
@@ -175,13 +179,13 @@ return {
     }
 
     if not client then
-      vim.notify('Impossible to find "omnisharp" lsp client', vim.log.levels.ERROR)
+      log.error('Impossible to find "omnisharp" lsp client')
       return
     end
 
     client.request('o#/projects', params, function(err, result)
       if err then
-        vim.notify('There was an error while trying to get the workspace information', vim.log.levels.ERROR)
+        log.error('There was an error while trying to get the workspace information')
         return
       end
 
