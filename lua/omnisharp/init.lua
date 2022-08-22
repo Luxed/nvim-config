@@ -1,19 +1,16 @@
 local log = require('omnisharp.log')
+local utils = require('omnisharp.utils')
 
 local function request_highlight(client, handler)
   local bufnr = vim.api.nvim_get_current_buf()
+  local params = utils.make_current_file_params()
 
-  local params = {
-    fileName = vim.fn.expand('%:p'),
-    column = 1,
-    line = 1
-  }
   client.request('o#/v2/highlight', params, handler, bufnr)
 end
 
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
-    local client = require('omnisharp.utils').get_current_omnisharp_client()
+    local client = utils.get_current_omnisharp_client()
 
     if client then
       request_highlight(client, require('omnisharp.highlight').__highlight_handler)
@@ -134,12 +131,8 @@ return {
     require('lspconfig').omnisharp.setup(config.server)
   end,
   fix_usings = function()
-    local client = require('omnisharp.utils').get_current_omnisharp_client()
-    local params = {
-      fileName = vim.fn.expand('%:p'),
-      column = 1,
-      line = 1
-    }
+    local client = utils.get_current_omnisharp_client()
+    local params = utils.make_current_file_params()
 
     if client == nil then
       return
@@ -154,7 +147,7 @@ return {
     end, 0)
   end,
   show_highlights_under_cursor = function()
-    local client = require('omnisharp.utils').get_current_omnisharp_client()
+    local client = utils.get_current_omnisharp_client()
     request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
   end,
   launch_debug = function()
@@ -173,10 +166,8 @@ return {
   end,
   open_workspace_information = function()
     -- TODO: Information should be used in a floating window similar to "LspInfo" instead of a floating preview next to the cursor
-    local client = require('omnisharp.utils').get_current_omnisharp_client()
-    local params = {
-      fileName = vim.fn.expand('%:p')
-    }
+    local client = utils.get_current_omnisharp_client()
+    local params = utils.make_current_file_params()
 
     if not client then
       log.error('Impossible to find "omnisharp" lsp client')
