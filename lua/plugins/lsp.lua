@@ -86,9 +86,11 @@ require('mason-lspconfig').setup_handlers{
             OmniSharpInterfaceName = {fg = '#70e6d2'},
             OmniSharpStructName = {fg = '#6ae693'},
             OmniSharpTypeParameterName = {fg = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
+            OmniSharpPreprocessorKeyword = {fg = vim.fn['ayu#get_color']('extended_fg_idle')},
             OmniSharpPropertyName = {link = 'TSProperty'},
             OmniSharpFieldName = {link = 'TSField'},
-            OmniSharpParameterName = {link = 'TSParameter'}
+            OmniSharpParameterName = {link = 'TSParameter'},
+            OmniSharpVerbatimStringLiteral = {fg = vim.fn['ayu#get_color']('syntax_regexp')}
           }
         },
         server = extended_setup({

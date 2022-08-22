@@ -64,7 +64,7 @@ local classification_type_names = {
   { name = 'RegexText'                          } ,
   { name = 'RegexSelfEscapedCharacter'          } ,
   { name = 'RegexOtherEscape'                   }
-                                                }
+}
 
 local hl_ns = 'omnisharp_semantic'
 
