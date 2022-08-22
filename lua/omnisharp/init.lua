@@ -55,31 +55,35 @@ local function get_default_config()
     highlight = {
       enabled = false,
       refresh_mode = 'normal', -- 'normal' or 'insert'
-      -- TODO: Maybe add a way to use Treesitter groups instead?
-      -- By using treesitter, I don't think most themes would have to support these groups at all.
-      -- Once the offical support comes and there is a plugin that most people are using, or if the groups are included directly in neovim,
-      -- then the plugin will be changed to be using those by default since it will make the most sense.
-      groups = {
-        OmniSharpComment = {link = 'Comment'},
-        OmniSharpIdentifier = {link = 'Identifier'},
-        OmniSharpKeyword = {link = 'Keyword'},
-        OmniSharpControlKeyword = {link = 'Keyword'},
-        OmniSharpNumericLiteral = {link = 'Number'},
-        OmniSharpOperator = {link = 'Operator'},
-        OmniSharpOperatorOverloaded = {link = 'Operator'},
-        OmniSharpStringLiteral = {link = 'String'},
-        OmniSharpText = {link = 'String'},
-        OmniSharpVerbatimStringLiteral = {link = 'String'},
-        OmniSharpClassName = {link = 'Type'},
-        OmniSharpEnumName = {link = 'Type'},
-        OmniSharpInterfaceName = {link = 'Type'},
-        OmniSharpStructName = {link = 'Type'},
-        OmniSharpConstantName = {link = 'Constant'},
-        OmniSharpMethodName = {link = 'Function'},
-        OmniSharpExtensionMethodName = {link = 'Function'},
-      }
+      groups = nil
     },
     server = {}
+  }
+end
+
+local function get_default_groups()
+  -- TODO: Maybe add a way to use Treesitter groups instead?
+  -- By using treesitter, I don't think most themes would have to support these groups at all.
+  -- Once the offical support comes and there is a plugin that most people are using, or if the groups are included directly in neovim,
+  -- then the plugin will be changed to be using those by default since it will make the most sense.
+  return {
+    OmniSharpComment = {link = 'Comment'},
+    OmniSharpIdentifier = {link = 'Identifier'},
+    OmniSharpKeyword = {link = 'Keyword'},
+    OmniSharpControlKeyword = {link = 'Keyword'},
+    OmniSharpNumericLiteral = {link = 'Number'},
+    OmniSharpOperator = {link = 'Operator'},
+    OmniSharpOperatorOverloaded = {link = 'Operator'},
+    OmniSharpStringLiteral = {link = 'String'},
+    OmniSharpText = {link = 'String'},
+    OmniSharpVerbatimStringLiteral = {link = 'String'},
+    OmniSharpClassName = {link = 'Type'},
+    OmniSharpEnumName = {link = 'Type'},
+    OmniSharpInterfaceName = {link = 'Type'},
+    OmniSharpStructName = {link = 'Type'},
+    OmniSharpConstantName = {link = 'Constant'},
+    OmniSharpMethodName = {link = 'Function'},
+    OmniSharpExtensionMethodName = {link = 'Function'},
   }
 end
 
@@ -100,6 +104,7 @@ end
 return {
   setup = function(config)
     config = vim.tbl_deep_extend('force', get_default_config(), config or {})
+    config.highlight.groups = vim.tbl_extend('force', get_default_groups(), config.highlight.groups or {})
 
     require('omnisharp.highlight').__setup_highlight_groups(config)
 
