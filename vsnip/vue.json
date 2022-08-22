@@ -1,21 +1,25 @@
 {
-    "VueTSClassComponent": {
-        "prefix": ["class-component"],
-        "body": [
-            "<template>",
-            "",
-            "</template>",
-            "",
-            "<script lang=\"ts\">",
-            "import Vue from 'vue';",
-            "import Component from 'vue-class-component';",
-            "",
-            "@Component",
-            "export default class $1 extends Vue {",
-            "",
-            "}",
-            "</script>"
-        ],
-        "description": "Vue typescript class component"
-    }
+  "VueTSClassComponent": {
+    "prefix": ["class-component"],
+    "body": [
+      "<template>",
+      "",
+      "</template>",
+      "",
+      "<script lang=\"ts\">",
+      "import Vue from 'vue';",
+      "import Component from 'vue-class-component';",
+      "",
+      "@Component",
+      "export default class $1 extends Vue {",
+      "",
+      "}",
+      "</script>"
+    ],
+    "description": "Vue typescript class component"
+  },
+  "TSImport": {
+    "prefix": ["import"],
+    "body": ["import $2 from '$1';$0"]
+  }
 }

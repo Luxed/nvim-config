@@ -8,5 +8,10 @@
     "prefix": ["clog,"],
     "description": "Console log with value",
     "body": ["console.log('$1:', $1);$0"]
+  },
+  "Import": {
+    "prefix": ["import"],
+    "description": "Import",
+    "body": ["import $2 from '$1';$0"]
   }
 }
