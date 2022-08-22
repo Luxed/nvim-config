@@ -50,11 +50,11 @@ end
 
 local function get_default_config()
   return {
-    solution_first = true, -- Find the .sln file first then fallback to the csproj
+    solution_first = false, -- Find the .sln file first then fallback to the csproj
     automatic_dap_configuration = false,
     highlight = {
-      enabled = true,
-      refresh_mode = 'normal',
+      enabled = false,
+      refresh_mode = 'normal', -- 'normal' or 'insert'
       -- TODO: Maybe add a way to use Treesitter groups instead?
       -- By using treesitter, I don't think most themes would have to support these groups at all.
       -- Once the offical support comes and there is a plugin that most people are using, or if the groups are included directly in neovim,
@@ -78,7 +78,8 @@ local function get_default_config()
         OmniSharpMethodName = {link = 'Function'},
         OmniSharpExtensionMethodName = {link = 'Function'},
       }
-    }
+    },
+    server = {}
   }
 end
 
@@ -98,25 +99,20 @@ end
 
 -- TODO: Add a way to see project/workspace information in a float (Like LspInfo but specifically for omnisharp)
 return {
-  -- TODO: Both of those tables could be merged into one.
-  --       Maybe there could be a "omnisharp" key in lsp_opts.
-  -- TODO: The parameter could also be a function that takes has the opts as an input and as an output.
-  --       This way we would let the user decide how they want to configure the plugin.
-  --       They could use a deep_extend or modify the defaults directly.
-  setup = function(lsp_opts, config)
+  setup = function(config)
     config = vim.tbl_deep_extend('force', get_default_config(), config or {})
 
     require('omnisharp.highlight').__setup_highlight_groups(config)
 
     if config.solution_first then
-      lsp_opts.root_dir = function(path)
+      config.server.root_dir = function(path)
         local root_pattern = require('lspconfig.util').root_pattern
         -- Make sure an sln doesn't already exist before trying to use the nearest csproj file
         return root_pattern('*.sln')(path) or root_pattern('*.csproj')(path)
       end
     end
 
-    lsp_opts.on_attach = require('lspconfig.util').add_hook_after(lsp_opts.on_attach, function(client)
+    config.server.on_attach = require('lspconfig.util').add_hook_after(config.server.on_attach, function(client)
       if config.highlight and config.highlight.enabled then
         setup_highlight_autocmds(config)
         request_highlight(client, require('omnisharp.highlight').__highlight_handler)
@@ -127,7 +123,7 @@ return {
       end
     end)
 
-    require('lspconfig').omnisharp.setup(lsp_opts)
+    require('lspconfig').omnisharp.setup(config.server)
   end,
   fix_usings = function()
     local client = require('omnisharp.utils').get_current_omnisharp_client()

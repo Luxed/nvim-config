@@ -74,30 +74,12 @@ require('mason-lspconfig').setup_handlers{
   function (server_name)
     local lspconfig = require('lspconfig')
     if server_name == 'omnisharp' then
-      require('omnisharp').setup(extended_setup({
-        handlers = {
-          ['textDocument/definition'] = require('omnisharp_extended').handler
-        }
-      }), {
+      require('omnisharp').setup{
+        solution_first = true,
         automatic_dap_configuration = true,
         highlight = {
+          enabled = true,
           groups = {
-            -- defaults
-            OmniSharpComment = {link = 'Comment'},
-            OmniSharpIdentifier = {link = 'Identifier'},
-            OmniSharpKeyword = {link = 'Keyword'},
-            OmniSharpControlKeyword = {link = 'Keyword'},
-            OmniSharpNumericLiteral = {link = 'Number'},
-            OmniSharpOperator = {link = 'Operator'},
-            OmniSharpOperatorOverloaded = {link = 'Operator'},
-            OmniSharpStringLiteral = {link = 'String'},
-            OmniSharpText = {link = 'String'},
-            OmniSharpVerbatimStringLiteral = {link = 'String'},
-            OmniSharpClassName = {link = 'Type'},
-            OmniSharpConstantName = {link = 'Constant'},
-            OmniSharpMethodName = {link = 'Function'},
-            OmniSharpExtensionMethodName = {link = 'Function'},
-
             -- Custom
             -- TODO: Put custom colors into ayu-vim directly
             OmniSharpEnumName = {fg = '#91b6ff'},
@@ -108,8 +90,13 @@ require('mason-lspconfig').setup_handlers{
             OmniSharpFieldName = {link = 'TSField'},
             OmniSharpParameterName = {link = 'TSParameter'}
           }
-        }
-      })
+        },
+        server = extended_setup({
+          handlers = {
+            ['textDocument/definition'] = require('omnisharp_extended').handler
+          }
+        })
+      }
     elseif server_name == 'vuels' then
       lspconfig[server_name].setup(extended_setup({
         init_options = {
