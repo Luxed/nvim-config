@@ -97,7 +97,6 @@ local function split(str, delimiter)
   return result
 end
 
--- TODO: Add a way to see project/workspace information in a float (Like LspInfo but specifically for omnisharp)
 return {
   setup = function(config)
     config = vim.tbl_deep_extend('force', get_default_config(), config or {})
@@ -160,5 +159,59 @@ return {
         require('dap').continue()
       end
     })
+  end,
+  open_workspace_information = function()
+    -- TODO: Information should be used in a floating window similar to "LspInfo" instead of a floating preview next to the cursor
+    local client = require('omnisharp.utils').get_current_omnisharp_client()
+    local params = {
+      fileName = vim.fn.expand('%:p')
+    }
+
+    if not client then
+      vim.notify('Impossible to find "omnisharp" lsp client', vim.log.levels.ERROR)
+      return
+    end
+
+    client.request('o#/projects', params, function(err, result)
+      if err then
+        vim.notify('There was an error while trying to get the workspace information', vim.log.levels.ERROR)
+        return
+      end
+
+      local lines = {
+        '# OmniSharp Workspace Information',
+        '',
+        'Solution Path: `' .. result.MsBuild.SolutionPath .. '`',
+        '',
+        '## Projects',
+      }
+
+      for _, project in pairs(result.MsBuild.Projects) do
+        table.insert(lines, '')
+        table.insert(lines, '### Project: ' .. project.AssemblyName)
+        table.insert(lines, '')
+        table.insert(lines, 'Project Path     : `' .. project.Path .. '`')
+        table.insert(lines, 'Configuration    : `' .. project.Configuration .. '`')
+        table.insert(lines, 'Is Executable    : `' .. tostring(project.IsExe) .. '`')
+        table.insert(lines, 'Platform         : `' .. project.Platform .. '`')
+
+        local frameworks = ''
+        for _, framework in pairs(project.TargetFrameworks) do
+          if frameworks ~= '' then
+            frameworks = frameworks .. ';'
+          end
+          frameworks = frameworks .. framework.ShortName
+        end
+
+        table.insert(lines, 'Target Frameworks: `' .. frameworks .. '`')
+        table.insert(lines, 'Target Path      : `' .. project.TargetPath .. '`')
+      end
+
+      vim.lsp.util.open_floating_preview(lines, 'markdown', {
+        border = 'single',
+        pad_left = 4,
+        pad_right = 4
+      })
+    end)
   end
 }
