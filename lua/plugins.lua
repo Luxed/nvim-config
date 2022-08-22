@@ -38,8 +38,6 @@ local function startup(use)
           'm-demare/hlargs.nvim',
           config = function()
             require('hlargs').setup({})
-            -- TODO: Add to ayu-vim directly
-            vim.cmd('hi! link Hlargs TSParameter')
           end
         }
       },
@@ -205,10 +203,6 @@ local function startup(use)
     use{ -- vim-illuminate
       'RRethy/vim-illuminate',
       config = function()
-        -- TODO: Add to ayu-vim directly
-        vim.cmd('hi! link IlluminatedWordRead Visual')
-        vim.cmd('hi! link IlluminatedWordText Visual')
-        vim.fn['ayu#hi']('IlluminatedWordWrite', '', 'editor_selection_active')
         require('illuminate').configure({
           providers = {
             'lsp',
@@ -216,7 +210,7 @@ local function startup(use)
             -- 'regex' -- Currently disabled, but might be useful in some cases
           },
           delay = 100,
-          under_cursor = true
+          under_cursor = false, -- Highlight any word under the cursor
         })
       end
     }
