@@ -93,18 +93,12 @@ M.__setup_highlight_groups = function(config)
   end
 end
 
-M.__highlight_handler = function(err, result, ctx, config)
+M.__highlight_handler = function(spans)
   -- NOTE: reset namespace with the following
   local ns_id = get_namespace()
   vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
 
-  if err then
-    print('ERROR')
-    print(err)
-    return
-  end
-
-  for _,span in pairs(result.Spans) do
+  for _,span in pairs(spans) do
     local type = classification_type_names[span.Type + 1] -- convert 0 based index to 1 based index
     if type then
       local startPos = {span.StartLine,span.StartColumn}
@@ -116,13 +110,13 @@ M.__highlight_handler = function(err, result, ctx, config)
   end
 end
 
-M.__show_highlight_handler = function(err, result, ctx, config)
+M.__show_highlight_handler = function(spans)
   local buf_pos = {vim.fn.line('.')-1, vim.fn.col('.')-1}
 
   local highlights_under_cursor = {
     "# OmniSharp"
   }
-  for _,span in pairs(result.Spans) do
+  for _,span in pairs(spans) do
     local type = classification_type_names[span.Type + 1] -- convert 0 based index to 1 based index
     if type then
       local highStartPos = {span.StartLine, span.StartColumn}

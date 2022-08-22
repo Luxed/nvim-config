@@ -1,19 +1,13 @@
 local log = require('omnisharp.log')
 local utils = require('omnisharp.utils')
-
-local function request_highlight(client, handler)
-  local bufnr = vim.api.nvim_get_current_buf()
-  local params = utils.make_current_file_params()
-
-  client.request('o#/v2/highlight', params, handler, bufnr)
-end
+local request = require('omnisharp.request')
 
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
     local client = utils.get_current_omnisharp_client()
 
     if client then
-      request_highlight(client, require('omnisharp.highlight').__highlight_handler)
+      request.highlight(client, require('omnisharp.highlight').__highlight_handler)
     end
   end
 
@@ -120,7 +114,7 @@ return {
     config.server.on_attach = require('lspconfig.util').add_hook_after(config.server.on_attach, function(client)
       if config.highlight and config.highlight.enabled then
         setup_highlight_autocmds(config)
-        request_highlight(client, require('omnisharp.highlight').__highlight_handler)
+        request.highlight(client, require('omnisharp.highlight').__highlight_handler)
       end
 
       if config.automatic_dap_configuration then
@@ -131,24 +125,17 @@ return {
     require('lspconfig').omnisharp.setup(config.server)
   end,
   fix_usings = function()
-    local client = utils.get_current_omnisharp_client()
-    local params = utils.make_current_file_params()
-
-    if client == nil then
-      return
-    end
-
-    client.request('o#/fixusings', params, function(err, result, ctx, config)
-      local normalized_buffer = string.gsub(result.Buffer, '\r\n', '\n')
+    request.fix_usings(nil, function(buffer)
+      local normalized_buffer = string.gsub(buffer, '\r\n', '\n')
       local lines = split(normalized_buffer, '\n')
 
       -- TODO: This "works" but resets/deletes folds?
       vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-    end, 0)
+    end)
   end,
   show_highlights_under_cursor = function()
     local client = utils.get_current_omnisharp_client()
-    request_highlight(client, require('omnisharp.highlight').__show_highlight_handler)
+    request.highlight(client, require('omnisharp.highlight').__show_highlight_handler)
   end,
   launch_debug = function()
     log.info('Launching "dotnet build"')
@@ -165,30 +152,17 @@ return {
     })
   end,
   open_workspace_information = function()
-    -- TODO: Information should be used in a floating window similar to "LspInfo" instead of a floating preview next to the cursor
-    local client = utils.get_current_omnisharp_client()
-    local params = utils.make_current_file_params()
-
-    if not client then
-      log.error('Impossible to find "omnisharp" lsp client')
-      return
-    end
-
-    client.request('o#/projects', params, function(err, result)
-      if err then
-        log.error('There was an error while trying to get the workspace information')
-        return
-      end
-
+    -- TODO: Information should be shown in a floating window similar to "LspInfo" instead of a floating preview next to the cursor
+    request.projects(nil, function(workspace)
       local lines = {
         '# OmniSharp Workspace Information',
         '',
-        'Solution Path: `' .. result.MsBuild.SolutionPath .. '`',
+        'Solution Path: `' .. workspace.SolutionPath .. '`',
         '',
         '## Projects',
       }
 
-      for _, project in pairs(result.MsBuild.Projects) do
+      for _, project in pairs(workspace.Projects) do
         table.insert(lines, '')
         table.insert(lines, '### Project: ' .. project.AssemblyName)
         table.insert(lines, '')

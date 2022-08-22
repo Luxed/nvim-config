@@ -1,19 +1,5 @@
-local utils = require('omnisharp.utils')
 local log = require('omnisharp.log')
-
-local function request_project(client, callback)
-  client = client or utils.get_current_omnisharp_client()
-  local params = utils.make_current_file_params()
-
-  client.request('o#/project', params, function(err, result)
-    if err then
-      log.error('There was an error while trying to get the project information')
-      return
-    end
-
-    callback(result.MsBuildProject)
-  end)
-end
+local request = require('omnisharp.request')
 
 local function make_dap_configuration(project)
   return {
@@ -31,7 +17,7 @@ local M = {}
 -- TODO: "attach" to a running process
 -- TODO: "attach" to a running process in a docker container
 M.configure_dap = function(client)
-  request_project(client, function(project)
+  request.project(client, function(project)
     if not project.IsExe then
       -- vim.notify('Only executable projects are currently supported', vim.log.levels.ERROR)
       return
@@ -58,7 +44,7 @@ M.configure_dap = function(client)
 end
 
 M.launch_current_configuration = function()
-  request_project(nil, function(project)
+  request.project(nil, function(project)
     if not project.IsExe then
       log.error('Only executable projects are currently supported')
       return
