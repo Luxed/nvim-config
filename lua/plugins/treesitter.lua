@@ -21,12 +21,22 @@ require('nvim-treesitter.configs').setup {
       'markdown', 'markdown_inline',
       'python',
       'rust',
-      'typescript',
-      'vim', 'vue',
+      'vim',
       'yaml'
     }
   },
   playground = {
     enable = true,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner"
+      }
+    }
   }
 }

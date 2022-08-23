@@ -32,6 +32,7 @@ local function startup(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       requires = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
         'p00f/nvim-ts-rainbow',
         'nvim-treesitter/playground',
         { -- hlargs.nvim
