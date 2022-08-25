@@ -7,7 +7,9 @@ return {
 
     local extend_colors_dict = {
       ['ayu'] = function()
+        -- TODO: Maybe put all of this in the colorscheme directly
         hi('LspDiagnosticsUnderlineHint', {gui='underline'})
+        hi('TSParameter', {guifg='#DDEEE8'}) -- very light green/blue. Replaces the not very light yellow that's currently used
       end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
