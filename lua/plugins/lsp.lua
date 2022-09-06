@@ -147,7 +147,8 @@ require('mason-lspconfig').setup_handlers{
           }
           ts_utils.setup_client(client)
         end,
-        capabilities = lsp_capabilities
+        capabilities = lsp_capabilities,
+        root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
       })
     elseif server_name == 'sumneko_lua' then
       lspconfig[server_name].setup(extended_setup({
@@ -167,6 +168,10 @@ require('mason-lspconfig').setup_handlers{
             }
           },
         }
+      }))
+    elseif server_name == 'denols' then
+      lspconfig[server_name].setup(extended_setup({
+        root_dir = require('lspconfig.util').root_pattern('deno.json', 'deno.jsonc')
       }))
     else
       lspconfig[server_name].setup(complete_lsp_setup)
