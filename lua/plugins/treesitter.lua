@@ -1,4 +1,19 @@
-local enabled = { 'c_sharp', 'css', 'go', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'markdown', 'markdown_inline', 'python', 'query', 'rust', 'sql', 'typescript', 'vim', 'vue', 'yaml' }
+local enabled = {
+  'c_sharp', 'css',
+  'dockerfile',
+  'go',
+  'html',
+  'javascript', 'jsdoc', 'json',
+  'lua',
+  'markdown', 'markdown_inline',
+  'python',
+  'query',
+  'rust',
+  'sql',
+  'typescript', 'tsx',
+  'vim', 'vue',
+  'yaml'
+}
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = enabled,
@@ -7,7 +22,7 @@ require('nvim-treesitter.configs').setup {
   },
   rainbow = {
     enable = true,
-    disable = { 'html' },
+    disable = { 'html', 'tsx' },
     colors = require('ayu').rainbow_colors()
   },
   indent = {
