@@ -58,12 +58,17 @@ local function startup(use)
       'windwp/nvim-autopairs',
       config = function() require('plugins.autopairs') end
     }
-    use{ -- Auto close html tags
+    --[[ use{ -- Auto close html tags
       'alvan/vim-closetag',
       config = function()
-        vim.g['closetag_filenames'] = '*.html,*.xhtml,*.phtml,*.vue,*.xml'
-        vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml'
+        vim.g['closetag_filenames'] = '*.html,*.xhtml,*.phtml,*.vue,*.xml,*.jsx,*.tsx'
+        vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml,javascriptreact,javascript.jsx,typescriptreact,typescript.tsx'
+        vim.g['closetag_regions'] = {}
       end
+    } ]]
+
+    use { --nvim-ts-autotag
+      'windwp/nvim-ts-autotag',
     }
 
     use{

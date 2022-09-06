@@ -38,5 +38,8 @@ require('nvim-treesitter.configs').setup {
         ["ic"] = "@class.inner"
       }
     }
+  },
+  autotag = {
+    enable = true
   }
 }
