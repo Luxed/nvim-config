@@ -12,6 +12,6 @@
   "Import": {
     "prefix": ["import"],
     "description": "Import",
-    "body": ["import $2 from '$1';$0"]
+    "body": ["import ${2:{ $3 \\}} from '$1';$0"]
   }
 }
