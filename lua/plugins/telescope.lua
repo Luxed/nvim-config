@@ -40,10 +40,9 @@ local function tags(opts)
   }):find()
 end
 
-local function rg(opts)
-  vim.ui.input({ prompt = 'Ripgrep:' }, function(input)
+local function rg(opts, under_cursor)
+  vim.ui.input({ prompt = 'Ripgrep:', default = under_cursor and vim.fn.expand('<cword>') or '' }, function(input)
     if input then
-      opts = opts or {}
       builtin.grep_string(vim.tbl_extend('force', opts, {search = input}))
     else
       vim.notify('Exiting: given input was empty', vim.log.levels.WARN)
