@@ -134,8 +134,8 @@ require('mason-lspconfig').setup_handlers{
       })
     elseif server_name == 'tsserver' then
       lspconfig[server_name].setup({
-        on_attach = function(client)
-          on_attach_complete(client)
+        on_attach = function(client, bufnr)
+          on_attach_complete(client, bufnr)
 
           local ts_utils = require('nvim-lsp-ts-utils')
           ts_utils.setup{
