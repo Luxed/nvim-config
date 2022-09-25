@@ -96,7 +96,8 @@ require('mason-lspconfig').setup_handlers{
             OmniSharpPropertyName = {link = 'TSProperty'},
             OmniSharpFieldName = {link = 'TSField'},
             OmniSharpParameterName = {link = 'TSParameter'},
-            OmniSharpVerbatimStringLiteral = {fg = vim.fn['ayu#get_color']('syntax_regexp')}
+            OmniSharpVerbatimStringLiteral = {fg = vim.fn['ayu#get_color']('syntax_regexp')},
+            OmniSharpLocalName = {link = 'Normal'},
           }
         },
         server = extended_setup({
