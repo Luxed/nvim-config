@@ -24,8 +24,6 @@
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
   Better & faster folds.
   NOTES: Tried it. Looks amazing. Exactly what I want. _But_. It's buggy and doesn't behave nearly the same as with normal folds. Will be worth checking again later (just like how indent-blankline was unusable until it got to the point where it did exactly what I needed it to do)
-- [nvim-docker](https://github.com/dgrbrady/nvim-docker)
-  Docker management directly inside neovim (might be a good idea to integrate lazydocker instead)
 - [fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)
   Preview folds without opening them
 - [exrc.nvim](https://github.com/MunifTanjim/exrc.nvim)
@@ -47,6 +45,8 @@
   Improve "*" and "#" motions
 - [persistent-breakpoints.nvim](https://github.com/Weissle/persistent-breakpoints.nvim)
   Keep breakpoints after closing and reopening neovim.
+- [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
+- Update [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
