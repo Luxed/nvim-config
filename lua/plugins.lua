@@ -71,7 +71,7 @@ local function startup(use)
       'windwp/nvim-ts-autotag',
     }
 
-    use{
+    use{ -- neo-tree
       'nvim-neo-tree/neo-tree.nvim',
       requires = {
         'MunifTanjim/nui.nvim'
@@ -250,11 +250,6 @@ local function startup(use)
     }
 
     if vim.fn.has('nvim-0.8') == 1 then
-      use{ -- inc-rename
-        'smjonas/inc-rename.nvim',
-        config = function() require('inc_rename').setup() end
-      }
-
       use{ -- neodim
         'zbirenbaum/neodim',
         event = 'LspAttach',

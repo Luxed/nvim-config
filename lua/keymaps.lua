@@ -93,13 +93,7 @@ return {
 
     vim.keymap.set('n', '<leader>qK', function() vim.lsp.buf.signature_help() end)
     vim.keymap.set('n', '<leader>qq', function() vim.diagnostic.open_float() end)
-    if vim.fn.has('nvim-0.8') == 1 then
-      vim.keymap.set('n', '<leader>qr', function()
-        require('inc_rename').rename()
-      end)
-    else
-      vim.keymap.set('n', '<leader>qr', function() vim.lsp.buf.rename() end)
-    end
+    vim.keymap.set('n', '<leader>qr', function() vim.lsp.buf.rename() end)
     vim.keymap.set('n', '<leader>qn', function() vim.diagnostic.goto_next() end)
     vim.keymap.set('n', '<leader>qp', function() vim.diagnostic.goto_prev() end)
     vim.keymap.set('n', '<leader>qa', function() vim.lsp.buf.code_action() end)
