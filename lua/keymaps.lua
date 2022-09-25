@@ -148,9 +148,19 @@ return {
       vim.api.nvim_feedkeys(esc, 'nx', false)
       require('Comment.api').toggle.blockwise(vim.fn.visualmode())
     end)
+    vim.keymap.set('x', '<leader>cc', function()
+      vim.api.nvim_feedkeys(esc, 'nx', false)
+      require('Comment.api').toggle.linewise(vim.fn.visualmode())
+    end)
     vim.keymap.set('x', '<leader>cu', function()
       vim.api.nvim_feedkeys(esc, 'nx', false)
-      require('Comment.api').uncomment.blockwise(vim.fn.visualmode())
+      local ft = require('Comment.ft')
+      local u = require('Comment.utils')
+      if not ft.get(vim.bo.filetype, u.ctype.blockwise) then
+        require('Comment.api').uncomment.linewise(vim.fn.visualmode())
+      else
+        require('Comment.api').uncomment.blockwise(vim.fn.visualmode())
+      end
     end)
   end
 }
