@@ -1,6 +1,7 @@
 local log = require('omnisharp.log')
 local request = require('omnisharp.request')
 
+-- TODO: When switching from a C# file to a file that doesn't use TreeSitter (like an XML file (the csproj)), the highlights stay.
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
     request.highlight(nil, require('omnisharp.highlight').__highlight_handler)
@@ -74,6 +75,7 @@ local function get_default_groups()
     OmniSharpConstantName = {link = 'Constant'},
     OmniSharpMethodName = {link = 'Function'},
     OmniSharpExtensionMethodName = {link = 'Function'},
+    OmniSharpNamespaceName = {link = 'Include'},
   }
 end
 

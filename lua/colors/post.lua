@@ -7,9 +7,10 @@ return {
 
     local extend_colors_dict = {
       ['ayu'] = function()
-        -- TODO: Maybe put all of this in the colorscheme directly
+        -- TODO: Put all of this in the colorscheme directly
         hi('LspDiagnosticsUnderlineHint', {gui='underline'})
         hi('TSParameter', {guifg='#DDEEE8'}) -- very light green/blue. Replaces the not very light yellow that's currently used
+        hi('Include', {guifg='#ffa375'}) -- This looks good in Rust, but is kind of weird in C#.
       end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
