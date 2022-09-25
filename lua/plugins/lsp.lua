@@ -127,9 +127,16 @@ require('mason-lspconfig').setup_handlers{
       local codelldb_adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
 
       require("rust-tools").setup({
-        hover_with_actions = true,
+        tools = {
+          inlay_hints = {
+            only_current_line = true,
+            highlight = 'DiagnosticVirtualTextHint',
+          }
+        },
+        -- hover_with_actions = true,
         server = {
-          on_attach = on_attach_complete
+          on_attach = on_attach_complete,
+          standalone = false,
         },
         dap = {
           adapter = codelldb_adapter
