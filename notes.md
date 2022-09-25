@@ -17,15 +17,11 @@
   Better than my "switcher" thing?
 - [lua-dev.nvim](https://github.com/folke/lua-dev.nvim)
   Could replace nlua.nvim which seems unmaintained?
-- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
-  Add textobjects using treesitter
 - [neogit](https://github.com/TimUntersberger/neogit)
   Fugitive replacement? (I don't really have any issues with Fugitive though. Maybe I should just learn to use it before maybe)
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
   Better & faster folds.
   NOTES: Tried it. Looks amazing. Exactly what I want. _But_. It's buggy and doesn't behave nearly the same as with normal folds. Will be worth checking again later (just like how indent-blankline was unusable until it got to the point where it did exactly what I needed it to do)
-- [fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)
-  Preview folds without opening them
 - [exrc.nvim](https://github.com/MunifTanjim/exrc.nvim)
   Per project config in lua
 - [sqls.nvim](https://github.com/nanotee/sqls.nvim)
