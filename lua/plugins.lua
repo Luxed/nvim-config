@@ -231,22 +231,25 @@ local function startup(use)
       'neovim/nvim-lspconfig',
       requires = {
         'mfussenegger/nvim-jdtls',
-        'nvim-lua/lsp-status.nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
         'onsails/lspkind-nvim',
         'kosayoda/nvim-lightbulb',
         'simrat39/rust-tools.nvim',
         'ray-x/lsp_signature.nvim',
         'jose-elias-alvarez/nvim-lsp-ts-utils',
+        {
+          'j-hui/fidget.nvim',
+          config = function()
+            require('fidget').setup({})
+          end
+        },
+        'SmiteshP/nvim-navic',
 
         -- LSP installer
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim'
       },
-      config = function()
-        require('plugins.lsp_status')
-        require('plugins.lsp')
-      end
+      config = function() require('plugins.lsp') end
     }
 
     if vim.fn.has('nvim-0.8') == 1 then
