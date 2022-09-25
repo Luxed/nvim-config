@@ -4,13 +4,11 @@ vim.diagnostic.config({
   }
 })
 
-local lsp_status = require('lsp-status')
-
-local function on_attach_complete(client)
+local function on_attach_complete(client, bufnr)
   require('commands').lsp()
   require('keymaps').lsp(client)
 
-  lsp_status.on_attach(client)
+  require('nvim-navic').attach(client, bufnr)
 
   require('nvim-lightbulb').setup({
     autocmd = {
@@ -49,15 +47,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded"
 })
 
-local lsp_capabilities = lsp_status.capabilities
-lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
-lsp_capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits'
-  }
-}
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(lsp_capabilities)
 
 local complete_lsp_setup = {

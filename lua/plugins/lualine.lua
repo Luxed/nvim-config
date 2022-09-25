@@ -1,9 +1,9 @@
+local navic = require('nvim-navic')
+
 require('lualine').setup({
   sections = {
     lualine_x = {
-      function()
-        return require('lsp-status').status()
-      end,
+      { navic.get_location, cond = navic.is_available },
       'encoding',
       'fileformat',
       'filetype'
