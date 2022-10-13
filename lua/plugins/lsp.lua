@@ -171,23 +171,6 @@ require('mason-lspconfig').setup_handlers{
       lspconfig[server_name].setup(extended_setup({
         root_dir = require('lspconfig.util').root_pattern('deno.json', 'deno.jsonc')
       }))
-    elseif server_name == 'volar' then
-      local function get_typescript_lib_path(root_dir)
-        local util = require('lspconfig.util')
-        local project_root = util.find_node_modules_ancestor(root_dir)
-        return util.path.join(project_root, 'node_modules', 'typescript', 'lib')
-      end
-
-      lspconfig[server_name].setup(extended_setup({
-        init_options = {
-          typescript = {
-            tsdk = '',
-          }
-        },
-        on_new_config = function(new_config, new_root_dir)
-          new_config.init_options.typescript.tsdk = get_typescript_lib_path(new_root_dir)
-        end
-      }))
     else
       lspconfig[server_name].setup(complete_lsp_setup)
     end
