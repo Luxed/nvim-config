@@ -43,6 +43,8 @@
   Keep breakpoints after closing and reopening neovim.
 - [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
 - Update [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
+- [diffview.nvim](https://github.com/sindrets/diffview.nvim).
+  Interesting looking merge tool and other visual git tools.
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
