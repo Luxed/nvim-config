@@ -79,6 +79,7 @@ return {
     vim.keymap.set('n', '<leader>fG', function()
       require('plugins.telescope').rg(fix_folds, true)
     end)
+    vim.keymap.set('n', '<leader>fc', function() builtin.current_buffer_fuzzy_find(fix_folds) end)
     vim.keymap.set('n', '<leader>gb', builtin.git_branches)
     vim.keymap.set('n', '<leader>gt', function() require('plugins.telescope').tags() end)
   end,
