@@ -252,13 +252,11 @@ local function startup(use)
       config = function() require('plugins.lsp') end
     }
 
-    if vim.fn.has('nvim-0.8') == 1 then
-      use{ -- neodim
-        'zbirenbaum/neodim',
-        event = 'LspAttach',
-        config = function() require('plugins.dim') end
-      }
-    end
+    use{ -- neodim
+      'zbirenbaum/neodim',
+      event = 'LspAttach',
+      config = function() require('plugins.dim') end
+    }
 
     use{ -- dap
       'mfussenegger/nvim-dap',
