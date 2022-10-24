@@ -48,7 +48,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(lsp_capabilities)
+lsp_capabilities = vim.tbl_deep_extend('force', lsp_capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 local complete_lsp_setup = {
   on_attach = on_attach_complete,
