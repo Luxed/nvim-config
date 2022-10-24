@@ -19,7 +19,9 @@ local function on_attach_complete(client, bufnr)
     }
   })
 
-  require('lsp_signature').on_attach({
+  -- In "Vue" files, everything is defined in a function, so it's very annoying to get the popup all the time
+  if vim.bo.filetype ~= 'vue' then
+    require('lsp_signature').on_attach({
       bind = true,
       hint_prefix = '',
       hi_parameter = 'IncSearch',
@@ -27,6 +29,7 @@ local function on_attach_complete(client, bufnr)
         border = 'rounded'
       }
     })
+  end
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
