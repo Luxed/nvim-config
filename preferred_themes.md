@@ -28,3 +28,4 @@
 - [afterglow](https://github.com/danilo-augusto/vim-afterglow)
 - [lucid](https://github.com/cseelus/vim-colors-lucid)
 - [embark](https://github.com/embark-theme/vim)
+- [catppuccin](https://github.com/catppuccin/nvim)
