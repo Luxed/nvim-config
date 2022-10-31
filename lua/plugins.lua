@@ -182,9 +182,7 @@ local function startup(use)
     use{ -- bufferline
       'akinsho/nvim-bufferline.lua',
       branch = 'main',
-      config = function()
-        require('plugins.bufferline').init()
-      end
+      config = function() require('plugins.bufferline') end
     }
 
     use{ -- indent-blankline
