@@ -1,7 +1,27 @@
 local connected = false
 local http_response_code = {}
 
-local function HTTPPostOnExit(jobid, exitcode, eventtype)
+local function get_current_git_branch(callback)
+  local git_branch = ''
+
+  vim.fn.jobstart({'git', 'branch', '--show-current', '--format="%(refname)"'}, {
+    detach = true,
+    on_stdout = function(jobid, data, event)
+      if data[1] ~= '' then
+        git_branch = data[1]
+      end
+    end,
+    on_exit = function(jobid, code, eventtype)
+      if code ~= 0 then
+        git_branch = ''
+      end
+
+      callback(git_branch)
+    end
+  })
+end
+
+local function on_exit(jobid, exitcode, eventtype)
   local status_code = tonumber(http_response_code[jobid][1])
 
   if status_code == 0 then
@@ -16,13 +36,13 @@ local function HTTPPostOnExit(jobid, exitcode, eventtype)
   http_response_code[jobid] = nil
 end
 
-local function HTTPPostOnStdout(jobid, data, event)
+local function on_stdout(jobid, data, event)
   if data[1] ~= '' then
     http_response_code[jobid] = data
   end
 end
 
-local function HTTPPostJson(opts, url, data)
+local function curl_post(opts, url, data)
   local command = {
     'curl', '-s', url,
     '-H', 'Content-Type: application/json',
@@ -35,8 +55,8 @@ local function HTTPPostJson(opts, url, data)
 
   vim.fn.jobstart(command, {
     detach = true,
-    on_stdout = HTTPPostOnStdout,
-    on_exit = HTTPPostOnExit,
+    on_stdout = on_stdout,
+    on_exit = on_exit,
   })
 end
 
@@ -56,7 +76,7 @@ local function make_heartbeat_apiurl(opts)
   return string.format('%s/heartbeat?pulsetime=30', make_bucket_apiurl(opts))
 end
 
-local function CreateBucket(opts)
+local function create_bucket(opts)
   local body = {
     name = make_bucket_name(opts),
     hostname = opts.hostname,
@@ -64,7 +84,7 @@ local function CreateBucket(opts)
     type = 'app.editor.activity',
   }
 
-  HTTPPostJson(opts, make_bucket_apiurl(opts), body)
+  curl_post(opts, make_bucket_apiurl(opts), body)
 end
 
 local last_file = ''
@@ -82,31 +102,34 @@ local function Heartbeat(opts)
   local project = vim.fn.getcwd()
 
   if file ~= last_file or (localtime - last_heartbeat) > 1 then
-    local body = {
-      duration = 0,
-      timestamp = timestamp,
-      data = {
-        file = file,
-        language = language,
-        project = project,
+    get_current_git_branch(function(branch)
+      local body = {
+        duration = 0,
+        timestamp = timestamp,
+        data = {
+          file = file,
+          language = language,
+          project = project,
+          branch = branch
+        }
       }
-    }
 
-    HTTPPostJson(opts, make_heartbeat_apiurl(opts), body)
-    last_file = file
-    last_heartbeat = localtime
+      curl_post(opts, make_heartbeat_apiurl(opts), body)
+      last_file = file
+      last_heartbeat = localtime
+    end)
   end
 end
 
-local function AWStart(opts)
-  CreateBucket(opts)
+local function start(opts)
+  create_bucket(opts)
 end
 
-local function AWStop()
+local function stop()
   connected = false
 end
 
-local function AWStatus()
+local function status()
   vim.notify(string.format('aw-watcher-nvim running: %s', connected))
 end
 
@@ -115,7 +138,7 @@ local function create_autocommands(opts)
   vim.api.nvim_create_autocmd({'VimEnter'}, {
     group = aw_group,
     pattern = '*',
-    callback = function() AWStart(opts) end
+    callback = function() start(opts) end
   })
   vim.api.nvim_create_autocmd({'BufEnter', 'CursorMoved', 'CursorMovedI'}, {
     group = aw_group,
@@ -131,9 +154,9 @@ end
 
 local function create_user_commands(opts)
   vim.api.nvim_create_user_command('AWHeartbeat', function() Heartbeat(opts) end, {})
-  vim.api.nvim_create_user_command('AWStart', function() AWStart(opts) end, {})
-  vim.api.nvim_create_user_command('AWStop', function() AWStop() end, {})
-  vim.api.nvim_create_user_command('AWStatus', function() AWStatus() end, {})
+  vim.api.nvim_create_user_command('AWStart', function() start(opts) end, {})
+  vim.api.nvim_create_user_command('AWStop', function() stop() end, {})
+  vim.api.nvim_create_user_command('AWStatus', function() status() end, {})
 end
 
 local function default_opts()
@@ -148,10 +171,13 @@ local function default_opts()
   }
 end
 
+-- TODO: Add branch name to payload. See https://github.com/ActivityWatch/aw-watcher-vim/pull/27
+
 return {
-  start = AWStart,
-  stop = AWStop,
-  status = AWStatus,
+  branch = get_current_git_branch,
+  start = start,
+  stop = stop,
+  status = status,
   setup = function(opts)
     opts = vim.tbl_deep_extend("force", default_opts(), opts or {})
 
