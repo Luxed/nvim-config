@@ -23,8 +23,6 @@ local function HTTPPostOnStdout(jobid, data, event)
 end
 
 local function HTTPPostJson(opts, url, data)
-  print('url: ', url)
-  print('data: ', vim.inspect(data))
   local command = {
     'curl', '-s', url,
     '-H', 'Content-Type: application/json',
