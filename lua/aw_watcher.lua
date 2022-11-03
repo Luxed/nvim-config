@@ -1,6 +1,7 @@
 local connected = false
 local http_response_code = {}
 
+-- TODO: getting the branch with every heartbeat seems a bit excessive. But at the same time, I have no idea when the branch is going to change. Maybe some integration with other plugins could be used instead?
 local function get_current_git_branch(callback)
   local git_branch = ''
 
@@ -98,7 +99,8 @@ local function Heartbeat(opts)
   local timestamp = vim.fn.strftime('%FT%H:%M:%S%z')
   local file = vim.fn.expand('%p')
   local language = vim.bo.filetype
-  -- TODO: Current project could also be determined using the current LSP project path
+  -- TODO: Current project could also be determined using the current LSP project path.
+  -- Or it could also be the closest git root.
   local project = vim.fn.getcwd()
 
   if file ~= last_file or (localtime - last_heartbeat) > 1 then
@@ -170,8 +172,6 @@ local function default_opts()
     hostname = vim.fn.hostname(),
   }
 end
-
--- TODO: Add branch name to payload. See https://github.com/ActivityWatch/aw-watcher-vim/pull/27
 
 return {
   branch = get_current_git_branch,
