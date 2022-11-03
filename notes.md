@@ -45,6 +45,7 @@
 - Update [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim).
   Interesting looking merge tool and other visual git tools.
+- [vgit.nvim](https://github.com/tanvirtin/vgit.nvim). Looks interesting
 - `:h foldminlines` & `:h foldnestmax`
 
 # OmniSharp-nvim plugin ideas/wishlist
