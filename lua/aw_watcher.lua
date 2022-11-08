@@ -1,3 +1,5 @@
+-- TODO: Move into its own repo
+
 local connected = false
 local http_response_code = {}
 
@@ -173,11 +175,13 @@ local function default_opts()
   }
 end
 
+-- TODO: Add statusline component. Could be useful to make sure AW is currently running
 return {
   branch = get_current_git_branch,
   start = start,
   stop = stop,
   status = status,
+  -- TODO: Move setup to a plugin file instead. Also use vim.g for config to keep compatibility with vim version and make it easier to configure
   setup = function(opts)
     opts = vim.tbl_deep_extend("force", default_opts(), opts or {})
 
