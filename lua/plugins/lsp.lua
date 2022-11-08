@@ -86,9 +86,9 @@ require('mason-lspconfig').setup_handlers{
             OmniSharpStructName = {fg = '#6ae693'},
             OmniSharpTypeParameterName = {fg = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
             OmniSharpPreprocessorKeyword = {fg = vim.fn['ayu#get_color']('extended_fg_idle')},
-            OmniSharpPropertyName = {link = 'TSProperty'},
-            OmniSharpFieldName = {link = 'TSField'},
-            OmniSharpParameterName = {link = 'TSParameter'},
+            OmniSharpPropertyName = {link = '@property'},
+            OmniSharpFieldName = {link = '@field'},
+            OmniSharpParameterName = {link = '@parameter'},
             OmniSharpVerbatimStringLiteral = {fg = vim.fn['ayu#get_color']('syntax_regexp')},
             OmniSharpLocalName = {fg = vim.fn['ayu#get_color']('editor_fg')}
           }
@@ -152,6 +152,7 @@ require('mason-lspconfig').setup_handlers{
         root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
       })
     elseif server_name == 'sumneko_lua' then
+      -- TODO: Only set these settings when inside of a neovim related directory (I.E. ~/.config/nvim or ~/.local/share/nvim)
       lspconfig[server_name].setup(extended_setup({
         settings = {
           Lua = {
