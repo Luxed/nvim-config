@@ -267,7 +267,7 @@ local function startup(use)
   end
 
   local function tracking()
-    use{'ActivityWatch/aw-watcher-vim', opt = true}
+    use {'Luxed/aw-watcher-nvim', opt = true}
   end
 
   languages()

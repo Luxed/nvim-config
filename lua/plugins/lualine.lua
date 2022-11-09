@@ -1,5 +1,15 @@
 local navic = require('nvim-navic')
-local aw = require('aw_watcher')
+
+local function aw_status()
+  --[[ local has_aw, aw = pcall(require, 'aw_watcher')
+  return .statusline.status() or '' ]]
+  return require('aw_watcher').statusline.status()
+end
+
+local function aw_cond()
+  local has_aw, _ = pcall(require, 'aw_watcher')
+  return has_aw
+end
 
 require('lualine').setup({
   sections = {
@@ -8,7 +18,7 @@ require('lualine').setup({
       'encoding',
       'fileformat',
       'filetype',
-      { aw.statusline.status, cond = aw.statusline.is_available },
+      { aw_status, cond = aw_cond },
     }
   },
   extensions = { 'fern', 'fugitive' }
