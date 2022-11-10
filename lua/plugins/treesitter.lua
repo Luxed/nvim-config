@@ -1,6 +1,7 @@
 local enabled = {
   'c_sharp', 'css',
   'dockerfile',
+  'fish',
   'go',
   'html',
   'javascript', 'jsdoc', 'json',
@@ -30,6 +31,7 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     disable = {
       'css',
+      'fish',
       'go',
       'html',
       'javascript', 'jsdoc',
