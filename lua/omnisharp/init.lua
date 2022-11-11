@@ -1,7 +1,6 @@
 local log = require('omnisharp.log')
 local request = require('omnisharp.request')
 
--- TODO: When switching from a C# file to a file that doesn't use TreeSitter (like an XML file (the csproj)), the highlights stay.
 local function setup_highlight_autocmds(config)
   local highlight_callback = function()
     request.highlight(nil, require('omnisharp.highlight').__highlight_handler)
@@ -137,7 +136,7 @@ return {
     log.info('Launching "dotnet build"')
     vim.fn.jobstart('dotnet build', {
       cwd = vim.fn.expand('%:p:h'), -- This will use the path of the current buffer as the current working directory to ensure that only the current project is built instead of the entire solution (if that's where your Neovim instance was started)
-      on_exit = function(chan_id, exit_code, name)
+      on_exit = function(_, exit_code, _)
         if exit_code ~= 0 then
           log.error('"dotnet build" has failed. The debugging session will not be launched!')
         else

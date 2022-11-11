@@ -94,6 +94,11 @@ M.__setup_highlight_groups = function(config)
 end
 
 M.__highlight_handler = function(spans)
+  -- TODO: When switching from a C# file to a file that doesn't use TreeSitter (like an XML file (the csproj)), the highlights stay.
+  if vim.bo.filetype ~= 'cs' then
+    return
+  end
+
   -- NOTE: reset namespace with the following
   local ns_id = get_namespace()
   vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
