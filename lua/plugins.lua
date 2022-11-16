@@ -230,6 +230,7 @@ local function startup(use)
       requires = {
         'mfussenegger/nvim-jdtls',
         'Hoffs/omnisharp-extended-lsp.nvim',
+        'Luxed/omnisharp-nvim',
         'onsails/lspkind-nvim',
         'kosayoda/nvim-lightbulb',
         'simrat39/rust-tools.nvim',
