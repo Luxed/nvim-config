@@ -28,6 +28,8 @@
   The treesitter syntax is also very incomplete for MSSQL.
 - [document-color.nvim](https://github.com/mrshmllow/document-color.nvim)
   Colorizer for LSP colors specifically.
+- [lsp-inlayhints.nvim](https://github.com/lvimuser/lsp-inlayhints.nvim).
+  When the "anti conceal" feature of Neovim will be merged, this will be a good plugin to have for some language (especially things like Typescript, Rust, or even sometimes C#)
 
 ### Other
 
@@ -46,6 +48,7 @@
   Detect file indentation automatically
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
   Full Lua replacement for vsnip.
+- [snippet-converter.nvim](https://github.com/smjonas/snippet-converter.nvim). Convert between snippet formats.
 - [recipe.nvim](https://github.com/ten3roberts/recipe.nvim)
   Load workspace local "recipes" (similar to vscode "tasks").
 - [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
