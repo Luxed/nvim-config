@@ -1,9 +1,10 @@
-require('colorizer').setup({
+require('colorizer').setup {
+  filetypes = {
     css = {
-      names = true
+      css = true,
     },
     scss = {
-      names = true
+      css = true,
     },
     cfg = {
       names = false,
@@ -11,12 +12,12 @@ require('colorizer').setup({
     },
     dosini = {
       names = false,
-      mode = 'background',
     },
     lua = {
       names = false,
     },
     vim = {
-      names = false
+      names = false,
     }
-  })
+  }
+}
