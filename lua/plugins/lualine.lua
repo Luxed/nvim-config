@@ -42,7 +42,6 @@ require('lualine').setup({
   inactive_winbar = winbar,
   extensions = { 'fugitive', 'neo-tree' },
   options = {
-    theme = require('ayu').lualine_colors(),
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
   }
