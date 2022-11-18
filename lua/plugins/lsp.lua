@@ -83,16 +83,16 @@ require('mason-lspconfig').setup_handlers{
           groups = {
             -- Custom
             -- TODO: Put custom colors into ayu-vim directly
-            OmniSharpEnumName = {fg = '#91b6ff'},
-            OmniSharpInterfaceName = {fg = '#70e6d2'},
-            OmniSharpStructName = {fg = '#6ae693'},
-            OmniSharpTypeParameterName = {fg = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
-            OmniSharpPreprocessorKeyword = {fg = vim.fn['ayu#get_color']('extended_fg_idle')},
-            OmniSharpPropertyName = {link = '@property'},
-            OmniSharpFieldName = {link = '@field'},
-            OmniSharpParameterName = {link = '@parameter'},
-            OmniSharpVerbatimStringLiteral = {fg = vim.fn['ayu#get_color']('syntax_regexp')},
-            OmniSharpLocalName = {fg = vim.fn['ayu#get_color']('editor_fg')}
+            OmniSharpEnumName              = {fg   = '#91b6ff'},
+            OmniSharpInterfaceName         = {fg   = '#70e6d2'},
+            OmniSharpStructName            = {fg   = '#6ae693'},
+            OmniSharpTypeParameterName     = {fg   = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
+            OmniSharpPreprocessorKeyword   = {fg   = vim.fn['ayu#get_color']('extended_fg_idle')},
+            OmniSharpPropertyName          = {link = '@property'},
+            OmniSharpFieldName             = {link = '@field'},
+            OmniSharpParameterName         = {link = '@parameter'},
+            OmniSharpVerbatimStringLiteral = {fg   = vim.fn['ayu#get_color']('syntax_regexp')},
+            OmniSharpLocalName             = {fg   = vim.fn['ayu#get_color']('editor_fg')}
           }
         },
         server = extended_setup({
