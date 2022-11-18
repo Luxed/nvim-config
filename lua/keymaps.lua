@@ -69,6 +69,11 @@ return {
     v_map('<C-j>', function() return vim.fn['vsnip#jumpable'](1) end, '<Plug>(vsnip-jump-next)')
     v_map('<C-k>', function() return vim.fn['vsnip#jumpable'](-1) end, '<Plug>(vsnip-jump-prev)')
   end,
+  luasnip = function()
+    vim.keymap.set('i', '<C-e>', function() require('luasnip').expand_or_jump() end)
+    vim.keymap.set({'i', 's'}, '<C-j>', function() require('luasnip').jump(1) end)
+    vim.keymap.set({'i', 's'}, '<C-k>', function() require('luasnip').jump(-1) end)
+  end,
   telescope = function()
     local builtin = require('telescope.builtin')
     local fix_folds = require('plugins.telescope').fix_folds

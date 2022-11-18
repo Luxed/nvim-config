@@ -58,14 +58,6 @@ local function startup(use)
       'windwp/nvim-autopairs',
       config = function() require('plugins.autopairs') end
     }
-    --[[ use{ -- Auto close html tags
-      'alvan/vim-closetag',
-      config = function()
-        vim.g['closetag_filenames'] = '*.html,*.xhtml,*.phtml,*.vue,*.xml,*.jsx,*.tsx'
-        vim.g['closetag_filetypes'] = 'html,xhtml,phtml,vue,xml,javascriptreact,javascript.jsx,typescriptreact,typescript.tsx'
-        vim.g['closetag_regions'] = {}
-      end
-    } ]]
 
     use { --nvim-ts-autotag
       'windwp/nvim-ts-autotag',
@@ -105,11 +97,10 @@ local function startup(use)
     use('tpope/vim-repeat') -- .
     use('rhysd/clever-f.vim') -- Better (visual) f, F, t and T motion
 
-    use{ -- vsnip
-      'hrsh7th/vim-vsnip',
-      requires = {'hrsh7th/vim-vsnip-integ'},
+    use { -- LuaSnip
+      'L3MON4D3/LuaSnip',
       config = function()
-        require('plugins.vsnip')
+        require('plugins.luasnip')
       end
     }
 
@@ -119,7 +110,7 @@ local function startup(use)
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-vsnip'
+        'saadparwaiz1/cmp_luasnip'
       },
       config = function()
         require('plugins.cmp')
@@ -282,6 +273,7 @@ end
 local first_install = bootstrap()
 vim.g['first_install'] = first_install
 require('packer').startup(startup)
+
 
 if first_install then
   print('First install. Plugins will be automatically installed.')

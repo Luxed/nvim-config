@@ -1,0 +1,31 @@
+{
+	"name": "personnal-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [ "lua" ],
+				"path": "./lua.json"
+			},
+      {
+        "language": [ "cs" ],
+        "path": "./cs.json"
+      },
+      {
+        "language": [ "rust" ],
+        "path": "./rust.json"
+      },
+      {
+        "language": [ "json" ],
+        "path": "./json.json"
+      },
+      {
+        "language": [ "typescript" ],
+        "path": "./typescript.json"
+      },
+      {
+        "language": [ "vue" ],
+        "path": "./vue.json"
+      }
+		]
+	}
+}
