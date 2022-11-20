@@ -36,6 +36,7 @@ vim.opt.termguicolors = true
 vim.opt.grepprg = 'rg --no-heading --vimgrep --smart-case'
 vim.opt.hidden = true
 vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.showmode = false
 
 vim.opt.shortmess:append('c')
 vim.opt.diffopt:append('algorithm:patience')
