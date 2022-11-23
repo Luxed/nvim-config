@@ -89,9 +89,15 @@ local function startup(use)
     }
     use('tpope/vim-surround') -- Surround (visually select and surround with what you want)
     use{'AndrewRadev/bufferize.vim', opt = true, cmd = {'Bufferize'}} -- Execute commands in a buffer
-    use{ -- Startify: Nice startup screen
+    --[[ use{ -- Startify: Nice startup screen
       'mhinz/vim-startify',
       config = function() require('plugins.startify') end
+    } ]]
+    use {
+      'goolord/alpha-nvim',
+      config = function()
+        require('plugins.alpha')
+      end
     }
     use('wellle/targets.vim') -- adds text-objects to work with (like 'ci,' for example))
     use('tpope/vim-repeat') -- .
