@@ -1,7 +1,3 @@
--- require('alpha').setup(require('alpha.themes.startify').config)
-
-
-
 local dashboard = require("alpha.themes.dashboard")
 local cdir = vim.fn.getcwd()
 local if_nil = vim.F.if_nil
@@ -120,12 +116,6 @@ end
 local default_header = {
 	type = "text",
 	val = {
-		-- [[███    ██ ███████  ██████  ██    ██ ██ ███    ███]],
-		-- [[████   ██ ██      ██    ██ ██    ██ ██ ████  ████]],
-		-- [[██ ██  ██ █████   ██    ██ ██    ██ ██ ██ ████ ██]],
-		-- [[██  ██ ██ ██      ██    ██  ██  ██  ██ ██  ██  ██]],
-		-- [[██   ████ ███████  ██████    ████   ██ ██      ██]],
-
     [[                               __                ]],
     [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
 		[[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
@@ -170,8 +160,6 @@ local buttons = {
 		{ type = "padding", val = 1 },
 		dashboard.button("e", "  New file", "<cmd>enew<CR>"),
 		dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
-		-- dashboard.button("SPC F", "  Live grep"),
-		-- dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
 		dashboard.button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
     dashboard.button("g", "  Git status", "<cmd>Git<bar>only<CR>"),
 		dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
