@@ -66,7 +66,11 @@ local function extended_setup(additional_options)
   return vim.tbl_extend('force', complete_lsp_setup, additional_options)
 end
 
-require('mason').setup()
+require('mason').setup({
+  ui = {
+    border = 'rounded'
+  }
+})
 require('mason-lspconfig').setup{
   ensure_installed = {'rust_analyzer', 'omnisharp', 'tsserver'}
 }
