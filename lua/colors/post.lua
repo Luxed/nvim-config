@@ -1,5 +1,9 @@
-local hi = require('helpers.colors').hi
-local hi_link = require('helpers.colors').hi_link
+local function hi(group, opts)
+  vim.api.nvim_set_hl(0, group, opts)
+end
+local function hi_link(group, link_group)
+  vim.api.nvim_set_hl(0, group, {link=link_group})
+end
 
 return {
   init = function()
@@ -8,8 +12,11 @@ return {
     local extend_colors_dict = {
       ['ayu'] = function()
         -- TODO: Put all of this in the colorscheme directly
-        hi('LspDiagnosticsUnderlineHint', {gui='underline'})
-        hi('Include', {guifg='#ffa375'}) -- This looks good in Rust, but is kind of weird in C#.
+        hi('LspDiagnosticsUnderlineHint', {underline=true})
+        hi('Include', {fg='#ffa375'}) -- This looks good in Rust, but is kind of weird in C#.
+        hi_link('@struct', 'OmniSharpStructName')
+        hi_link('@interface', 'OmniSharpInterfaceName')
+        hi_link('@enum', 'OmniSharpEnumName')
       end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
