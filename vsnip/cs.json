@@ -62,5 +62,14 @@
       "\t$0",
       "}"
     ]
+  },
+  "Switch Case": {
+    "prefix": ["case"],
+    "description": "case condition of a switch statement",
+    "body": [
+      "case $1:",
+      "\t$0",
+      "\tbreak;"
+    ]
   }
 }
