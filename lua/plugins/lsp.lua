@@ -32,6 +32,14 @@ local function on_attach_complete(client, bufnr)
       }
     })
   end
+
+  -- TODO: Temporary. See here: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
+  if client.name == "omnisharp" then
+    client.server_capabilities.semanticTokensProvider.legend = {
+      tokenModifiers = { "static" },
+      tokenTypes = { "comment", "excluded", "identifier", "keyword", "keyword", "number", "operator", "operator", "preprocessor", "string", "whitespace", "text", "static", "preprocessor", "punctuation", "string", "string", "class", "delegate", "enum", "interface", "module", "struct", "typeParameter", "field", "enumMember", "constant", "local", "parameter", "method", "method", "property", "event", "namespace", "label", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp" }
+    }
+  end
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -83,7 +91,7 @@ require('mason-lspconfig').setup_handlers{
         solution_first = true,
         automatic_dap_configuration = true,
         highlight = {
-          enabled = true,
+          enabled = false,
           groups = {
             -- Custom
             -- TODO: Put custom colors into ayu-vim directly
