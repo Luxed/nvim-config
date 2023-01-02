@@ -8,7 +8,7 @@ if string.find(vim.o.shell, 'fish') ~= nil then
 end
 
 require('vanilla')
-require('plugins')
+require('plugins_lazy')
 if not vim.g['first_install'] then
   require('colorscheme')
   pcall(require, 'system_config')
