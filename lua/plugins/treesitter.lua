@@ -11,7 +11,6 @@ local enabled = {
   'python',
   'query',
   'rust',
-  'sql',
   'typescript', 'tsx',
   'vim', 'vue',
   'yaml'
