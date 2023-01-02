@@ -16,13 +16,13 @@ dap_virtual_text.setup({})
 
 require('keymaps').dap()
 
---[[ local mason_path = vim.fn.stdpath('data') .. '/mason'
+local mason_path = vim.fn.stdpath('data') .. '/mason'
 local netcoredbg_path = mason_path .. '/bin/netcoredbg'
 dap.adapters.coreclr = {
   type = 'executable',
   command = netcoredbg_path,
   args = {'--interpreter=vscode'}
-} ]]
+}
 
 dap.configurations.cs = {
   {
