@@ -28,18 +28,7 @@ require('lazy').setup({
   'PProvost/vim-ps1',
   'blankname/vim-fish',
 
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'p00f/nvim-ts-rainbow',
-      'nvim-treesitter/playground',
-    },
-    config = function()
-      require('plugins.treesitter')
-    end
-  },
+  require('plugins.treesitter'),
   {
     'm-demare/hlargs.nvim',
     config = function()
@@ -57,7 +46,6 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     config = function() require('plugins.autopairs') end
   },
-  'windwp/nvim-ts-autotag',
 
   require('plugins.neo_tree'),
 
