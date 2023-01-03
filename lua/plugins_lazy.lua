@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   require('colorscheme'),
 
+  -- Languages
   'editorconfig/editorconfig-vim',
   'mboughaba/i3config.vim',
   'PProvost/vim-ps1',
@@ -41,15 +42,18 @@ require('lazy').setup({
 
   require('plugins.alpha'),
 
+  -- Utility
   'tpope/vim-surround',
   'wellle/targets.vim',
   'tpope/vim-repeat',
   'rhysd/clever-f.vim',
+  { 'godlygeek/tabular', cmd = 'Tabularize' },
 
   require('plugins.lualine'),
   require('plugins.luasnip'),
   require('plugins.cmp'),
 
+  -- UI
   { -- FixCursorHold
     'antoinemadec/FixCursorHold.nvim',
     config = function()
@@ -63,16 +67,6 @@ require('lazy').setup({
       require('todo-comments').setup()
     end
   },
-
-  { 'godlygeek/tabular', cmd = 'Tabularize' },
-
-  require('plugins.colorizer'),
-  require('plugins.telescope'),
-  require('plugins.lualine'),
-  require('plugins.bufferline'),
-  require('plugins.indent_blankline'),
-  require('plugins.dressing'),
-  require('plugins.notify'),
 
   { -- vim-illuminate
     'RRethy/vim-illuminate',
@@ -88,6 +82,14 @@ require('lazy').setup({
       })
     end
   },
+
+  require('plugins.colorizer'),
+  require('plugins.telescope'),
+  require('plugins.lualine'),
+  require('plugins.bufferline'),
+  require('plugins.indent_blankline'),
+  require('plugins.dressing'),
+  require('plugins.notify'),
 
   { -- lspconfig
     'neovim/nvim-lspconfig',
@@ -115,5 +117,6 @@ require('lazy').setup({
   require('plugins.dim'),
   require('plugins.dap'),
 
+  -- Tracking
   'Luxed/aw-watcher-nvim'
 })
