@@ -4,44 +4,6 @@ vim.diagnostic.config({
   }
 })
 
-local function on_attach_complete(client, bufnr)
-  require('commands').lsp()
-  require('keymaps').lsp(client)
-
-  if client.server_capabilities.documentSymbolProvider then
-    require('nvim-navic').attach(client, bufnr)
-  end
-
-  require('nvim-lightbulb').setup({
-    autocmd = {
-      enabled = true
-    },
-    float = {
-      enabled = false
-    }
-  })
-
-  -- In "Vue" files, everything is defined in a function, so it's very annoying to get the popup all the time
-  if vim.bo.filetype ~= 'vue' then
-    require('lsp_signature').on_attach({
-      bind = true,
-      hint_prefix = '',
-      hi_parameter = 'IncSearch',
-      handler_opts = {
-        border = 'rounded'
-      }
-    })
-  end
-
-  -- TODO: Temporary. See here: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
-  if client.name == "omnisharp" then
-    client.server_capabilities.semanticTokensProvider.legend = {
-      tokenModifiers = { "static" },
-      tokenTypes = { "comment", "excluded", "identifier", "keyword", "keyword", "number", "operator", "operator", "preprocessor", "string", "whitespace", "text", "static", "preprocessor", "punctuation", "string", "string", "class", "delegate", "enum", "interface", "module", "struct", "typeParameter", "field", "enumMember", "constant", "local", "parameter", "method", "method", "property", "event", "namespace", "label", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp" }
-    }
-  end
-end
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   virtual_text = {
@@ -60,12 +22,54 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded"
 })
 
-local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-lsp_capabilities = vim.tbl_deep_extend('force', lsp_capabilities, require('cmp_nvim_lsp').default_capabilities())
-
 local complete_lsp_setup = {
-  on_attach = on_attach_complete,
-  capabilities = lsp_capabilities
+  on_attach = function(client, bufnr)
+    require('commands').lsp()
+    require('keymaps').lsp(client)
+
+    if client.server_capabilities.documentSymbolProvider then
+      require('nvim-navic').attach(client, bufnr)
+    end
+
+    require('nvim-lightbulb').setup({
+      autocmd = {
+        enabled = true
+      },
+      float = {
+        enabled = false
+      }
+    })
+
+    -- In "Vue" files, everything is defined in a function, so it's very annoying to get the popup all the time
+    if vim.bo.filetype ~= 'vue' then
+      require('lsp_signature').on_attach({
+        bind = true,
+        hint_prefix = '',
+        hi_parameter = 'IncSearch',
+        handler_opts = {
+          border = 'rounded'
+        }
+      })
+    end
+
+    -- TODO: Temporary. See here: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
+    if client.name == "omnisharp" then
+      client.server_capabilities.semanticTokensProvider.legend = {
+        tokenModifiers = { "static" },
+        tokenTypes = { "comment", "excluded", "identifier", "keyword", "keyword", "number", "operator", "operator",
+          "preprocessor", "string", "whitespace", "text", "static", "preprocessor", "punctuation", "string", "string",
+          "class", "delegate", "enum", "interface", "module", "struct", "typeParameter", "field", "enumMember",
+          "constant", "local", "parameter", "method", "method", "property", "event", "namespace", "label", "xml", "xml",
+          "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml", "xml",
+          "xml", "xml", "xml", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp", "regexp" }
+      }
+    end
+  end,
+  capabilities = vim.tbl_deep_extend(
+    'force',
+    vim.lsp.protocol.make_client_capabilities(),
+    require('cmp_nvim_lsp').default_capabilities()
+  )
 }
 
 local function extended_setup(additional_options)
@@ -79,15 +83,15 @@ require('mason').setup({
     border = 'rounded'
   }
 })
-require('mason-lspconfig').setup{
-  ensure_installed = {'rust_analyzer', 'omnisharp', 'tsserver'}
+require('mason-lspconfig').setup {
+  ensure_installed = { 'rust_analyzer', 'omnisharp', 'tsserver' }
 }
 
-require('mason-lspconfig').setup_handlers{
-  function (server_name)
+require('mason-lspconfig').setup_handlers {
+  function(server_name)
     local lspconfig = require('lspconfig')
     if server_name == 'omnisharp' then
-      require('omnisharp').setup{
+      require('omnisharp').setup {
         solution_first = true,
         automatic_dap_configuration = true,
         highlight = {
@@ -95,16 +99,16 @@ require('mason-lspconfig').setup_handlers{
           groups = {
             -- Custom
             -- TODO: Put custom colors into ayu-vim directly
-            OmniSharpEnumName              = {fg   = '#91b6ff'},
-            OmniSharpInterfaceName         = {fg   = '#70e6d2'},
-            OmniSharpStructName            = {fg   = '#6ae693'},
-            OmniSharpTypeParameterName     = {fg   = '#aabbee'}, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
-            OmniSharpPreprocessorKeyword   = {fg   = vim.fn['ayu#get_color']('extended_fg_idle')},
-            OmniSharpPropertyName          = {link = '@property'},
-            OmniSharpFieldName             = {link = '@field'},
-            OmniSharpParameterName         = {link = '@parameter'},
-            OmniSharpVerbatimStringLiteral = {fg   = vim.fn['ayu#get_color']('syntax_regexp')},
-            OmniSharpLocalName             = {fg   = vim.fn['ayu#get_color']('editor_fg')}
+            OmniSharpEnumName              = { fg = '#91b6ff' },
+            OmniSharpInterfaceName         = { fg = '#70e6d2' },
+            OmniSharpStructName            = { fg = '#6ae693' },
+            OmniSharpTypeParameterName     = { fg = '#aabbee' }, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
+            OmniSharpPreprocessorKeyword   = { fg = vim.fn['ayu#get_color']('extended_fg_idle') },
+            OmniSharpPropertyName          = { link = '@property' },
+            OmniSharpFieldName             = { link = '@field' },
+            OmniSharpParameterName         = { link = '@parameter' },
+            OmniSharpVerbatimStringLiteral = { fg = vim.fn['ayu#get_color']('syntax_regexp') },
+            OmniSharpLocalName             = { fg = vim.fn['ayu#get_color']('editor_fg') }
           }
         },
         server = extended_setup({
@@ -142,7 +146,7 @@ require('mason-lspconfig').setup_handlers{
         },
         -- hover_with_actions = true,
         server = {
-          on_attach = on_attach_complete,
+          on_attach = complete_lsp_setup.on_attach,
           standalone = false,
         },
         dap = {
@@ -152,17 +156,17 @@ require('mason-lspconfig').setup_handlers{
     elseif server_name == 'tsserver' then
       lspconfig[server_name].setup({
         on_attach = function(client, bufnr)
-          on_attach_complete(client, bufnr)
+          complete_lsp_setup.on_attach(client, bufnr)
 
           local ts_utils = require('nvim-lsp-ts-utils')
-          ts_utils.setup{
+          ts_utils.setup {
             debug = false,
             disable_commands = false,
             update_imports_on_move = true,
           }
           ts_utils.setup_client(client)
         end,
-        capabilities = lsp_capabilities,
+        capabilities = complete_lsp_setup.capabilities,
         root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
       })
     elseif server_name == 'sumneko_lua' then
@@ -174,7 +178,7 @@ require('mason-lspconfig').setup_handlers{
               version = 'LuaJIT',
             },
             diagnostics = {
-              globals = {'vim'}
+              globals = { 'vim' }
             },
             workspace = {
               library = vim.api.nvim_get_runtime_file('', true),
@@ -195,12 +199,12 @@ require('mason-lspconfig').setup_handlers{
   end
 }
 
-vim.fn.sign_define('DiagnosticSignError'           , { text='' })
-vim.fn.sign_define('DiagnosticSignWarn'            , { text='' })
-vim.fn.sign_define('DiagnosticSignInfo'            , { text='' })
-vim.fn.sign_define('DiagnosticSignHint'            , { text='ﯦ' })
-vim.fn.sign_define('LspDiagnosticsSignError'       , { text='' })
-vim.fn.sign_define('LspDiagnosticsSignWarning'     , { text='' })
-vim.fn.sign_define('LspDiagnosticsSignInformation' , { text='' })
-vim.fn.sign_define('LspDiagnosticsSignHint'        , { text='ﯦ' })
-vim.fn.sign_define('LightBulbSign'                 , { text='' })
+vim.fn.sign_define('DiagnosticSignError', { text = '' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = '' })
+vim.fn.sign_define('DiagnosticSignHint', { text = 'ﯦ' })
+vim.fn.sign_define('LspDiagnosticsSignError', { text = '' })
+vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '' })
+vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '' })
+vim.fn.sign_define('LspDiagnosticsSignHint', { text = 'ﯦ' })
+vim.fn.sign_define('LightBulbSign', { text = '' })
