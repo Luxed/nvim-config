@@ -59,15 +59,7 @@ require('lazy').setup({
   },
   'windwp/nvim-ts-autotag',
 
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    dependencies = {
-      'MunifTanjim/nui.nvim'
-    },
-    config = function()
-      require('plugins.neo_tree')
-    end
-  },
+  require('plugins.neo_tree'),
 
   {
     'numToStr/Comment.nvim',
@@ -196,7 +188,6 @@ require('lazy').setup({
       })
     end
   },
-
 
   { -- lspconfig
     'neovim/nvim-lspconfig',
