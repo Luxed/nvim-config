@@ -6,6 +6,7 @@ return {
     'p00f/nvim-ts-rainbow',
     'nvim-treesitter/playground',
     'windwp/nvim-ts-autotag',
+    'm-demare/hlargs.nvim',
   },
   config = function()
     local enabled = {
@@ -26,7 +27,7 @@ return {
       'yaml'
     }
 
-    require('nvim-treesitter.configs').setup {
+    require('nvim-treesitter.configs').setup({
       ensure_installed = enabled,
       highlight = {
         enable = true,
@@ -70,6 +71,8 @@ return {
       autotag = {
         enable = true
       }
-    }
+    })
+
+    require('hlargs').setup({})
   end
 }

@@ -12,16 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  {
-    'Luxed/ayu-vim',
-    dependencies = {
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require('colorscheme')
-    end,
-    priority = 1000
-  },
+  require('colorscheme'),
 
   'editorconfig/editorconfig-vim',
   'mboughaba/i3config.vim',
@@ -29,24 +20,8 @@ require('lazy').setup({
   'blankname/vim-fish',
 
   require('plugins.treesitter'),
-  {
-    'm-demare/hlargs.nvim',
-    config = function()
-      require('hlargs').setup({})
-    end
-  },
-
-  {
-    'tpope/vim-fugitive',
-    config = function() require('plugins.fugitive') end
-  },
-  { 'junegunn/gv.vim', cmd = 'GV' },
-
-  {
-    'windwp/nvim-autopairs',
-    config = function() require('plugins.autopairs') end
-  },
-
+  require('plugins.git'),
+  require('plugins.autopairs'),
   require('plugins.neo_tree'),
 
   {
@@ -63,36 +38,17 @@ require('lazy').setup({
       require('keymaps').comments()
     end
   },
+
+  require('plugins.alpha'),
+
   'tpope/vim-surround',
-
-  {
-    'goolord/alpha-nvim',
-    config = function() require('plugins.alpha') end
-  },
-
   'wellle/targets.vim',
   'tpope/vim-repeat',
   'rhysd/clever-f.vim',
 
-  { -- LuaSnip
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require('plugins.luasnip')
-    end
-  },
-
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip'
-    },
-    config = function()
-      require('plugins.cmp')
-    end
-  },
+  require('plugins.lualine'),
+  require('plugins.luasnip'),
+  require('plugins.cmp'),
 
   { -- FixCursorHold
     'antoinemadec/FixCursorHold.nvim',
@@ -108,50 +64,15 @@ require('lazy').setup({
     end
   },
 
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
-  },
   { 'godlygeek/tabular', cmd = 'Tabularize' },
 
-  { -- colorizer
-    'NvChad/nvim-colorizer.lua',
-    config = function() require('plugins.colorizer') end
-  },
-
+  require('plugins.colorizer'),
   require('plugins.telescope'),
-
-  { -- lualine
-    'nvim-lualine/lualine.nvim',
-    config = function() require('plugins.lualine') end
-  },
-
-  { -- bufferline
-    'akinsho/nvim-bufferline.lua',
-    branch = 'main',
-    config = function() require('plugins.bufferline') end
-  },
-
-  { -- indent-blankline
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('plugins.indent_blankline')
-    end
-  },
-
-  { -- dressing.nvim
-    'stevearc/dressing.nvim',
-    config = function() require('plugins.dressing') end
-  },
-
-  { -- notify
-    'rcarriga/nvim-notify',
-    config = function()
-      require('plugins.notify')
-    end
-  },
+  require('plugins.lualine'),
+  require('plugins.bufferline'),
+  require('plugins.indent_blankline'),
+  require('plugins.dressing'),
+  require('plugins.notify'),
 
   { -- vim-illuminate
     'RRethy/vim-illuminate',
@@ -173,7 +94,6 @@ require('lazy').setup({
     dependencies = {
       'Hoffs/omnisharp-extended-lsp.nvim',
       'Luxed/omnisharp-nvim',
-      'onsails/lspkind-nvim',
       'kosayoda/nvim-lightbulb',
       'simrat39/rust-tools.nvim',
       'ray-x/lsp_signature.nvim',
@@ -186,19 +106,13 @@ require('lazy').setup({
       },
       'SmiteshP/nvim-navic',
 
-      { -- neodim
-        'zbirenbaum/neodim',
-        event = 'LspAttach',
-        config = function() require('plugins.dim') end
-      },
-
       -- LSP installer
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim'
     },
     config = function() require('plugins.lsp') end,
   },
-
+  require('plugins.dim'),
   require('plugins.dap'),
 
   'Luxed/aw-watcher-nvim'

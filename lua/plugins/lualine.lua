@@ -1,5 +1,3 @@
-local navic = require('nvim-navic')
-
 local aw_section = {
   function()
     return require('aw_watcher').is_connected() and '祥' or '精'
@@ -46,7 +44,7 @@ local mixed_indent_section = {
 local trailing_whitespace_section = {
   function()
     local space = vim.fn.search([[\s\+$]], 'nwc')
-    return space ~= 0 and "TW:"..space or ""
+    return space ~= 0 and "TW:" .. space or ""
   end
 }
 
@@ -56,38 +54,50 @@ local winbar = {
       function()
         return vim.fn.expand('%:t')
       end,
-      cond = navic.is_available
+      cond = function()
+        return require('nvim-navic').is_available()
+      end
     },
     {
       function()
-        return navic.get_location({
+        return require('nvim-navic').get_location({
           highlight = true,
         })
       end,
-      cond = navic.is_available
+      cond = function()
+        return require('nvim-navic').is_available()
+      end
     },
   }
 }
 
-require('lualine').setup({
-  sections = {
-    lualine_x = {
-      'encoding',
-      'fileformat',
-      'filetype',
-      aw_section,
-    },
-    lualine_z = {
-      trailing_whitespace_section,
-      mixed_indent_section,
-      'location'
-    }
+return {
+  'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'SmiteshP/nvim-navic',
   },
-  winbar = winbar,
-  inactive_winbar = winbar,
-  extensions = { 'fugitive', 'neo-tree' },
-  options = {
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
-  }
-})
+  config = function()
+    require('lualine').setup({
+      sections = {
+        lualine_x = {
+          'encoding',
+          'fileformat',
+          'filetype',
+          aw_section,
+        },
+        lualine_z = {
+          trailing_whitespace_section,
+          mixed_indent_section,
+          'location'
+        }
+      },
+      winbar = winbar,
+      inactive_winbar = winbar,
+      extensions = { 'fugitive', 'neo-tree' },
+      options = {
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+      }
+    })
+  end,
+}

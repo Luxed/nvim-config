@@ -36,10 +36,6 @@ return {
     -- Convenient Control+Backspace insert mode mapping
     vim.keymap.set('i', '<C-backspace>', '<esc>caw')
   end,
-  fugitive = function()
-    vim.keymap.set('n', '<leader>gs', ':Git<CR>', {silent = true})
-    vim.keymap.set('n', '<leader>gf', ':Git fetch<CR>', {silent = true})
-  end,
   fugitive_buffer = function()
     vim.keymap.set('n', '<leader>gp', ':Git push<CR>', {buffer = true})
   end,
