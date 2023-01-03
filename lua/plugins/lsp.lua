@@ -91,7 +91,7 @@ require('mason-lspconfig').setup_handlers{
         solution_first = true,
         automatic_dap_configuration = true,
         highlight = {
-          enabled = false,
+          enabled = vim.fn.has('nvim-0.9') == 0,
           groups = {
             -- Custom
             -- TODO: Put custom colors into ayu-vim directly

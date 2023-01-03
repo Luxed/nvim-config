@@ -207,27 +207,20 @@ require('lazy').setup({
       },
       'SmiteshP/nvim-navic',
 
+      { -- neodim
+        'zbirenbaum/neodim',
+        event = 'LspAttach',
+        config = function() require('plugins.dim') end
+      },
+
       -- LSP installer
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim'
     },
-    config = function() require('plugins.lsp') end
+    config = function() require('plugins.lsp') end,
   },
 
-  { -- neodim
-    'zbirenbaum/neodim',
-    event = 'LspAttach',
-    config = function() require('plugins.dim') end
-  },
-
-  { -- dap
-    'mfussenegger/nvim-dap',
-    dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text'
-    },
-    config = function() require('plugins.dap') end
-  },
+  require('plugins.dap'),
 
   'Luxed/aw-watcher-nvim'
 })
