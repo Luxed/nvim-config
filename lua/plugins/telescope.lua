@@ -1,13 +1,8 @@
-local actions = require('telescope.actions')
-local pickers = require('telescope.pickers')
-local sorters = require('telescope.sorters')
-local finders = require('telescope.finders')
-local builtin = require('telescope.builtin')
-local themes = require('telescope.themes')
 local checkout_actions = {}
 
 -- TODO: Redo tags selection + make PR to add it upstream
 checkout_actions.set_branch = function(prompt_bufnr)
+  local actions = require('telescope.actions')
   local entry = actions.get_selected_entry(prompt_bufnr)
 
   actions.close(prompt_bufnr)
@@ -17,6 +12,9 @@ checkout_actions.set_branch = function(prompt_bufnr)
 end
 
 local function tags(opts)
+  local pickers = require('telescope.pickers')
+  local sorters = require('telescope.sorters')
+  local finders = require('telescope.finders')
   opts = opts or {}
   local tags_list = vim.fn.systemlist('git ls-remote -t --refs')
   table.remove(tags_list, 1)
@@ -43,7 +41,7 @@ end
 local function rg(opts, under_cursor)
   vim.ui.input({ prompt = 'Ripgrep:', default = under_cursor and vim.fn.expand('<cword>') or '' }, function(input)
     if input then
-      builtin.grep_string(vim.tbl_extend('force', opts, {search = input}))
+      require('telescope.builtin').grep_string(vim.tbl_extend('force', opts, {search = input}))
     else
       vim.notify('Exiting: given input was empty', vim.log.levels.WARN)
     end
@@ -62,19 +60,15 @@ local fix_folds = {
   end
 }
 
-
 return {
-  code_actions = function()
-    builtin.lsp_code_actions(themes.get_cursor({
-      layout_config = {
-        height = 14
-      }
-    }))
-  end,
-  fix_folds = fix_folds,
-  rg = rg,
-  tags = tags,
-  init = function()
+  'nvim-telescope/telescope.nvim',
+  dependencies = {
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim'
+  },
+  config = function()
+    local sorters = require('telescope.sorters')
+
     require('telescope').setup {
       defaults = {
         prompt_prefix = " ",
@@ -89,7 +83,15 @@ return {
         }
       }
     }
-
-    require('keymaps').telescope()
-  end
+  end,
+  lazy = true,
+  keys = {
+    { '<leader>ff', function() require('telescope.builtin').find_files(fix_folds) end },
+    { '<leader>fb', function() require('telescope.builtin').buffers({ show_all_buffers = true }) end },
+    { '<leader>fg', function() rg(fix_folds, false) end },
+    { '<leader>fG', function() rg(fix_folds, true) end },
+    { '<leader>fc', function() require('telescope.builtin').current_buffer_fuzzy_find(fix_folds) end },
+    { '<leader>gb', function() require('telescope.builtin').git_branches() end },
+    { '<leader>gt', function() tags() end },
+  }
 }

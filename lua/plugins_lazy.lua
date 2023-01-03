@@ -133,16 +133,7 @@ require('lazy').setup({
     config = function() require('plugins.colorizer') end
   },
 
-  { -- Telescope
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require('plugins.telescope').init()
-    end
-  },
+  require('plugins.telescope'),
 
   { -- lualine
     'nvim-lualine/lualine.nvim',

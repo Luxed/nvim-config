@@ -43,23 +43,6 @@ return {
   fugitive_buffer = function()
     vim.keymap.set('n', '<leader>gp', ':Git push<CR>', {buffer = true})
   end,
-  neotree = function()
-    local function n_map(key, opener)
-      if opener ~= '' then
-        opener = opener .. '<bar>'
-      end
-      local tree_command = ':' .. opener .. 'Neotree current reveal<CR>'
-
-      vim.keymap.set('n', '<C-f>' .. key, tree_command)
-      vim.keymap.set('n', '<C-f><C-' .. key .. '>', tree_command)
-    end
-
-    n_map('f', '')
-    n_map('v', 'vsplit')
-    n_map('x', 'split')
-    n_map('h', 'split')
-    n_map('t', 'tabedit %')
-  end,
   vsnip = function()
     local function v_map(key, condition, on_true)
       vim.keymap.set({'i', 's'}, key, function() return condition() ~= 0 and on_true or key end, {expr = true})
@@ -73,20 +56,6 @@ return {
     vim.keymap.set('i', '<C-e>', function() require('luasnip').expand_or_jump() end)
     vim.keymap.set({'i', 's'}, '<C-j>', function() require('luasnip').jump(1) end)
     vim.keymap.set({'i', 's'}, '<C-k>', function() require('luasnip').jump(-1) end)
-  end,
-  telescope = function()
-    local builtin = require('telescope.builtin')
-    local fix_folds = require('plugins.telescope').fix_folds
-
-    vim.keymap.set('n', '<leader>ff', function() builtin.find_files(fix_folds) end)
-    vim.keymap.set('n', '<leader>fb', function() builtin.buffers({ show_all_buffers = true }) end)
-    vim.keymap.set('n', '<leader>fg', function() require('plugins.telescope').rg(fix_folds, false) end)
-    vim.keymap.set('n', '<leader>fG', function()
-      require('plugins.telescope').rg(fix_folds, true)
-    end)
-    vim.keymap.set('n', '<leader>fc', function() builtin.current_buffer_fuzzy_find(fix_folds) end)
-    vim.keymap.set('n', '<leader>gb', builtin.git_branches)
-    vim.keymap.set('n', '<leader>gt', function() require('plugins.telescope').tags() end)
   end,
   lsp = function(client)
     if client.name == 'rust_analyzer' then
@@ -129,15 +98,6 @@ return {
   end,
   term = function(new_term)
     vim.keymap.set('t', '<leader>n', '<C-\\><C-N>:b#<CR>', { silent = true, buffer = new_term })
-  end,
-  dap = function()
-    vim.keymap.set('n', '<F5>', ':DapContinue<CR>')
-    vim.keymap.set('n', '<F10>', ':DapStepOver<CR>')
-    vim.keymap.set('n', '<F11>', ':DapStepInto<CR>')
-    vim.keymap.set('n', '<C-F11>', ':DapStepOut<CR>')
-
-    vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
-    vim.keymap.set('n', '<leader>dk', function() require('dap.ui.widgets').hover() end)
   end,
   comments = function()
     local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
