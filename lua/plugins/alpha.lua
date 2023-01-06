@@ -1,4 +1,4 @@
-function alpha()
+local function alpha()
   local dashboard = require("alpha.themes.dashboard")
   local cdir = vim.fn.getcwd()
   local if_nil = vim.F.if_nil
@@ -161,7 +161,7 @@ function alpha()
       { type = "padding", val = 1 },
       dashboard.button("e", "  New file", "<cmd>enew<CR>"),
       dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
+      dashboard.button("l", "  Lazy", "<cmd>Lazy<CR>"),
       dashboard.button("g", "  Git status", "<cmd>Git<bar>only<CR>"),
       dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
     },
