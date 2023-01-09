@@ -17,7 +17,6 @@ return {
         hi_link('@struct', 'OmniSharpStructName')
         hi_link('@interface', 'OmniSharpInterfaceName')
         hi_link('@enum', 'OmniSharpEnumName')
-        hi_link('@type.qualifier', 'Keyword')
       end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
