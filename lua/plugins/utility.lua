@@ -1,4 +1,4 @@
-local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+-- local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
 
 return {
   'tpope/vim-surround',
@@ -6,7 +6,7 @@ return {
   'tpope/vim-repeat',
   'rhysd/clever-f.vim',
   { 'godlygeek/tabular', cmd = 'Tabularize' },
-  {
+  --[[ {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup {
@@ -52,5 +52,32 @@ return {
         mode = 'x'
       }
     }
+  }, ]]
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({
+        mappings = {
+          basic = true,
+          extra = false,
+        },
+        toggler = {
+          line = 'gcc',
+          block = 'gbc',
+        },
+        opleader = {
+          line = 'gc',
+          block = 'gb'
+        }
+        --[[ toggler = {
+          line = '<leader>cc',
+          block = '<leader>cm',
+        }, ]]
+        --[[ opleader = {
+          line = '<leader>c',
+          block = '<leader>c'
+        } ]]
+      })
+    end
   },
 }
