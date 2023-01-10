@@ -46,9 +46,6 @@
   Per project config in lua
 - [vim-sleuth](https://github.com/tpope/vim-sleuth)
   Detect file indentation automatically
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-  Full Lua replacement for vsnip.
-- [snippet-converter.nvim](https://github.com/smjonas/snippet-converter.nvim). Convert between snippet formats.
 - [recipe.nvim](https://github.com/ten3roberts/recipe.nvim)
   Load workspace local "recipes" (similar to vscode "tasks").
 - [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
@@ -57,6 +54,8 @@
   Keep breakpoints after closing and reopening neovim.
 - [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
 - `:h foldminlines` & `:h foldnestmax`
+- [editorconfig.nvim](https://github.com/gpanders/editorconfig.nvim). Neovim specific version of editorconfig.
+  Could be nice to lazily load it with something like: `if vim.loop.fs_stat(vim.fn.stdpath("config") .. "/.editorconfig") then return true end`
 
 # OmniSharp-nvim plugin ideas/wishlist
 

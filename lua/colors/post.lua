@@ -11,8 +11,6 @@ return {
 
     local extend_colors_dict = {
       ['ayu'] = function()
-        -- TODO: Put all of this in the colorscheme directly
-        hi('LspDiagnosticsUnderlineHint', {underline=true})
         hi('Include', {fg='#ffa375'}) -- This looks good in Rust, but is kind of weird in C#.
         hi_link('@struct', 'OmniSharpStructName')
         hi_link('@interface', 'OmniSharpInterfaceName')
