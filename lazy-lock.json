@@ -4,7 +4,7 @@
   "LuaSnip": { "branch": "master", "commit": "508b41fb7b2a7f06522f96eb7742d21f025a8512" },
   "alpha-nvim": { "branch": "main", "commit": "21a0f2520ad3a7c32c0822f943368dc063a569fb" },
   "aw-watcher-nvim": { "branch": "master", "commit": "d279775522073084246083e7472cbcda0a15ba57" },
-  "ayu-vim": { "branch": "master", "commit": "d0e66fde18c7a5349ca4455f82cf87c583b222dd" },
+  "ayu-vim": { "branch": "semantic-tokens-extended-colors", "commit": "531c16410f0972e13be96ac8721c2755ac8d0260" },
   "clever-f.vim": { "branch": "master", "commit": "6a3ac5e3688598af9411ab741737f98c47370c22" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "59224771f91b86d1de12570b4070fe4ad7cd1eeb" },

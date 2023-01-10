@@ -1,5 +1,6 @@
 return {
-  'Luxed/ayu-vim',
+  'git@github.com:Luxed/ayu-vim.git',
+  branch = 'semantic-tokens-extended-colors',
   dependencies = {
     'kyazdani42/nvim-web-devicons',
   },
