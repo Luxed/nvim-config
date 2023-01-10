@@ -10,12 +10,6 @@ return {
     local colors_name = vim.g.colors_name
 
     local extend_colors_dict = {
-      ['ayu'] = function()
-        hi('Include', {fg='#ffa375'}) -- This looks good in Rust, but is kind of weird in C#.
-        hi_link('@struct', 'OmniSharpStructName')
-        hi_link('@interface', 'OmniSharpInterfaceName')
-        hi_link('@enum', 'OmniSharpEnumName')
-      end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
         hi('Pmenu', {guibg='#000000'})
