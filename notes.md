@@ -55,7 +55,6 @@
 - [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
 - `:h foldminlines` & `:h foldnestmax`
 - [editorconfig.nvim](https://github.com/gpanders/editorconfig.nvim). Neovim specific version of editorconfig.
-  Could be nice to lazily load it with something like: `if vim.loop.fs_stat(vim.fn.stdpath("config") .. "/.editorconfig") then return true end`
 
 # OmniSharp-nvim plugin ideas/wishlist
 

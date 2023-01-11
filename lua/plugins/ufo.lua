@@ -1,6 +1,7 @@
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
-  local suffix = ('  %d lines '):format(endLnum - lnum)
+  -- local suffix = ('  %d lines '):format(endLnum - lnum)
+  local suffix = ('  %d lines '):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
@@ -31,7 +32,7 @@ return {
   dependencies = {
     'kevinhwang91/promise-async'
   },
-  enabled = false,
+  enabled = true,
   config = function()
     require('ufo').setup({
       open_fold_hl_timeout = 150,

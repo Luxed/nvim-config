@@ -41,6 +41,9 @@ vim.opt.showmode = false
 vim.opt.shortmess:append('c')
 vim.opt.diffopt:append('algorithm:patience')
 
+vim.opt.foldminlines = 5
+vim.opt.foldlevel = 1
+
 require('keymaps').vanilla()
 require('commands').vanilla()
 
