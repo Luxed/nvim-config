@@ -32,7 +32,7 @@ return {
   dependencies = {
     'kevinhwang91/promise-async'
   },
-  enabled = true,
+  enabled = false,
   config = function()
     require('ufo').setup({
       open_fold_hl_timeout = 150,
