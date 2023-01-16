@@ -22,6 +22,7 @@ return {
       'python',
       'query',
       'rust',
+      'scss',
       'typescript', 'tsx',
       'vim', 'vue',
       'yaml'
