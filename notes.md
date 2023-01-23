@@ -39,6 +39,8 @@
   Refactoring library
 - [other.nvim](https://github.com/rgroli/other.nvim)
   Better than my "switcher" thing?
+- [nvim-quick-switcher](https://github.com/Everduin94/nvim-quick-switcher)
+  Yet another "switcher" thing.
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
   Better & faster folds.
   NOTES: Tried it. Looks amazing. Exactly what I want. _But_. It's buggy and doesn't behave nearly the same as with normal folds. Will be worth checking again later (just like how indent-blankline was unusable until it got to the point where it did exactly what I needed it to do)
@@ -55,6 +57,9 @@
 - [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
 - `:h foldminlines` & `:h foldnestmax`
 - [editorconfig.nvim](https://github.com/gpanders/editorconfig.nvim). Neovim specific version of editorconfig.
+- Use one of the ts rainbow forks that's actually maintained: [this](https://gitlab.com/HiPhish/nvim-ts-rainbow2) or [this](https://github.com/mrjones2014/nvim-ts-rainbow)
+- Automatically enable and disable hlsearch. Either using [auto-hlsearch.nvim](https://github.com/asiryk/auto-hlsearch.nvim), [hlsearch.nvim](https://github.com/glepnir/hlsearch.nvim) or simply [this snippet from TWiN](https://this-week-in-neovim.org/2023/Jan/9#tips).
+- [oil.nvim](https://github.com/stevearc/oil.nvim)
 
 # OmniSharp-nvim plugin ideas/wishlist
 
@@ -118,3 +123,11 @@ These ideas mostly come from the OmniSharp-vim plugin
   - `:` and `??` are not highlighted
   - In `new Type()`, "Type" should be highlighted as constructor
   - `where T : EntityBase`, "EntityBase" is not highlighted, it should be "type"
+
+# Ayu TODO list
+
+- Add an option for "bordered" or "contrasted" popups. "Bordered" would have the same background as the "Normal" background. (see what nordic.nvim did as an example)
+- Properly link CmpKind to new extended colors. Same for navic.
+- Improve performance. Although it's not that bad, a theme shouldn't take any time to load.
+  - It could be interesting to only add highlight groups of plugins that are curently being used. Although I can see how that could be an issue with lazy-loaded plugins. Maybe. It's worth looking around just to see.
+- Post about the theme on r/vim and r/neovim. I am now confident enough to call it good.

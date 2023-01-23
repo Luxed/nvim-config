@@ -29,3 +29,5 @@
 - [lucid](https://github.com/cseelus/vim-colors-lucid)
 - [embark](https://github.com/embark-theme/vim)
 - [catppuccin](https://github.com/catppuccin/nvim)
+- [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim)
+- [bluloco.nvim](https://github.com/uloco/bluloco.nvim)
