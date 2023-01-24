@@ -60,6 +60,7 @@
 - Use one of the ts rainbow forks that's actually maintained: [this](https://gitlab.com/HiPhish/nvim-ts-rainbow2) or [this](https://github.com/mrjones2014/nvim-ts-rainbow)
 - Automatically enable and disable hlsearch. Either using [auto-hlsearch.nvim](https://github.com/asiryk/auto-hlsearch.nvim), [hlsearch.nvim](https://github.com/glepnir/hlsearch.nvim) or simply [this snippet from TWiN](https://this-week-in-neovim.org/2023/Jan/9#tips).
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
+- [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs). Documentation generator
 
 # OmniSharp-nvim plugin ideas/wishlist
 
