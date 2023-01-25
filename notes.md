@@ -132,3 +132,4 @@ These ideas mostly come from the OmniSharp-vim plugin
 - Improve performance. Although it's not that bad, a theme shouldn't take any time to load.
   - It could be interesting to only add highlight groups of plugins that are curently being used. Although I can see how that could be an issue with lazy-loaded plugins. Maybe. It's worth looking around just to see.
 - Post about the theme on r/vim and r/neovim. I am now confident enough to call it good.
+- "Struct" color is _very_ green. It should be closer to the "type" color
