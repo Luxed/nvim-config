@@ -21,6 +21,10 @@ return {
         },
         vim = {
           names = false,
+        },
+        vue = {
+          names = false,
+          css = true,
         }
       }
     }
