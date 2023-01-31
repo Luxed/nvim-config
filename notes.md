@@ -135,7 +135,5 @@ These ideas mostly come from the OmniSharp-vim plugin
 
 ## Road to 1.0
 
-- Finish and merge statusline consistency.
-    - Check for other statuslines that could be supported
 - Finish and merge extended colors support for LSP semantic tokens.
 - Find a way to improve performance without breaking the support for the autoload file.
