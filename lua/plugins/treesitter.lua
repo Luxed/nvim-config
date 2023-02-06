@@ -10,6 +10,7 @@ return {
   },
   config = function()
     local enabled = {
+      'bash',
       'c_sharp', 'css',
       'dockerfile',
       'fish',
