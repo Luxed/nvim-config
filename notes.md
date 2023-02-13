@@ -136,4 +136,6 @@ These ideas mostly come from the OmniSharp-vim plugin
 ## Road to 1.0
 
 - Finish and merge extended colors support for LSP semantic tokens.
+  - Make "namespace" bold
+  - Link @builtinType (LSP tokens) to @type.builtin (TreeSitter)
 - Find a way to improve performance without breaking the support for the autoload file.

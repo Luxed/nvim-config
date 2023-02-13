@@ -77,34 +77,35 @@ local function lsp_config(server_name)
   end
 
   local lspconfig = require('lspconfig')
-  if server_name == 'omnisharp' then
-    require('omnisharp').setup {
-      solution_first = true,
-      automatic_dap_configuration = true,
-      highlight = {
-        enabled = true,
-        fixSemanticTokens = true,
-        groups = {
-          -- Custom
-          -- TODO: Put custom colors into ayu-vim directly
-          OmniSharpEnumName              = { fg = '#91b6ff' },
-          OmniSharpInterfaceName         = { fg = '#70e6d2' },
-          OmniSharpStructName            = { fg = '#6ae693' },
-          OmniSharpTypeParameterName     = { fg = '#aabbee' }, -- NOTE: This is a cool color that fits very well within the ayu color palette. Could be a bit "brighter" maybe.
-          OmniSharpPreprocessorKeyword   = { fg = vim.fn['ayu#get_color']('extended_fg_idle') },
-          OmniSharpPropertyName          = { link = '@property' },
-          OmniSharpFieldName             = { link = '@field' },
-          OmniSharpParameterName         = { link = '@parameter' },
-          OmniSharpVerbatimStringLiteral = { fg = vim.fn['ayu#get_color']('syntax_regexp') },
-          OmniSharpLocalName             = { fg = vim.fn['ayu#get_color']('editor_fg') }
-        }
-      },
-      server = extended_setup({
-        handlers = {
-          ['textDocument/definition'] = require('omnisharp_extended').handler
-        }
-      })
-    }
+  if server_name == 'omnisharp' or server_name == 'omnisharp_mono' then
+    lspconfig[server_name].setup(
+      require('omnisharp').setup {
+        solution_first = true,
+        automatic_dap_configuration = true,
+        highlight = {
+          enabled = true,
+          fixSemanticTokens = true,
+          groups = {
+            OmniSharpEnumName              = { link = '@enum' },
+            OmniSharpInterfaceName         = { link = '@interface' },
+            OmniSharpStructName            = { link = '@struct' },
+            OmniSharpTypeParameterName     = { link = '@typeParameter' },
+            OmniSharpPreprocessorKeyword   = { fg = vim.fn['ayu#get_color']('extended_fg_idle') },
+            OmniSharpPropertyName          = { link = '@property' },
+            OmniSharpFieldName             = { link = '@field' },
+            OmniSharpParameterName         = { link = '@parameter' },
+            OmniSharpVerbatimStringLiteral = { fg = vim.fn['ayu#get_color']('syntax_regexp') },
+            OmniSharpLocalName             = { fg = vim.fn['ayu#get_color']('editor_fg') }
+          },
+        },
+        is_mono = server_name == 'omnisharp_mono',
+        server = extended_setup({
+          handlers = {
+            ['textDocument/definition'] = require('omnisharp_extended').handler
+          }
+        })
+      }
+    )
   elseif server_name == 'vuels' then
     lspconfig[server_name].setup(extended_setup({
       init_options = {
@@ -157,7 +158,7 @@ local function lsp_config(server_name)
       capabilities = complete_lsp_setup.capabilities,
       root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
     })
-  elseif server_name == 'sumneko_lua' then
+  elseif server_name == 'lua_ls' then
     -- TODO: Only set these settings when inside of a neovim related directory (I.E. ~/.config/nvim or ~/.local/share/nvim)
     lspconfig[server_name].setup(extended_setup({
       settings = {
