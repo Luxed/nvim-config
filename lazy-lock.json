@@ -45,7 +45,7 @@
   "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
   "nvim-web-devicons": { "branch": "master", "commit": "bd7a222287c5828cd0607cd0a5605e52f0460074" },
   "omnisharp-extended-lsp.nvim": { "branch": "main", "commit": "55cb3d7310e07e38d0d420d195f353c51eb603fb" },
-  "omnisharp-nvim": { "branch": "master", "commit": "9162c4c5f04dfb6e0d375bfce1dfd8c007563098" },
+  "omnisharp-nvim": { "branch": "master", "commit": "0ebc5de4715c5bc194c22cd6cde8ab7338b63f4a" },
   "playground": { "branch": "master", "commit": "c481c660fa903a0e295902b1765ecfbd6e76a556" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
