@@ -140,3 +140,4 @@ These ideas mostly come from the OmniSharp-vim plugin
   - Link @builtinType (LSP tokens) to @type.builtin (TreeSitter)
 - Find a way to improve performance without breaking the support for the autoload file.
 - Link @storageclass to Keyword instead of Type
+- Use fg_idle for PreProc

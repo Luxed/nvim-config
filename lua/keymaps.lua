@@ -77,7 +77,7 @@ return {
     vim.keymap.set('n', '<leader>qws', function() builtin.lsp_workspace_symbols() end)
     vim.keymap.set('n', '<leader>qgi', function() builtin.lsp_implementations() end)
 
-    if client.name == 'omnisharp' then
+    if client.name == 'omnisharp' or client.name == 'omnisharp_mono' then
       vim.keymap.set('n', 'gd', function() require('omnisharp_extended').telescope_lsp_definitions() end)
     else
       vim.keymap.set('n', 'gd', function() builtin.lsp_definitions() end)

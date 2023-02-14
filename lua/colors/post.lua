@@ -10,6 +10,13 @@ return {
     local colors_name = vim.g.colors_name
 
     local extend_colors_dict = {
+      ['ayu'] = function()
+        local ayu_hi = vim.fn['ayu#hi']
+        ayu_hi('PreProc', 'extended_fg_idle', '')
+        ayu_hi('Include', 'extended_namespace', '', 'bold')
+        hi_link('@storageclass', 'Keyword')
+        hi_link('@builtinType', '@type.builtin')
+      end,
       ['afterglow'] = function()
         -- Set pmenu to complete black for better Fzf highlighting
         hi('Pmenu', {guibg='#000000'})

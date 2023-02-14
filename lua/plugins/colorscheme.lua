@@ -3,7 +3,7 @@ return {
     'ayu-vim',
     url = 'git@github.com:Luxed/ayu-vim.git',
     branch = 'semantic-tokens-extended-colors',
-    priority = 1001,
+    priority = 1000,
     config = function()
       vim.g.ayucolor = 'mirage'
       vim.g.ayu_italic_comment = true
@@ -21,6 +21,6 @@ return {
         end
       })
     end,
-    priority = 1000
+    priority = 1001
   }
 }
