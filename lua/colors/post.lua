@@ -15,7 +15,7 @@ return {
         -- TODO CB: Move relevant things to theme directly
         ayu_hi('PreProc', 'extended_fg_idle', '')
         ayu_hi('Include', 'extended_namespace', '', 'bold')
-        
+
         -- Green checkmark, red when not checked
         ayu_hi('@text.todo.checked.markdown', 'vcs_added', '')
         ayu_hi('@text.todo.unchecked.markdown', 'vcs_removed', '')
@@ -29,6 +29,7 @@ return {
         hi_link('@lsp.type.enum', '@enum')
         hi_link('@lsp.type.typeParameter', '@typeParameter')
         hi_link('@lsp.type.parameter', '@parameter')
+        hi_link('@lsp.type.property', '@property')
         hi_link('@lsp.type.struct', '@struct')
         hi_link('@lsp.type.variable', '@variable')
       end,
