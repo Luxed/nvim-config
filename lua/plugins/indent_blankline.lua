@@ -2,7 +2,7 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   config = function()
     require('indent_blankline').setup {
-      buftype_exclude = { 'terminal', 'help' },
+      buftype_exclude = { 'terminal', 'help', 'nofile' },
       filetype_exclude = { 'alpha', 'startify', 'fugitive', 'pandoc', 'packer', 'lazy', 'lsp-installer', 'mason', 'mason.nvim' },
       char_list = { '|', '¦', '┆', '┊' },
       use_treesitter = false,
