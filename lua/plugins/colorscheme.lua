@@ -2,7 +2,6 @@ return {
   {
     'ayu-vim',
     url = 'git@github.com:Luxed/ayu-vim.git',
-    branch = 'semantic-tokens-extended-colors',
     priority = 1000,
     config = function()
       vim.g.ayucolor = 'mirage'
