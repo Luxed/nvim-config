@@ -45,6 +45,19 @@ local trailing_whitespace_section = {
   function()
     local space = vim.fn.search([[\s\+$]], 'nwc')
     return space ~= 0 and "TW:" .. space or ""
+  end,
+  cond = function()
+    return vim.bo.filetype ~= 'markdown'
+  end
+}
+
+local wordcount_section = {
+  function()
+    local wordcount = vim.fn.wordcount()
+    return 'WC: ' .. wordcount.words
+  end,
+  cond = function()
+    return vim.bo.filetype == 'markdown'
   end
 }
 
@@ -84,6 +97,10 @@ return {
           'fileformat',
           'filetype',
           aw_section,
+        },
+        lualine_y = {
+          wordcount_section,
+          'progress'
         },
         lualine_z = {
           trailing_whitespace_section,
