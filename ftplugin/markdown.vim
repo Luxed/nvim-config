@@ -19,12 +19,24 @@ function! s:TableFormat()
     call setpos('.', l:pos)
 endfunction
 
+function! s:InsertItalic()
+    normal! a__
+endfunction
+
+function! s:InsertBold()
+    normal! a****
+    normal! h
+endfunction
+
 command! -buffer TableFormat call s:TableFormat()
 
 " table format
 nnoremap <buffer> <leader>tf <cmd>TableFormat<cr>
 " table emtpy cell
 nnoremap <buffer> <leader>tec <cmd>normal vi\|r <cr>
+
+inoremap <buffer> <C-i> <cmd>call <SID>InsertItalic()<cr>
+inoremap <buffer> <C-b> <cmd> call <SID>InsertBold()<cr>
 
 " Enable concealing for markdown files
 setlocal conceallevel=1
