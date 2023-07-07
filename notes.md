@@ -56,7 +56,6 @@
   Keep breakpoints after closing and reopening neovim.
 - [colortils.nvim](https://github.com/nvim-colortils/colortils.nvim). Color utilities.
 - `:h foldminlines` & `:h foldnestmax`
-- [editorconfig.nvim](https://github.com/gpanders/editorconfig.nvim). Neovim specific version of editorconfig.
 - Use one of the ts rainbow forks that's actually maintained: [this](https://gitlab.com/HiPhish/nvim-ts-rainbow2) or [this](https://github.com/mrjones2014/nvim-ts-rainbow)
 - Automatically enable and disable hlsearch. Either using [auto-hlsearch.nvim](https://github.com/asiryk/auto-hlsearch.nvim), [hlsearch.nvim](https://github.com/glepnir/hlsearch.nvim) or simply [this snippet from TWiN](https://this-week-in-neovim.org/2023/Jan/9#tips).
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
