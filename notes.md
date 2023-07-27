@@ -60,6 +60,9 @@
 - Automatically enable and disable hlsearch. Either using [auto-hlsearch.nvim](https://github.com/asiryk/auto-hlsearch.nvim), [hlsearch.nvim](https://github.com/glepnir/hlsearch.nvim) or simply [this snippet from TWiN](https://this-week-in-neovim.org/2023/Jan/9#tips).
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs). Documentation generator
+- [coq_nvim](https://github.com/ms-jpq/coq_nvim). Surprisingly fast, but until it has better visual customization, I can't really replace cmp :/
+  See [this issue](https://github.com/ms-jpq/coq_nvim/issues/397) for more info.
+  Also requires python3 and sqlite to be installed. Very annoying tbh.
 
 # OmniSharp-nvim plugin ideas/wishlist
 
