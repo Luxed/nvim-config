@@ -5,6 +5,8 @@
 -- * Integrates with Git (optional tbh)
 -- * Has file icons (pretty important, it really helps me)
 -- * Doesn't have to be in Lua. At the end of the day, not everything needs to be in Lua. If that means I go back to Fern or NERDTree, then that's fine. I just want something that works.
+-- More info:
+-- * I've tried nvim-tree, it's not working like I expect it to.
 return {
   'nvim-neo-tree/neo-tree.nvim',
   dependencies = {
