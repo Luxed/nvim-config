@@ -3,7 +3,6 @@ return {
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'p00f/nvim-ts-rainbow',
     'nvim-treesitter/playground',
     'windwp/nvim-ts-autotag',
     'm-demare/hlargs.nvim',
@@ -33,11 +32,6 @@ return {
       ensure_installed = enabled,
       highlight = {
         enable = true,
-      },
-      rainbow = {
-        enable = true,
-        disable = { 'html', 'tsx' },
-        colors = require('ayu').rainbow_colors()
       },
       indent = {
         enable = true,
