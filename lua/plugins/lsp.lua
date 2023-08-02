@@ -41,27 +41,6 @@ local function lsp_config(server_name)
       if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, bufnr)
       end
-
-      require('nvim-lightbulb').setup({
-        autocmd = {
-          enabled = true
-        },
-        float = {
-          enabled = false
-        }
-      })
-
-      -- In "Vue" files, everything is defined in a function, so it's very annoying to get the popup all the time
-      if vim.bo.filetype ~= 'vue' then
-        require('lsp_signature').on_attach({
-          bind = true,
-          hint_prefix = '',
-          hi_parameter = 'IncSearch',
-          handler_opts = {
-            border = 'rounded'
-          }
-        })
-      end
     end,
     capabilities = vim.tbl_deep_extend(
       'force',
@@ -83,8 +62,8 @@ local function lsp_config(server_name)
         solution_first = true,
         automatic_dap_configuration = true,
         highlight = {
-          enabled = true,
-          fixSemanticTokens = true,
+          enabled = false,
+          fixSemanticTokens = false,
           groups = {
             OmniSharpEnumName              = { link = '@enum' },
             OmniSharpInterfaceName         = { link = '@interface' },
@@ -143,21 +122,9 @@ local function lsp_config(server_name)
       },
     })
   elseif server_name == 'tsserver' then
-    lspconfig[server_name].setup({
-      on_attach = function(client, bufnr)
-        complete_lsp_setup.on_attach(client, bufnr)
-
-        local ts_utils = require('nvim-lsp-ts-utils')
-        ts_utils.setup {
-          debug = false,
-          disable_commands = false,
-          update_imports_on_move = true,
-        }
-        ts_utils.setup_client(client)
-      end,
-      capabilities = complete_lsp_setup.capabilities,
+    lspconfig[server_name].setup(extended_setup({
       root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
-    })
+    }))
   elseif server_name == 'lua_ls' then
     -- TODO: Only set these settings when inside of a neovim related directory (I.E. ~/.config/nvim or ~/.local/share/nvim)
     lspconfig[server_name].setup(extended_setup({
@@ -192,12 +159,43 @@ return {
   dependencies = {
     'Hoffs/omnisharp-extended-lsp.nvim',
     'Luxed/omnisharp-nvim',
-    'kosayoda/nvim-lightbulb',
+    {
+      'kosayoda/nvim-lightbulb',
+      event = 'LspAttach',
+      config = function()
+        require('nvim-lightbulb').setup({
+          autocmd = {
+            enabled = true
+          },
+          float = {
+            enabled = false
+          }
+        })
+      end
+    },
     'simrat39/rust-tools.nvim',
-    'ray-x/lsp_signature.nvim',
+    {
+      'ray-x/lsp_signature.nvim',
+      event = 'LspAttach',
+      config = function()
+        -- In "Vue" files, everything is defined in a function, so it's very annoying to get the popup all the time
+        if vim.bo.filetype ~= 'vue' then
+          require('lsp_signature').on_attach({
+            bind = true,
+            hint_prefix = '',
+            hint_inline = function() return false end,
+            hi_parameter = 'IncSearch',
+            handler_opts = {
+              border = 'rounded'
+            }
+          })
+        end
+      end
+    },
     {
       'j-hui/fidget.nvim',
       branch = 'legacy',
+      event = 'LspAttach',
       config = function()
         require('fidget').setup({
           sources = {
