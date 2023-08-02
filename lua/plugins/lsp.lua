@@ -195,7 +195,6 @@ return {
     'kosayoda/nvim-lightbulb',
     'simrat39/rust-tools.nvim',
     'ray-x/lsp_signature.nvim',
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
     {
       'j-hui/fidget.nvim',
       branch = 'legacy',
