@@ -1,3 +1,3 @@
-# Personnal Neovim configuration files
+# Personal Neovim configuration files
 
-This is my personnal neovim configuration.
+This is my personal neovim configuration. Use at your own risk.
