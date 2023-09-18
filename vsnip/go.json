@@ -1,0 +1,43 @@
+{
+  "Function": {
+    "prefix": [
+      "fn",
+      "func"
+    ],
+    "description": "Go Function",
+    "body": [
+      "func ${1:name}($2)$3 {",
+      "\t$4",
+      "}$0"
+    ]
+  },
+  "If": {
+    "prefix": [
+      "if"
+    ],
+    "description": "If Statement",
+    "body": [
+      "if $1 {",
+      "\t$2",
+      "}$0"
+    ]
+  },
+  "For": {
+    "prefix": ["for"],
+    "description": "For Statement",
+    "body": [
+      "for $1 {",
+      "\t$2",
+      "}$0"
+    ]
+  },
+  "Struct": {
+    "prefix": ["struct"],
+    "description": "Struct",
+    "body": [
+      "type ${1:Name} struct {",
+      "\t$2",
+      "}$0"
+    ]
+  }
+}
