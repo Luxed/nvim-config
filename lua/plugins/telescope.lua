@@ -69,19 +69,21 @@ return {
   config = function()
     local sorters = require('telescope.sorters')
 
-    require('telescope').setup {
-      defaults = {
-        prompt_prefix = " ",
-        layout_strategy = 'flex',
-        file_sorter = sorters.get_fzy_sorter,
-        generic_sorter = sorters.get_fzy_sorter,
-        mappings = {
-          i = {
-            -- close in insert mode
-            ['<esc>'] = require('telescope.actions').close
-          }
+    local default_theme = require('telescope.themes').get_dropdown({
+      prompt_prefix = " ",
+      layout_strategy = 'center',
+      file_sorter = sorters.get_fzy_sorter,
+      generic_sorter = sorters.get_fzy_sorter,
+      mappings = {
+        i = {
+          -- close in insert mode
+          ['<esc>'] = require('telescope.actions').close
         }
       }
+    })
+
+    require('telescope').setup {
+      defaults = default_theme
     }
   end,
   lazy = true,
