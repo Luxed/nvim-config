@@ -126,23 +126,13 @@ local function lsp_config(server_name)
       root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
     }))
   elseif server_name == 'lua_ls' then
-    -- TODO: Only set these settings when inside of a neovim related directory (I.E. ~/.config/nvim or ~/.local/share/nvim)
     lspconfig[server_name].setup(extended_setup({
       settings = {
         Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            globals = { 'vim' }
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file('', true),
-          },
-          telemetry = {
-            enable = false,
+          completion = {
+            callSnippet = "Replace"
           }
-        },
+        }
       }
     }))
   elseif server_name == 'denols' then
@@ -174,6 +164,12 @@ return {
       end
     },
     'simrat39/rust-tools.nvim',
+    {
+      'folke/neodev.nvim',
+      config = function()
+        require('neodev').setup({})
+      end
+    },
     {
       'ray-x/lsp_signature.nvim',
       event = 'LspAttach',
