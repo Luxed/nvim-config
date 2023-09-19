@@ -39,5 +39,14 @@
       "\t$2",
       "}$0"
     ]
+  },
+  "Interface": {
+    "prefix": ["interface"],
+    "description": "Interface",
+    "body": [
+      "type ${1:Name} interface {",
+      "\t$2",
+      "}$0"
+    ]
   }
 }
