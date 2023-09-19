@@ -4,7 +4,9 @@ return {
     'ray-x/guihua.lua',
   },
   config = function()
-    require('go').setup()
+    require('go').setup({
+      dap_debug_keymap = false, -- They never get removed from the buffer, super annoying
+    })
   end,
   event = { 'CmdLineEnter' },
   ft = { 'go', 'gomod' },
