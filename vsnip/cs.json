@@ -25,6 +25,13 @@
       "${1:public} ${2:Type} ${3:Name} { ${4:get; set;} }$5"
     ]
   },
+  "Field": {
+    "prefix": ["field"],
+    "description": "New field",
+    "body": [
+      "${1:private} ${2:Type} ${3:_name} = ${4:value};$0"
+    ]
+  },
   "Virtual Property": {
     "prefix": ["vprop"],
     "description": "New virtual property",
@@ -70,6 +77,13 @@
       "case $1:",
       "\t$0",
       "\tbreak;"
+    ]
+  },
+  "Print": {
+    "prefix": ["print"],
+    "description": "Simple Console WriteLine",
+    "body": [
+      "Console.WriteLine($1);$0"
     ]
   }
 }
