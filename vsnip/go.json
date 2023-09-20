@@ -48,5 +48,14 @@
       "\t$2",
       "}$0"
     ]
+  },
+  "ForEach": {
+    "prefix": ["foreach"],
+    "description": "Foreach",
+    "body": [
+      "for ${1:i}, ${2:x} := range ${3:list} {",
+      "\t$4",
+      "}$0"
+    ]
   }
 }
