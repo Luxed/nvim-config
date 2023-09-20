@@ -61,22 +61,6 @@ local function lsp_config(server_name)
       require('omnisharp').setup {
         solution_first = true,
         automatic_dap_configuration = true,
-        highlight = {
-          enabled = false,
-          fixSemanticTokens = false,
-          groups = {
-            OmniSharpEnumName              = { link = '@enum' },
-            OmniSharpInterfaceName         = { link = '@interface' },
-            OmniSharpStructName            = { link = '@struct' },
-            OmniSharpTypeParameterName     = { link = '@typeParameter' },
-            OmniSharpPreprocessorKeyword   = { fg = vim.fn['ayu#get_color']('extended_fg_idle') },
-            OmniSharpPropertyName          = { link = '@property' },
-            OmniSharpFieldName             = { link = '@field' },
-            OmniSharpParameterName         = { link = '@parameter' },
-            OmniSharpVerbatimStringLiteral = { fg = vim.fn['ayu#get_color']('syntax_regexp') },
-            OmniSharpLocalName             = { fg = vim.fn['ayu#get_color']('editor_fg') }
-          },
-        },
         is_mono = server_name == 'omnisharp_mono',
         server = extended_setup({
           handlers = {
@@ -193,28 +177,10 @@ return {
       branch = 'legacy',
       event = 'LspAttach',
       config = function()
-        require('fidget').setup({
-          sources = {
-            ['null-ls'] = {
-              ignore = true
-            }
-          }
-        })
+        require('fidget').setup({})
       end
     },
     'SmiteshP/nvim-navic',
-    {
-      'jose-elias-alvarez/null-ls.nvim',
-      config = function()
-        local null_ls = require('null-ls')
-        null_ls.setup({
-          sources = {
-            null_ls.builtins.diagnostics.eslint_d,
-            null_ls.builtins.code_actions.eslint_d,
-          }
-        })
-      end
-    },
 
     -- LSP installer
     {
