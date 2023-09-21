@@ -76,7 +76,7 @@ return {
       generic_sorter = sorters.get_fzy_sorter,
       layout_config = {
         width = function(self, max_columns, max_lines)
-          local columns = max_columns - 20*2
+          local columns = max_columns - 40*2
           if columns > 200 then
             return 200
           elseif columns > 80 then
