@@ -74,6 +74,18 @@ return {
       layout_strategy = 'center',
       file_sorter = sorters.get_fzy_sorter,
       generic_sorter = sorters.get_fzy_sorter,
+      layout_config = {
+        width = function(self, max_columns, max_lines)
+          local columns = max_columns - 20*2
+          if columns > 200 then
+            return 200
+          elseif columns > 80 then
+            return columns
+          else
+            return 80
+          end
+        end
+      },
       mappings = {
         i = {
           -- close in insert mode
