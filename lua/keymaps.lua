@@ -82,6 +82,8 @@ return {
     else
       vim.keymap.set('n', 'gd', function() builtin.lsp_definitions() end)
     end
+
+    vim.keymap.set('n', '<leader>ti', function() vim.lsp.inlay_hint(0, nil) end)
   end,
   indent_blankline = function()
     local function remap(lhss)
