@@ -202,6 +202,7 @@ return {
     },
     {
       'j-hui/fidget.nvim',
+      -- TODO: Switch off from the "legacy" branch?
       branch = 'legacy',
       event = 'LspAttach',
       config = function()

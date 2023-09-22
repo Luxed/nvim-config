@@ -19,8 +19,6 @@
   Now that I think about it, it's possible that the OmniSharp server has an endpoint under "o#/v2" or just "o#"
   NOTE: I searched for it. Didn't find anything conclusive. I don't even know if that's a feature in VSCode? I know it is in Visual Studio, but that might not even come from an endpoint.
   _Maybe_ a diff could be made with the current buffer and a new temporary buffer with the code action applied? Is that even possible or does it directly change the current buffer?
-- [lua-dev.nvim](https://github.com/folke/lua-dev.nvim)
-  Could replace nlua.nvim which seems unmaintained?
 - [sqls.nvim](https://github.com/nanotee/sqls.nvim)
   Language server for SQL in Neovim
   NOTES: Took the time to try it. It works, which is already a good thing, but it's missing a lot of things to be usable.
@@ -28,8 +26,7 @@
   The treesitter syntax is also very incomplete for MSSQL.
 - [document-color.nvim](https://github.com/mrshmllow/document-color.nvim)
   Colorizer for LSP colors specifically.
-- [lsp-inlayhints.nvim](https://github.com/lvimuser/lsp-inlayhints.nvim).
-  When the "anti conceal" feature of Neovim will be merged, this will be a good plugin to have for some language (especially things like Typescript, Rust, or even sometimes C#)
+- [lspsaga](https://nvimdev.github.io/lspsaga/). I decided against using it some time ago, but it has gotten so much better that it's worth looking into again.
 
 ### Other
 
