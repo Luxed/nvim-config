@@ -189,6 +189,7 @@ return {
         if vim.bo.filetype ~= 'vue' then
           require('lsp_signature').on_attach({
             bind = true,
+            hint_enable = false,
             hint_prefix = '',
             hint_inline = function() return false end,
             hi_parameter = 'IncSearch',
