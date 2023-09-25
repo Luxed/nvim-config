@@ -1,9 +1,11 @@
+---@diagnostic disable: missing-fields
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-cmdline',
     'saadparwaiz1/cmp_luasnip',
     'onsails/lspkind-nvim',
   },
@@ -60,9 +62,28 @@ return {
       }
     }
 
+    cmp.setup.cmdline('/', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        name = 'cmdline',
+        option = {
+          ignore_cmds = { 'Man', '!' }
+        }
+      })
+    })
+
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({}))
   end,
   lazy = true,
-  event = 'InsertEnter',
+  event = {'InsertEnter', 'CmdLineEnter'},
 }
