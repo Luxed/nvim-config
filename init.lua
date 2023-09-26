@@ -8,5 +8,6 @@ if string.find(vim.o.shell, 'fish') ~= nil then
 end
 
 require('vanilla')
+require('wpm').setup()
 require('plugins_lazy')
 pcall(require, 'system_config')

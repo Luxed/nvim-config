@@ -8,6 +8,13 @@ local aw_section = {
   end
 }
 
+local wpm_section = {
+  function ()
+    local wpm = require('wpm')
+    return wpm.wpm() .. ' ' .. wpm.historic_graph()
+  end
+}
+
 local mixed_indent_section = {
   function()
     local space_pat = [[\v^ +]]
@@ -93,6 +100,7 @@ return {
     require('lualine').setup({
       sections = {
         lualine_x = {
+          wpm_section,
           'encoding',
           'fileformat',
           'filetype',
