@@ -85,15 +85,6 @@ return {
 
     vim.keymap.set('n', '<leader>ti', function() vim.lsp.inlay_hint(0, nil) end)
   end,
-  indent_blankline = function()
-    local function remap(lhss)
-      for _,lhs in pairs(lhss) do
-        vim.keymap.set('n', lhs, lhs .. ':IndentBlanklineRefresh<CR>', { silent = true })
-      end
-    end
-
-    remap({'zo', 'zO', 'zc', 'zC', 'za', 'zA', 'zv', 'zx', 'zX', 'zm', 'zM', 'zR', 'zr'})
-  end,
   term = function(new_term)
     vim.keymap.set('t', '<leader>n', '<C-\\><C-N>:b#<CR>', { silent = true, buffer = new_term })
   end,

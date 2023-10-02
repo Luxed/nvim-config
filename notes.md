@@ -124,19 +124,10 @@ These ideas mostly come from the OmniSharp-vim plugin
   - In `new Type()`, "Type" should be highlighted as constructor
   - `where T : EntityBase`, "EntityBase" is not highlighted, it should be "type"
 
+
 # Ayu
 
-## Ideas
+## TODO
 
-- Add an option for "bordered" or "contrasted" popups. "Bordered" would have the same background as the "Normal" background. (see what nordic.nvim did as an example)
-- Improve performance. Although it's not that bad, a theme shouldn't take any time to load.
-  - It could be interesting to only add highlight groups of plugins that are curently being used. Although I can see how that could be an issue with lazy-loaded plugins. Maybe. It's worth looking around just to see.
-
-## Road to 1.0
-
-- Finish and merge extended colors support for LSP semantic tokens.
-  - Make "namespace" bold
-  - Link @builtinType (LSP tokens) to @type.builtin (TreeSitter)
-- Find a way to improve performance without breaking the support for the autoload file.
-- Link @storageclass to Keyword instead of Type
-- Use fg_idle for PreProc
+- Update support for rainbow parens
+- Add support for new Indent blankline
