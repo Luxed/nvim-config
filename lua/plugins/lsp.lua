@@ -126,6 +126,10 @@ local function lsp_config(server_name)
     }))
   elseif server_name == 'gopls' then
     -- Do nothing, let the go plugin take care of everything
+  elseif server_name == 'volar' then
+    lspconfig[server_name].setup(extended_setup({
+      filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'},
+    }))
   else
     lspconfig[server_name].setup(complete_lsp_setup)
   end

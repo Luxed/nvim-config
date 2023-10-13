@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
@@ -60,7 +61,9 @@ return {
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner"
+            ["ic"] = "@class.inner",
+            ["ia"] = "@parameter.inner",
+            ["aa"] = "@parameter.outer",
           }
         }
       },

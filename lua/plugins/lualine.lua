@@ -54,7 +54,7 @@ local trailing_whitespace_section = {
     return space ~= 0 and "TW:" .. space or ""
   end,
   cond = function()
-    return vim.bo.filetype ~= 'markdown'
+    return vim.bo.filetype ~= 'markdown' and vim.fn.mode() == 'n'
   end
 }
 
